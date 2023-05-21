@@ -9,7 +9,7 @@ const ProviderChakra = ({ children }: { children: React.ReactNode }) => {
   return (
     <CacheProvider>
       <ChakraProvider theme={theme}>
-        <VStack w="full" minH="100vh" spacing={0}>
+        <VStack w="full" spacing={0}>
           <Nav></Nav>
           {children}
           <Footer/>

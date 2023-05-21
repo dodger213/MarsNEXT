@@ -56,16 +56,17 @@ export const Header = () => {
                   bgClip="text"
                   fontSize={['4xl', '5xl', '7xl', '9xl']}
                   textAlign="left"
+                  spacing={0}
                 >
                   <Text fontWeight={900} lineHeight={1} w="max-content">
-                    MARS
+                    Mars
                   </Text>
                   <Text fontWeight={400} lineHeight={1} w="max-content">
-                    NEXT
+                    Next
                   </Text>
                 </HStack>
                 <Text
-                  fontWeight={[300, 500, 700, 900]}
+                  fontWeight={[300, 500]}
                   fontSize={['xl', '2xl', '3xl']}
                   textAlign={['center', 'left']}
                 >

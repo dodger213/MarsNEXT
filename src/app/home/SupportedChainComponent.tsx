@@ -24,7 +24,7 @@ export const SupportedChainComponent = () => {
     >
       <VStack>
         <Heading bgGradient={bgGradient?.heading} bgClip="text" size="3xl" textAlign="center">
-          We are supported by best
+          We are supported by the best
         </Heading>
         <Divider />
       </VStack>

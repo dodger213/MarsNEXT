@@ -18,11 +18,12 @@ export const Logo = () => {
             spacing={1}
             bgGradient="linear(to-r, red.500, yellow.500, green.500)"
             bgClip="text"
+            fontSize="30px"
           >
-            <Text fontSize="20px" fontWeight={900}>
+            <Text  fontWeight={900}>
               Mars
             </Text>
-            <Text fontSize="20px" fontFamily="mono">
+            <Text fontFamily="mono">
               Next
             </Text>
           </HStack>
