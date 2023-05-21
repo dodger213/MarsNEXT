@@ -14,9 +14,9 @@ export const SupportedChainComponent = () => {
   return (
     <VStack
       zIndex={111}
-      py={100}
+      py={[50, 75, 100]}
       bgGradient={`linear(to-t, ${useColorModeValue(
-        'gray.500',
+        'green.100',
         'blackAlpha.900'
       )}, transparent)`}
       spacing={5}

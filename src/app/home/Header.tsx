@@ -40,17 +40,17 @@ export const Header = () => {
       overflow="hidden"
       direction="column"
     >
-      <VStack w="full" h="150vh">
+      <VStack w="full" h="140vh">
         <Particles quantity={500}></Particles>
         <VStack
           w="full"
           justify={['flex-start', 'center']}
-          pt={[100, 0]}
+          pt={[175, 0]}
           h="100vh"
         >
           <VStack w="full" maxW={1500} align="flex-start" px={5}>
             <VStack align="flex-start" spacing={5}>
-              <VStack w="min-content">
+              <VStack w="min-content" zIndex={0}>
                 <HStack
                   bgGradient={'linear(to-r, red.500, yellow.500, green.500)'}
                   bgClip="text"
@@ -72,7 +72,7 @@ export const Header = () => {
                     NEXT
                   </Text>
                 </HStack>
-                <Heading>
+                <Heading fontWeight={[300, 500, 700, 900]}>
                   A reward centric decentralized protocol only made for
                   community.
                 </Heading>
