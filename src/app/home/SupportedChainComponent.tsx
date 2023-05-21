@@ -23,8 +23,8 @@ export const SupportedChainComponent = () => {
       w="full"
     >
       <VStack>
-        <Heading size="2xl" bgGradient={bgGradient?.heading} bgClip="text">
-          We are on
+        <Heading bgGradient={bgGradient?.heading} bgClip="text" size="3xl" textAlign="center">
+          We are supported by best
         </Heading>
         <Divider />
       </VStack>

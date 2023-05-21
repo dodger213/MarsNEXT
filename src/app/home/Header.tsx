@@ -41,7 +41,7 @@ export const Header = () => {
       direction="column"
     >
       <VStack w="full" h="140vh" spacing={0}>
-        <Particles quantity={500}></Particles>
+        <Particles quantity={200}></Particles>
         <VStack
           w="full"
           justify={['flex-start', 'flex-start', 'flex-start', 'center']}
