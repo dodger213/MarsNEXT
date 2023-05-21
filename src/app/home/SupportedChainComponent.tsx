@@ -20,9 +20,10 @@ export const SupportedChainComponent = () => {
         'blackAlpha.900'
       )}, transparent)`}
       spacing={5}
+      w="full"
     >
       <VStack>
-        <Heading size="3xl" bgGradient={bgGradient?.heading} bgClip="text">
+        <Heading size="2xl" bgGradient={bgGradient?.heading} bgClip="text">
           We are on
         </Heading>
         <Divider />

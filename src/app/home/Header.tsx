@@ -29,10 +29,10 @@ export const Header = () => {
     setMousePosition({ x, y });
   };
   return (
-    <Flex
+    <VStack
       w="full"
       bgGradient={useColorModeValue(
-        'linear(to-r, green.100, pink.500)',
+        'linear(to-r, green.50, pink.500)',
         'linear(to-r, blackAlpha.900, blue.900, blackAlpha.900)'
       )}
       zIndex={1}
@@ -40,42 +40,38 @@ export const Header = () => {
       overflow="hidden"
       direction="column"
     >
-      <VStack w="full" h="140vh">
+      <VStack w="full" h="140vh" spacing={0}>
         <Particles quantity={500}></Particles>
         <VStack
           w="full"
-          justify={['flex-start', 'center']}
-          pt={[175, 0]}
+          justify={['flex-start', 'flex-start', 'flex-start', 'center']}
+          pt={[150, 175, 150, 0]}
           h="100vh"
         >
-          <VStack w="full" maxW={1500} align="flex-start" px={5}>
-            <VStack align="flex-start" spacing={5}>
-              <VStack w="min-content" zIndex={0}>
+          <VStack w="full" maxW={1500} align="flex-start" px={10}>
+            <VStack align={['center', 'flex-start']} spacing={5}>
+              <VStack w={['full', 'min-content']} minW={300} zIndex={0}>
                 <HStack
                   bgGradient={'linear(to-r, red.500, yellow.500, green.500)'}
                   bgClip="text"
+                  fontSize={['4xl', '5xl', '7xl', '9xl']}
+                  textAlign="left"
                 >
-                  <Text
-                    fontSize={['5xl', '7xl', '9xl']}
-                    fontWeight={900}
-                    lineHeight={1}
-                    w="max-content"
-                  >
+                  <Text fontWeight={900} lineHeight={1} w="max-content">
                     MARS
                   </Text>
-                  <Text
-                    fontSize={['5xl', '7xl', '9xl']}
-                    fontWeight={400}
-                    lineHeight={1}
-                    w="max-content"
-                  >
+                  <Text fontWeight={400} lineHeight={1} w="max-content">
                     NEXT
                   </Text>
                 </HStack>
-                <Heading fontWeight={[300, 500, 700, 900]}>
+                <Text
+                  fontWeight={[300, 500, 700, 900]}
+                  fontSize={['xl', '2xl', '3xl']}
+                  textAlign={['center', 'left']}
+                >
                   A reward centric decentralized protocol only made for
                   community.
-                </Heading>
+                </Text>
               </VStack>
               <Button
                 w={300}
@@ -109,6 +105,6 @@ export const Header = () => {
         </Suspense>
       </VStack>
       <SupportedChainComponent />
-    </Flex>
+    </VStack>
   );
 };
