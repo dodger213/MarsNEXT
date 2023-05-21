@@ -6,7 +6,7 @@ import { Header } from './Header'
 
 export const Home = () => {
   return (
-    <VStack w="full" minH="500vh">
+    <VStack w="full">
       <Header/>
     </VStack>
   )

@@ -1,9 +1,8 @@
 import Particles from '@/components/Particles';
+import { ChevronRightIcon } from '@chakra-ui/icons';
 import {
-  Box,
   Button,
   Center,
-  Container,
   Flex,
   HStack,
   Heading,
@@ -14,10 +13,9 @@ import {
 import { Canvas } from '@react-three/fiber';
 import { motion } from 'framer-motion-3d';
 import React, { Suspense, useState } from 'react';
+import { ParallaxProvider } from 'react-scroll-parallax';
 import { SpaceModel } from './AstronautModel';
-import { ChevronRightIcon } from '@chakra-ui/icons';
-import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
-import { OrbitControls } from '@react-three/drei';
+import { SupportedChainComponent } from './SupportedChainComponent';
 
 export const Header = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -33,24 +31,23 @@ export const Header = () => {
   return (
     <Flex
       w="full"
-      minH="200vh"
       bgGradient={useColorModeValue(
-        'linear(to-r, green.200, pink.500)',
+        'linear(to-r, green.100, pink.500)',
         'linear(to-r, blackAlpha.900, blue.900, blackAlpha.900)'
       )}
       zIndex={1}
       onMouseMove={handleMouseMove}
       overflow="hidden"
+      direction="column"
     >
-      <Particles quantity={500}></Particles>
-
-      <VStack
-        w="full"
-        justify={['flex-start', 'center']}
-        pt={[100, 0]}
-        h="100vh"
-      >
-        <ParallaxProvider>
+      <VStack w="full" h="150vh">
+        <Particles quantity={500}></Particles>
+        <VStack
+          w="full"
+          justify={['flex-start', 'center']}
+          pt={[100, 0]}
+          h="100vh"
+        >
           <VStack w="full" maxW={1500} align="flex-start" px={5}>
             <VStack align="flex-start" spacing={5}>
               <VStack w="min-content">
@@ -96,21 +93,22 @@ export const Header = () => {
               </Button>
             </VStack>
           </VStack>
-        </ParallaxProvider>
+        </VStack>
+        <Suspense>
+          <Center w="full" position="absolute" h="200vh">
+            <Canvas>
+              <ambientLight intensity={useColorModeValue(7, 5)} />
+              <motion.pointLight
+                position={[5, 5, 5]}
+                intensity={useColorModeValue(0.1, 1)}
+              />
+              <SpaceModel mousePosition={mousePosition}></SpaceModel>
+              {/* <OrbitControls enableZoom={false}></OrbitControls> */}
+            </Canvas>
+          </Center>
+        </Suspense>
       </VStack>
-      <Suspense>
-        <Center w="full" position="absolute" h="200vh">
-          <Canvas>
-            <ambientLight intensity={useColorModeValue(7, 5)} />
-            <motion.pointLight
-              position={[5, 5, 5]}
-              intensity={useColorModeValue(0.1, 1)}
-            />
-            <SpaceModel mousePosition={mousePosition}></SpaceModel>
-            {/* <OrbitControls enableZoom={false}></OrbitControls> */}
-          </Canvas>
-        </Center>
-      </Suspense>
+      <SupportedChainComponent />
     </Flex>
   );
 };
