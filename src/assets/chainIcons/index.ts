@@ -1,0 +1,1 @@
+export {default as MyVeeMainnetlogo} from "./MyVeeMainnet.svg"
