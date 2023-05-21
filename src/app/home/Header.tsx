@@ -48,7 +48,7 @@ export const Header = () => {
           pt={[150, 175, 150, 0]}
           h="100vh"
         >
-          <VStack w="full" maxW={1500} align="flex-start" px={10}>
+          <VStack w="full" maxW={1500} align="flex-start" px={[2, 5, 10]}>
             <VStack align={['center', 'flex-start']} spacing={5}>
               <VStack w={['full', 'min-content']} minW={300} zIndex={0}>
                 <HStack
