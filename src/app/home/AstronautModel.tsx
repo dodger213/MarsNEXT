@@ -25,7 +25,8 @@ export function SpaceModel({
   useFrame(() => {
     if (modelRef.current) {
       modelRef.current.rotation.y = mousePosition.x * 0.1;
-      modelRef.current.rotation.x = mousePosition.y * 0.1;
+      modelRef.current.rotation.x = -mousePosition.y * 0.2;
+      modelRef.current.rotation.z = mousePosition.x * 1;
     }
   });
 
@@ -44,7 +45,7 @@ export function SpaceModel({
           repeat: Infinity,
         }}
       >
-        <group dispose={null} ref={modelRef}>
+        <group dispose={null} >
           <group name="Scene">
             <group name="space-modelglb" userData={{ name: 'space-model.glb' }}>
               <group
@@ -54,7 +55,7 @@ export function SpaceModel({
                 userData={{ name: 'Sketchfab_model' }}
                 position={[Number(positionX), 3, -7]}
               >
-                <group name="root" userData={{ name: 'root' }}>
+                <group name="root" userData={{ name: 'root' }} ref={modelRef}>
                   <group
                     name="GLTF_SceneRootNode"
                     rotation={[Math.PI / 2, 0, 0]}
