@@ -22,7 +22,7 @@ export const PowerOfBlockchainComponent = () => {
       minH="80vh"
       py="10vh"
       bgGradient={`linear(to-b, ${useColorModeValue(
-        'green.100',
+        'white',
         'blackAlpha.900'
       )}, transparent)`}
       spacing={10}
@@ -39,13 +39,7 @@ export const PowerOfBlockchainComponent = () => {
         </Heading>
       </Container>
       <Wrap spacing={10} align="center" justify="center">
-        <Tag
-          w={250}
-          h={350}
-          borderRadius="50px"
-          bgColor={useColorModeValue('white', 'gray.900')}
-          borderBottomWidth="thick"
-        >
+        <Tag p={5} borderRadius="50px" borderBottomWidth="thick">
           <VStack w="full">
             <Icon as={GiWineGlass} boxSize={14}></Icon>
             <Heading color="orange.500" size="md">
@@ -53,13 +47,7 @@ export const PowerOfBlockchainComponent = () => {
             </Heading>
           </VStack>
         </Tag>
-        <Tag
-          w={250}
-          h={350}
-          borderRadius="50px"
-          bgColor={useColorModeValue('white', 'gray.900')}
-          borderBottomWidth="thick"
-        >
+        <Tag p={5} borderRadius="50px" borderBottomWidth="thick">
           <VStack w="full">
             <Icon as={BsShieldFillCheck} boxSize={14}></Icon>
             <Heading color="orange.500" size="md">
@@ -67,13 +55,7 @@ export const PowerOfBlockchainComponent = () => {
             </Heading>
           </VStack>
         </Tag>
-        <Tag
-          w={250}
-          h={350}
-          borderRadius="50px"
-          bgColor={useColorModeValue('white', 'gray.900')}
-          borderBottomWidth="thick"
-        >
+        <Tag p={5} borderRadius="50px" borderBottomWidth="thick">
           <VStack w="full">
             <Icon as={FaBoxOpen} boxSize={14}></Icon>
             <Heading textAlign="center" color="orange.500" size="md">
@@ -81,13 +63,7 @@ export const PowerOfBlockchainComponent = () => {
             </Heading>
           </VStack>
         </Tag>
-        <Tag
-          w={250}
-          h={350}
-          borderRadius="50px"
-          bgColor={useColorModeValue('white', 'gray.900')}
-          borderBottomWidth="thick"
-        >
+        <Tag p={5} borderRadius="50px" borderBottomWidth="thick">
           <VStack w="full">
             <Icon as={FaLock} boxSize={14}></Icon>
             <Heading textAlign="center" color="orange.500" size="md">

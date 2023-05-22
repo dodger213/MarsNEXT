@@ -1,21 +1,27 @@
 import {
   Box,
   BoxProps,
+  Center,
   HStack,
+  Icon,
+  IconButton,
   StackProps,
   useColorMode,
-  useColorModeValue
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { MotionProps, motion } from 'framer-motion';
 import * as React from 'react';
 import { FaMoon, FaSun } from 'react-icons/fa';
+import { Button, ButtonProps, Flex } from '@chakra-ui/react';
+import { BsSun, BsMoonStarsFill } from 'react-icons/bs';
 
 type AnimatedBoxProps = MotionProps & BoxProps & StackProps;
 
-const MotionBox = motion(Box);
+const MotionCenter = motion(Center);
+const MotionIcon = motion(Icon);
 
 export const ColorModeSwitcher: React.FC<AnimatedBoxProps> = () => {
-  const { toggleColorMode } = useColorMode();
+  const { toggleColorMode, colorMode } = useColorMode();
   const SwitchIcon = useColorModeValue(FaMoon, FaSun);
 
   return (
@@ -27,11 +33,17 @@ export const ColorModeSwitcher: React.FC<AnimatedBoxProps> = () => {
       justify={useColorModeValue('flex-start', 'flex-end')}
       onClick={toggleColorMode}
       as={motion.div}
+      opacity={0.5}
+      borderColor={useColorModeValue("gray.500", "white")}
+      cursor="pointer"
       layout
+      _hover={{
+        opacity: 1,
+      }}
     >
-      <MotionBox
+      <MotionCenter
         boxSize={5}
-        bgColor={useColorModeValue('blue.400', 'gray.700')}
+        bgColor={useColorModeValue("gray.200", "white")}
         borderRadius="full"
         cursor="pointer"
         layout
@@ -40,7 +52,9 @@ export const ColorModeSwitcher: React.FC<AnimatedBoxProps> = () => {
           stiffness: 700,
           duration: 1,
         }}
-      ></MotionBox>
+      >
+        <Icon as={colorMode === "dark" ? BsMoonStarsFill : BsSun} boxSize={3} color="black"></Icon>
+      </MotionCenter>
     </HStack>
   );
 };

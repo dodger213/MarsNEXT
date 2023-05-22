@@ -2,6 +2,7 @@
 import {
   Container,
   HStack,
+  Icon,
   Spacer,
   useBreakpointValue,
   useColorModeValue,
@@ -11,6 +12,8 @@ import { useMotionValueEvent, useScroll } from 'framer-motion';
 import { useState } from 'react';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
 import { Logo } from '../Logo';
+import { HamburgerIcon } from '@chakra-ui/icons';
+import MenuButtonComponent from './MenuButtonComponent';
 
 export const Nav = () => {
   const { scrollY } = useScroll();
@@ -19,6 +22,8 @@ export const Nav = () => {
     setScrollYValue(latest);
   });
 
+  const navBgColor = useColorModeValue('white', 'gray.900');
+
   return (
     <HStack
       w="full"
@@ -26,12 +31,13 @@ export const Nav = () => {
       align="center"
       justify="center"
       borderBottomRadius={['20%', '20%', '20%', '30%', 'full']}
-      bgColor={scrollYValue > 20 ? 'transparent' : 'transparent'}
+      bgColor={scrollYValue > 20 ? navBgColor : 'transparent'}
       position="fixed"
       top={0}
       zIndex={1111}
       backdropFilter="auto"
       backdropBlur={scrollYValue > 20 ? '20px' : 'none'}
+      transition={'background-color 100ms linear'}
     >
       <Container maxW={1500}>
         <HStack w="full">
@@ -40,6 +46,7 @@ export const Nav = () => {
           <Web3Button
             balance={useBreakpointValue(['hide', 'hide', 'show'])}
           ></Web3Button>
+          <MenuButtonComponent />
           <ColorModeSwitcher />
         </HStack>
       </Container>

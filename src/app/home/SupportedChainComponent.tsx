@@ -18,7 +18,7 @@ export const SupportedChainComponent = () => {
       zIndex={111}
       py={[50, 75, 100]}
       bgGradient={`linear(to-t, ${useColorModeValue(
-        'green.100',
+        'white',
         'blackAlpha.900'
       )}, transparent)`}
       spacing={5}
@@ -29,7 +29,7 @@ export const SupportedChainComponent = () => {
         gradientHeading="BEST"
       ></HeadingComponent>
       <HStack spacing={[2, 5, 10]} p={[2, 5, 10]}>
-        <Tag p={5} borderRadius="50px">
+        <Tag p={5} borderRadius="50px" borderBottomWidth="thick">
           <Image
             src="/chainIcons/bscSmartChainLogo.svg"
             alt="bsc logo"
@@ -37,7 +37,7 @@ export const SupportedChainComponent = () => {
             height={100}
           ></Image>
         </Tag>
-        <Tag p={5} borderRadius="50px">
+        <Tag p={5} borderRadius="50px" borderBottomWidth="thick">
           <Image
             src="/chainIcons/polygonChainLogo.svg"
             alt="polygon logo"
@@ -45,7 +45,7 @@ export const SupportedChainComponent = () => {
             height={100}
           ></Image>
         </Tag>
-        <Tag p={5} borderRadius="50px">
+        <Tag p={5} borderRadius="50px" borderBottomWidth="thick">
           <Image
             src="/chainIcons/ethereumChainLogo.svg"
             alt="ethereum logo"
@@ -59,7 +59,7 @@ export const SupportedChainComponent = () => {
         gradientHeading="CURRENCIES"
       ></HeadingComponent>
       <HStack spacing={[2, 5, 10]} p={[2, 5, 10]}>
-        <Tag p={5} borderRadius="50px">
+        <Tag p={5} borderRadius="50px" borderBottomWidth="thick">
           <Image
             src={USDTLogoSVG}
             alt="bsc logo"
@@ -67,7 +67,7 @@ export const SupportedChainComponent = () => {
             height={85}
           ></Image>
         </Tag>
-        <Tag p={5} borderRadius="50px">
+        <Tag p={5} borderRadius="50px" borderBottomWidth="thick">
           <Image
             src={BUSDLogoSVG}
             alt="polygon logo"

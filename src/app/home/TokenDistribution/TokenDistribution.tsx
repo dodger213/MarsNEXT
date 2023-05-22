@@ -18,7 +18,7 @@ export const TokenDistribution = () => {
     <VStack
       w="full"
       py="10vh"
-      bgColor={useColorModeValue('green.100', 'blackAlpha.900')}
+      bgColor={useColorModeValue('white', 'blackAlpha.900')}
       spacing={10}
     >
       <HeadingComponent
@@ -32,7 +32,7 @@ export const TokenDistribution = () => {
         direction="column"
         gap={5}
         p={[5, 10]}
-        bgColor={useColorModeValue('white', 'gray.900')}
+        bgColor={useColorModeValue('gray.100', 'gray.900')}
         borderRadius="50px"
         borderBottomWidth="thick"
       >

@@ -23,17 +23,14 @@ export const PlanDiscriptionComponent = () => {
       minH="80vh"
       py="10vh"
       spacing={10}
-      bgColor={useColorModeValue('green.100', 'blackAlpha.900')}
+      bgColor={useColorModeValue('white', 'blackAlpha.900')}
     >
-        <HeadingComponent heading='A protocol made for' gradientHeading='EVERYONE'></HeadingComponent>
+      <HeadingComponent
+        heading="A protocol made for"
+        gradientHeading="EVERYONE"
+      ></HeadingComponent>
       <Wrap spacing={10} align="center" justify="center">
-        <Tag
-          w={250}
-          h={350}
-          borderRadius="50px"
-          bgColor={useColorModeValue('white', 'gray.900')}
-          borderBottomWidth="thick"
-        >
+        <Tag w={250} h={350} borderRadius="50px" borderBottomWidth="thick">
           <VStack w="full">
             <Icon as={FaUserFriends} boxSize={10}></Icon>
             <Tag colorScheme="orange">Earn Upto</Tag>
@@ -42,13 +39,7 @@ export const PlanDiscriptionComponent = () => {
             <Text>When you refer a friend.</Text>
           </VStack>
         </Tag>
-        <Tag
-          w={250}
-          h={350}
-          borderRadius="50px"
-          bgColor={useColorModeValue('white', 'gray.900')}
-          borderBottomWidth="thick"
-        >
+        <Tag w={250} h={350} borderRadius="50px" borderBottomWidth="thick">
           <VStack w="full" textAlign="center">
             <Icon as={BsFire} boxSize={10}></Icon>
             <Tag colorScheme="orange">Global Rewards</Tag>
@@ -61,13 +52,7 @@ export const PlanDiscriptionComponent = () => {
             </Text>
           </VStack>
         </Tag>
-        <Tag
-          w={250}
-          h={350}
-          borderRadius="50px"
-          bgColor={useColorModeValue('white', 'gray.900')}
-          borderBottomWidth="thick"
-        >
+        <Tag w={250} h={350} borderRadius="50px" borderBottomWidth="thick">
           <VStack w="full" textAlign="center">
             <Icon as={GiCube} boxSize={10}></Icon>
             <Tag colorScheme="orange">Ownership</Tag>
