@@ -16,6 +16,7 @@ import React, { Suspense, useState } from 'react';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import { SpaceModel } from './AstronautModel';
 import { SupportedChainComponent } from './SupportedChainComponent';
+import { SupportedCurrencies } from './SupportedCurrencies';
 
 export const Header = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });

@@ -1,4 +1,3 @@
-import { BUSDLogoSVG, USDTLogoSVG } from '@/assets';
 import { HeadingComponent, bgGradient } from '@/util/Ui';
 import {
   Divider,
@@ -12,15 +11,12 @@ import {
 import Image from 'next/image';
 import React from 'react';
 
-export const SupportedChainComponent = () => {
+export const SupportedCurrencies = () => {
   return (
     <VStack
       zIndex={111}
       py={[50, 75, 100]}
-      bgGradient={`linear(to-t, ${useColorModeValue(
-        'green.100',
-        'blackAlpha.900'
-      )}, transparent)`}
+      bgColor={useColorModeValue('green.100', 'blackAlpha.900')}
       spacing={5}
       w="full"
     >
@@ -53,36 +49,6 @@ export const SupportedChainComponent = () => {
             height={100}
           ></Image>
         </Tag>
-      </HStack>
-      <HeadingComponent
-        heading="Supported"
-        gradientHeading="CURRENCIES"
-      ></HeadingComponent>
-      <HStack spacing={[2, 5, 10]} p={[2, 5, 10]}>
-        <Tag p={5} borderRadius="50px">
-          <Image
-            src={USDTLogoSVG}
-            alt="bsc logo"
-            width={85}
-            height={85}
-          ></Image>
-        </Tag>
-        <Tag p={5} borderRadius="50px">
-          <Image
-            src={BUSDLogoSVG}
-            alt="polygon logo"
-            width={75}
-            height={75}
-          ></Image>
-        </Tag>
-        {/* <Tag p={5} borderRadius="50px">
-          <Image
-            src="/chainIcons/ethereumChainLogo.svg"
-            alt="ethereum logo"
-            width={100}
-            height={100}
-          ></Image>
-        </Tag> */}
       </HStack>
     </VStack>
   );

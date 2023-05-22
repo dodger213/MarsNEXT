@@ -412,7 +412,7 @@ export function SpaceModel({
                         />
                       </mesh>
                     </group>
-                    <group
+                    {/* <group
                       name="Plane_24"
                       position={[-22.77, -25.08, -21.01]}
                       rotation={[0.61, -0.5, -0.99]}
@@ -428,7 +428,7 @@ export function SpaceModel({
                         position={[-0.59, -0.01, -0.08]}
                         userData={{ name: 'Object_44' }}
                       />
-                    </group>
+                    </group> */}
                     <group
                       name="Armature_93"
                       position={[0, -0.73, 0]}
