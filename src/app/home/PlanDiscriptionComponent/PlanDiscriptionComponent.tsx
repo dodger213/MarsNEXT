@@ -26,14 +26,10 @@ export const PlanDiscriptionComponent = () => {
       bgColor={useColorModeValue('green.100', 'blackAlpha.900')}
     >
       <VStack>
-        <Heading
-          bgGradient={bgGradient?.heading}
-          bgClip="text"
-          textAlign="center"
-          size="3xl"
-        >
+        <Text fontSize={['4xl', '5xl', '6xl', '7xl']} fontWeight={900} textAlign="center" bgGradient={bgGradient?.heading} bgClip="text">
           A protocol made for everyone.
-        </Heading>
+        </Text>
+
         <Divider></Divider>
       </VStack>
       <Wrap spacing={10} align="center" justify="center">
@@ -42,6 +38,7 @@ export const PlanDiscriptionComponent = () => {
           h={350}
           borderRadius="50px"
           bgColor={useColorModeValue('white', 'gray.900')}
+          borderBottomWidth="thick"
         >
           <VStack w="full">
             <Icon as={FaUserFriends} boxSize={10}></Icon>
@@ -56,6 +53,7 @@ export const PlanDiscriptionComponent = () => {
           h={350}
           borderRadius="50px"
           bgColor={useColorModeValue('white', 'gray.900')}
+          borderBottomWidth="thick"
         >
           <VStack w="full" textAlign="center">
             <Icon as={BsFire} boxSize={10}></Icon>
@@ -74,6 +72,7 @@ export const PlanDiscriptionComponent = () => {
           h={350}
           borderRadius="50px"
           bgColor={useColorModeValue('white', 'gray.900')}
+          borderBottomWidth="thick"
         >
           <VStack w="full" textAlign="center">
             <Icon as={GiCube} boxSize={10}></Icon>

@@ -4,6 +4,7 @@ import {
   HStack,
   Heading,
   Tag,
+  Text,
   VStack,
   useColorModeValue,
 } from '@chakra-ui/react';
@@ -23,9 +24,15 @@ export const SupportedChainComponent = () => {
       w="full"
     >
       <VStack>
-        <Heading bgGradient={bgGradient?.heading} bgClip="text" size="3xl" textAlign="center">
-          We are supported by the best
-        </Heading>
+        <Text
+          fontSize={['4xl', '5xl', '6xl', '7xl']}
+          fontWeight={900}
+          bgGradient={bgGradient?.heading}
+          bgClip="text"
+          textAlign="center"
+        >
+          Supported by the best
+        </Text>
         <Divider />
       </VStack>
       <HStack spacing={[2, 5, 10]} p={[2, 5, 10]}>

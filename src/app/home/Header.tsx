@@ -33,7 +33,7 @@ export const Header = () => {
       w="full"
       bgGradient={useColorModeValue(
         'linear(to-r, green.50, pink.500)',
-        'linear(to-r, blackAlpha.900, blue.900, blackAlpha.900)'
+        'linear(to-r, blackAlpha.900, blackAlpha.200, blackAlpha.900)'
       )}
       zIndex={1}
       onMouseMove={handleMouseMove}

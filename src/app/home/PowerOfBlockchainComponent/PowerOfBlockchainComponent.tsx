@@ -27,13 +27,13 @@ export const PowerOfBlockchainComponent = () => {
       spacing={10}
     >
       <VStack
-        fontSize={['3xl', '4xl', '5xl', '6xl']}
+        fontSize={['2xl', '3xl', '4xl', '5xl']}
         fontWeight={900}
         lineHeight={1}
       >
         <Text textAlign="center">Build with the power of</Text>
         <Text
-          fontSize={['5xl', '6xl', '7xl', '8xl']}
+          fontSize={['4xl', '5xl', '6xl', '7xl']}
           bgGradient={`linear(to-r, red.500, yellow.500, green.500)`}
           bgClip="text"
         >
@@ -42,60 +42,60 @@ export const PowerOfBlockchainComponent = () => {
       </VStack>
       <Icon as={GiCubes} boxSize={300}></Icon>
       <Container>
-        <Heading textAlign="center">
+        <Heading textAlign="center" size="md">
           Every logic & reward distribution written on secure smart contracts.
           All smart contracts are verified on block explorers & open source.
         </Heading>
       </Container>
-      <Wrap spacing={10}>
+      <Wrap spacing={10} align="center" justify="center">
         <Tag
           w={250}
-          h={300}
+          h={350}
           borderRadius="50px"
           bgColor={useColorModeValue('white', 'gray.900')}
           borderBottomWidth="thick"
         >
           <VStack w="full">
-            <Icon as={GiWineGlass} boxSize={20}></Icon>
-            <Heading color="orange.500">Transparent</Heading>
+            <Icon as={GiWineGlass} boxSize={14}></Icon>
+            <Heading color="orange.500"  size="md">Transparent</Heading>
           </VStack>
         </Tag>
         <Tag
           w={250}
-          h={300}
+          h={350}
           borderRadius="50px"
           bgColor={useColorModeValue('white', 'gray.900')}
           borderBottomWidth="thick"
         >
           <VStack w="full">
-          <Icon as={BsShieldFillCheck} boxSize={20}></Icon>
-            <Heading color="orange.500">Secured</Heading>
+          <Icon as={BsShieldFillCheck} boxSize={14}></Icon>
+            <Heading color="orange.500" size="md">Secured</Heading>
           </VStack>
         </Tag>
         <Tag
           w={250}
-          h={300}
+          h={350}
           borderRadius="50px"
           bgColor={useColorModeValue('white', 'gray.900')}
           borderBottomWidth="thick"
         >
           <VStack w="full">
-          <Icon as={FaBoxOpen} boxSize={20}></Icon>
-            <Heading textAlign="center" color="orange.500">
+          <Icon as={FaBoxOpen} boxSize={14}></Icon>
+            <Heading textAlign="center" color="orange.500" size="md">
               Open Source
             </Heading>
           </VStack>
         </Tag>
         <Tag
           w={250}
-          h={300}
+          h={350}
           borderRadius="50px"
           bgColor={useColorModeValue('white', 'gray.900')}
           borderBottomWidth="thick"
         >
           <VStack w="full">
-          <Icon as={FaLock} boxSize={20}></Icon>
-            <Heading textAlign="center" color="orange.500">
+          <Icon as={FaLock} boxSize={14}></Icon>
+            <Heading textAlign="center" color="orange.500" size="md">
               Renounced
             </Heading>
           </VStack>
