@@ -5,6 +5,7 @@ import {
   Flex,
   HStack,
   Progress,
+  Spacer,
   Tag,
   VStack,
   useBreakpointValue,
@@ -38,33 +39,44 @@ export const TokenDistribution = () => {
       >
         <HStack>
           <Tag>Referrer</Tag>
-          <Box w="50vw" h={7} bgGradient="linear(to-r, red.500, yellow.500, green.500)" borderRadius="full"></Box>
+          <Spacer />
+          <Box
+            w="50vw"
+            h={7}
+            bgGradient="linear(to-r, red.500, yellow.500, green.500)"
+            borderRadius="full"
+          ></Box>
           <Tag>50%</Tag>
         </HStack>
         <HStack>
           <Tag>Levels</Tag>
+          <Spacer />
           <Box w="20vw" h={7} bgColor="twitter.400" borderRadius="full"></Box>
           <Tag>20%</Tag>
         </HStack>
         <HStack>
           <Tag>Global Pool</Tag>
+          <Spacer />
           <Box w="10vw" h={7} bgColor="purple.300" borderRadius="full"></Box>
           <Tag>10%</Tag>
         </HStack>
         <HStack>
           <Tag>Weekly Pool</Tag>
+          <Spacer />
           <Box w="10vw" h={7} bgColor="red.300" borderRadius="full"></Box>
           <Tag>10%</Tag>
         </HStack>
         <HStack>
           <Tag>IB Partners</Tag>
+          <Spacer />
           <Box w="5vw" h={7} bgColor="green.300" borderRadius="full"></Box>
-          <Tag>5%</Tag>
+          <Tag>05%</Tag>
         </HStack>
         <HStack>
           <Tag>Dev & Teams</Tag>
+          <Spacer />
           <Box w="5vw" h={7} bgColor="orange.500" borderRadius="full"></Box>
-          <Tag>5%</Tag>
+          <Tag>05%</Tag>
         </HStack>
       </Flex>
     </VStack>

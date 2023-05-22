@@ -12,9 +12,33 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import React from 'react';
-import { FaUserFriends } from 'react-icons/fa';
-import { BsFire } from 'react-icons/bs';
+import { FaChartLine, FaUserFriends, FaUsers } from 'react-icons/fa';
+import { BsFillCalendar2HeartFill, BsFire } from 'react-icons/bs';
 import { GiCube } from 'react-icons/gi';
+import { IconType } from 'react-icons';
+
+const TagComponent = ({
+  icon,
+  heading,
+  value,
+  text,
+}: {
+  icon: IconType;
+  heading: string;
+  value: number;
+  text: string;
+}) => {
+  return (
+    <Tag w={250} h={350} borderRadius="50px" borderBottomWidth="thick">
+      <VStack w="full" spacing={2}>
+        <Icon as={icon} boxSize={10}></Icon>
+        <Tag colorScheme="orange">{heading}</Tag>
+        <Heading color="orange.500">{value}%</Heading>
+        <Text textAlign="center">{text}</Text>
+      </VStack>
+    </Tag>
+  );
+};
 
 export const PlanDiscriptionComponent = () => {
   return (
@@ -30,39 +54,43 @@ export const PlanDiscriptionComponent = () => {
         gradientHeading="EVERYONE"
       ></HeadingComponent>
       <Wrap spacing={10} align="center" justify="center">
-        <Tag w={250} h={350} borderRadius="50px" borderBottomWidth="thick">
-          <VStack w="full">
-            <Icon as={FaUserFriends} boxSize={10}></Icon>
-            <Tag colorScheme="orange">Earn Upto</Tag>
-
-            <Heading color="orange.500">50%</Heading>
-            <Text>When you refer a friend.</Text>
-          </VStack>
-        </Tag>
-        <Tag w={250} h={350} borderRadius="50px" borderBottomWidth="thick">
-          <VStack w="full" textAlign="center">
-            <Icon as={BsFire} boxSize={10}></Icon>
-            <Tag colorScheme="orange">Global Rewards</Tag>
-            <Heading color="orange.500">10%</Heading>
-            <Text>
-              <Text as="span" color="pink.500">
-                *
-              </Text>{' '}
-              A random user will get 10% of earch registration amount randmonly.
-            </Text>
-          </VStack>
-        </Tag>
-        <Tag w={250} h={350} borderRadius="50px" borderBottomWidth="thick">
-          <VStack w="full" textAlign="center">
-            <Icon as={GiCube} boxSize={10}></Icon>
-            <Tag colorScheme="orange">Ownership</Tag>
-            <Heading color="orange.500">100%</Heading>
-            <Text>
-              Everything is on decentralized smart contracts verified on block
-              explorers. Completely transparent & secure.
-            </Text>
-          </VStack>
-        </Tag>
+        <TagComponent
+          heading="Earn Upto"
+          icon={FaUserFriends}
+          text="When you refer a friend."
+          value={50}
+        ></TagComponent>
+        <TagComponent
+          heading="Levels"
+          icon={FaChartLine}
+          text="Rewards upto 20% of each registration when you achieve different levels. Yet to open."
+          value={20}
+        ></TagComponent>
+        <TagComponent
+          heading="Global Rewards"
+          icon={BsFire}
+          text="A random user will get 10% of earch registration amount randmonly."
+          value={10}
+        ></TagComponent>
+        <TagComponent
+          heading="Weekly Rewards"
+          icon={BsFillCalendar2HeartFill}
+          text="A random user will get 10% of weekly value of total registrations."
+          value={10}
+        ></TagComponent>
+        <TagComponent
+          heading="Core Membership"
+          icon={FaUsers}
+          text="Users who are working dedicately will be included in core member list. Will get upto 20% of company profits or max 2% of registration."
+          value={2}
+        ></TagComponent>
+        {/* <TagComponent
+          heading="Ownership"
+          icon={GiCube}
+          text="Everything is on decentralized smart contracts verified on block
+              explorers. Completely transparent & secure."
+          value={100}
+        ></TagComponent> */}
       </Wrap>
     </VStack>
   );
