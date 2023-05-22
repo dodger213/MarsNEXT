@@ -1,4 +1,4 @@
-import { bgGradient } from '@/util/Ui';
+import { HeadingComponent, bgGradient } from '@/util/Ui';
 import {
   Card,
   CardHeader,
@@ -25,13 +25,7 @@ export const PlanDiscriptionComponent = () => {
       spacing={10}
       bgColor={useColorModeValue('green.100', 'blackAlpha.900')}
     >
-      <VStack>
-        <Text fontSize={['4xl', '5xl', '6xl', '7xl']} fontWeight={900} textAlign="center" bgGradient={bgGradient?.heading} bgClip="text">
-          A protocol made for everyone.
-        </Text>
-
-        <Divider></Divider>
-      </VStack>
+        <HeadingComponent heading='A protocol made for' gradientHeading='EVERYONE'></HeadingComponent>
       <Wrap spacing={10} align="center" justify="center">
         <Tag
           w={250}

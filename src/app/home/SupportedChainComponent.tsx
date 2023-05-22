@@ -1,4 +1,4 @@
-import { bgGradient } from '@/util/Ui';
+import { HeadingComponent, bgGradient } from '@/util/Ui';
 import {
   Divider,
   HStack,
@@ -23,18 +23,10 @@ export const SupportedChainComponent = () => {
       spacing={5}
       w="full"
     >
-      <VStack>
-        <Text
-          fontSize={['4xl', '5xl', '6xl', '7xl']}
-          fontWeight={900}
-          bgGradient={bgGradient?.heading}
-          bgClip="text"
-          textAlign="center"
-        >
-          Supported by the best
-        </Text>
-        <Divider />
-      </VStack>
+      <HeadingComponent
+        heading="Supported by the"
+        gradientHeading="BEST"
+      ></HeadingComponent>
       <HStack spacing={[2, 5, 10]} p={[2, 5, 10]}>
         <Tag p={5} borderRadius="3xl">
           <Image

@@ -1,3 +1,4 @@
+import { HeadingComponent } from '@/util/Ui';
 import {
   Container,
   Heading,
@@ -26,20 +27,10 @@ export const PowerOfBlockchainComponent = () => {
       )}, transparent)`}
       spacing={10}
     >
-      <VStack
-        fontSize={['2xl', '3xl', '4xl', '5xl']}
-        fontWeight={900}
-        lineHeight={1}
-      >
-        <Text textAlign="center">Build with the power of</Text>
-        <Text
-          fontSize={['4xl', '5xl', '6xl', '7xl']}
-          bgGradient={`linear(to-r, red.500, yellow.500, green.500)`}
-          bgClip="text"
-        >
-          BLOCKCHAIN
-        </Text>
-      </VStack>
+      <HeadingComponent
+        heading="Build with the power of"
+        gradientHeading="BLOCKCHAIN"
+      ></HeadingComponent>
       <Icon as={GiCubes} boxSize={300}></Icon>
       <Container>
         <Heading textAlign="center" size="md">
@@ -57,7 +48,9 @@ export const PowerOfBlockchainComponent = () => {
         >
           <VStack w="full">
             <Icon as={GiWineGlass} boxSize={14}></Icon>
-            <Heading color="orange.500"  size="md">Transparent</Heading>
+            <Heading color="orange.500" size="md">
+              Transparent
+            </Heading>
           </VStack>
         </Tag>
         <Tag
@@ -68,8 +61,10 @@ export const PowerOfBlockchainComponent = () => {
           borderBottomWidth="thick"
         >
           <VStack w="full">
-          <Icon as={BsShieldFillCheck} boxSize={14}></Icon>
-            <Heading color="orange.500" size="md">Secured</Heading>
+            <Icon as={BsShieldFillCheck} boxSize={14}></Icon>
+            <Heading color="orange.500" size="md">
+              Secured
+            </Heading>
           </VStack>
         </Tag>
         <Tag
@@ -80,7 +75,7 @@ export const PowerOfBlockchainComponent = () => {
           borderBottomWidth="thick"
         >
           <VStack w="full">
-          <Icon as={FaBoxOpen} boxSize={14}></Icon>
+            <Icon as={FaBoxOpen} boxSize={14}></Icon>
             <Heading textAlign="center" color="orange.500" size="md">
               Open Source
             </Heading>
@@ -94,7 +89,7 @@ export const PowerOfBlockchainComponent = () => {
           borderBottomWidth="thick"
         >
           <VStack w="full">
-          <Icon as={FaLock} boxSize={14}></Icon>
+            <Icon as={FaLock} boxSize={14}></Icon>
             <Heading textAlign="center" color="orange.500" size="md">
               Renounced
             </Heading>
