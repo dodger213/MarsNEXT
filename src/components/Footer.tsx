@@ -2,6 +2,8 @@ import {
   Box,
   chakra,
   Container,
+  HStack,
+  Spacer,
   Stack,
   Text,
   useColorModeValue,
@@ -46,38 +48,32 @@ const SocialButton = ({
 
 export default function Footer() {
   return (
-    <Box
-      bg={useColorModeValue('gray.50', 'gray.900')}
+    <HStack
+      bg={useColorModeValue('white', 'gray.900')}
       color={useColorModeValue('gray.700', 'gray.200')}
       w="full"
+      p={5}
+      borderTopRadius="3xl"
+      borderTopWidth="thick"
     >
-      <Container
-        as={Stack}
-        maxW={1500}
-        py={4}
-        direction={{ base: 'column', md: 'row' }}
-        spacing={4}
-        justify={{ base: 'center', md: 'space-between' }}
-        align={{ base: 'center', md: 'center' }}
-      >
-        <Logo />
-
-        <Text>© 2023 MarsNext. All rights reserved</Text>
-        <Stack direction={'row'} spacing={6}>
-          <SocialButton
-            label={'Twitter'}
-            href={'https://twitter.com/letstothemars'}
-          >
-            <FaTwitter />
-          </SocialButton>
-          {/* <SocialButton label={'YouTube'} href={'#'}>
+      <Logo />
+      <Spacer />
+      <Text>© 2023 MarsNext. All rights reserved</Text>
+      <Spacer />
+      <Stack direction={'row'} spacing={6}>
+        <SocialButton
+          label={'Twitter'}
+          href={'https://twitter.com/letstothemars'}
+        >
+          <FaTwitter />
+        </SocialButton>
+        <SocialButton label={'YouTube'} href={'#'}>
             <FaYoutube />
-          </SocialButton> */}
-          <SocialButton label={'Instagram'} href={'https://t.me/letstothemars'}>
-            <FaTelegram />
           </SocialButton>
-        </Stack>
-      </Container>
-    </Box>
+        <SocialButton label={'Instagram'} href={'https://t.me/letstothemars'}>
+          <FaTelegram />
+        </SocialButton>
+      </Stack>
+    </HStack>
   );
 }

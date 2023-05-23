@@ -1,4 +1,5 @@
 import { AddressActionButtons } from '@/components/AddressActionButtons';
+import { ColorModeSwitcher } from '@/components/ColorModeSwitcher';
 import { ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import {
   Box,
@@ -9,12 +10,14 @@ import {
   DrawerFooter,
   DrawerHeader,
   HStack,
+  Heading,
   Icon,
   IconButton,
   Spacer,
   Text,
   VStack,
   useBreakpointValue,
+  useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
 import { shortenAddress } from '@usedapp/core';
@@ -30,11 +33,11 @@ import Jazzicon from 'react-jazzicon';
 const SocialMediaIconComponent = ({
   icon,
   link,
-  key
+  key,
 }: {
   icon: IconType;
   link?: string;
-  key: number
+  key: number;
 }) => {
   return (
     <Center p={2} borderWidth="thin" rounded="full" cursor="pointer" key={key}>
@@ -50,6 +53,7 @@ export const NavMenuDrawer = ({
   address: string | undefined;
   onClose: () => void;
 }) => {
+  const { colorMode } = useColorMode();
   const JazziconSize = useBreakpointValue([25, 30, 40]);
   const socialMediaIcons: IconType[] = [
     FaTwitter,
@@ -61,7 +65,7 @@ export const NavMenuDrawer = ({
     <ChevronDownIcon key={1} />,
     <ChevronDownIcon key={2} />,
     <ChevronRightIcon key={3} />,
-  ])
+  ]);
   return (
     <>
       <DrawerHeader>
@@ -80,6 +84,7 @@ export const NavMenuDrawer = ({
               opacity: 1,
             }}
             onClick={onClose}
+            rounded="full"
           />
         </HStack>
         {address && (
@@ -107,6 +112,14 @@ export const NavMenuDrawer = ({
                 ></SocialMediaIconComponent>
               );
             })}
+          </HStack>
+          <Divider />
+          <HStack w="full">
+            <Heading size="sm">
+              {colorMode === 'dark' ? 'Dark Mode' : 'Light Mode'}
+            </Heading>
+            <Spacer />
+            <ColorModeSwitcher />
           </HStack>
         </VStack>
       </DrawerFooter>

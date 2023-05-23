@@ -1,22 +1,15 @@
 import Particles from '@/components/Particles';
-import { ChevronRightIcon } from '@chakra-ui/icons';
 import {
-  Button,
   Center,
-  Flex,
-  HStack,
-  Heading,
-  Text,
   VStack,
-  useColorModeValue,
+  useColorModeValue
 } from '@chakra-ui/react';
 import { Canvas } from '@react-three/fiber';
 import { motion } from 'framer-motion-3d';
 import React, { Suspense, useState } from 'react';
-import { ParallaxProvider } from 'react-scroll-parallax';
 import { SpaceModel } from './AstronautModel';
+import { HeaderHeadingComponent } from './HeaderHeadingComponent/HeaderHeadingComponent';
 import { SupportedChainComponent } from './SupportedChainComponent';
-import { tagLine } from '@/constants/SupportedNetworkInfo';
 
 export const Header = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -46,45 +39,7 @@ export const Header = () => {
           h="100vh"
         >
           <VStack w="full" maxW={1500} align="flex-start" px={[2, 5, 10]}>
-            <VStack align={['center', 'flex-start']} spacing={5}>
-              <VStack w={['full', 'min-content']} minW={300} zIndex={0}>
-                <HStack
-                  bgGradient={'linear(to-r, red.500, yellow.500, green.500)'}
-                  bgClip="text"
-                  fontSize={['4xl', '5xl', '7xl', '9xl']}
-                  textAlign="left"
-                  spacing={0}
-                >
-                  <Text fontWeight={900} lineHeight={1} w="max-content">
-                    Mars
-                  </Text>
-                  <Text fontWeight={400} lineHeight={1} w="max-content">
-                    Next
-                  </Text>
-                </HStack>
-                <Text
-                  fontWeight={[300, 500]}
-                  fontSize={['xl', '2xl', '3xl']}
-                  textAlign={['center', 'left']}
-                >
-                  {tagLine}
-                </Text>
-              </VStack>
-              <Button
-                w={300}
-                h={16}
-                colorScheme="orange"
-                bg="orange.500"
-                _hover={{
-                  bg: 'orange.600',
-                }}
-                borderRadius={20}
-                rightIcon={<ChevronRightIcon />}
-                zIndex={111}
-              >
-                Launch App
-              </Button>
-            </VStack>
+            <HeaderHeadingComponent />
           </VStack>
         </VStack>
         <Suspense>

@@ -2,6 +2,8 @@ import { Inter } from 'next/font/google';
 import ProviderChakra from './ProviderChakra';
 import { ProviderDapp } from './ProviderDApp';
 import { ProviderWeb3Modal } from './ProviderWeb3Modal';
+import MainWrapper from './MainWrapper';
+import { Suspense } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,12 +20,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <ProviderWeb3Modal>
-          <ProviderDapp>
-            <ProviderChakra>{children}</ProviderChakra>
-          </ProviderDapp>
-        </ProviderWeb3Modal>
+      <body>
+        <ProviderChakra>
+          <ProviderWeb3Modal>
+            <ProviderDapp>
+              <MainWrapper>{children}</MainWrapper>
+            </ProviderDapp>
+          </ProviderWeb3Modal>
+        </ProviderChakra>
       </body>
     </html>
   );

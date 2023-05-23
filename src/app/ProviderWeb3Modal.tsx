@@ -1,7 +1,10 @@
 'use client';
-import { MyVeeMainnetlogo } from '@/assets/chainIcons';
 import { MyVeeMainnet } from '@/lib/chains';
-import { useColorModeValue } from '@chakra-ui/react';
+import {
+  ChakraProvider,
+  ColorModeScript,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import {
   EthereumClient,
   w3mConnectors,
@@ -9,7 +12,7 @@ import {
 } from '@web3modal/ethereum';
 import { Web3Modal } from '@web3modal/react';
 import { WagmiConfig, configureChains, createConfig } from 'wagmi';
-import { polygon, bsc, mainnet } from 'wagmi/chains';
+import { bsc, mainnet, polygon } from 'wagmi/chains';
 
 const chains = [MyVeeMainnet, polygon, bsc, mainnet];
 const projectId = 'e6458f63d191bf405c8476be38ec031e';
@@ -33,12 +36,12 @@ export const ProviderWeb3Modal = ({
       <Web3Modal
         projectId={projectId}
         ethereumClient={ethereumClient}
-        defaultChain={MyVeeMainnet}
+        defaultChain={polygon}
         chainImages={{
-          50000: "/chainIcons/MyVeeMainnet.svg",
+          50000: '/chainIcons/MyVeeMainnet.svg',
         }}
         tokenImages={{
-          MYVEE: "/chainIcons/MyVeeMainnet.svg",
+          MYVEE: '/chainIcons/MyVeeMainnet.svg',
         }}
         themeMode={useColorModeValue('light', 'dark')}
       />

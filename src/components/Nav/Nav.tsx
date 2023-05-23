@@ -1,21 +1,11 @@
 'use client';
-import {
-  Container,
-  HStack,
-  Hide,
-  Icon,
-  Spacer,
-  useBreakpointValue,
-  useColorModeValue,
-} from '@chakra-ui/react';
-import { Web3Button } from '@web3modal/react';
+import { Container, HStack, Spacer, useColorModeValue } from '@chakra-ui/react';
 import { useMotionValueEvent, useScroll } from 'framer-motion';
 import { useState } from 'react';
-import { ColorModeSwitcher } from '../ColorModeSwitcher';
-import { Logo } from '../Logo';
-import { HamburgerIcon } from '@chakra-ui/icons';
-import MenuButtonComponent from './MenuButtonComponent';
 import { ConnectWalletButton } from '../ConnectWalletButton';
+import { Logo } from '../Logo';
+import MenuButtonComponent from './MenuButtonComponent';
+import { Web3Button } from '@web3modal/react';
 
 export const Nav = () => {
   const { scrollY } = useScroll();
@@ -29,32 +19,26 @@ export const Nav = () => {
   return (
     <HStack
       w="full"
-      py={[3, 5]}
       align="center"
       justify="center"
-      borderBottomRadius={['20%', '20%', '20%', '30%', 'full']}
+      borderBottomRadius="3xl"
       bgColor={scrollYValue > 20 ? navBgColor : 'transparent'}
       position="fixed"
       top={0}
       zIndex={1111}
       backdropFilter="auto"
       backdropBlur={scrollYValue > 20 ? '20px' : 'none'}
-      transition={'background-color 100ms linear'}
+      transition={'background-color 300ms linear'}
+      px={[1, 2, 3, 5]}
+      py={5}
+      borderBottomWidth={scrollYValue > 20 ? 'thick' : 'none'}
     >
-      <Container maxW={1500}>
-        <HStack w="full">
-          <Logo></Logo>
-          <Spacer />
-          <ConnectWalletButton></ConnectWalletButton>
-          {/* <Web3Button
-            balance={useBreakpointValue(['hide', 'hide', 'show'])}
-          ></Web3Button> */}
-          <MenuButtonComponent />
-          {/* <Hide below="sm">
-            <ColorModeSwitcher />
-          </Hide> */}
-        </HStack>
-      </Container>
+      <HStack w="full" px={5}>
+        <Logo></Logo>
+        <Spacer />
+        <ConnectWalletButton></ConnectWalletButton>
+        <MenuButtonComponent />
+      </HStack>
     </HStack>
   );
 };

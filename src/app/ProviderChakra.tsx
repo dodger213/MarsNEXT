@@ -3,18 +3,12 @@
 import Footer from '@/components/Footer';
 import { Nav } from '@/components/Nav/Nav';
 import { CacheProvider } from '@chakra-ui/next-js';
-import { ChakraProvider, Text, VStack, theme } from '@chakra-ui/react';
+import { ChakraProvider, VStack } from '@chakra-ui/react';
 
 const ProviderChakra = ({ children }: { children: React.ReactNode }) => {
   return (
     <CacheProvider>
-      <ChakraProvider theme={theme}>
-        <VStack w="full" spacing={0}>
-          <Nav></Nav>
-          {children}
-          <Footer/>
-        </VStack>
-      </ChakraProvider>
+      <ChakraProvider>{children}</ChakraProvider>
     </CacheProvider>
   );
 };
