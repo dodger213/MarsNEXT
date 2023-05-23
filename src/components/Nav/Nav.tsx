@@ -2,6 +2,7 @@
 import {
   Container,
   HStack,
+  Hide,
   Icon,
   Spacer,
   useBreakpointValue,
@@ -14,6 +15,7 @@ import { ColorModeSwitcher } from '../ColorModeSwitcher';
 import { Logo } from '../Logo';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import MenuButtonComponent from './MenuButtonComponent';
+import { ConnectWalletButton } from '../ConnectWalletButton';
 
 export const Nav = () => {
   const { scrollY } = useScroll();
@@ -43,11 +45,14 @@ export const Nav = () => {
         <HStack w="full">
           <Logo></Logo>
           <Spacer />
-          <Web3Button
+          <ConnectWalletButton></ConnectWalletButton>
+          {/* <Web3Button
             balance={useBreakpointValue(['hide', 'hide', 'show'])}
-          ></Web3Button>
+          ></Web3Button> */}
           <MenuButtonComponent />
-          <ColorModeSwitcher />
+          {/* <Hide below="sm">
+            <ColorModeSwitcher />
+          </Hide> */}
         </HStack>
       </Container>
     </HStack>

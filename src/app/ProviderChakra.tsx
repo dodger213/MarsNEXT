@@ -10,9 +10,6 @@ const ProviderChakra = ({ children }: { children: React.ReactNode }) => {
     <CacheProvider>
       <ChakraProvider theme={theme}>
         <VStack w="full" spacing={0}>
-          {/* <VStack w="full" bgColor="twitter.500">
-            <Text fontSize="sm">For a very limited time every registration will get some MARTIAN tokens as reward.</Text>
-          </VStack> */}
           <Nav></Nav>
           {children}
           <Footer/>
