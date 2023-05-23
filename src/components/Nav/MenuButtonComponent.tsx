@@ -22,11 +22,16 @@ import { useAccount, useDisconnect, useNetwork } from 'wagmi';
 export default function MenuButtonComponent() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { address } = useAccount();
+  const iconButtonIcon = useBreakpointValue([
+    <ChevronDownIcon key={1} />,
+    <ChevronDownIcon key={2} />,
+    <ChevronLeftIcon key={3} />,
+  ]);
   return (
     <>
       <IconButton
         aria-label="Menu Button"
-        icon={useBreakpointValue([<ChevronDownIcon />, <ChevronDownIcon />, <ChevronLeftIcon />])}
+        icon={iconButtonIcon}
         variant="outline"
         w="fit-content"
         borderColor={useColorModeValue('gray.500', 'white')}
@@ -51,11 +56,7 @@ export default function MenuButtonComponent() {
           borderTopLeftRadius={['3xl']}
           borderBottomLeftRadius={[0, 0, '3xl']}
         >
-          {/* <DrawerCloseButton /> */}
-          <NavMenuDrawer
-            address={address}
-            onClose={onClose}
-          />
+          <NavMenuDrawer address={address} onClose={onClose} />
         </DrawerContent>
       </Drawer>
     </>

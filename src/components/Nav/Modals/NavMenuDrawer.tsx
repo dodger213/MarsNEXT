@@ -27,9 +27,17 @@ import { IoMdLogOut } from 'react-icons/io';
 import { jsNumberForAddress } from 'react-jazzicon';
 import Jazzicon from 'react-jazzicon';
 
-const SocialMediaIcon = ({ icon, link }: { icon: IconType; link?: string }) => {
+const SocialMediaIconComponent = ({
+  icon,
+  link,
+  key
+}: {
+  icon: IconType;
+  link?: string;
+  key: number
+}) => {
   return (
-    <Center p={2} borderWidth="thin" rounded="full" cursor="pointer">
+    <Center p={2} borderWidth="thin" rounded="full" cursor="pointer" key={key}>
       <Icon as={icon}></Icon>
     </Center>
   );
@@ -43,6 +51,17 @@ export const NavMenuDrawer = ({
   onClose: () => void;
 }) => {
   const JazziconSize = useBreakpointValue([25, 30, 40]);
+  const socialMediaIcons: IconType[] = [
+    FaTwitter,
+    FaTelegram,
+    FaGithub,
+    FaDiscord,
+  ];
+  const iconButtonIcon = useBreakpointValue([
+    <ChevronDownIcon key={1} />,
+    <ChevronDownIcon key={2} />,
+    <ChevronRightIcon key={3} />,
+  ])
   return (
     <>
       <DrawerHeader>
@@ -50,11 +69,7 @@ export const NavMenuDrawer = ({
           <Spacer />
           <IconButton
             aria-label="Menu Close Button"
-            icon={useBreakpointValue([
-              <ChevronDownIcon />,
-              <ChevronDownIcon />,
-              <ChevronRightIcon />,
-            ])}
+            icon={iconButtonIcon}
             variant="outline"
             w="fit-content"
             borderColor={useColorModeValue('gray.500', 'white')}
@@ -83,12 +98,15 @@ export const NavMenuDrawer = ({
       <DrawerBody></DrawerBody>
       <DrawerFooter>
         <VStack w="full">
-          {/* <Divider></Divider> */}
           <HStack spacing={5}>
-            <SocialMediaIcon icon={FaTwitter}></SocialMediaIcon>
-            <SocialMediaIcon icon={FaTelegram}></SocialMediaIcon>
-            <SocialMediaIcon icon={FaGithub}></SocialMediaIcon>
-            <SocialMediaIcon icon={FaDiscord}></SocialMediaIcon>
+            {socialMediaIcons?.map((icon: IconType, key: number) => {
+              return (
+                <SocialMediaIconComponent
+                  icon={icon}
+                  key={key}
+                ></SocialMediaIconComponent>
+              );
+            })}
           </HStack>
         </VStack>
       </DrawerFooter>
