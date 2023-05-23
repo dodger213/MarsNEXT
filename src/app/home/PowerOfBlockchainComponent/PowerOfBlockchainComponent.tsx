@@ -27,7 +27,7 @@ const TagComponent = ({
     <Tag p={5} borderRadius="50px" borderBottomWidth="thick" minW={200}>
       <VStack w="full">
         <Icon as={icon} boxSize={14}></Icon>
-        <Heading color="orange.500" size="md">
+        <Heading color="orange.500" size={["sm", "md"]}>
           {heading}
         </Heading>
       </VStack>
@@ -51,7 +51,7 @@ export const PowerOfBlockchainComponent = () => {
         heading="Build with the power of"
         gradientHeading="BLOCKCHAIN"
       ></HeadingComponent>
-      <Icon as={GiCubes} boxSize={300}></Icon>
+      <Icon as={GiCubes} boxSize={[270, 300]}></Icon>
       <Container>
         <Heading textAlign="center" size="md">
           Every logic & reward distribution written on secure smart contracts.

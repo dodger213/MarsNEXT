@@ -7,6 +7,7 @@ import {
   Tag,
   Text,
   VStack,
+  useBreakpointValue,
   useColorModeValue,
 } from '@chakra-ui/react';
 import Image from 'next/image';
@@ -63,16 +64,16 @@ export const SupportedChainComponent = () => {
           <Image
             src={USDTLogoSVG}
             alt="bsc logo"
-            width={85}
-            height={85}
+            width={useBreakpointValue([70, 85])}
+            height={useBreakpointValue([70, 85])}
           ></Image>
         </Tag>
         <Tag p={5} borderRadius="50px" borderBottomWidth="thick">
           <Image
             src={BUSDLogoSVG}
             alt="polygon logo"
-            width={75}
-            height={75}
+            width={useBreakpointValue([65, 75])}
+            height={useBreakpointValue([65, 75])}
           ></Image>
         </Tag>
         {/* <Tag p={5} borderRadius="50px">

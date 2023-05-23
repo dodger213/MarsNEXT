@@ -1,5 +1,7 @@
 import { HeadingComponent, bgGradient } from '@/util/Ui';
 import {
+  Box,
+  Button,
   Card,
   CardHeader,
   Divider,
@@ -16,6 +18,7 @@ import { FaChartLine, FaUserFriends, FaUsers } from 'react-icons/fa';
 import { BsFillCalendar2HeartFill, BsFire } from 'react-icons/bs';
 import { GiCube } from 'react-icons/gi';
 import { IconType } from 'react-icons';
+import { ChevronRightIcon } from '@chakra-ui/icons';
 
 const TagComponent = ({
   icon,
@@ -92,6 +95,22 @@ export const PlanDiscriptionComponent = () => {
           value={100}
         ></TagComponent> */}
       </Wrap>
+      <Box maxW={500} minW={250} w="full" px={10}>
+        <Button
+          w="full"
+          rightIcon={<ChevronRightIcon />}
+          fontSize="lg"
+          colorScheme="orange"
+          bg="orange.500"
+          _hover={{
+            bg: 'orange.600',
+          }}
+          h={20}
+          borderRadius={20}
+        >
+          Enter the app now
+        </Button>
+      </Box>
     </VStack>
   );
 };

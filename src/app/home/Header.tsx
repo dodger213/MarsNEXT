@@ -16,7 +16,7 @@ import React, { Suspense, useState } from 'react';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import { SpaceModel } from './AstronautModel';
 import { SupportedChainComponent } from './SupportedChainComponent';
-import { SupportedCurrencies } from './SupportedCurrencies';
+import { tagLine } from '@/constants/SupportedNetworkInfo';
 
 export const Header = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -67,23 +67,22 @@ export const Header = () => {
                   fontSize={['xl', '2xl', '3xl']}
                   textAlign={['center', 'left']}
                 >
-                  A reward centric decentralized protocol only made for
-                  community.
+                  {tagLine}
                 </Text>
               </VStack>
               <Button
                 w={300}
-                h={14}
+                h={16}
                 colorScheme="orange"
                 bg="orange.500"
                 _hover={{
                   bg: 'orange.600',
                 }}
-                borderRadius="xl"
+                borderRadius={20}
                 rightIcon={<ChevronRightIcon />}
                 zIndex={111}
               >
-                Register Now
+                Launch App
               </Button>
             </VStack>
           </VStack>

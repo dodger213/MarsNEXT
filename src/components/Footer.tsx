@@ -7,7 +7,7 @@ import {
   useColorModeValue,
   VisuallyHidden,
 } from '@chakra-ui/react';
-import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
+import { FaInstagram, FaTelegram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { ReactNode } from 'react';
 import { Logo } from './Logo';
 
@@ -29,6 +29,7 @@ const SocialButton = ({
       cursor={'pointer'}
       as={'a'}
       href={href}
+      target="_blank"
       display={'inline-flex'}
       alignItems={'center'}
       justifyContent={'center'}
@@ -63,14 +64,17 @@ export default function Footer() {
 
         <Text>© 2023 MarsNext. All rights reserved</Text>
         <Stack direction={'row'} spacing={6}>
-          <SocialButton label={'Twitter'} href={'#'}>
+          <SocialButton
+            label={'Twitter'}
+            href={'https://twitter.com/letstothemars'}
+          >
             <FaTwitter />
           </SocialButton>
-          <SocialButton label={'YouTube'} href={'#'}>
+          {/* <SocialButton label={'YouTube'} href={'#'}>
             <FaYoutube />
-          </SocialButton>
-          <SocialButton label={'Instagram'} href={'#'}>
-            <FaInstagram />
+          </SocialButton> */}
+          <SocialButton label={'Instagram'} href={'https://t.me/letstothemars'}>
+            <FaTelegram />
           </SocialButton>
         </Stack>
       </Container>
