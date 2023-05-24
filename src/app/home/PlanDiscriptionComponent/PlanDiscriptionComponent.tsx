@@ -36,12 +36,13 @@ const TagComponent = ({
       borderBottomWidth="thick"
       key={key}
       backdropFilter="blur(10px)"
+      px={5}
     >
-      <VStack w="full" spacing={2}>
-        <Icon as={icon} boxSize={10}></Icon>
-        <Tag colorScheme="orange">{heading}</Tag>
-        <Heading color="orange.500">{value}%</Heading>
-        <Text textAlign="center">{text}</Text>
+      <VStack w="full" spacing={4}>
+        <Icon as={icon} boxSize={14}></Icon>
+        <Tag colorScheme="orange" fontWeight={900}>{heading}</Tag>
+        <Heading color="orange.500" size="3xl" fontWeight={900}>{value}%</Heading>
+        <Heading textAlign="center" fontWeight={500} size="md">{text}</Heading>
       </VStack>
     </Tag>
   );
@@ -51,31 +52,31 @@ const features = [
   {
     heading: 'Earn Upto',
     icon: FaUserFriends,
-    text: 'When you refer a friend.',
+    text: 'Community Spreading Rewards.',
     value: 50,
   },
   {
     heading: 'Levels',
     icon: FaChartLine,
-    text: 'Rewards upto 20% of each registration when you achieve different levels. Yet to open.',
+    text: 'Achieve Level Rewards.',
     value: 20,
   },
   {
     heading: 'Global Rewards',
     icon: BsFire,
-    text: 'A random user will get 10% of earch registration amount randmonly.',
+    text: 'Random Global Rewards.',
     value: 10,
   },
   {
     heading: 'Weekly Rewards',
     icon: BsFillCalendar2HeartFill,
-    text: 'A random user will get 10% of weekly value of total registrations.',
+    text: 'Random Weekly Rewards.',
     value: 10,
   },
   {
     heading: 'Core Membership',
     icon: FaUsers,
-    text: 'Users who are working dedicately will be included in core member list. Will get upto 20% of company profits or max 2% of registration.',
+    text: 'Core Member Rewards.',
     value: 2,
   },
 ];
