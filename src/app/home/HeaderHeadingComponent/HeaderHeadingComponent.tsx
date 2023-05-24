@@ -10,7 +10,7 @@ export const HeaderHeadingComponent = () => {
         <HStack
           bgGradient={'linear(to-r, red.500, yellow.500, green.500)'}
           bgClip="text"
-          fontSize={['7xl', '8xl', "9xl", "150px"]}
+          fontSize={["6xl", '7xl', '8xl', "9xl", "150px"]}
           textAlign="left"
           spacing={0}
         >
