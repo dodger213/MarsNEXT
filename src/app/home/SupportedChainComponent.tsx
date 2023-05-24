@@ -1,17 +1,13 @@
 import { BUSDLogoSVG, USDTLogoSVG } from '@/assets';
-import { HeadingComponent, bgGradient } from '@/util/Ui';
+import { HeadingComponent } from '@/util/Ui';
 import {
-  Divider,
   HStack,
-  Heading,
   Tag,
-  Text,
   VStack,
   useBreakpointValue,
   useColorModeValue,
 } from '@chakra-ui/react';
 import Image from 'next/image';
-import React from 'react';
 
 export const SupportedChainComponent = () => {
   return (
@@ -19,7 +15,7 @@ export const SupportedChainComponent = () => {
       zIndex={111}
       py={[50, 75, 100]}
       bgGradient={`linear(to-t, ${useColorModeValue(
-        'white',
+        'transparent',
         'blackAlpha.900'
       )}, transparent)`}
       spacing={5}
@@ -30,7 +26,12 @@ export const SupportedChainComponent = () => {
         gradientHeading="BEST"
       ></HeadingComponent>
       <HStack spacing={[2, 5, 10]} p={[2, 5, 10]}>
-        <Tag p={5} borderRadius="50px" borderBottomWidth="thick">
+        <Tag
+          p={5}
+          borderRadius="50px"
+          borderBottomWidth="thick"
+          backdropFilter="blur(10px) "
+        >
           <Image
             src="/chainIcons/bscSmartChainLogo.svg"
             alt="bsc logo"
@@ -38,7 +39,12 @@ export const SupportedChainComponent = () => {
             height={100}
           ></Image>
         </Tag>
-        <Tag p={5} borderRadius="50px" borderBottomWidth="thick">
+        <Tag
+          p={5}
+          borderRadius="50px"
+          borderBottomWidth="thick"
+          backdropFilter="blur(10px) "
+        >
           <Image
             src="/chainIcons/polygonChainLogo.svg"
             alt="polygon logo"
@@ -46,7 +52,12 @@ export const SupportedChainComponent = () => {
             height={100}
           ></Image>
         </Tag>
-        <Tag p={5} borderRadius="50px" borderBottomWidth="thick">
+        <Tag
+          p={5}
+          borderRadius="50px"
+          borderBottomWidth="thick"
+          backdropFilter="blur(10px) "
+        >
           <Image
             src="/chainIcons/ethereumChainLogo.svg"
             alt="ethereum logo"
@@ -60,7 +71,12 @@ export const SupportedChainComponent = () => {
         gradientHeading="CURRENCIES"
       ></HeadingComponent>
       <HStack spacing={[2, 5, 10]} p={[2, 5, 10]}>
-        <Tag p={5} borderRadius="50px" borderBottomWidth="thick">
+        <Tag
+          p={5}
+          borderRadius="50px"
+          borderBottomWidth="thick"
+          backdropFilter="blur(10px) "
+        >
           <Image
             src={USDTLogoSVG}
             alt="bsc logo"
@@ -68,7 +84,12 @@ export const SupportedChainComponent = () => {
             height={useBreakpointValue([70, 85])}
           ></Image>
         </Tag>
-        <Tag p={5} borderRadius="50px" borderBottomWidth="thick">
+        <Tag
+          p={5}
+          borderRadius="50px"
+          borderBottomWidth="thick"
+          backdropFilter="blur(10px) "
+        >
           <Image
             src={BUSDLogoSVG}
             alt="polygon logo"

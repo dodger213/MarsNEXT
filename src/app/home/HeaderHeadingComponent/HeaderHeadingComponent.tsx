@@ -5,12 +5,12 @@ import React from 'react';
 
 export const HeaderHeadingComponent = () => {
   return (
-    <VStack align={['center', 'flex-start']} spacing={5}>
-      <VStack w={['full', 'min-content']} minW={300} zIndex={0}>
+    <VStack spacing={5} w="full">
+      <VStack w="min-content" minW={300} zIndex={0}>
         <HStack
           bgGradient={'linear(to-r, red.500, yellow.500, green.500)'}
           bgClip="text"
-          fontSize={['5xl', '5xl', '7xl', '9xl']}
+          fontSize={['7xl', '8xl', "9xl", "150px"]}
           textAlign="left"
           spacing={0}
         >
@@ -23,8 +23,8 @@ export const HeaderHeadingComponent = () => {
         </HStack>
         <Text
           fontWeight={[500]}
-          fontSize={['2xl', '3xl']}
-          textAlign={['center', 'left']}
+          fontSize={['2xl', '3xl', "4xl"]}
+          textAlign="center"
           px={5}
         >
           {tagLine}

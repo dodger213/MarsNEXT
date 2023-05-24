@@ -53,7 +53,7 @@ export function SpaceModel({
                 rotation={[-1.5, -0.1, 6]}
                 scale={0.3}
                 userData={{ name: 'Sketchfab_model' }}
-                position={[Number(positionX), 3, -7]}
+                position={[0, 2, -7]}
               >
                 <group name="root" userData={{ name: 'root' }} ref={modelRef}>
                   <group
@@ -386,7 +386,7 @@ export function SpaceModel({
                         }}
                       />
                     </group>
-                    <group
+                    {/* <group
                       name="Cylinder002_22"
                       position={[-4.24, 1.92, -13.03]}
                       userData={{ name: 'Cylinder.002_22' }}
@@ -412,7 +412,7 @@ export function SpaceModel({
                           transparent
                         />
                       </mesh>
-                    </group>
+                    </group> */}
                     {/* <group
                       name="Plane_24"
                       position={[-22.77, -25.08, -21.01]}

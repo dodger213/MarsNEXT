@@ -1,9 +1,5 @@
 import Particles from '@/components/Particles';
-import {
-  Center,
-  VStack,
-  useColorModeValue
-} from '@chakra-ui/react';
+import { Center, VStack, useColorModeValue } from '@chakra-ui/react';
 import { Canvas } from '@react-three/fiber';
 import { motion } from 'framer-motion-3d';
 import React, { Suspense, useState } from 'react';
@@ -30,20 +26,13 @@ export const Header = () => {
       overflow="hidden"
       direction="column"
     >
-      <VStack w="full" h="140vh" spacing={0}>
+      <VStack w="full" spacing={0} h="140vh">
         <Particles quantity={200}></Particles>
-        <VStack
-          w="full"
-          justify={['flex-start', 'flex-start', 'flex-start', 'center']}
-          pt={[150, 175, 150, 0]}
-          h="100vh"
-        >
-          <VStack w="full" maxW={1500} align="flex-start" px={[2, 5, 10]}>
+        <VStack w="full" px={[2, 5, 10]} pt={150}>
             <HeaderHeadingComponent />
-          </VStack>
         </VStack>
         <Suspense>
-          <Center w="full" position="absolute" h="200vh">
+          <Center w="full" h="200vh" position="absolute">
             <Canvas>
               <ambientLight intensity={useColorModeValue(7, 5)} />
               <motion.pointLight

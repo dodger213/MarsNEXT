@@ -35,6 +35,7 @@ const TagComponent = ({
       borderRadius="50px"
       borderBottomWidth="thick"
       key={key}
+      backdropFilter="blur(10px)"
     >
       <VStack w="full" spacing={2}>
         <Icon as={icon} boxSize={10}></Icon>
