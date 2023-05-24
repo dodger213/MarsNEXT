@@ -9,7 +9,7 @@ import {
   Text,
   VStack,
   Wrap,
-  useColorModeValue
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { IconType } from 'react-icons';
 import { BsFillCalendar2HeartFill, BsFire } from 'react-icons/bs';
@@ -20,13 +20,11 @@ const TagComponent = ({
   heading,
   value,
   text,
-  key,
 }: {
   icon: IconType;
   heading: string;
   value: number;
   text: string;
-  key: number;
 }) => {
   return (
     <Tag
@@ -34,15 +32,20 @@ const TagComponent = ({
       h={350}
       borderRadius="50px"
       borderBottomWidth="thick"
-      key={key}
       backdropFilter="blur(10px)"
       px={5}
     >
       <VStack w="full" spacing={4}>
         <Icon as={icon} boxSize={14}></Icon>
-        <Tag colorScheme="orange" fontWeight={900}>{heading}</Tag>
-        <Heading color="orange.500" size="3xl" fontWeight={900}>{value}%</Heading>
-        <Heading textAlign="center" fontWeight={500} size="md">{text}</Heading>
+        <Tag colorScheme="orange" fontWeight={900}>
+          {heading}
+        </Tag>
+        <Heading color="orange.500" size="3xl" fontWeight={900}>
+          {value}%
+        </Heading>
+        <Heading textAlign="center" fontWeight={500} size="md">
+          {text}
+        </Heading>
       </VStack>
     </Tag>
   );

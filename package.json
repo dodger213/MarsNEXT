@@ -35,10 +35,16 @@
     "react-icons": "^4.8.0",
     "react-jazzicon": "^1.0.4",
     "react-scroll-parallax": "^3.4.2",
+    "react-slick": "^0.29.0",
     "sharp": "^0.32.1",
     "three": "^0.152.2",
     "typescript": "5.0.4",
     "viem": "^0.3.26",
     "wagmi": "^1.0.5"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.23",
+    "tailwindcss": "^3.3.2"
   }
 }

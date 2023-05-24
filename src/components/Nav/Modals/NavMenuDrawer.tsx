@@ -33,14 +33,13 @@ import Jazzicon from 'react-jazzicon';
 const SocialMediaIconComponent = ({
   icon,
   link,
-  key,
 }: {
   icon: IconType;
   link?: string;
   key: number;
 }) => {
   return (
-    <Center p={2} borderWidth="thin" rounded="full" cursor="pointer" key={key}>
+    <Center p={2} borderWidth="thin" rounded="full" cursor="pointer">
       <Icon as={icon}></Icon>
     </Center>
   );
