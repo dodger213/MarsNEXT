@@ -1,5 +1,5 @@
 import TokenDistributionComponent from '@/components/TokenDistributionComponent';
-import { HeadingComponent } from '@/util/Ui';
+import { CenterComponent, HeadingComponent } from '@/util/Ui';
 import {
   Box,
   Flex,
@@ -38,7 +38,6 @@ export const TokenDistribution = () => {
     <VStack
       w="full"
       py="10vh"
-      bgColor={useColorModeValue('white', 'blackAlpha.900')}
       spacing={10}
     >
       <HeadingComponent
@@ -52,8 +51,8 @@ export const TokenDistribution = () => {
         direction="column"
         gap={3}
         p={[5, 10]}
-        bgColor={useColorModeValue('gray.100', 'gray.900')}
         borderRadius="50px"
+        borderWidth={1}
         borderBottomWidth="thick"
       >
         <TagComponent

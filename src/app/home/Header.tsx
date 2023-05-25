@@ -26,7 +26,7 @@ export const Header = () => {
       overflow="hidden"
       direction="column"
     >
-      <VStack w="full" spacing={0} h="140vh">
+      <VStack w="full" spacing={0} h="170vh">
         <Particles quantity={200}></Particles>
         <VStack w="full" px={[2, 5, 10]} pt={150}>
             <HeaderHeadingComponent />

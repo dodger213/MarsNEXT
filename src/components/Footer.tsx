@@ -53,8 +53,6 @@ export default function Footer() {
       color={useColorModeValue('gray.700', 'gray.200')}
       w="full"
       p={5}
-      borderTopRadius="3xl"
-      borderTopWidth="thick"
     >
       <Logo />
       <Spacer />
@@ -68,8 +66,8 @@ export default function Footer() {
           <FaTwitter />
         </SocialButton>
         <SocialButton label={'YouTube'} href={'#'}>
-            <FaYoutube />
-          </SocialButton>
+          <FaYoutube />
+        </SocialButton>
         <SocialButton label={'Instagram'} href={'https://t.me/letstothemars'}>
           <FaTelegram />
         </SocialButton>

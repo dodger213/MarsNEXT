@@ -1,5 +1,6 @@
-import { HeadingComponent } from '@/util/Ui';
+import { CenterComponent, HeadingComponent } from '@/util/Ui';
 import {
+  Center,
   Container,
   Heading,
   Icon,
@@ -12,7 +13,12 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { IconType } from 'react-icons';
-import { BsShieldFillCheck } from 'react-icons/bs';
+import {
+  BsBox,
+  BsHexagon,
+  BsShieldCheck,
+  BsShieldFillCheck,
+} from 'react-icons/bs';
 import { FaBoxOpen, FaLock } from 'react-icons/fa';
 import { GiCubes, GiWineGlass } from 'react-icons/gi';
 
@@ -24,14 +30,18 @@ const TagComponent = ({
   heading: string;
 }) => {
   return (
-    <Tag p={5} borderRadius="50px" borderBottomWidth="thick" minW={200}>
+    <CenterComponent
+      style={{
+        minW: 200,
+      }}
+    >
       <VStack w="full">
         <Icon as={icon} boxSize={14}></Icon>
-        <Heading color="orange.500" size={["sm", "md"]}>
+        <Heading color="orange.500" size={['sm', 'md']}>
           {heading}
         </Heading>
       </VStack>
-    </Tag>
+    </CenterComponent>
   );
 };
 
@@ -60,9 +70,9 @@ export const PowerOfBlockchainComponent = () => {
       </Container>
       <Wrap spacing={10} align="center" justify="center">
         <TagComponent icon={GiWineGlass} heading="Transparent"></TagComponent>
-        <TagComponent icon={BsShieldFillCheck} heading="Secured"></TagComponent>
-        <TagComponent icon={FaBoxOpen} heading="Open Source"></TagComponent>
-        <TagComponent icon={FaLock} heading="Renounced"></TagComponent>
+        <TagComponent icon={BsShieldCheck} heading="Secured"></TagComponent>
+        <TagComponent icon={BsBox} heading="Open Source"></TagComponent>
+        {/* <TagComponent icon={FaLock} heading="Renounced"></TagComponent> */}
       </Wrap>
     </VStack>
   );

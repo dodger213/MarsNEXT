@@ -1,8 +1,9 @@
-import { HeadingComponent } from '@/util/Ui';
+import { CenterComponent, HeadingComponent } from '@/util/Ui';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import {
   Box,
   Button,
+  Center,
   Heading,
   Icon,
   Tag,
@@ -15,7 +16,7 @@ import { IconType } from 'react-icons';
 import { BsFillCalendar2HeartFill, BsFire } from 'react-icons/bs';
 import { FaChartLine, FaUserFriends, FaUsers } from 'react-icons/fa';
 
-const TagComponent = ({
+const BoxComponent = ({
   icon,
   heading,
   value,
@@ -27,13 +28,11 @@ const TagComponent = ({
   text: string;
 }) => {
   return (
-    <Tag
-      w={250}
-      h={350}
-      borderRadius="50px"
-      borderBottomWidth="thick"
-      backdropFilter="blur(10px)"
-      px={5}
+    <CenterComponent
+      style={{
+        w: 250,
+        h: 350,
+      }}
     >
       <VStack w="full" spacing={4}>
         <Icon as={icon} boxSize={14}></Icon>
@@ -47,7 +46,7 @@ const TagComponent = ({
           {text}
         </Heading>
       </VStack>
-    </Tag>
+    </CenterComponent>
   );
 };
 
@@ -105,7 +104,7 @@ export const PlanDiscriptionComponent = () => {
         borderRadius="50px"
       >
         {features.map((featuresBbject, key) => {
-          return <TagComponent {...featuresBbject} key={key}></TagComponent>;
+          return <BoxComponent {...featuresBbject} key={key}></BoxComponent>;
         })}
       </Wrap>
       <Box maxW={500} minW={250} w="full" px={10}>

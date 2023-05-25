@@ -3,7 +3,6 @@ import ProviderChakra from './ProviderChakra';
 import { ProviderDapp } from './ProviderDApp';
 import { ProviderWeb3Modal } from './ProviderWeb3Modal';
 import MainWrapper from './MainWrapper';
-import { Suspense } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 

@@ -14,7 +14,7 @@ export const Nav = () => {
     setScrollYValue(latest);
   });
 
-  const navBgColor = useColorModeValue('white', 'gray.900');
+  const navBgColor = useColorModeValue('transparent', 'transparent');
 
   return (
     <HStack
@@ -31,7 +31,7 @@ export const Nav = () => {
       transition={'background-color 300ms linear'}
       px={[1, 2, 3, 5]}
       py={5}
-      borderBottomWidth={scrollYValue > 20 ? 'thick' : 'none'}
+      // borderBottomWidth={scrollYValue > 20 ? 'thick' : 'none'}
     >
       <HStack w="full" px={5}>
         <Logo></Logo>
