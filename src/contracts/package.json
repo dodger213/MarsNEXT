@@ -1,0 +1,47 @@
+{
+  "name": "myvee-stake",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@ethersproject/abi": "^5.7.0",
+    "@ethersproject/providers": "^5.7.2",
+    "@nomicfoundation/hardhat-toolbox": "^2.0.1",
+    "@nomiclabs/buidler": "^1.4.8",
+    "@nomiclabs/hardhat-ethers": "^2.2.2",
+    "@openzeppelin/hardhat-upgrades": "^1.19.0",
+    "chai": "^4.3.7",
+    "ethers": "5.7.2",
+    "hardhat": "^2.10.1"
+  },
+  "dependencies": {
+    "@chainlink/contracts": "^0.4.2",
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.6",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.8",
+    "@nomiclabs/hardhat-etherscan": "^3.1.6",
+    "@openzeppelin/contracts": "^4.7.0",
+    "@openzeppelin/contracts-upgradeable": "^4.7.0",
+    "@typechain/ethers-v5": "^10.2.0",
+    "@typechain/hardhat": "^6.1.5",
+    "@types/chai": "^4.3.3",
+    "@types/mocha": "^10.0.0",
+    "@uniswap/v2-core": "^1.0.1",
+    "@uniswap/v2-periphery": "^1.1.0-beta.0",
+    "@uniswap/v3-core": "^1.0.1",
+    "@uniswap/v3-periphery": "^1.4.3",
+    "dotenv": "^16.0.1",
+    "ganache": "^7.4.3",
+    "hardhat-gas-reporter": "^1.0.9",
+    "solidity-coverage": "^0.8.2",
+    "source-map-support": "^0.5.21",
+    "ts-node": "^10.9.1",
+    "typechain": "^8.1.1",
+    "typescript": "^4.8.4",
+    "uniswap": "^0.0.1"
+  }
+}

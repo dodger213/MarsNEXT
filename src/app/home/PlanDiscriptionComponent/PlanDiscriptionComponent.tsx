@@ -12,9 +12,11 @@ import {
   Wrap,
   useColorModeValue,
 } from '@chakra-ui/react';
+import Link from 'next/link';
 import { IconType } from 'react-icons';
 import { BsFillCalendar2HeartFill, BsFire } from 'react-icons/bs';
 import { FaChartLine, FaUserFriends, FaUsers } from 'react-icons/fa';
+import { MdGroups3 } from 'react-icons/md';
 
 const BoxComponent = ({
   icon,
@@ -53,7 +55,7 @@ const BoxComponent = ({
 const features = [
   {
     heading: 'Earn Upto',
-    icon: FaUserFriends,
+    icon: MdGroups3,
     text: 'Community Spreading Rewards.',
     value: 50,
   },
@@ -85,13 +87,7 @@ const features = [
 
 export const PlanDiscriptionComponent = () => {
   return (
-    <VStack
-      w="full"
-      minH="80vh"
-      py="10vh"
-      spacing={10}
-      bgColor={useColorModeValue('white', 'blackAlpha.900')}
-    >
+    <VStack w="full" minH="80vh" py="10vh" spacing={10}>
       <HeadingComponent
         heading="A protocol made for"
         gradientHeading="EVERYONE"
@@ -108,21 +104,23 @@ export const PlanDiscriptionComponent = () => {
         })}
       </Wrap>
       <Box maxW={500} minW={250} w="full" px={10}>
-        <Button
-          w="full"
-          rightIcon={<ChevronRightIcon />}
-          fontSize="lg"
-          colorScheme="orange"
-          bg="orange.500"
-          _hover={{
-            bg: 'orange.600',
-          }}
-          h={20}
-          borderRadius={20}
-          borderBottomWidth="thick"
-        >
-          Enter the app
-        </Button>
+        <Link href="/registration">
+          <Button
+            w="full"
+            rightIcon={<ChevronRightIcon />}
+            fontSize="lg"
+            colorScheme="orange"
+            bg="orange.500"
+            _hover={{
+              bg: 'orange.600',
+            }}
+            h={20}
+            borderRadius={20}
+            borderBottomWidth="thick"
+          >
+            Enter the app
+          </Button>
+        </Link>
       </Box>
     </VStack>
   );

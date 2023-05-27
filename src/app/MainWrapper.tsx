@@ -14,7 +14,6 @@ function MainWrapper({ children }: { children: ReactNode }) {
         minH="100vh"
         align="center"
         justify="center"
-        bgColor={useColorModeValue('white', 'blackAlpha.900')}
       >
         {children}
       </VStack>

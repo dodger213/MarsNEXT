@@ -51,10 +51,6 @@ export const PowerOfBlockchainComponent = () => {
       w="full"
       minH="80vh"
       py="10vh"
-      bgGradient={`linear(to-b, ${useColorModeValue(
-        'white',
-        'blackAlpha.900'
-      )}, transparent)`}
       spacing={10}
     >
       <HeadingComponent

@@ -55,19 +55,19 @@ export const SupportedChainComponent = () => {
       ></HeadingComponent>
       <HStack spacing={[2, 5, 10]} p={[2, 5, 10]}>
         <CenterComponent style={{
-          w: 120,
-          p: 7
+          w:150,
+          h: 120
         }}>
           <Image
             src={USDTLogoSVG}
             alt="bsc logo"
-            width={useBreakpointValue([50, 80])}
-            height={useBreakpointValue([50, 80])}
+            width={useBreakpointValue([50, 70])}
+            height={useBreakpointValue([50, 70])}
           ></Image>
         </CenterComponent>
         <CenterComponent style={{
-          w: 120,
-          padding: 6
+           w:150,
+           h: 120
         }}>
           <Image
             src={BUSDLogoSVG}
