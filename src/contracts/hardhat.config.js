@@ -39,14 +39,14 @@ module.exports = {
     ],
   },
 
-  defaultNetwork: "polygon",
+  defaultNetwork: "ganache",
   networks: {
     hardhat: {
       gas: "auto",
     },
 
     ganache: {
-      url: "HTTP://127.0.0.1:7545",
+      url: "HTTP://127.0.0.1:8545",
       chainId: 1337,
       accounts: [PRIVATE_KEY],
       gas: "auto",

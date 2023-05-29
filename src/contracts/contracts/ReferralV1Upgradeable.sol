@@ -197,7 +197,7 @@ contract ReferralV1Upgradeable is
     receive() external payable {}
 
     function initialize() public initializer {
-        _variableContractAddress = address(0);
+        _variableContractAddress = 0x80b6BB3BFb5bf87B2a6F4c94A35213d792889E69;
         _weeklyRewardClaimedTimeStamp = block.timestamp;
 
         __Pausable_init();
