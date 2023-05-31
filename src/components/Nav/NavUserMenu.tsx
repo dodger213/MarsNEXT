@@ -1,0 +1,70 @@
+import {
+  Button,
+  HStack,
+  Icon,
+  IconButton,
+  Tooltip,
+  VStack,
+} from '@chakra-ui/react';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import React from 'react';
+import { FcAreaChart, FcConferenceCall, FcHome } from 'react-icons/fc';
+import { GoHome } from 'react-icons/go';
+
+// @ts-ignore
+const MotionIconButton = motion(IconButton);
+
+function NavUserMenu({ userAddress }: { userAddress: string }) {
+  const menuObject = [
+    {
+      icon: GoHome,
+      name: 'Home',
+      link: '/',
+    },
+    {
+      icon: FcAreaChart,
+      name: 'Dashboard',
+      link: `/user/${userAddress}/dashboard`,
+    },
+    {
+      icon: FcConferenceCall,
+      name: 'Team',
+      link: `/user/${userAddress}/team`,
+    },
+  ];
+  return (
+    <VStack w="full">
+      {menuObject.map((menuObject, key) => {
+        return (
+          <Tooltip
+            key={key}
+            label={menuObject?.name}
+            borderRadius="xl"
+            placement="right"
+            fontSize="xl"
+            hasArrow
+          >
+            <MotionIconButton
+              aria-label={`Icon button for nav user ${menuObject?.name}`}
+              icon={<Icon as={menuObject?.icon} boxSize={8} />}
+              boxSize={70}
+              borderRadius="3xl"
+              whileHover={{
+                borderRadius: '40%',
+              }}
+              transition={{
+                type: 'spring',
+                stiffness: 700,
+              }}
+              as={Link}
+              href={menuObject?.link}
+            ></MotionIconButton>
+          </Tooltip>
+        );
+      })}
+    </VStack>
+  );
+}
+
+export default NavUserMenu;

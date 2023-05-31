@@ -1,12 +1,15 @@
-import { bsc, localhost, polygon } from 'wagmi/dist/chains';
+import { BUSDLogoSVG, USDTLogoSVG } from '@/assets';
+import { MyVeeMainnet } from '@/lib/chains';
+import { bsc, localhost, polygon } from 'wagmi/chains';
 import {
+  BUSD,
+  CoreMembersV1ContractObject,
   ReferralV1ContractObject,
+  USDT,
   VariablesV1ContractObject,
 } from './ContractAddress';
-import { ERC20MockInterface } from '@usedapp/core';
-import { BUSDLogoSVG, USDTLogoSVG } from '@/assets';
 
-export const projectName = "MarsNext";
+export const projectName = 'MarsNext';
 export const tagLine =
   'A reward centric decentralized protocol only made for community.';
 
@@ -14,64 +17,89 @@ export const supportedNetworkInfo = {
   [polygon.id]: {
     variablesContractAddress: VariablesV1ContractObject?.polygonAddress,
     referralContractAddress: ReferralV1ContractObject?.polygonAddress,
+    coreMembersContractAddress: CoreMembersV1ContractObject?.polygonAddress,
     ['USDT']: {
-      contractAddress: '0xc2132D05D31c914a87C6611C10748AEb04B58e8F',
-      contractABI: ERC20MockInterface,
+      contractAddress: USDT.polygonAddress,
+      contractABI: USDT.abi,
       name: 'USDT',
       symbol: 'USDT',
       decimals: 6,
       logo: USDTLogoSVG,
     },
     ['BUSD']: {
-      contractAddress: '0x9C9e5fD8bbc25984B178FdCE6117Defa39d2db39',
-      contractABI: ERC20MockInterface,
+      contractAddress: USDT.polygonAddress,
+      contractABI: BUSD.abi,
       name: 'BUSD',
       symbol: 'BUSD',
       decimals: 18,
       logo: BUSDLogoSVG,
     },
-    native: polygon
+    native: polygon,
   },
   [bsc.id]: {
     variablesContractAddress: VariablesV1ContractObject?.bscAddress,
     referralContractAddress: ReferralV1ContractObject?.bscAddress,
+    coreMembersContractAddress: CoreMembersV1ContractObject?.bscAddress,
     ['USDT']: {
-      contractAddress: '0x55d398326f99059fF775485246999027B3197955',
-      contractABI: ERC20MockInterface,
+      contractAddress: USDT.bscAddress,
+      contractABI: USDT.abi,
       name: 'USDT',
       symbol: 'USDT',
       decimals: 18,
       logo: USDTLogoSVG,
     },
     ['BUSD']: {
-      contractAddress: '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
-      contractABI: ERC20MockInterface,
+      contractAddress: BUSD.bscAddress,
+      contractABI: BUSD.abi,
       name: 'BUSD',
       symbol: 'BUSD',
       decimals: 18,
       logo: BUSDLogoSVG,
     },
-    native: bsc
+    native: bsc,
   },
-  [localhost.id]: {
-    variablesContractAddress: VariablesV1ContractObject?.bscAddress,
-    referralContractAddress: ReferralV1ContractObject?.bscAddress,
+  [MyVeeMainnet.id]: {
+    variablesContractAddress: VariablesV1ContractObject?.myveeAddress,
+    referralContractAddress: ReferralV1ContractObject?.myveeAddress,
+    coreMembersContractAddress: CoreMembersV1ContractObject?.myveeAddress,
     ['USDT']: {
-      contractAddress: '0x494549e00FE6598E3DC93254c5377c406dDA8579',
-      contractABI: ERC20MockInterface,
+      contractAddress: USDT.myveeAddress,
+      contractABI: USDT.abi,
       name: 'Tether',
       symbol: 'USDT',
       decimals: 18,
       logo: USDTLogoSVG,
     },
     ['BUSD']: {
-      contractAddress: '0x821Fc84646f9a8502F12f805fe23D26d999c2403',
-      contractABI: ERC20MockInterface,
+      contractAddress: BUSD.myveeAddress,
+      contractABI: BUSD.abi,
       name: 'BUSD',
       symbol: 'BUSD',
       decimals: 18,
       logo: BUSDLogoSVG,
     },
-    native: bsc
+    native: bsc,
+  },
+  [localhost.id]: {
+    variablesContractAddress: VariablesV1ContractObject?.ganacheAddress,
+    referralContractAddress: ReferralV1ContractObject?.ganacheAddress,
+    coreMembersContractAddress: CoreMembersV1ContractObject?.ganacheAddress,
+    ['USDT']: {
+      contractAddress: USDT.ganacheAddress,
+      contractABI: USDT.abi,
+      name: 'Tether',
+      symbol: 'USDT',
+      decimals: 18,
+      logo: USDTLogoSVG,
+    },
+    ['BUSD']: {
+      contractAddress: BUSD.ganacheAddress,
+      contractABI: BUSD.abi,
+      name: 'BUSD',
+      symbol: 'BUSD',
+      decimals: 18,
+      logo: BUSDLogoSVG,
+    },
+    native: bsc,
   },
 };

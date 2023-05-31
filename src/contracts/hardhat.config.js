@@ -32,14 +32,14 @@ module.exports = {
         network: "myvee",
         chainId: 50000,
         urls: {
-          apiURL: "https://myveescan.com/api",
+          apiURL: "https://old.myveescan.com/api",
           browserURL: "https://myveescan.com",
         },
       },
     ],
   },
 
-  defaultNetwork: "ganache",
+  defaultNetwork: "myvee",
   networks: {
     hardhat: {
       gas: "auto",

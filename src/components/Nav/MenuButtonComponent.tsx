@@ -41,7 +41,6 @@ export default function MenuButtonComponent() {
         placement={useBreakpointValue(['bottom', 'bottom', 'right'])}
         onClose={onClose}
         preserveScrollBarGap={true}
-        size={['xs', 'sm']}
       >
         <DrawerOverlay />
         <DrawerContent

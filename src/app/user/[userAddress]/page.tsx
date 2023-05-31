@@ -1,6 +1,6 @@
 import React from 'react'
 
-function UserAddress({params}:{params: {
+function User({params}:{params:{
     userAddress: string | undefined
 }}) {
   return (
@@ -8,4 +8,4 @@ function UserAddress({params}:{params: {
   )
 }
 
-export default UserAddress
+export default User;

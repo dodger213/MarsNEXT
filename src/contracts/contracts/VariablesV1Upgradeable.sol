@@ -28,7 +28,6 @@ contract VariablesV1Upgradeable is
     uint8 private _valueBufferRate;
     uint8 private _globalRewardRate;
     uint8 private _weeklyRewardRate;
-    uint256 private _weeklyRewardTimeLimit;
     uint8 private _ibpRewardRate;
     uint8 private _coreMemberRewardRate;
     uint8 private _adminFees;
@@ -41,17 +40,15 @@ contract VariablesV1Upgradeable is
     bool private _isPayIbpRewards;
     bool private _isPayCoreMembersRewards;
 
-    address private _usdtContractAddress;
-    address private _busdContractAddress;
-    address private _rewardTokenContract;
-    address private _coreMembersContractAddress;
-    address private _adminContractAddress;
-
     address[] public supportedTokensList;
     address[] private _ibpAddresses;
 
-    address private _defaultReferrer;
-    address private _defaultIBP;
+    address private _presaleContract;
+    address private _referralContract;
+    address private _stakingContract;
+    address private _ibpContract;
+    address private _rewardTokenContract;
+    address private _coreMembersContract;
     address private _adminAddress;
 
     struct PlanStruct {
@@ -66,8 +63,9 @@ contract VariablesV1Upgradeable is
         string name;
         string symbol;
         uint8 decimals;
+        bool isStable;
         address aggregatorAddress;
-        bool isEbaled;
+        bool isEnaled;
     }
 
     mapping(uint8 => PlanStruct) private plans;
@@ -80,11 +78,9 @@ contract VariablesV1Upgradeable is
     function initialize() public initializer {
         _levelRates = [5000, 500, 400, 300, 200, 100, 100, 125, 125, 150];
         _levelDecimals = 10000;
-        _baseCurrencyDecimals = 18;
         _valueBufferRate = 10;
         _globalRewardRate = 10;
         _weeklyRewardRate = 10;
-        _weeklyRewardTimeLimit = 7 days;
         _ibpRewardRate = 5;
         _coreMemberRewardRate = 2;
         _adminFees = 3;
@@ -96,50 +92,128 @@ contract VariablesV1Upgradeable is
         _isPayIbpRewards = true;
         _isPayCoreMembersRewards = true;
 
+        _rewardTokenContract = 0x7F9fD63932babC508FAD2f324EB534D09cfE86F0;
+        _coreMembersContract = 0xefb61c43C70b60563c1a2a835663C63Ecc93F6bA;
+        _rewardTokenRate = 3;
+
+        _adminAddress = msg.sender;
+
+        // supportTokens[
+        //     0x494549e00FE6598E3DC93254c5377c406dDA8579
+        // ] = SupportedTokensStruct({
+        //     contractAddress: 0x494549e00FE6598E3DC93254c5377c406dDA8579,
+        //     name: IERC20_EXTENDED(0x494549e00FE6598E3DC93254c5377c406dDA8579)
+        //         .name(),
+        //     decimals: IERC20_EXTENDED(
+        //         0x494549e00FE6598E3DC93254c5377c406dDA8579
+        //     ).decimals(),
+        //     symbol: IERC20_EXTENDED(0x494549e00FE6598E3DC93254c5377c406dDA8579)
+        //         .symbol(),
+        //     isStable: true,
+        //     aggregatorAddress: 0x494549e00FE6598E3DC93254c5377c406dDA8579,
+        //     isEnaled: true
+        // });
+
+        // supportedTokensList[0] = 0x494549e00FE6598E3DC93254c5377c406dDA8579;
+
+        // supportTokens[
+        //     0x821Fc84646f9a8502F12f805fe23D26d999c2403
+        // ] = SupportedTokensStruct({
+        //     contractAddress: 0x821Fc84646f9a8502F12f805fe23D26d999c2403,
+        //     name: IERC20_EXTENDED(0x821Fc84646f9a8502F12f805fe23D26d999c2403)
+        //         .name(),
+        //     decimals: IERC20_EXTENDED(
+        //         0x821Fc84646f9a8502F12f805fe23D26d999c2403
+        //     ).decimals(),
+        //     symbol: IERC20_EXTENDED(0x821Fc84646f9a8502F12f805fe23D26d999c2403)
+        //         .symbol(),
+        //     isStable: true,
+        //     aggregatorAddress: 0x821Fc84646f9a8502F12f805fe23D26d999c2403,
+        //     isEnaled: true
+        // });
+
+        // supportedTokensList[1] = 0x821Fc84646f9a8502F12f805fe23D26d999c2403;
+
+        // plans[0] = PlanStruct({
+        //     planId: 0,
+        //     name: "Warm Up",
+        //     value: 10000000000000000000,
+        //     maxLimitMultiplier: 3
+        // });
+
+        // plans[1] = PlanStruct({
+        //     planId: 1,
+        //     name: "Start Up",
+        //     value: 25000000000000000000,
+        //     maxLimitMultiplier: 5
+        // });
+
+        // plans[2] = PlanStruct({
+        //     planId: 2,
+        //     name: "Rising",
+        //     value: 50000000000000000000,
+        //     maxLimitMultiplier: 7
+        // });
+
+        // plans[3] = PlanStruct({
+        //     planId: 3,
+        //     name: "Progressive",
+        //     value: 100000000000000000000,
+        //     maxLimitMultiplier: 10
+        // });
+
+        // plans[4] = PlanStruct({
+        //     planId: 4,
+        //     name: "Confident",
+        //     value: 200000000000000000000,
+        //     maxLimitMultiplier: 20
+        // });
+
+        // plans[5] = PlanStruct({
+        //     planId: 5,
+        //     name: "Legend",
+        //     value: 500000000000000000000,
+        //     maxLimitMultiplier: 50
+        // });
+
+        // plans[5] = PlanStruct({
+        //     planId: 5,
+        //     name: "IBP",
+        //     value: 1000000000000000000000,
+        //     maxLimitMultiplier: 100
+        // });
+
         __Pausable_init();
         __Ownable_init();
         __UUPSUpgradeable_init();
     }
 
     function pushSupportedTokenToList(
-        address[] calldata _tokenContractAddress,
-        address[] calldata aggregatorContractAddress
+        address _tokenContractAddress,
+        bool _isStable,
+        address _aggregatorContractAddress
     ) external onlyOwner {
-        for (uint8 i; i < _tokenContractAddress.length; i++) {
-            supportTokens[_tokenContractAddress[i]]
-                .contractAddress = _tokenContractAddress[i];
-            supportTokens[_tokenContractAddress[i]].name = IERC20_EXTENDED(
-                _tokenContractAddress[i]
-            ).name();
-            supportTokens[_tokenContractAddress[i]].symbol = IERC20_EXTENDED(
-                _tokenContractAddress[i]
-            ).symbol();
-            supportTokens[_tokenContractAddress[i]].decimals = IERC20_EXTENDED(
-                _tokenContractAddress[i]
-            ).decimals();
-            supportTokens[_tokenContractAddress[i]]
-                .aggregatorAddress = aggregatorContractAddress[i];
-            supportTokens[_tokenContractAddress[i]].isEbaled = true;
-            supportedTokensList.push(_tokenContractAddress[i]);
-        }
-    }
+        supportTokens[_tokenContractAddress] = SupportedTokensStruct({
+            contractAddress: _tokenContractAddress,
+            name: IERC20_EXTENDED(_tokenContractAddress).name(),
+            decimals: IERC20_EXTENDED(_tokenContractAddress).decimals(),
+            symbol: IERC20_EXTENDED(_tokenContractAddress).symbol(),
+            isStable: _isStable,
+            aggregatorAddress: _aggregatorContractAddress,
+            isEnaled: true
+        });
 
-    function getAdminContractAddress() external view returns (address) {
-        return _adminContractAddress;
-    }
-
-    function setAdminContractAddress(address _address) external onlyOwner {
-        _adminContractAddress = _address;
+        supportedTokensList.push(_tokenContractAddress);
     }
 
     function getCoreMembersContractAddress() external view returns (address) {
-        return _coreMembersContractAddress;
+        return _coreMembersContract;
     }
 
     function setCoreMembersContractAddress(
         address _address
     ) external onlyOwner {
-        _coreMembersContractAddress = _address;
+        _coreMembersContract = _address;
     }
 
     function getSupportedTokenInfo(
@@ -151,14 +225,14 @@ contract VariablesV1Upgradeable is
     function isTokenSupported(
         address _tokenContractAddress
     ) external view returns (bool) {
-        return supportTokens[_tokenContractAddress].isEbaled;
+        return supportTokens[_tokenContractAddress].isEnaled;
     }
 
     function disableSupportedToken(
         address[] calldata _tokenContractAddress
     ) external onlyOwner {
         for (uint8 i; i < _tokenContractAddress.length; i++) {
-            supportTokens[_tokenContractAddress[i]].isEbaled = false;
+            supportTokens[_tokenContractAddress[i]].isEnaled = false;
             supportedTokensList.push(_tokenContractAddress[i]);
         }
     }
@@ -199,14 +273,14 @@ contract VariablesV1Upgradeable is
 
     function setPlans(
         uint8[] calldata planId,
-        string[] calldata name,
-        uint256[] calldata value,
+        string[] memory name,
+        uint256[] calldata valueInDecimals,
         uint256[] calldata maxLimitMultiplier
     ) external onlyOwner {
         for (uint256 i = 0; i < planId.length; i++) {
             plans[planId[i]].planId = planId[i];
             plans[planId[i]].name = name[i];
-            plans[planId[i]].value = value[i];
+            plans[planId[i]].value = valueInDecimals[i] * 10 ** 18;
             plans[planId[i]].maxLimitMultiplier = maxLimitMultiplier[i];
         }
     }
@@ -238,10 +312,6 @@ contract VariablesV1Upgradeable is
         _weeklyRewardRate = rate;
     }
 
-    function getWeeklyRewardTimeLimit() external view returns (uint256) {
-        return _weeklyRewardTimeLimit;
-    }
-
     function getIbpRewardRate() external view returns (uint8) {
         return _ibpRewardRate;
     }
@@ -266,24 +336,6 @@ contract VariablesV1Upgradeable is
 
     function setAdminFees(uint8 fees) external onlyOwner {
         _adminFees = fees;
-    }
-
-    // Getter and Setter for _usdtContractAddress
-    function getUsdtContractAddress() external view returns (address) {
-        return _usdtContractAddress;
-    }
-
-    function setUsdtContractAddress(address usdtAddress) external onlyOwner {
-        _usdtContractAddress = usdtAddress;
-    }
-
-    // Getter and Setter for _busdContractAddress
-    function getBusdContractAddress() external view returns (address) {
-        return _busdContractAddress;
-    }
-
-    function setBusdContractAddress(address busdAddress) external onlyOwner {
-        _busdContractAddress = busdAddress;
     }
 
     // Getter and Setter for _rewardTokenRate
@@ -351,22 +403,6 @@ contract VariablesV1Upgradeable is
 
     function setRewardTokenContract(address tokenContract) external onlyOwner {
         _rewardTokenContract = tokenContract;
-    }
-
-    function getDefaultReferrer() external view returns (address) {
-        return _defaultReferrer;
-    }
-
-    function setDefaultReferrer(address referrer) external onlyOwner {
-        _defaultReferrer = referrer;
-    }
-
-    function getDefaultIBP() external view returns (address) {
-        return _defaultIBP;
-    }
-
-    function setDefaultIBP(address ibpAddress) external onlyOwner {
-        _defaultIBP = ibpAddress;
     }
 
     function getAdminAddress() external view returns (address) {

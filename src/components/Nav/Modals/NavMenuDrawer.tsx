@@ -1,17 +1,15 @@
 import { AddressActionButtons } from '@/components/AddressActionButtons';
 import { ColorModeSwitcher } from '@/components/ColorModeSwitcher';
+import SocialMediaIcons from '@/components/SocialMediaIcons';
 import { ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import {
-  Box,
-  Button,
-  Center,
   Divider,
   DrawerBody,
   DrawerFooter,
   DrawerHeader,
+  Flex,
   HStack,
   Heading,
-  Icon,
   IconButton,
   Spacer,
   Text,
@@ -21,29 +19,10 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { shortenAddress } from '@usedapp/core';
-import Link from 'next/link';
-import React from 'react';
 import { IconType } from 'react-icons';
-import { BsChevronDoubleDown, BsChevronDoubleRight } from 'react-icons/bs';
 import { FaDiscord, FaGithub, FaTelegram, FaTwitter } from 'react-icons/fa';
-import { IoMdLogOut } from 'react-icons/io';
-import { jsNumberForAddress } from 'react-jazzicon';
-import Jazzicon from 'react-jazzicon';
-
-const SocialMediaIconComponent = ({
-  icon,
-  link,
-}: {
-  icon: IconType;
-  link?: string;
-  key: number;
-}) => {
-  return (
-    <Center p={2} borderWidth="thin" rounded="full" cursor="pointer">
-      <Icon as={icon}></Icon>
-    </Center>
-  );
-};
+import Jazzicon, { jsNumberForAddress } from 'react-jazzicon';
+import NavUserMenu from '../NavUserMenu';
 
 export const NavMenuDrawer = ({
   address,
@@ -99,18 +78,15 @@ export const NavMenuDrawer = ({
           </HStack>
         )}
       </DrawerHeader>
-      <DrawerBody></DrawerBody>
+      <DrawerBody>
+        <Flex h="full" align="center">
+        {address && <NavUserMenu userAddress={address} />}
+        </Flex>
+      </DrawerBody>
       <DrawerFooter>
-        <VStack w="full">
+        <VStack w="full" spacing={5}>
           <HStack spacing={5}>
-            {socialMediaIcons?.map((icon: IconType, key: number) => {
-              return (
-                <SocialMediaIconComponent
-                  icon={icon}
-                  key={key}
-                ></SocialMediaIconComponent>
-              );
-            })}
+            <SocialMediaIcons />
           </HStack>
           <Divider />
           <HStack w="full">

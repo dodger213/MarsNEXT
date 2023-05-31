@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: MIT
+
 pragma solidity ^0.8.18;
 
 import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
@@ -27,8 +28,9 @@ struct SupportedTokensStruct {
     string name;
     string symbol;
     uint8 decimals;
+    bool isStable;
     address aggregatorAddress;
-    bool isEbaled;
+    bool isEnaled;
 }
 
 struct AccountStruct {
@@ -55,13 +57,9 @@ struct AccountStruct {
 interface IVariables {
     function getCoreMembersContractAddress() external view returns (address);
 
-    function getAdminContractAddress() external view returns (address);
-
     function getLevelRates() external view returns (uint16[] memory);
 
     function getLevelDecimals() external view returns (uint16);
-
-    function getBaseCurrencyDecimals() external view returns (uint8);
 
     function getValueBufferRate() external view returns (uint8);
 
@@ -85,17 +83,9 @@ interface IVariables {
 
     function getAdminFees() external view returns (uint8);
 
-    function getUsdtContractAddress() external view returns (address);
-
-    function getBusdContractAddress() external view returns (address);
-
     function getPlanById(
         uint8 _planId
     ) external view returns (PlanStruct memory);
-
-    function getDefaultReferrer() external view returns (address);
-
-    function getDefaultIBP() external view returns (address);
 
     function getAdminAddress() external view returns (address);
 
@@ -194,10 +184,12 @@ contract ReferralV1Upgradeable is
         uint16 rewardRateDecimals
     );
 
+    event IBPRewardsNotPaid(address ibpAddress, string reason);
+
     receive() external payable {}
 
     function initialize() public initializer {
-        _variableContractAddress = 0x80b6BB3BFb5bf87B2a6F4c94A35213d792889E69;
+        _variableContractAddress = 0x5a7530Ee130E38487561032B9571F4EC41AB69AB;
         _weeklyRewardClaimedTimeStamp = block.timestamp;
 
         __Pausable_init();
@@ -223,9 +215,9 @@ contract ReferralV1Upgradeable is
         AccountStruct storage userAccount = accounts[_referee];
         if (
             !_hasReferrer(userAccount) &&
-            _referee != variablesContractInterface.getDefaultReferrer()
+            _referee != variablesContractInterface.getAdminAddress()
         ) {
-            if (_referrer == address(0)) {
+            if (_referrer == address(0) || _referee == _referrer) {
                 emit ReferrerNotAdded(
                     _referrer,
                     _referee,
@@ -233,7 +225,7 @@ contract ReferralV1Upgradeable is
                 );
 
                 address defaultReferrer = variablesContractInterface
-                    .getDefaultReferrer();
+                    .getAdminAddress();
                 userAccount.referrerAddress = defaultReferrer;
 
                 emit ReferrerAdded(defaultReferrer, _referee);
@@ -268,12 +260,15 @@ contract ReferralV1Upgradeable is
                             );
 
                             address defaultIBP = variablesContractInterface
-                                .getDefaultIBP();
+                                .getAdminAddress();
                             userAccount.ibpAddress = defaultIBP;
                             referrerAccount.ibpAddress = defaultIBP;
 
-                            emit IBPAdded(defaultIBP, _referrer);
-                            emit IBPAdded(defaultIBP, _referee);
+                            emit IBPAdded(
+                                defaultIBP,
+                                referrerAccount.selfAddress
+                            );
+                            emit IBPAdded(defaultIBP, userAccount.selfAddress);
                         } else {
                             userAccount.ibpAddress = referrerAccount.ibpAddress;
                             emit IBPAdded(referrerAccount.ibpAddress, _referee);
@@ -313,9 +308,9 @@ contract ReferralV1Upgradeable is
     }
 
     function _updateCurrentLimit(
-        AccountStruct memory userAccount,
+        AccountStruct storage userAccount,
         uint256 _value
-    ) private pure returns (uint256 _valueUpdated) {
+    ) private returns (uint256 _valueUpdated) {
         if (userAccount.currentLimit + _value <= userAccount.maxLimit) {
             _valueUpdated = _value;
             userAccount.currentLimit += _value;
@@ -334,21 +329,50 @@ contract ReferralV1Upgradeable is
     ) private {
         IVariables variablesInterface = IVariables(_variableContractAddress);
         PlanStruct memory planAccount = variablesInterface.getPlanById(_planId);
+        require(
+            planAccount.value > 0,
+            "Value is zero. Please select correct plan."
+        );
         SupportedTokensStruct memory tokenAccount = variablesInterface
             .getSupportedTokenInfo(_tokenAddress);
+        uint8 tokenDecimals = tokenAccount.decimals;
+        IERC20Upgradeable IERC20Transfer = IERC20Upgradeable(
+            tokenAccount.contractAddress
+        );
 
-        require(tokenAccount.isEbaled, "Token is not supported or disabled");
+        require(tokenAccount.isEnaled, "Token is not supported or disabled");
 
         uint16[] memory _levelRates = variablesInterface.getLevelRates();
 
         IERC20Upgradeable(_tokenAddress).transferFrom(
             _referee,
             address(this),
-            _convertToDecimals(planAccount.value, 18, tokenAccount.decimals)
+            tokenDecimals < 18
+                ? _convertToDecimals(planAccount.value, 18, tokenDecimals)
+                : planAccount.value
         );
 
         AccountStruct storage userAccount = accounts[_referee];
-        uint256 _value = planAccount.value;
+
+        if (userAccount.userId == 0) {
+            _totalUsers++;
+            userAccount.userId = _totalUsers;
+            idToAddress[userAccount.userId] = _referee;
+        }
+
+        userAccount.selfAddress = _referee;
+        userAccount.selfBusiness += planAccount.value;
+        userAccount.maxLimit +=
+            planAccount.value *
+            planAccount.maxLimitMultiplier;
+
+        if (
+            keccak256(abi.encodePacked(planAccount.name)) ==
+            keccak256(abi.encodePacked("IBP")) &&
+            userAccount.ibpAddress != userAccount.selfAddress
+        ) {
+            userAccount.ibpAddress = userAccount.selfAddress;
+        }
 
         if (!_hasReferrer(userAccount)) {
             _addReferrer(
@@ -359,15 +383,14 @@ contract ReferralV1Upgradeable is
             );
         }
 
-        if (userAccount.userId == 0) {
-            _totalUsers++;
-            userAccount.userId = _totalUsers;
-            idToAddress[userAccount.userId] = _referee;
-        }
+        
 
-        userAccount.selfAddress = _referee;
-        userAccount.selfBusiness += _value;
-        userAccount.maxLimit += _value * planAccount.maxLimitMultiplier;
+        emit Registration(
+            userAccount.selfAddress,
+            userAccount.userId,
+            _planId,
+            userAccount.referrerAddress
+        );
 
         if (_globalAddresses.length > 0) {
             address globalAddress = _getRandomGlobalAddress();
@@ -377,25 +400,25 @@ contract ReferralV1Upgradeable is
                     globalAddress
                 ];
 
-                uint256 globalRewardValue = (_value * 10) / 100;
+                uint256 globalRewardValue = (planAccount.value * 10) / 100;
 
                 globalAddressAccount.globalRewards += globalRewardValue;
                 globalAddressAccount.currentLimit += globalRewardValue;
-
-                _transferToken(
-                    tokenAccount.contractAddress,
+                IERC20Transfer.transfer(
                     globalAddress,
-                    _convertToDecimals(
-                        globalRewardValue,
-                        18,
-                        tokenAccount.decimals
-                    )
+                    tokenDecimals < 18
+                        ? _convertToDecimals(
+                            globalRewardValue,
+                            18,
+                            tokenDecimals
+                        )
+                        : globalRewardValue
                 );
 
                 emit GlobalRewardsPaid(
                     globalAddress,
                     _referee,
-                    _value,
+                    planAccount.value,
                     globalRewardValue,
                     10,
                     100
@@ -405,15 +428,11 @@ contract ReferralV1Upgradeable is
             }
         }
 
-        if (
-            userAccount.ibpAddress != address(0) &&
-            userAccount.ibpAddress != userAccount.selfAddress &&
-            userAccount.ibpAddress != variablesInterface.getDefaultIBP()
-        ) {
+        if (userAccount.ibpAddress != address(0)) {
             AccountStruct storage ibpAccount = accounts[userAccount.ibpAddress];
 
             if (!_isMaxLimitReached(ibpAccount)) {
-                uint256 ibpRewardValue = (_value *
+                uint256 ibpRewardValue = (planAccount.value *
                     variablesInterface.getIbpRewardRate()) / 100;
 
                 uint256 updatedIbpRewardValue = _updateCurrentLimit(
@@ -424,26 +443,32 @@ contract ReferralV1Upgradeable is
                 ibpAccount.ibpRewards += updatedIbpRewardValue;
                 ibpAccount.currentLimit += updatedIbpRewardValue;
 
-                _transferToken(
-                    tokenAccount.contractAddress,
+                IERC20Transfer.transfer(
                     userAccount.ibpAddress,
-                    _convertToDecimals(
-                        updatedIbpRewardValue,
-                        18,
-                        tokenAccount.decimals
-                    )
+                    tokenDecimals < 18
+                        ? _convertToDecimals(
+                            updatedIbpRewardValue,
+                            18,
+                            tokenDecimals
+                        )
+                        : updatedIbpRewardValue
                 );
 
                 emit IBPRewardsPaid(
                     userAccount.ibpAddress,
                     userAccount.selfAddress,
-                    _value,
+                    planAccount.value,
                     updatedIbpRewardValue,
                     variablesInterface.getIbpRewardRate(),
                     100
                 );
 
                 _totalIBPRewardsPaid += ibpRewardValue;
+            } else {
+                emit IBPRewardsNotPaid(
+                    userAccount.ibpAddress,
+                    "IBP Reward not paid. Max Limit Reached"
+                );
             }
         }
 
@@ -470,7 +495,7 @@ contract ReferralV1Upgradeable is
             }
 
             if (i == 0) {
-                referrerAccount.directBusiness += _value;
+                referrerAccount.directBusiness += planAccount.value;
 
                 if (referrerAccount.isGlobal) {
                     _globalAddresses.push(userAccount.referrerAddress);
@@ -482,9 +507,10 @@ contract ReferralV1Upgradeable is
                 referrerAccount.isGlobal = !referrerAccount.isGlobal;
             }
 
-            referrerAccount.teamBusiness += _value;
+            referrerAccount.teamBusiness += planAccount.value;
 
-            uint256 referralRewardValue = (_value * _levelRates[i]) / 10000;
+            uint256 referralRewardValue = (planAccount.value * _levelRates[i]) /
+                10000;
 
             uint256 updatedReferralRewardValue = _updateCurrentLimit(
                 referrerAccount,
@@ -493,14 +519,15 @@ contract ReferralV1Upgradeable is
 
             referrerAccount.referralRewards += updatedReferralRewardValue;
 
-            _transferToken(
-                tokenAccount.contractAddress,
+            IERC20Transfer.transfer(
                 userAccount.referrerAddress,
-                _convertToDecimals(
-                    updatedReferralRewardValue,
-                    18,
-                    tokenAccount.decimals
-                )
+                tokenDecimals < 18
+                    ? _convertToDecimals(
+                        updatedReferralRewardValue,
+                        18,
+                        tokenDecimals
+                    )
+                    : updatedReferralRewardValue
             );
 
             totalReferralRewardsPaid += updatedReferralRewardValue;
@@ -508,7 +535,7 @@ contract ReferralV1Upgradeable is
             emit ReferralRewardsPaid(
                 userAccount.referrerAddress,
                 userAccount.selfAddress,
-                _value,
+                planAccount.value,
                 updatedReferralRewardValue,
                 _levelRates[i],
                 10000,
@@ -519,27 +546,8 @@ contract ReferralV1Upgradeable is
         }
 
         _totalReferralPaid += totalReferralRewardsPaid;
-        _totalRegistrationValue += _value;
-        _WeeklyRewardValue += (_value * 10) / 100;
-
-        uint256 contractTokenBalance = IERC20Upgradeable(
-            tokenAccount.contractAddress
-        ).balanceOf(address(this));
-
-        _transferToken(
-            tokenAccount.contractAddress,
-            variablesInterface.getAdminAddress(),
-            _convertToDecimals(
-                contractTokenBalance -
-                    _convertToDecimals(
-                        _WeeklyRewardValue,
-                        18,
-                        tokenAccount.decimals
-                    ),
-                18,
-                tokenAccount.decimals
-            )
-        );
+        _totalRegistrationValue += planAccount.value;
+        _WeeklyRewardValue += (planAccount.value * 10) / 100;
     }
 
     //registerInETH
@@ -597,7 +605,9 @@ contract ReferralV1Upgradeable is
         return weeklyCounterEndTime - _currentTime;
     }
 
-    function distributeWeeklyReward() external returns (address) {
+    function distributeWeeklyReward(
+        address _tokenAddress
+    ) external returns (address) {
         uint256 weeklyCounterEndTime = _weeklyRewardClaimedTimeStamp + 7 days;
         uint256 _currentTime = block.timestamp;
         require(
@@ -606,19 +616,17 @@ contract ReferralV1Upgradeable is
         );
         address globalAddress = _getRandomGlobalAddress();
 
-        address usdtContractAddress = IVariables(_variableContractAddress)
-            .getUsdtContractAddress();
-        uint256 usdtBalanceOfThisContract = IERC20Upgradeable(
-            usdtContractAddress
-        ).balanceOf(address(this));
+        uint256 toeknBalanceThis = IERC20Upgradeable(_tokenAddress).balanceOf(
+            address(this)
+        );
         uint256 weeklyRewardValue = _WeeklyRewardValue;
 
         require(
-            usdtBalanceOfThisContract >= weeklyRewardValue,
+            toeknBalanceThis >= weeklyRewardValue,
             "Contract has insufficient balance to distribute reward."
         );
 
-        IERC20Upgradeable(usdtContractAddress).transfer(
+        IERC20Upgradeable(_tokenAddress).transfer(
             globalAddress,
             weeklyRewardValue
         );
@@ -762,10 +770,10 @@ contract ReferralV1Upgradeable is
         address _userAddress
     ) external onlyOwner {
         accounts[_userAddress].ibpAddress = IVariables(_variableContractAddress)
-            .getDefaultIBP();
+            .getAdminAddress();
 
         emit IBPAdded(
-            IVariables(_variableContractAddress).getDefaultIBP(),
+            IVariables(_variableContractAddress).getAdminAddress(),
             _userAddress
         );
     }
@@ -773,10 +781,10 @@ contract ReferralV1Upgradeable is
     //convertToDecimals
     function _convertToDecimals(
         uint256 _value,
-        uint8 _from,
-        uint8 _to
+        uint256 _from,
+        uint256 _to
     ) private pure returns (uint256) {
-        return (_value / 10 ** _from) * 10 ** _to;
+        return (_value * 10 ** _to) / 10 ** _from;
     }
 
     function _transferToken(

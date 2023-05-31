@@ -36,7 +36,7 @@ export const Nav = () => {
       <HStack w="full" px={5}>
         <Logo></Logo>
         <Spacer />
-        <ConnectWalletButton></ConnectWalletButton>
+        <ConnectWalletButton showJazzicon={true}></ConnectWalletButton>
         <MenuButtonComponent />
       </HStack>
     </HStack>

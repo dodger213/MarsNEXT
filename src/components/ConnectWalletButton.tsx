@@ -1,5 +1,5 @@
 import { WalletConnectLogoSVG } from '@/assets';
-import { Button, useBreakpointValue } from '@chakra-ui/react';
+import { Box, Button, useBreakpointValue } from '@chakra-ui/react';
 import { shortenAddress } from '@usedapp/core';
 import { useWeb3Modal } from '@web3modal/react';
 import Image from 'next/image';
@@ -8,7 +8,13 @@ import { jsNumberForAddress } from 'react-jazzicon';
 import Jazzicon from 'react-jazzicon/dist/Jazzicon';
 import { useAccount } from 'wagmi';
 
-export const ConnectWalletButton = () => {
+export const ConnectWalletButton = ({
+  showJazzicon,
+  userAddress,
+}: {
+  showJazzicon?: boolean;
+  userAddress?: string
+}) => {
   const { isOpen, open, close, setDefaultChain } = useWeb3Modal();
   const { address } = useAccount();
   const conectWalletText = useBreakpointValue([
@@ -23,7 +29,9 @@ export const ConnectWalletButton = () => {
       }}
       leftIcon={
         address ? (
-          <Jazzicon seed={jsNumberForAddress(`${address}`)}></Jazzicon>
+          showJazzicon ? (
+            <Jazzicon seed={jsNumberForAddress(`${address}`)}></Jazzicon>
+          ) : <Box boxSize={0}></Box>
         ) : (
           <Image
             src={WalletConnectLogoSVG}
@@ -33,9 +41,9 @@ export const ConnectWalletButton = () => {
         )
       }
       variant="solid"
-      rounded="full"
+     borderRadius="xl"
     >
-      {address ? shortenAddress(address) : conectWalletText}
+      {address ? shortenAddress(userAddress ?? address) : conectWalletText}
     </Button>
   );
 };

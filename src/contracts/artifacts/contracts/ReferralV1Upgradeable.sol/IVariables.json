@@ -18,51 +18,12 @@
     },
     {
       "inputs": [],
-      "name": "getAdminContractAddress",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
       "name": "getAdminFees",
       "outputs": [
         {
           "internalType": "uint8",
           "name": "",
           "type": "uint8"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getBaseCurrencyDecimals",
-      "outputs": [
-        {
-          "internalType": "uint8",
-          "name": "",
-          "type": "uint8"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getBusdContractAddress",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
         }
       ],
       "stateMutability": "view",
@@ -84,32 +45,6 @@
     {
       "inputs": [],
       "name": "getCoreMembersContractAddress",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getDefaultIBP",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getDefaultReferrer",
       "outputs": [
         {
           "internalType": "address",
@@ -311,32 +246,24 @@
               "type": "uint8"
             },
             {
+              "internalType": "bool",
+              "name": "isStable",
+              "type": "bool"
+            },
+            {
               "internalType": "address",
               "name": "aggregatorAddress",
               "type": "address"
             },
             {
               "internalType": "bool",
-              "name": "isEbaled",
+              "name": "isEnaled",
               "type": "bool"
             }
           ],
           "internalType": "struct SupportedTokensStruct",
           "name": "",
           "type": "tuple"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getUsdtContractAddress",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
         }
       ],
       "stateMutability": "view",
