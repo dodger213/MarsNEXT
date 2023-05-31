@@ -15,11 +15,11 @@ import { FcDoughnutChart } from 'react-icons/fc';
 export const CardContainer = ({
   children,
   heading,
-  icon
+  icon,
 }: {
   children: ReactNode;
   heading: string;
-  icon: IconType
+  icon: IconType;
 }) => {
   return (
     <VStack
@@ -32,13 +32,13 @@ export const CardContainer = ({
       borderWidth="0.5px"
       borderBottomWidth={5}
     >
-      <VStack>
+      <VStack w="full">
         <Tag size="lg" fontWeight="bold" fontSize="xl" borderRadius="xl">
           <HStack>
-            <Icon as={icon} color="twitter.500"></Icon>
             <Text>{heading}</Text>
           </HStack>
         </Tag>
+        <Icon as={icon} color="twitter.500" boxSize={100}></Icon>
         <Divider></Divider>
       </VStack>
       {children}

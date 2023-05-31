@@ -9,15 +9,21 @@ import {
 } from '@chakra-ui/react';
 import React, { ReactNode } from 'react';
 
-function Layout({ children, params }: { children: ReactNode, params: {
-  userAddress: string
-} }) {
+function Layout({
+  children,
+  params,
+}: {
+  children: ReactNode;
+  params: {
+    userAddress: string;
+  };
+}) {
   return (
     <HStack w="full" flex={1} py={100} spacing={5} px={5} align="flex-start">
       <Hide below="md">
         <VStack
-          h="80vh"
-          minH={500}
+          h="90vh"
+          minH={600}
           w={250}
           borderWidth="0.5px"
           borderBottomWidth={5}

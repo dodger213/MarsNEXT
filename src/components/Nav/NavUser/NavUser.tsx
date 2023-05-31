@@ -13,6 +13,7 @@ import { ConnectWalletButton } from '../../ConnectWalletButton';
 import { AddressActionButtons } from '../../AddressActionButtons';
 import { FaSignOutAlt } from 'react-icons/fa';
 import NavUserMenu from '../NavUserMenu';
+import SocialMediaIcons from '@/components/SocialMediaIcons';
 
 function NavUser({userAddress}:{userAddress: string}) {
   return (
@@ -50,7 +51,8 @@ function NavUser({userAddress}:{userAddress: string}) {
         borderWidth="0.5px"
         borderBottomWidth={5}
       >
-        <HStack></HStack>
+        <SocialMediaIcons/>
+        <Divider/>
         <HStack w="full">
           <Spacer></Spacer>
           <IconButton

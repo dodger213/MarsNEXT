@@ -8,7 +8,7 @@ function TeamCard() {
   const userValueObject = [
     {
       name: 'Direct Team',
-      value: 1111,
+      value: 1111
     },
     {
       name: 'Total Team',
@@ -23,6 +23,7 @@ function TeamCard() {
             heading={valueObject?.name}
             value={valueObject?.value}
             key={key}
+            showIcon={false}
           ></BalanceContainer>
         );
       })}
