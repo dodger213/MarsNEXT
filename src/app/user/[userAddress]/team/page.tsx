@@ -19,15 +19,17 @@ import {
   FcVoicePresentation,
 } from 'react-icons/fc';
 import UserTeamTable from './UserTeamTable';
+import { useGetUserTeam } from '@/hooks/ReferralHooks';
 
-function page({
+function Team({
   params,
 }: {
   params: {
-    userAddress: string | undefined;
+    userAddress: `0x${string}` | undefined;
   };
 }) {
-  const userReferee = [AddressZero, AddressZero, AddressZero, AddressZero];
+  const userTeamObject = useGetUserTeam(params.userAddress);
+  console.log(userTeamObject);
   return (
     <VStack w="full" direction="column" gap={10}>
       <VStack>
@@ -38,45 +40,58 @@ function page({
         <Divider></Divider>
       </VStack>
       <VStack>
+        {userTeamObject?.referrer !== AddressZero && (
+          <VStack>
+            <UserTeamDisplayCard
+              address={userTeamObject?.referrer}
+              icon={FcReadingEbook}
+              userType="Referrer"
+            />
+            <Icon as={FcDown} boxSize={10}></Icon>
+          </VStack>
+        )}
+
         <VStack>
           <UserTeamDisplayCard
-            address={AddressZero}
-            icon={FcReadingEbook}
-            userType="Referrer"
-          />
-          <Icon as={FcDown} boxSize={10}></Icon>
-        </VStack>
-        <VStack>
-          <UserTeamDisplayCard
-            address={AddressZero}
+            address={params.userAddress}
             icon={FcAssistant}
             userType="You"
           />
-          <Icon as={FcDown} boxSize={10}></Icon>
         </VStack>
-        <Wrap w="full" justify="center" align="center">
-          {userReferee.map((address, key) => {
-            return (
-              <UserTeamDisplayCard
-                address={address}
-                icon={FcVoicePresentation}
-                userType="Referee"
-                key={key}
-              />
-            );
-          })}
-        </Wrap>
+        <Icon as={FcDown} boxSize={10}></Icon>
+        {userTeamObject.refereeCount > 0 ? (
+          <Wrap w="full" justify="center" align="center">
+            {userTeamObject.referees.map((address, key) => {
+              return (
+                <UserTeamDisplayCard
+                  address={address}
+                  icon={FcVoicePresentation}
+                  userType="Referee"
+                  key={key}
+                />
+              );
+            })}
+          </Wrap>
+        ) : (
+          <Heading size="md" textAlign="center" color="red">
+            You have no team yet.
+          </Heading>
+        )}
       </VStack>
-      <Divider />
-      <VStack>
-        <Heading size="md" color="orange.500">
-          All Team
-        </Heading>
-        <Divider />
-      </VStack>
-      <UserTeamTable />
+      {userTeamObject.refereeCount > 0 && (
+        <VStack w="full" spacing={10}>
+          <Divider />
+          <VStack>
+            <Heading size="md" color="orange.500">
+              All Team
+            </Heading>
+            <Divider />
+          </VStack>
+          <UserTeamTable params={params} />
+        </VStack>
+      )}
     </VStack>
   );
 }
 
-export default page;
+export default Team;

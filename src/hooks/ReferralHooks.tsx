@@ -114,7 +114,16 @@ export const useGetUserRewards = (userAddress: `0x${string}` | undefined) => {
   return valueObject;
 };
 
-export const useGetUserTeam = (userAddress: `0x${string}` | undefined) => {
+export const useGetUserTeam = (
+  userAddress: `0x${string}` | undefined
+): {
+  referrer: `0x${string}`;
+  referees: [] | `0x${string}`[];
+  refereeCount: number;
+  team: [] | `0x${string}`[];
+  teamLevels: [] | number[];
+  teamCount: number;
+} => {
   const value = useContractCall({
     functionName: 'getUserTeam',
     args: [userAddress],

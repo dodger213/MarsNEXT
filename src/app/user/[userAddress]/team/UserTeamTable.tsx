@@ -1,5 +1,7 @@
 import { AddressZero } from '@/constants/SupportedNetworkInfo';
+import { useGetUserTeam } from '@/hooks/ReferralHooks';
 import {
+  Heading,
   Table,
   TableContainer,
   Tag,
@@ -12,8 +14,19 @@ import {
 } from '@chakra-ui/react';
 import { shortenAddress } from '@usedapp/core';
 import React from 'react';
+import UserTeamTableComponent from './UserTeamTableComponent';
 
-function UserTeamTable() {
+function UserTeamTable({
+  params,
+}: {
+  params: {
+    userAddress: `0x${string}` | undefined;
+  };
+}) {
+  const userTeamObject = useGetUserTeam(params.userAddress);
+  const userTeamCount = userTeamObject.teamCount;
+  const userTeamAddress = userTeamObject.team;
+  const userTeamLevels = userTeamObject.teamLevels;
   return (
     <TableContainer w="full">
       <Table size="lg">
@@ -25,11 +38,22 @@ function UserTeamTable() {
           </Tr>
         </Thead>
         <Tbody>
-          <Tr>
-            <Td>1</Td>
-            <Td><Tag size="lg" borderRadius="xl">{shortenAddress(AddressZero)}</Tag></Td>
-            <Td isNumeric><Tag size="lg" borderRadius="xl">{shortenAddress(AddressZero)}</Tag></Td>
-          </Tr>
+          {userTeamCount > 0 ? (
+            userTeamAddress.map((address, key) => {
+              return (
+                <UserTeamTableComponent
+                  key={key}
+                  level={key}
+                  userAddress={address}
+                  userTeamLevels={userTeamLevels}
+                ></UserTeamTableComponent>
+              );
+            })
+          ) : (
+            <Heading size="sm" color="red">
+              No team
+            </Heading>
+          )}
         </Tbody>
       </Table>
     </TableContainer>
