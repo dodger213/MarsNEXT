@@ -29,7 +29,11 @@ function UserTeamTable({
   const userTeamAddress = userTeamObject.team;
   const userTeamLevels = userTeamObject.teamLevels;
   return (
-    <TableContainer w="full" bgColor={useColorModeValue("white", "gray.900")}>
+    <TableContainer
+      w="full"
+      bgColor={useColorModeValue('white', 'gray.900')}
+      borderRadius="50px"
+    >
       <Table size="lg">
         <Thead>
           <Tr>
