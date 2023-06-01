@@ -11,7 +11,14 @@ import {
   Wrap,
 } from '@chakra-ui/react';
 import React from 'react';
-import { FcAssistant, FcConferenceCall, FcDown, FcReadingEbook, FcVoicePresentation } from 'react-icons/fc';
+import {
+  FcAssistant,
+  FcConferenceCall,
+  FcDown,
+  FcReadingEbook,
+  FcVoicePresentation,
+} from 'react-icons/fc';
+import UserTeamTable from './UserTeamTable';
 
 function page({
   params,
@@ -49,15 +56,25 @@ function page({
         </VStack>
         <Wrap w="full" justify="center" align="center">
           {userReferee.map((address, key) => {
-            return <UserTeamDisplayCard
-            address={address}
-            icon={FcVoicePresentation}
-            userType="Referee"
-            key={key}
-          />
+            return (
+              <UserTeamDisplayCard
+                address={address}
+                icon={FcVoicePresentation}
+                userType="Referee"
+                key={key}
+              />
+            );
           })}
         </Wrap>
       </VStack>
+      <Divider />
+      <VStack>
+        <Heading size="md" color="orange.500">
+          All Team
+        </Heading>
+        <Divider />
+      </VStack>
+      <UserTeamTable />
     </VStack>
   );
 }
