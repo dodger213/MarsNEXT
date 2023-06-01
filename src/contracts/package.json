@@ -17,7 +17,8 @@
     "@openzeppelin/hardhat-upgrades": "^1.19.0",
     "chai": "^4.3.7",
     "ethers": "5.7.2",
-    "hardhat": "^2.10.1"
+    "hardhat": "^2.10.1",
+    "react-icons-kit": "^2.0.0"
   },
   "dependencies": {
     "@chainlink/contracts": "^0.4.2",

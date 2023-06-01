@@ -23,6 +23,7 @@ export const AddressActionButtons = ({ address }: { address: string }) => {
         icon={hasCopied ? <CheckIcon /> : <CopyIcon />}
         onClick={onCopy}
         size="sm"
+        borderRadius="xl"
       ></IconButton>
       <Link
         href={`${chain?.blockExplorers?.default.url}/address/${address}`}
@@ -32,6 +33,7 @@ export const AddressActionButtons = ({ address }: { address: string }) => {
           aria-label="Open in explorer button"
           icon={<ExternalLinkIcon />}
           size="sm"
+          borderRadius="xl"
         ></IconButton>
       </Link>
     </HStack>

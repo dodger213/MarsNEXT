@@ -20,11 +20,11 @@ const iconsObject = [
     icon: FaTelegram,
     href: '',
   },
-  {
-    label: 'Discord',
-    icon: FaDiscord,
-    href: '',
-  },
+//   {
+//     label: 'Discord',
+//     icon: FaDiscord,
+//     href: '',
+//   },
   {
     label: 'Github',
     icon: FaGithub,

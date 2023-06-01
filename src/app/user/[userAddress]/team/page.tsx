@@ -1,4 +1,6 @@
 'use client';
+import UserTeamDisplayCard from '@/components/UserTeamDisplayCard';
+import { AddressZero } from '@/constants/SupportedNetworkInfo';
 import {
   Divider,
   HStack,
@@ -9,7 +11,7 @@ import {
   Wrap,
 } from '@chakra-ui/react';
 import React from 'react';
-import { FcConferenceCall } from 'react-icons/fc';
+import { FcAssistant, FcConferenceCall, FcDown, FcReadingEbook, FcVoicePresentation } from 'react-icons/fc';
 
 function page({
   params,
@@ -18,6 +20,7 @@ function page({
     userAddress: string | undefined;
   };
 }) {
+  const userReferee = [AddressZero, AddressZero, AddressZero, AddressZero];
   return (
     <VStack w="full" direction="column" gap={10}>
       <VStack>
@@ -27,7 +30,34 @@ function page({
         </HStack>
         <Divider></Divider>
       </VStack>
-      <Wrap w="full" justify="center" spacing={5}></Wrap>
+      <VStack>
+        <VStack>
+          <UserTeamDisplayCard
+            address={AddressZero}
+            icon={FcReadingEbook}
+            userType="Referrer"
+          />
+          <Icon as={FcDown} boxSize={10}></Icon>
+        </VStack>
+        <VStack>
+          <UserTeamDisplayCard
+            address={AddressZero}
+            icon={FcAssistant}
+            userType="You"
+          />
+          <Icon as={FcDown} boxSize={10}></Icon>
+        </VStack>
+        <Wrap w="full" justify="center" align="center">
+          {userReferee.map((address, key) => {
+            return <UserTeamDisplayCard
+            address={address}
+            icon={FcVoicePresentation}
+            userType="Referee"
+            key={key}
+          />
+          })}
+        </Wrap>
+      </VStack>
     </VStack>
   );
 }

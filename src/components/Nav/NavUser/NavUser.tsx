@@ -52,8 +52,8 @@ function NavUser({userAddress}:{userAddress: string}) {
         borderBottomWidth={5}
       >
         <SocialMediaIcons/>
-        <Divider/>
-        <HStack w="full">
+        {/* <Divider/> */}
+        {/* <HStack w="full">
           <Spacer></Spacer>
           <IconButton
             aria-label="Log Out Button"
@@ -61,7 +61,7 @@ function NavUser({userAddress}:{userAddress: string}) {
             borderRadius="xl"
             colorScheme="red"
           ></IconButton>
-        </HStack>
+        </HStack> */}
       </VStack>
     </VStack>
   );

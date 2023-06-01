@@ -12,6 +12,8 @@ import {
 export const projectName = 'MarsNext';
 export const tagLine =
   'A reward centric decentralized protocol only made for community.';
+export const AddressZero = "0x0000000000000000000000000000000000000000";
+export const AddressDead = "0x000000000000000000000000000000000000dEaD";
 
 export const supportedNetworkInfo = {
   [polygon.id]: {
