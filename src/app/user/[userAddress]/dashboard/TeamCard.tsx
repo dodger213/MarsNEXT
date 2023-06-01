@@ -3,16 +3,24 @@ import React from 'react';
 import BalanceCard from './BalanceCard';
 import { BalanceContainer } from '@/components/BalanceContainer';
 import { FcConferenceCall } from 'react-icons/fc';
+import { useGetUserTeam } from '@/hooks/ReferralHooks';
 
-function TeamCard() {
+function TeamCard({
+  params,
+}: {
+  params: {
+    userAddress: `0x${string}` | undefined;
+  };
+}) {
+  const userTeamObject = useGetUserTeam(params.userAddress);
   const userValueObject = [
     {
       name: 'Direct Team',
-      value: 1111
+      value: userTeamObject?.refereeCount,
     },
     {
       name: 'Total Team',
-      value: 1111,
+      value: userTeamObject?.teamCount,
     },
   ];
   return (

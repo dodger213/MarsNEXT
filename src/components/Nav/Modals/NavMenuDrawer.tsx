@@ -80,7 +80,7 @@ export const NavMenuDrawer = ({
       </DrawerHeader>
       <DrawerBody>
         <Flex h="full" align="center">
-        {address && <NavUserMenu userAddress={address} />}
+          {address && <NavUserMenu userAddress={address} onClick={onClose} />}
         </Flex>
       </DrawerBody>
       <DrawerFooter>

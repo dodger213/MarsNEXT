@@ -16,13 +16,14 @@ import BalanceCard from './BalanceCard';
 import RewardsCard from './RewardsCard';
 import TeamCard from './TeamCard';
 import BusinessCard from './BusinessCard';
-import { FcAreaChart} from 'react-icons/fc';
+import { FcAreaChart } from 'react-icons/fc';
+import { AddressZero } from '@/constants/ContractAddress';
 
-function page({
+function Dashboard({
   params,
 }: {
   params: {
-    userAddress: string | undefined;
+    userAddress: `0x${string}` | undefined;
   };
 }) {
   return (
@@ -35,14 +36,14 @@ function page({
         <Divider></Divider>
       </VStack>
       <Wrap w="full" justify="center" spacing={5}>
-        <LimitCard></LimitCard>
-        <BalanceCard></BalanceCard>
-        <BusinessCard></BusinessCard>
-        <RewardsCard></RewardsCard>
-        <TeamCard />
+        <LimitCard userAddress={params.userAddress}></LimitCard>
+        <BalanceCard params={params}></BalanceCard>
+        <BusinessCard params={params}></BusinessCard>
+        <RewardsCard params={params}></RewardsCard>
+        <TeamCard params={params}/>
       </Wrap>
     </VStack>
   );
 }
 
-export default page;
+export default Dashboard;

@@ -1,7 +1,11 @@
 import {
+  Button,
+  Flex,
   HStack,
+  Heading,
   Spacer,
   Text,
+  VStack,
   Wrap,
   useColorModeValue,
 } from '@chakra-ui/react';
@@ -10,18 +14,35 @@ import SocialMediaIcons from './SocialMediaIcons';
 
 export default function Footer() {
   return (
-    <Wrap
+    <VStack
+      w="full"
       bg={useColorModeValue('white', 'gray.900')}
       color={useColorModeValue('gray.700', 'gray.200')}
-      w="full"
+      justify="flex-start"
+      align="flex-start"
       p={5}
-      justify={['center', 'center', 'center', 'space-between']}
-      align="center"
-      spacing={5}
     >
-      <Logo />
-      <Text>© 2023 MarsNext. All rights reserved</Text>
-      <SocialMediaIcons />
-    </Wrap>
+      <Wrap
+        w="full"
+        py={5}
+        justify={['center', 'center', 'center', 'space-between']}
+        align="center"
+        spacing={5}
+      >
+        <Logo />
+        <Text>© 2023 MarsNext. All rights reserved</Text>
+        <SocialMediaIcons />
+      </Wrap>
+      <Flex direction="column" gap={5}>
+        <Heading size="sm" color="orange.500">
+          Contract Address
+        </Heading>
+        <Flex direction="column" gap={2}>
+          <Button borderRadius="xl">Referral Contract</Button>
+          <Button borderRadius="xl">Variables Contract</Button>
+          <Button borderRadius="xl">Variables Contract</Button>
+        </Flex>
+      </Flex>
+    </VStack>
   );
 }

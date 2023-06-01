@@ -1,9 +1,7 @@
 'use client';
 import { MyVeeMainnet } from '@/lib/chains';
 import {
-  ChakraProvider,
-  ColorModeScript,
-  useColorModeValue,
+  useColorModeValue
 } from '@chakra-ui/react';
 import {
   EthereumClient,
@@ -12,9 +10,9 @@ import {
 } from '@web3modal/ethereum';
 import { Web3Modal } from '@web3modal/react';
 import { WagmiConfig, configureChains, createConfig } from 'wagmi';
-import { bsc, mainnet, polygon, localhost } from 'wagmi/chains';
+import { polygon } from 'wagmi/chains';
 
-const chains = [MyVeeMainnet, polygon, bsc, mainnet, localhost];
+const chains = [MyVeeMainnet, polygon];
 const projectId = 'e6458f63d191bf405c8476be38ec031e';
 
 const { publicClient } = configureChains(chains, [w3mProvider({ projectId })]);

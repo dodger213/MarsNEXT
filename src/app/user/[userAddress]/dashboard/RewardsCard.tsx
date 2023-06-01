@@ -4,24 +4,33 @@ import React from 'react';
 import BalanceCard from './BalanceCard';
 import { BalanceContainer } from '@/components/BalanceContainer';
 import { FcScatterPlot } from 'react-icons/fc';
+import { useGetUserRewards } from '@/hooks/ReferralHooks';
 
-export default function RewardsCard() {
+export default function RewardsCard({
+  params,
+}: {
+  params: {
+    userAddress: `0x${string}` | undefined;
+  };
+}) {
+  const userRewardsObject = useGetUserRewards(params.userAddress);
+
   const userValueObject = [
     {
       name: 'Referral Rewards',
-      value: 1111,
+      value: userRewardsObject?.referralReward,
     },
     {
       name: 'Global Rewards',
-      value: 1111,
+      value: userRewardsObject?.globalReward,
     },
     {
       name: 'Weekly Rewards',
-      value: 1111,
+      value: userRewardsObject?.weeklyReward,
     },
     {
-      name: 'IBC Rewards',
-      value: 1111,
+      name: 'IBP Rewards',
+      value: userRewardsObject?.ibpReward,
     },
   ];
   return (

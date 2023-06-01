@@ -24,7 +24,13 @@ import { GoHome } from 'react-icons/go';
 // @ts-ignore
 const MotionIconButton = motion(IconButton);
 
-function NavUserMenu({ userAddress }: { userAddress: string }) {
+function NavUserMenu({
+  userAddress,
+  onClick,
+}: {
+  userAddress: string;
+  onClick: () => void;
+}) {
   const menuObject = [
     {
       icon: GoHome,
@@ -48,7 +54,12 @@ function NavUserMenu({ userAddress }: { userAddress: string }) {
     },
   ];
   return (
-    <Wrap w="full" align="center" justify="center" direction={["row", "row", "column"]}>
+    <Wrap
+      w="full"
+      align="center"
+      justify="center"
+      direction={['row', 'row', 'column']}
+    >
       {menuObject.map((menuObject, key) => {
         return (
           <Tooltip
@@ -74,6 +85,7 @@ function NavUserMenu({ userAddress }: { userAddress: string }) {
                 }}
                 as={Link}
                 href={menuObject?.link}
+                onClick={onClick}
               ></MotionIconButton>
               <Show below="md">
                 <Heading size="sm">{menuObject?.name}</Heading>

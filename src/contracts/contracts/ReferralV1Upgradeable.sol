@@ -383,8 +383,6 @@ contract ReferralV1Upgradeable is
             );
         }
 
-        
-
         emit Registration(
             userAccount.selfAddress,
             userAccount.userId,
@@ -644,28 +642,27 @@ contract ReferralV1Upgradeable is
         return accounts[_userAddress];
     }
 
-    //getUserReferrerAddress
-    function getUserReferrer(
-        address _userAddress
-    ) external view returns (address) {
-        return accounts[_userAddress].referrerAddress;
-    }
-
-    //getUserRefereeAddress
-    function getUserReferee(
-        address _userAddress
-    ) external view returns (address[] memory referees, uint256 refereeCount) {
-        AccountStruct memory userAccount = accounts[_userAddress];
-        referees = userAccount.refereeAddresses;
-        refereeCount = userAccount.refereeAddresses.length;
-    }
-
     //getUserTeamAddress
     function getUserTeam(
         address _userAddress
-    ) external view returns (address[] memory team, uint256 teamCount) {
+    )
+        external
+        view
+        returns (
+            address referrer,
+            address[] memory referees,
+            uint256 refereeCount,
+            address[] memory team,
+            uint32[] memory teamLevels,
+            uint256 teamCount
+        )
+    {
         AccountStruct memory userAccount = accounts[_userAddress];
+        referrer = userAccount.referrerAddress;
+        referees = userAccount.refereeAddresses;
+        refereeCount = userAccount.refereeAddresses.length;
         team = userAccount.teamAddress;
+        teamLevels = userAccount.teamLevels;
         teamCount = userAccount.teamAddress.length;
     }
 
@@ -711,7 +708,7 @@ contract ReferralV1Upgradeable is
         totalIncome = userAccount.currentLimit;
     }
 
-    function isuserInGlobalList(
+    function isUserInGlobalList(
         address _userAddress
     )
         external
@@ -737,8 +734,7 @@ contract ReferralV1Upgradeable is
         returns (
             uint256 maxLimit,
             uint256 currentLimit,
-            uint256 limitRemaingvalue,
-            uint256 limitRemainingPer
+            uint256 limitRemaingvalue
         )
     {
         AccountStruct memory userAccount = accounts[_userAddress];
@@ -746,9 +742,6 @@ contract ReferralV1Upgradeable is
         maxLimit = userAccount.maxLimit;
         currentLimit = userAccount.currentLimit;
         limitRemaingvalue = userAccount.maxLimit - userAccount.currentLimit;
-        limitRemainingPer =
-            (userAccount.currentLimit / userAccount.maxLimit) *
-            100;
     }
 
     //ibp functions

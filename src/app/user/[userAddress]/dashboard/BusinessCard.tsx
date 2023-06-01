@@ -1,22 +1,30 @@
 import { BalanceContainer } from '@/components/BalanceContainer';
 import { CardContainer } from '@/components/CardContainer';
+import { useGetUserBusiness } from '@/hooks/ReferralHooks';
 import React from 'react';
 import { FaWallet } from 'react-icons/fa';
 import { FcBusinessContact, FcComboChart } from 'react-icons/fc';
 
-function BusinessCard() {
+function BusinessCard({
+  params,
+}: {
+  params: {
+    userAddress: `0x${string}` | undefined;
+  };
+}) {
+  const userBusiness = useGetUserBusiness(params.userAddress);
   const userValueObject = [
     {
       name: 'Self Business',
-      value: 111,
+      value: userBusiness?.selfBusiness,
     },
     {
       name: 'Direct Business',
-      value: 1111,
+      value: userBusiness?.directBusiness,
     },
     {
       name: 'Team Business',
-      value: 11111,
+      value: userBusiness?.teamBusiness,
     },
   ];
   return (

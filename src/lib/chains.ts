@@ -19,8 +19,8 @@ export const MyVeeMainnet = {
   },
   contracts: {
     multicall3: {
-      address: '0x8170370626037450070E0023F82420F428891214',
-      blockCreated: 10_000,
+      address: '0x9667b2B6B9E1490E9DddAa774cF8800cC79d4555',
+      blockCreated: 1,
     },
   },
 } as const satisfies Chain

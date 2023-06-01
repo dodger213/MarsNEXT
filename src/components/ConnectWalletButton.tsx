@@ -13,7 +13,7 @@ export const ConnectWalletButton = ({
   userAddress,
 }: {
   showJazzicon?: boolean;
-  userAddress?: string
+  userAddress?: string;
 }) => {
   const { isOpen, open, close, setDefaultChain } = useWeb3Modal();
   const { address } = useAccount();
@@ -31,7 +31,9 @@ export const ConnectWalletButton = ({
         address ? (
           showJazzicon ? (
             <Jazzicon seed={jsNumberForAddress(`${address}`)}></Jazzicon>
-          ) : <Box boxSize={0}></Box>
+          ) : (
+            <div></div>
+          )
         ) : (
           <Image
             src={WalletConnectLogoSVG}
@@ -41,7 +43,7 @@ export const ConnectWalletButton = ({
         )
       }
       variant="solid"
-     borderRadius="xl"
+      borderRadius="xl"
     >
       {address ? shortenAddress(userAddress ?? address) : conectWalletText}
     </Button>

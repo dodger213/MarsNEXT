@@ -1,5 +1,6 @@
 import { AddressZero } from '@/constants/SupportedNetworkInfo';
 import {
+  Button,
   Center,
   Divider,
   HStack,
@@ -15,6 +16,8 @@ import { FcReadingEbook } from 'react-icons/fc';
 import { AddressActionButtons } from './AddressActionButtons';
 import { CardContainer } from './CardContainer';
 import { IconType } from 'react-icons';
+import { ExternalLinkIcon } from '@chakra-ui/icons';
+import Link from 'next/link';
 
 function UserTeamDisplayCard({
   userType,
@@ -27,14 +30,21 @@ function UserTeamDisplayCard({
 }) {
   return (
     <CardContainer heading={userType} icon={icon}>
-      <VStack>
-        <Tag size="lg" borderRadius="xl" colorScheme="green">
-          {shortenAddress(address ?? AddressZero)}
-        </Tag>
-        <AddressActionButtons
-          address={address ?? AddressZero}
-        ></AddressActionButtons>
-      </VStack>
+      <Tag size="lg" borderRadius="xl" colorScheme="green">
+        {shortenAddress(address ?? AddressZero)}
+      </Tag>
+      <AddressActionButtons
+        address={address ?? AddressZero}
+      ></AddressActionButtons>
+      <Button
+        borderRadius="xl"
+        rightIcon={<ExternalLinkIcon />}
+        as={Link}
+        href={`/user/${address}/team`}
+        target="_blank"
+      >
+        View Account Stats
+      </Button>
     </CardContainer>
   );
 }

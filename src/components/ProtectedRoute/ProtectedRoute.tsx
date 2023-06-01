@@ -9,7 +9,7 @@ function ProtectedRoute({ children }: { children: ReactNode }) {
   const { chain } = useNetwork();
   const { address } = useAccount();
   return (
-    <VStack>
+    <VStack w="full">
       {!address ? (
         <NoWalletComponent />
       ) : chain?.unsupported ? (

@@ -1,7 +1,10 @@
 import {
   Button,
+  Center,
   CircularProgress,
+  CircularProgressLabel,
   Divider,
+  HStack,
   Heading,
   Tag,
   Text,
@@ -11,24 +14,46 @@ import React from 'react';
 import { CardContainer } from './CardContainer';
 import { BalanceContainer } from './BalanceContainer';
 import { FcDoughnutChart } from 'react-icons/fc';
+import { useGetUserLimits } from '@/hooks/ReferralHooks';
+import { AddressZero } from '@/constants/ContractAddress';
 
-function LimitCard() {
+function LimitCard({
+  userAddress,
+}: {
+  userAddress: `0x${string}` | undefined;
+}) {
+  const value = useGetUserLimits(userAddress ?? AddressZero);
+  const limitReachedPer = (value.currentLimit / value.maxLimit) * 100;
   return (
     <CardContainer heading="Limits" icon={FcDoughnutChart}>
       <CircularProgress
         size="150px"
-        value={20}
+        value={limitReachedPer}
         color="yellow.500"
         thickness="16px"
-      ></CircularProgress>
-      <BalanceContainer heading="Max Rewards" value={111111}></BalanceContainer>
+      >
+        <CircularProgressLabel>
+          <Center>
+            <Heading size="md">
+              {limitReachedPer > 0 ? limitReachedPer.toFixed(1) : 0}
+            </Heading>
+            <Heading size="sm" color="orange.500">
+              %
+            </Heading>
+          </Center>
+        </CircularProgressLabel>
+      </CircularProgress>
+      <BalanceContainer
+        heading="Max Rewards"
+        value={value.maxLimit}
+      ></BalanceContainer>
       <BalanceContainer
         heading="Rewards Claimed"
-        value={111111}
+        value={value.currentLimit}
       ></BalanceContainer>
       <BalanceContainer
         heading="Remaining Rewards"
-        value={111111}
+        value={value.limitRemaingvalue}
       ></BalanceContainer>
     </CardContainer>
   );

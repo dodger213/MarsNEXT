@@ -15,7 +15,7 @@ import { FaSignOutAlt } from 'react-icons/fa';
 import NavUserMenu from '../NavUserMenu';
 import SocialMediaIcons from '@/components/SocialMediaIcons';
 
-function NavUser({userAddress}:{userAddress: string}) {
+function NavUser({userAddress, onClick}:{userAddress: string, onClick: () => void}) {
   return (
     <VStack w="full" flex={1}>
       <VStack
@@ -40,7 +40,7 @@ function NavUser({userAddress}:{userAddress: string}) {
         borderBottomWidth={5}
         justify="center"
       >
-        <NavUserMenu userAddress={userAddress}></NavUserMenu>
+        <NavUserMenu userAddress={userAddress} onClick={onClick}></NavUserMenu>
       </VStack>
       <VStack
         w="full"
@@ -52,16 +52,6 @@ function NavUser({userAddress}:{userAddress: string}) {
         borderBottomWidth={5}
       >
         <SocialMediaIcons/>
-        {/* <Divider/> */}
-        {/* <HStack w="full">
-          <Spacer></Spacer>
-          <IconButton
-            aria-label="Log Out Button"
-            icon={<FaSignOutAlt />}
-            borderRadius="xl"
-            colorScheme="red"
-          ></IconButton>
-        </HStack> */}
       </VStack>
     </VStack>
   );
