@@ -23,7 +23,7 @@ function LimitCard({
   userAddress: `0x${string}` | undefined;
 }) {
   const value = useGetUserLimits(userAddress ?? AddressZero);
-  const limitReachedPer = (value.currentLimit / value.maxLimit) * 100;
+  const limitReachedPer = (Number(value.currentLimit) / Number(value.maxLimit)) * 100;
   return (
     <CardContainer heading="Limits" icon={FcDoughnutChart}>
       <CircularProgress

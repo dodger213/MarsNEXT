@@ -29,7 +29,7 @@ function NavUserMenu({
   onClick,
 }: {
   userAddress: string;
-  onClick: () => void;
+  onClick?: () => void;
 }) {
   const menuObject = [
     {

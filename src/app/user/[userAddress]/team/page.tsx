@@ -29,7 +29,7 @@ function Team({
   };
 }) {
   const userTeamObject = useGetUserTeam(params.userAddress);
-  console.log(userTeamObject);
+  const userReferees = userTeamObject.referees
   return (
     <VStack w="full" direction="column" gap={10}>
       <VStack>

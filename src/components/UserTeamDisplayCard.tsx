@@ -26,7 +26,7 @@ function UserTeamDisplayCard({
 }: {
   userType: string;
   icon: IconType;
-  address: string | undefined;
+  address: `0x${string}` | undefined;
 }) {
   return (
     <CardContainer heading={userType} icon={icon}>

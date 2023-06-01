@@ -3,7 +3,7 @@ import Dashboard from './dashboard/page';
 import { useAccount } from 'wagmi';
 
 function User({params}:{params:{
-    userAddress: string | undefined
+    userAddress: `0x${string}` | undefined
 }}) {
   return (
     <Dashboard params={params}/>

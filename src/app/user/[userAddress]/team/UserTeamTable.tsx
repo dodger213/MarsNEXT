@@ -11,6 +11,7 @@ import {
   Th,
   Thead,
   Tr,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { shortenAddress } from '@usedapp/core';
 import React from 'react';
@@ -28,7 +29,7 @@ function UserTeamTable({
   const userTeamAddress = userTeamObject.team;
   const userTeamLevels = userTeamObject.teamLevels;
   return (
-    <TableContainer w="full">
+    <TableContainer w="full" bgColor={useColorModeValue("white", "gray.900")}>
       <Table size="lg">
         <Thead>
           <Tr>

@@ -15,7 +15,7 @@ import { FaSignOutAlt } from 'react-icons/fa';
 import NavUserMenu from '../NavUserMenu';
 import SocialMediaIcons from '@/components/SocialMediaIcons';
 
-function NavUser({userAddress, onClick}:{userAddress: string, onClick: () => void}) {
+function NavUser({userAddress, onClick}:{userAddress: string, onClick?: () => void}) {
   return (
     <VStack w="full" flex={1}>
       <VStack

@@ -114,27 +114,29 @@ export const useGetUserRewards = (userAddress: `0x${string}` | undefined) => {
   return valueObject;
 };
 
+interface TeamValueObject {
+  referrer: `0x${string}`;
+  referees: `0x${string}`[];
+  refereeCount: number;
+  team: `0x${string}`[];
+  teamLevels: number[];
+  teamCount: number;
+}
+
 export const useGetUserTeam = (
   userAddress: `0x${string}` | undefined
-): {
-  referrer: `0x${string}`;
-  referees: [] | `0x${string}`[];
-  refereeCount: number;
-  team: [] | `0x${string}`[];
-  teamLevels: [] | number[];
-  teamCount: number;
-} => {
+) => {
   const value = useContractCall({
     functionName: 'getUserTeam',
     args: [userAddress],
   });
 
-  const valueObject = {
-    referrer: value ? value[0] : AddressZero,
-    referees: value ? value[1] : [],
+  const valueObject: TeamValueObject = {
+    referrer: value ? value[0] as `0x${string}` : AddressZero,
+    referees: value ? value[1] as `0x${string}`[] : [],
     refereeCount: value ? Number(value[2]) : 0,
-    team: value ? value[3] : [],
-    teamLevels: value ? value[4] : [],
+    team: value ? value[3] as `0x${string}`[] : [],
+    teamLevels: value ? value[4] as number[] : [],
     teamCount: value ? Number(value[5]) : 0,
   };
 
