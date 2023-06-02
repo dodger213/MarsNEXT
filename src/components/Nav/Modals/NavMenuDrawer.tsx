@@ -3,6 +3,7 @@ import { ColorModeSwitcher } from '@/components/ColorModeSwitcher';
 import SocialMediaIcons from '@/components/SocialMediaIcons';
 import { ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import {
+  Box,
   Divider,
   DrawerBody,
   DrawerFooter,
@@ -23,6 +24,7 @@ import { IconType } from 'react-icons';
 import { FaDiscord, FaGithub, FaTelegram, FaTwitter } from 'react-icons/fa';
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon';
 import NavUserMenu from '../NavUserMenu';
+import { ConnectWalletButton } from '@/components/ConnectWalletButton';
 
 export const NavMenuDrawer = ({
   address,
@@ -65,7 +67,7 @@ export const NavMenuDrawer = ({
             rounded="full"
           />
         </HStack>
-        {address && (
+        {address ? (
           <HStack>
             <Jazzicon
               diameter={JazziconSize}
@@ -76,11 +78,11 @@ export const NavMenuDrawer = ({
             </Text>
             <AddressActionButtons address={address} />
           </HStack>
-        )}
+        ) : <Heading size="md" textAlign="center" py={5}>Please connect wallet to continue</Heading>}
       </DrawerHeader>
       <DrawerBody>
-        <Flex h="full" align="center">
-          {address && <NavUserMenu userAddress={address} onClick={onClose} />}
+        <Flex h="full" align="center" justify="center" w="full">
+          {address ? <NavUserMenu userAddress={address} onClick={onClose} /> : <Box onClick={onClose}><ConnectWalletButton/></Box> }
         </Flex>
       </DrawerBody>
       <DrawerFooter>

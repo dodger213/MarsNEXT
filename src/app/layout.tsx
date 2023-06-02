@@ -1,15 +1,12 @@
-import { Inter } from 'next/font/google';
+import MainWrapper from './MainWrapper';
 import ProviderChakra from './ProviderChakra';
 import { ProviderDapp } from './ProviderDApp';
 import { ProviderWeb3Modal } from './ProviderWeb3Modal';
-import MainWrapper from './MainWrapper';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Mars Next || A decentralized community centric reward system.',
+  title: 'Mars Next || A decentralized community centric decentralized reward distribution system.',
   description:
-    'Mars Next is a decentralized protocol of secured smart contracts, focused of community rewards system.',
+    'Mars Next is a decentralized protocol of secured smart contracts, focused of community rewards system.'
 };
 
 export default function RootLayout({

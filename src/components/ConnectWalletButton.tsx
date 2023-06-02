@@ -10,7 +10,7 @@ import { useAccount } from 'wagmi';
 
 export const ConnectWalletButton = ({
   showJazzicon,
-  userAddress,
+  userAddress
 }: {
   showJazzicon?: boolean;
   userAddress?: string;
@@ -44,6 +44,7 @@ export const ConnectWalletButton = ({
       }
       variant="solid"
       borderRadius="xl"
+      size={["sm", "md"]}
     >
       {address ? shortenAddress(userAddress ?? address) : conectWalletText}
     </Button>

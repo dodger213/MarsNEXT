@@ -1,34 +1,23 @@
 import { tagLine } from '@/constants/SupportedNetworkInfo';
 import { ChevronRightIcon } from '@chakra-ui/icons';
-import { Button, HStack, Text, VStack } from '@chakra-ui/react';
+import { Button, Image, Text, VStack } from '@chakra-ui/react';
 import Link from 'next/link';
-import React from 'react';
 
 export const HeaderHeadingComponent = () => {
   return (
     <VStack spacing={5} w="full">
-      <VStack w="min-content" minW={300} zIndex={0}>
-        <HStack
-          bgGradient={'linear(to-r, red.500, yellow.500, green.500)'}
-          bgClip="text"
-          fontSize={['6xl', '7xl', '8xl', '9xl', '150px']}
-          textAlign="left"
-          spacing={0}
-        >
-          <Text fontWeight={900} lineHeight={1} w="max-content">
-            Mars
-          </Text>
-          <Text fontWeight={400} lineHeight={1} w="max-content">
-            Next
-          </Text>
-        </HStack>
+      <VStack w={[300, 500, 700]} zIndex={0}>
+        <Image
+          src="/MarsNextTextLogo.svg"
+          alt="MarsNext Logo"
+          w={"80%"}
+        ></Image>
         <Text
-          fontWeight={[500]}
           fontSize={['2xl', '3xl', '4xl']}
           textAlign="center"
           px={5}
         >
-          {tagLine}
+          A community centric decentralized reward distribution system.
         </Text>
       </VStack>
       <Link href="/registration">
