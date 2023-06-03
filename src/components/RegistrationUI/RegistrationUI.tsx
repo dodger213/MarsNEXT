@@ -1,7 +1,10 @@
 'use client';
 import { USDTLogoSVG } from '@/assets';
+import { useSupportedNetworkInfo } from '@/constants/SupportedNetworkInfo';
 import { useReferralPlanInfo } from '@/hooks/ReferralHooks';
+import { useGetPlanById } from '@/hooks/VariablesHooks';
 import { CenterComponent } from '@/util/Ui';
+import { formatNumberWithMaxDecimals } from '@/util/UtilHooks';
 import { ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import {
   Button,
@@ -14,6 +17,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import Image from 'next/image';
+import { useAccount, useBalance, useNetwork } from 'wagmi';
 
 function RegistrationUI({
   referrerAddress,
@@ -24,21 +28,30 @@ function RegistrationUI({
   isLarge?: boolean;
   planId: number;
 }) {
-  const planInfo = useReferralPlanInfo(planId);
+  const planObject = useGetPlanById(planId);
+  const { address } = useAccount();
+  const { chain } = useNetwork();
+  const currentNetwork = useSupportedNetworkInfo[chain?.id!];
+  const userUSDTBalance = useBalance({
+    address: address,
+    token: currentNetwork?.USDT.contractAddress,
+  });
   return (
     <CenterComponent
       style={{
         py: 10,
-        w: 300
+        w: [300],
       }}
     >
       <VStack minW={250} maxW={300} w="full" spacing={5}>
+        <Heading>#{planId + 1}</Heading>
         <VStack>
-          <Heading size="md">Beginner</Heading>
-          <Heading>{planId}</Heading>
+          <Heading size="md">{planObject?.name}</Heading>
           <Divider></Divider>
         </VStack>
-        <Heading size="3xl" color="orange.500">${planInfo.value}</Heading>
+        <Heading size="3xl" color="orange.500">
+          ${planObject.value}
+        </Heading>
         <VStack
           w="full"
           spacing={5}
@@ -58,14 +71,16 @@ function RegistrationUI({
             <Tag colorScheme="orange">Max Limit</Tag>
             <Spacer />
             <Heading size="sm">
-              ${planInfo.value * planInfo.maxLimitMutiplier}
+              ${planObject.value * planObject.maxLimitMultiplier}
             </Heading>
           </HStack>
         </VStack>
         <VStack>
           <Heading size="md">You have</Heading>
           <HStack>
-            <Heading size="sm">0.00001</Heading>
+            <Heading size="sm">
+              {formatNumberWithMaxDecimals(userUSDTBalance.data?.formatted, 2)}
+            </Heading>
             <Image src={USDTLogoSVG} alt="USDT Logo" width={20}></Image>
           </HStack>
         </VStack>

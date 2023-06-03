@@ -271,6 +271,14 @@ contract VariablesV1Upgradeable is
         return plans[_planId];
     }
 
+    function getPlansCount() external view returns (uint8 planCount) {
+        for(uint8 i; i < 20; i++) {
+            if(plans[i].value > 0) {
+                planCount++;
+            }
+        }
+    }
+
     function setPlans(
         uint8[] calldata planId,
         string[] memory name,

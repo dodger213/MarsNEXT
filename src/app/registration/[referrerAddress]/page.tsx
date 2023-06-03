@@ -1,8 +1,5 @@
-"use client"
-import React from 'react';
+'use client';
 import {
-  Box,
-  Center,
   Divider,
   Flex,
   HStack,
@@ -13,13 +10,15 @@ import {
   VStack,
   useBreakpointValue,
 } from '@chakra-ui/react';
+import React from 'react';
 // Here we have used react-icons package for the icons
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
 // And react-slick as our Carousel Lib
-import Slider from 'react-slick';
 import RegistrationUI from '@/components/RegistrationUI/RegistrationUI';
 import { AddressZero } from '@/constants/ContractAddress';
 import { FcGoodDecision } from 'react-icons/fc';
+import Slider from 'react-slick';
+import { useGetPlansCount } from '@/hooks/VariablesHooks';
 
 // Settings for the slider
 const settings = {
@@ -46,8 +45,16 @@ export default function RegistrationUIPage({
   const top = useBreakpointValue({ base: '90%', md: '50%' });
   const side = useBreakpointValue({ base: '30%', md: '10px' });
 
-  // These are the images used in the slide
-  const cards = [0, 1, 2, 3, 4, 5, 6];
+  const plansCount = useGetPlansCount();
+  const plansCountArray = () => {
+    let count = [];
+
+    for (let i = 0; i < plansCount; i++) {
+      count.push(i);
+    }
+
+    return count;
+  };
 
   return (
     <Flex
@@ -58,7 +65,6 @@ export default function RegistrationUIPage({
       align="center"
       justify="center"
       py={100}
-      
     >
       <VStack>
         <HStack>
@@ -88,11 +94,10 @@ export default function RegistrationUIPage({
           className="center"
           centerMode={true}
           centerPadding="-10px"
- 
         >
-          {cards.map((url, index) => (
+          {plansCountArray().map((planId, index) => (
             <RegistrationUI
-              planId={index}
+              planId={planId}
               referrerAddress={params?.referrerAddress ?? AddressZero}
               isLarge={true}
               key={index}
@@ -104,7 +109,7 @@ export default function RegistrationUIPage({
         <IconButton
           aria-label="left-arrow"
           bgColor="orange.500"
-          colorScheme='orange'
+          colorScheme="orange"
           borderRadius="full"
           transform={'translate(0%, -50%)'}
           onClick={() => slider?.slickPrev()}
@@ -115,7 +120,7 @@ export default function RegistrationUIPage({
         <IconButton
           aria-label="right-arrow"
           bgColor="orange.500"
-          colorScheme='orange'
+          colorScheme="orange"
           borderRadius="full"
           transform={'translate(0%, -50%)'}
           onClick={() => slider?.slickNext()}

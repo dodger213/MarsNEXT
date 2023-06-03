@@ -462,8 +462,8 @@
       ]
     },
     "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/contracts/VariablesV1Upgradeable.sol": {
-      "lastModificationDate": 1685443355751,
-      "contentHash": "f6fb0e96bc48d38a39f1e57933c7a995",
+      "lastModificationDate": 1685787135344,
+      "contentHash": "c23e726674d33ae49d24d50630105628",
       "sourceName": "contracts/VariablesV1Upgradeable.sol",
       "solcConfig": {
         "version": "0.8.18",
