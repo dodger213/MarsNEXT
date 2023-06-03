@@ -21,14 +21,10 @@ export const HeaderHeadingComponent = () => {
         </Text>
       </VStack>
       <Link href="/registration">
+        <button></button>
         <Button
           w={[250, 300, 400]}
           h={16}
-          colorScheme="orange"
-          bg="orange.500"
-          _hover={{
-            bg: 'orange.600',
-          }}
           borderRadius={20}
           rightIcon={<ChevronRightIcon />}
           zIndex={111}

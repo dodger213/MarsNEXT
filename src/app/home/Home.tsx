@@ -7,11 +7,11 @@ import { TokenDistribution } from './TokenDistribution/TokenDistribution';
 
 export const Home = () => {
   return (
-    <VStack w="full" spacing={0} bgGradient={`linear(to-r, )`}>
+    <div>
       <Header />
       <PlanDiscriptionComponent />
       <TokenDistribution />
       <PowerOfBlockchainComponent />
-    </VStack>
+    </div>
   );
 };

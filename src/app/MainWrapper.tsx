@@ -6,19 +6,14 @@ import React, { ReactNode } from 'react';
 
 function MainWrapper({ children }: { children: ReactNode }) {
   return (
-    <VStack w="full" spacing={0}>
+    <div>
       <Nav />
-      <VStack
-        w="full"
-        spacing={0}
-        minH="100vh"
-        align="center"
-        justify="center"
+      <div className='w-full min-h-screen align-middle justify-center'
       >
         {children}
-      </VStack>
+      </div>
       <Footer></Footer>
-    </VStack>
+    </div>
   );
 }
 

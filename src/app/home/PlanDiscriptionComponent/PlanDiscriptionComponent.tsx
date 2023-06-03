@@ -109,11 +109,6 @@ export const PlanDiscriptionComponent = () => {
             w="full"
             rightIcon={<ChevronRightIcon />}
             fontSize="lg"
-            colorScheme="orange"
-            bg="orange.500"
-            _hover={{
-              bg: 'orange.600',
-            }}
             h={20}
             borderRadius={20}
             borderBottomWidth="thick"
