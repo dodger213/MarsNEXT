@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { Logo } from './Logo';
 import SocialMediaIcons from './SocialMediaIcons';
+import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 export default function Footer() {
   return (
@@ -34,13 +35,13 @@ export default function Footer() {
         <SocialMediaIcons />
       </Wrap>
       <Flex direction="column" gap={5}>
-        <Heading size="sm" color="orange.500">
+        <Heading size="lg" color="orange.500">
           Contract Address
         </Heading>
         <Flex direction="column" gap={2}>
-          <Button borderRadius="xl">Referral Contract</Button>
-          <Button borderRadius="xl">Variables Contract</Button>
-          <Button borderRadius="xl">Variables Contract</Button>
+          <Button borderRadius="xl" size="lg" rightIcon={<ExternalLinkIcon/>}>Referral Contract</Button>
+          <Button borderRadius="xl" size="lg" rightIcon={<ExternalLinkIcon/>}>Variables Contract</Button>
+          <Button borderRadius="xl" size="lg" rightIcon={<ExternalLinkIcon/>}>Core Members Contract</Button>
         </Flex>
       </Flex>
     </VStack>
