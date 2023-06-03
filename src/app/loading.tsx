@@ -3,7 +3,7 @@ import { Flex, Spinner, Text, VStack } from '@chakra-ui/react';
 
 function loading() {
   return (
-    <VStack w="min-content">
+    <VStack w="full" minH="100vh" justify="center">
       <Text>Loading...</Text>
       <Spinner />
     </VStack>

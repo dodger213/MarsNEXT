@@ -12,6 +12,8 @@ import {
 import { Logo } from './Logo';
 import SocialMediaIcons from './SocialMediaIcons';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
+import { BsFilePdfFill } from 'react-icons/bs';
+import { LogoFull } from './LogoFull';
 
 export default function Footer() {
   return (
@@ -27,23 +29,49 @@ export default function Footer() {
         w="full"
         py={5}
         justify={['center', 'center', 'center', 'space-between']}
-        align="center"
-        spacing={5}
+        spacing={10}
       >
-        <Logo />
-        <Text>© 2023 MarsNext. All rights reserved</Text>
-        <SocialMediaIcons />
+        <VStack spacing={5}>
+          <LogoFull />
+          <Text>© 2023 MarsNext. All rights reserved</Text>
+        </VStack>
+        <VStack spacing={5}>
+          <Heading size="md" color="orange.500" textAlign="center">
+            Follow us on Social Media
+          </Heading>
+          <SocialMediaIcons />
+        </VStack>
+        <VStack spacing={5}>
+          <Heading size="md" color="orange.500" textAlign="center">
+            Contract Address
+          </Heading>
+          <Flex direction="column" gap={2}>
+            <Button borderRadius="xl" rightIcon={<ExternalLinkIcon />}>
+              Referral Contract
+            </Button>
+            <Button borderRadius="xl" rightIcon={<ExternalLinkIcon />}>
+              Variables Contract
+            </Button>
+            <Button borderRadius="xl" rightIcon={<ExternalLinkIcon />}>
+              Core Members Contract
+            </Button>
+          </Flex>
+        </VStack>
+        <VStack spacing={5}>
+          <Heading size="md" color="orange.500" textAlign="center">
+            Project Discription
+          </Heading>
+          <Button
+            borderRadius="xl"
+            rightIcon={<BsFilePdfFill />}
+            as="a"
+            href="/MarsNextProjectDiscription.pdf"
+            target="_blank"
+          >
+            Download PDF
+          </Button>
+        </VStack>
       </Wrap>
-      <Flex direction="column" gap={5}>
-        <Heading size="lg" color="orange.500">
-          Contract Address
-        </Heading>
-        <Flex direction="column" gap={2}>
-          <Button borderRadius="xl" size="lg" rightIcon={<ExternalLinkIcon/>}>Referral Contract</Button>
-          <Button borderRadius="xl" size="lg" rightIcon={<ExternalLinkIcon/>}>Variables Contract</Button>
-          <Button borderRadius="xl" size="lg" rightIcon={<ExternalLinkIcon/>}>Core Members Contract</Button>
-        </Flex>
-      </Flex>
     </VStack>
   );
 }

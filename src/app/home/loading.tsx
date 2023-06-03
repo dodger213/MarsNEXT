@@ -1,7 +1,12 @@
-import React from 'react'
+"use client"
+import { Spinner, Text, VStack } from '@chakra-ui/react';
+import React from 'react';
 
-export const loading = () => {
+export const Loading = () => {
   return (
-    <div>loading</div>
-  )
-}
+    <VStack w="full" minH="100vh" justify="center">
+      <Text>Loading...</Text>
+      <Spinner />
+    </VStack>
+  );
+};
