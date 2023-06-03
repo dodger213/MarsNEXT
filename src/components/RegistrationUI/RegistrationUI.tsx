@@ -29,11 +29,13 @@ function RegistrationUI({
     <CenterComponent
       style={{
         py: 10,
+        w: 300
       }}
     >
       <VStack minW={250} maxW={300} w="full" spacing={5}>
         <VStack>
           <Heading size="md">Beginner</Heading>
+          <Heading>{planId}</Heading>
           <Divider></Divider>
         </VStack>
         <Heading size="3xl" color="orange.500">${planInfo.value}</Heading>
