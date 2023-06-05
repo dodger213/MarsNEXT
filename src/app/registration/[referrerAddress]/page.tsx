@@ -1,4 +1,6 @@
 'use client';
+import RegistrationUI from '@/components/RegistrationUI/RegistrationUI';
+import { useGetPlansCount } from '@/hooks/VariablesHooks';
 import {
   Divider,
   Flex,
@@ -7,27 +9,12 @@ import {
   Icon,
   IconButton,
   Stack,
-  VStack,
-  useBreakpointValue,
+  VStack
 } from '@chakra-ui/react';
 import React from 'react';
-// Here we have used react-icons package for the icons
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
-// And react-slick as our Carousel Lib
-import RegistrationUI from '@/components/RegistrationUI/RegistrationUI';
-import { AddressZero } from '@/constants/ContractAddress';
 import { FcGoodDecision } from 'react-icons/fc';
 import Slider from 'react-slick';
-import { useGetPlansCount } from '@/hooks/VariablesHooks';
-
-// Settings for the slider
-const settings = {
-  dots: true,
-  arrows: false,
-  fade: true,
-  slidesToShow: 3,
-  slidesToScroll: 1,
-};
 
 export default function RegistrationUIPage({
   params,
@@ -87,6 +74,7 @@ export default function RegistrationUIPage({
           className="center"
           centerMode={true}
           centerPadding="-10px"
+          swipeToSlide={true}
         >
           {plansCountArray().map((planId, index) => (
             <RegistrationUI

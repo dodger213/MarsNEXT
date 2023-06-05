@@ -99,9 +99,10 @@ function RegistrationUI({
       : false,
     isUserAlreadyHaveReferrer:
       userTeamObject?.referrer !== AddressZero ? true : false,
-    isUserHaveSufficientTokenBalance: userUSDTBalance?.data?.formatted
-      ? userUSDTBalance?.data?.formatted
-      : 0 >= planObject.value,
+    isUserHaveSufficientTokenBalance:
+      Number(userUSDTBalance?.data?.formatted ?? 0) >= planObject?.value
+        ? true
+        : false,
     isUserHaveSufficientAllowance: isUserAllowanceSufficient,
   };
 
@@ -109,12 +110,11 @@ function RegistrationUI({
     if (!errors.isUserHaveSufficientTokenBalance) {
       toast({
         title: 'Insufficient Balance.',
-        description: '',
+        description: 'You dont have enough USDT to register.',
         status: 'error',
         duration: 5000,
         isClosable: true,
       });
-      
     } else {
       onOpen();
     }
@@ -123,7 +123,7 @@ function RegistrationUI({
   const handleTransaction = async () => {
     try {
       await writeAsync();
-      if(status === "success") {
+      if (status === 'success') {
         toast({
           title: 'Transaction Success',
           description: '',
@@ -147,9 +147,7 @@ function RegistrationUI({
     }
   };
 
-  useEffect(() => {
-    
-  }, [isSuccess, toast, onClose, reset]);
+  useEffect(() => {}, [isSuccess, toast, onClose, reset]);
 
   return (
     <>
