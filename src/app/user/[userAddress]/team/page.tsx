@@ -2,13 +2,16 @@
 import UserTeamDisplayCard from '@/components/UserTeamDisplayCard';
 import { AddressZero } from '@/constants/SupportedNetworkInfo';
 import {
+  Button,
   Divider,
   HStack,
   Heading,
   Icon,
+  Input,
   Text,
   VStack,
   Wrap,
+  useClipboard,
 } from '@chakra-ui/react';
 import React from 'react';
 import {
@@ -20,6 +23,7 @@ import {
 } from 'react-icons/fc';
 import UserTeamTable from './UserTeamTable';
 import { useGetUserTeam } from '@/hooks/ReferralHooks';
+import { CheckIcon, CopyIcon } from '@chakra-ui/icons';
 
 function Team({
   params,
@@ -29,7 +33,8 @@ function Team({
   };
 }) {
   const userTeamObject = useGetUserTeam(params.userAddress);
-  const userReferees = userTeamObject.referees
+  const userReferralLink = `https://marsnext.io/registration/${params.userAddress}`;
+  const { hasCopied, onCopy } = useClipboard(userReferralLink);
   return (
     <VStack w="full" direction="column" gap={10}>
       <VStack>
@@ -38,6 +43,20 @@ function Team({
           <Heading color="orange.500">Team</Heading>
         </HStack>
         <Divider></Divider>
+      </VStack>
+      <VStack>
+        <Heading>Your referral link</Heading>
+        <VStack>
+          <Input value={userReferralLink} borderRadius="xl"></Input>
+          <Button
+            w="full"
+            borderRadius="xl"
+            onClick={onCopy}
+            rightIcon={hasCopied ? <CheckIcon /> : <CopyIcon />}
+          >
+            {hasCopied ? 'Referral Link Copied' : 'Copy Referral Link'}
+          </Button>
+        </VStack>
       </VStack>
       <VStack>
         {userTeamObject?.referrer !== AddressZero && (
