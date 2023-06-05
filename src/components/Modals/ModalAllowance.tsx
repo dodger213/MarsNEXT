@@ -17,7 +17,6 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { shortenAddress } from '@usedapp/core';
-import { BigNumber } from 'ethers';
 import { FaArrowRight } from 'react-icons/fa';
 import { erc20ABI, useContractWrite, useNetwork, usePrepareContractWrite } from 'wagmi';
 
@@ -50,8 +49,6 @@ export const ModalAllowance = ({
     writeAsync,
     error: writeContractHookError,
   } = useContractWrite(config);
-
-  console.log(status)
 
   return (
     <>

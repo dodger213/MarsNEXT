@@ -78,6 +78,9 @@ function RegistrationUI({
     currentNetwork?.referralContractAddress!
   );
 
+  const isUserAllowanceSufficient =
+    userAllowanceValue >= planObject?.value ? true : false;
+
   const cardBackgroundColor = useColorModeValue('green.50', 'gray.900');
 
   const {
@@ -109,8 +112,7 @@ function RegistrationUI({
     isUserHaveSufficientTokenBalance: userUSDTBalance?.data?.formatted
       ? userUSDTBalance?.data?.formatted
       : 0 >= planObject.value,
-    isUserHaveSufficientAllowance:
-      userAllowanceValue >= planObject?.value ? true : false,
+    isUserHaveSufficientAllowance: isUserAllowanceSufficient,
   };
 
   const proceedTransaction = () => {
@@ -127,14 +129,14 @@ function RegistrationUI({
     }
   };
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     reset();
-  //     onClose();
-  //   }, 20000);
-  // }, [isSuccess, reset, onClose]);
+  useEffect(() => {
+    setTimeout(() => {
+      reset();
+      onClose();
+    }, 20000);
+  }, [isSuccess, reset, onClose]);
 
-  // console.log("User Allowance", userAllowanceValue, "Plan Value", planObject?.value)
+  console.log(planObject?.value)
 
   return (
     <>

@@ -8,14 +8,25 @@ export const useContractCall = ({
   args,
 }: {
   contractAddress: `0x${string}`;
-  functionName: "symbol" | "name" | "allowance" | "balanceOf" | "decimals" | "totalSupply" | undefined;
-  args: readonly [`0x${string}`, `0x${string}`] | readonly [`0x${string}`] | undefined
+  functionName:
+    | 'symbol'
+    | 'name'
+    | 'allowance'
+    | 'balanceOf'
+    | 'decimals'
+    | 'totalSupply'
+    | undefined;
+  args:
+    | readonly [`0x${string}`, `0x${string}`]
+    | readonly [`0x${string}`]
+    | undefined;
 }) => {
   const { data, isError, isLoading, error } = useContractRead({
     address: contractAddress,
     abi: erc20ABI,
     functionName: functionName,
-    args: args
+    args: args,
+    watch: true,
   });
 
   if (isError) {
@@ -29,7 +40,7 @@ export const useContractCall = ({
 export const useGetAllowance = (
   contractAddress: `0x${string}`,
   userAddress: `0x${string}`,
-  spenderAddress: `0x${string}`,
+  spenderAddress: `0x${string}`
 ) => {
   const { chain } = useNetwork();
   const currentNetwork = supportedNetworkInfo[chain?.id ?? 137];

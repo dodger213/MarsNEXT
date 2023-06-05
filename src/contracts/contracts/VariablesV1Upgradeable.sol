@@ -93,8 +93,8 @@ contract VariablesV1Upgradeable is
         _isPayCoreMembersRewards = true;
 
         _rewardTokenContract = 0x7F9fD63932babC508FAD2f324EB534D09cfE86F0;
-        _coreMembersContract = 0xefb61c43C70b60563c1a2a835663C63Ecc93F6bA;
         _rewardTokenRate = 3;
+        _coreMembersContract = 0xefb61c43C70b60563c1a2a835663C63Ecc93F6bA;
 
         _adminAddress = msg.sender;
 
@@ -177,7 +177,7 @@ contract VariablesV1Upgradeable is
         // });
 
         // plans[5] = PlanStruct({
-        //     planId: 5,
+        //     planId: 6,
         //     name: "IBP",
         //     value: 1000000000000000000000,
         //     maxLimitMultiplier: 100
@@ -346,15 +346,6 @@ contract VariablesV1Upgradeable is
         _adminFees = fees;
     }
 
-    // Getter and Setter for _rewardTokenRate
-    function getRewardTokenRate() external view returns (uint8) {
-        return _rewardTokenRate;
-    }
-
-    function setRewardTokenRate(uint8 rate) external onlyOwner {
-        _rewardTokenRate = rate;
-    }
-
     // Getter and Setter for _isPayRewardToken
     function getIsPayRewardToken() external view returns (bool) {
         return _isPayRewardToken;
@@ -411,6 +402,14 @@ contract VariablesV1Upgradeable is
 
     function setRewardTokenContract(address tokenContract) external onlyOwner {
         _rewardTokenContract = tokenContract;
+    }
+
+    function getRewardTokenRate() external view returns (uint8) {
+        return _rewardTokenRate;
+    }
+
+    function setRewardTokenRate(uint8 _rewardRatePer) external onlyOwner {
+        _rewardTokenRate = _rewardRatePer;
     }
 
     function getAdminAddress() external view returns (address) {

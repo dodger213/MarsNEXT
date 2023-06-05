@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/contracts/ReferralV1Upgradeable.sol": {
-      "lastModificationDate": 1685618263694,
-      "contentHash": "2308c6553d5aee7564d728f61475c501",
+      "lastModificationDate": 1685964446039,
+      "contentHash": "f7559b045225b43e58f4ff5cdd651c49",
       "sourceName": "contracts/ReferralV1Upgradeable.sol",
       "solcConfig": {
         "version": "0.8.18",
@@ -462,8 +462,8 @@
       ]
     },
     "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/contracts/VariablesV1Upgradeable.sol": {
-      "lastModificationDate": 1685787135344,
-      "contentHash": "c23e726674d33ae49d24d50630105628",
+      "lastModificationDate": 1685964378598,
+      "contentHash": "42b5e019e093d321ad805e351bd4bba3",
       "sourceName": "contracts/VariablesV1Upgradeable.sol",
       "solcConfig": {
         "version": "0.8.18",
@@ -505,8 +505,8 @@
       ]
     },
     "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/contracts/RegisterV1Upgradeable.sol": {
-      "lastModificationDate": 1685433004135,
-      "contentHash": "94794e311dd83972f243261cbad1e656",
+      "lastModificationDate": 1685960209487,
+      "contentHash": "3c4e926813ce36bbd4e1548c6821a45b",
       "sourceName": "contracts/RegisterV1Upgradeable.sol",
       "solcConfig": {
         "version": "0.8.18",
@@ -587,6 +587,49 @@
       "artifacts": [
         "CoreMembersV1Upgradeable",
         "IERC20_EXTENDED"
+      ]
+    },
+    "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/contracts/ShareBalanceV1Upgradeable.sol": {
+      "lastModificationDate": 1685961642777,
+      "contentHash": "aaf7428df9db7414bd735036e815afe7",
+      "sourceName": "contracts/ShareBalanceV1Upgradeable.sol",
+      "solcConfig": {
+        "version": "0.8.18",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol",
+        "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
+        "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
+        "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol",
+        "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.18"
+      ],
+      "artifacts": [
+        "IERC20_EXTENDED",
+        "ShareBalanceUpgradeable"
       ]
     }
   }

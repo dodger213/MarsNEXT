@@ -96,6 +96,12 @@ interface IVariables {
     function getSupportedTokenInfo(
         address _tokenContractAddress
     ) external view returns (SupportedTokensStruct memory);
+
+    function isIBP(address _ibpAddress) external view returns (bool);
+
+    function getRewardTokenContract() external view returns (address);
+
+    function getRewardTokenRate() external view returns (uint8);
 }
 
 contract ReferralV1Upgradeable is
@@ -189,7 +195,7 @@ contract ReferralV1Upgradeable is
     receive() external payable {}
 
     function initialize() public initializer {
-        _variableContractAddress = 0x5a7530Ee130E38487561032B9571F4EC41AB69AB;
+        _variableContractAddress = 0x494549e00FE6598E3DC93254c5377c406dDA8579;
         _weeklyRewardClaimedTimeStamp = block.timestamp;
 
         __Pausable_init();
@@ -546,14 +552,23 @@ contract ReferralV1Upgradeable is
         _totalReferralPaid += totalReferralRewardsPaid;
         _totalRegistrationValue += planAccount.value;
         _WeeklyRewardValue += (planAccount.value * 10) / 100;
-    }
 
-    //registerInETH
-    function registrationWithETH(
-        address _referrer,
-        uint8 _planId,
-        address _tokenAddress
-    ) external payable {}
+        uint256 rewardTokenBalanceThis = IERC20Upgradeable(
+            variablesInterface.getRewardTokenContract()
+        ).balanceOf(address(this));
+
+        if (rewardTokenBalanceThis > 0) {
+            uint256 rewardValue = (planAccount.value *
+                variablesInterface.getRewardTokenRate()) / 100;
+            if (rewardTokenBalanceThis >= rewardValue) {
+                IERC20Upgradeable(variablesInterface.getRewardTokenContract())
+                    .transfer(_referee, rewardValue);
+            } else {
+                IERC20Upgradeable(variablesInterface.getRewardTokenContract())
+                    .transfer(_referee, rewardTokenBalanceThis);
+            }
+        }
+    }
 
     //registerInToken
     function registrationWithToken(
@@ -745,7 +760,7 @@ contract ReferralV1Upgradeable is
     }
 
     //ibp functions
-    function getuserIbpAddress(
+    function getUserIbpAddress(
         address _userAddress
     ) external view returns (address) {
         return accounts[_userAddress].ibpAddress;
@@ -769,6 +784,14 @@ contract ReferralV1Upgradeable is
             IVariables(_variableContractAddress).getAdminAddress(),
             _userAddress
         );
+    }
+
+    function getVariablesContract() external view returns (address) {
+        return _variableContractAddress;
+    }
+
+    function setVariablesContract(address _contractAddress) external onlyOwner {
+        _variableContractAddress = _contractAddress;
     }
 
     //convertToDecimals

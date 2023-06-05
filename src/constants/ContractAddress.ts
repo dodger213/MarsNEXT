@@ -25,14 +25,14 @@ export type TokenContractObject = {
 
 export const VariablesV1ContractObject: ContractObject = {
   abi: VariablesV1ContractInterface?.abi,
-  polygonAddress: AddressZero,
+  polygonAddress: '0x494549e00FE6598E3DC93254c5377c406dDA8579',
   bscAddress: AddressZero,
   myveeAddress: '0x5a7530Ee130E38487561032B9571F4EC41AB69AB',
 };
 
 export const ReferralV1ContractObject: ContractObject = {
   abi: ReferralV1ContractInterface?.abi,
-  polygonAddress: AddressZero,
+  polygonAddress: '0xDd0B6A7E5c27AAf44CaEb3602DeB4929E050cC58',
   bscAddress: AddressZero,
   myveeAddress: '0x1F3B7E45aC44Ba98D73b59Dc796d269281b053d8',
 };

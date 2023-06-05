@@ -8,6 +8,7 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol";
 
 contract RegisterV1Upgradeable is Initializable, PausableUpgradeable, OwnableUpgradeable, UUPSUpgradeable {
+    address private _variablesContract;
     
     receive() payable external {}
 
