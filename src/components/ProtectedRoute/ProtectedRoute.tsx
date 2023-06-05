@@ -9,7 +9,6 @@ function ProtectedRoute({ children }: { children: ReactNode }) {
   const { chain } = useNetwork();
   const { address } = useAccount();
 
-  console.log(address)
   return (
     <VStack w="full" minH="80vh" justify="center">
       {!address ? (

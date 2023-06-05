@@ -24,18 +24,13 @@ import {
   VStack,
   useColorModeValue,
   useDisclosure,
-  useToast
+  useToast,
 } from '@chakra-ui/react';
 import { shortenAddress } from '@usedapp/core';
 import Image from 'next/image';
 import { useEffect } from 'react';
 import { FaUser } from 'react-icons/fa';
-import {
-  useAccount,
-  useBalance,
-  useContractWrite,
-  useNetwork
-} from 'wagmi';
+import { useAccount, useBalance, useContractWrite, useNetwork } from 'wagmi';
 import { ModalAllowance } from '../Modals/ModalAllowance';
 import ModalConfirmTransactions from '../Modals/ModalConfirmTransactions';
 import ModalTransactionSuccess from '../Modals/ModalTransactionSuccess';
@@ -119,17 +114,42 @@ function RegistrationUI({
         duration: 5000,
         isClosable: true,
       });
+      
     } else {
       onOpen();
     }
   };
 
+  const handleTransaction = async () => {
+    try {
+      await writeAsync();
+      if(status === "success") {
+        toast({
+          title: 'Transaction Success',
+          description: '',
+          status: 'success',
+          duration: 10000,
+          isClosable: true,
+        });
+        setTimeout(() => {
+          reset();
+          onClose();
+        }, 20000);
+      }
+    } catch (err: any) {
+      toast({
+        title: err.message,
+        description: '',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  };
+
   useEffect(() => {
-    setTimeout(() => {
-      reset();
-      onClose();
-    }, 20000);
-  }, [isSuccess, reset, onClose]);
+    
+  }, [isSuccess, toast, onClose, reset]);
 
   return (
     <>
@@ -266,7 +286,7 @@ function RegistrationUI({
             ) : (
               <ModalConfirmTransactions
                 onClose={onClose}
-                onConfirm={write!}
+                onConfirm={handleTransaction}
                 transactionName="Register"
                 outCurrencyObject={currentNetwork?.USDT}
                 outCurrencyValue={planObject?.value}

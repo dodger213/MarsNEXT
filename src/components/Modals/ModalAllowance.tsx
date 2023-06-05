@@ -1,5 +1,8 @@
 import { AddressZero } from '@/constants/ContractAddress';
-import { SupportedTokenInterface, supportedNetworkInfo } from '@/constants/SupportedNetworkInfo';
+import {
+  SupportedTokenInterface,
+  supportedNetworkInfo,
+} from '@/constants/SupportedNetworkInfo';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import {
   Button,
@@ -18,18 +21,23 @@ import {
 } from '@chakra-ui/react';
 import { shortenAddress } from '@usedapp/core';
 import { FaArrowRight } from 'react-icons/fa';
-import { erc20ABI, useContractWrite, useNetwork, usePrepareContractWrite } from 'wagmi';
+import {
+  erc20ABI,
+  useContractWrite,
+  useNetwork,
+  usePrepareContractWrite,
+} from 'wagmi';
 
 export const ModalAllowance = ({
   spenderAddress,
   valueToApprove,
   onClose,
-  tokenObject
+  tokenObject,
 }: {
   spenderAddress: `0x${string}`;
   valueToApprove: bigint;
   onClose: () => void;
-  tokenObject: SupportedTokenInterface
+  tokenObject: SupportedTokenInterface;
 }) => {
   const { chain } = useNetwork();
   const currentNetwork = supportedNetworkInfo[chain ? chain.id : 137];
@@ -37,7 +45,7 @@ export const ModalAllowance = ({
   const { config, error: prepareHookError } = usePrepareContractWrite({
     address: currentNetwork?.USDT.contractAddress,
     abi: erc20ABI,
-    functionName: "approve",
+    functionName: 'approve',
     args: [spenderAddress, valueToApprove],
   });
 
@@ -63,7 +71,9 @@ export const ModalAllowance = ({
             <Spacer />
             <Icon as={FaArrowRight}></Icon>
             <Spacer />
-            <Heading size="lg">{Number(valueToApprove) / 10 ** tokenObject?.decimals}</Heading>
+            <Heading size="lg">
+              {Number(valueToApprove) / 10 ** tokenObject?.decimals}
+            </Heading>
             <Image
               src="/token-icons/usdt.svg"
               boxSize={10}
@@ -107,7 +117,9 @@ export const ModalAllowance = ({
             rightIcon={<ChevronRightIcon />}
             borderRadius="xl"
             colorScheme="green"
-            onClick={async() => writeAsync?.()}
+            onClick={async () => writeAsync?.()}
+            isLoading={isLoading}
+            loadingText="Confirming"
           >
             Confirm
           </Button>
