@@ -354,7 +354,7 @@ contract ReferralV1Upgradeable is
             _referee,
             address(this),
             tokenDecimals < 18
-                ? _convertToDecimals(planAccount.value, 18, uint256(tokenDecimals))
+                ? _convertToDecimals(planAccount.value, 18, tokenDecimals)
                 : planAccount.value
         );
 
@@ -802,7 +802,7 @@ contract ReferralV1Upgradeable is
         uint256 _from,
         uint256 _to
     ) private pure returns (uint256) {
-        return (_value * 10 ** _to) / 10 ** _from;
+        return (_value * 10 ** uint256(_to)) / 10 ** uint256(_from);
     }
 
     function _transferToken(

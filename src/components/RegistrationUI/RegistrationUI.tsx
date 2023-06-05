@@ -17,7 +17,6 @@ import {
   Modal,
   ModalCloseButton,
   ModalContent,
-  ModalHeader,
   ModalOverlay,
   Spacer,
   Tag,
@@ -25,24 +24,20 @@ import {
   VStack,
   useColorModeValue,
   useDisclosure,
-  useToast,
+  useToast
 } from '@chakra-ui/react';
-import { shortenAddress, shortenIfAddress } from '@usedapp/core';
-import { error } from 'console';
-import { utils } from 'ethers';
+import { shortenAddress } from '@usedapp/core';
 import Image from 'next/image';
+import { useEffect } from 'react';
 import { FaUser } from 'react-icons/fa';
 import {
   useAccount,
   useBalance,
   useContractWrite,
-  useNetwork,
-  usePrepareContractWrite,
+  useNetwork
 } from 'wagmi';
 import { ModalAllowance } from '../Modals/ModalAllowance';
-import { parseEther } from 'ethers/lib/utils';
 import ModalConfirmTransactions from '../Modals/ModalConfirmTransactions';
-import { useEffect } from 'react';
 import ModalTransactionSuccess from '../Modals/ModalTransactionSuccess';
 
 function RegistrationUI({
@@ -135,8 +130,6 @@ function RegistrationUI({
       onClose();
     }, 20000);
   }, [isSuccess, reset, onClose]);
-
-  console.log(planObject?.value);
 
   return (
     <>
