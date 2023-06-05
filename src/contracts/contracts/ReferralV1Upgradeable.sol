@@ -354,7 +354,7 @@ contract ReferralV1Upgradeable is
             _referee,
             address(this),
             tokenDecimals < 18
-                ? _convertToDecimals(planAccount.value, 18, tokenDecimals)
+                ? _convertToDecimals(planAccount.value, 18, uint256(tokenDecimals))
                 : planAccount.value
         );
 
@@ -768,9 +768,11 @@ contract ReferralV1Upgradeable is
 
     function addIbpToAddressAdmin(
         address _userAddress,
-        address _ibpAddress
+        address _ibpAddress,
+        uint256 _maxLimitInDecimals
     ) external onlyOwner {
         accounts[_userAddress].ibpAddress = _ibpAddress;
+        accounts[_userAddress].maxLimit += _maxLimitInDecimals * 10 ** 18;
         emit IBPAdded(_ibpAddress, _userAddress);
     }
 

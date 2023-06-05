@@ -1,5 +1,5 @@
 import { AddressZero } from '@/constants/ContractAddress';
-import { supportedNetworkInfo } from '@/constants/SupportedNetworkInfo';
+import { SupportedTokenInterface, supportedNetworkInfo } from '@/constants/SupportedNetworkInfo';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import {
   Button,
@@ -24,10 +24,12 @@ export const ModalAllowance = ({
   spenderAddress,
   valueToApprove,
   onClose,
+  tokenObject
 }: {
   spenderAddress: `0x${string}`;
   valueToApprove: bigint;
   onClose: () => void;
+  tokenObject: SupportedTokenInterface
 }) => {
   const { chain } = useNetwork();
   const currentNetwork = supportedNetworkInfo[chain ? chain.id : 137];
@@ -61,7 +63,7 @@ export const ModalAllowance = ({
             <Spacer />
             <Icon as={FaArrowRight}></Icon>
             <Spacer />
-            <Heading size="lg">{100}</Heading>
+            <Heading size="lg">{Number(valueToApprove) / 10 ** tokenObject?.decimals}</Heading>
             <Image
               src="/token-icons/usdt.svg"
               boxSize={10}

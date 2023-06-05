@@ -136,7 +136,7 @@ function RegistrationUI({
     }, 20000);
   }, [isSuccess, reset, onClose]);
 
-  console.log(planObject?.value)
+  console.log(planObject?.value);
 
   return (
     <>
@@ -266,8 +266,9 @@ function RegistrationUI({
                 onClose={onClose}
                 spenderAddress={currentNetwork?.referralContractAddress!}
                 valueToApprove={BigInt(
-                  1000 * 10 ** currentNetwork?.USDT.decimals
+                  planObject?.value * 10 ** currentNetwork?.USDT.decimals
                 )}
+                tokenObject={currentNetwork?.USDT}
               />
             ) : (
               <ModalConfirmTransactions
