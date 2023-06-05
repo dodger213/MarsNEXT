@@ -25,11 +25,15 @@ export const Header = () => {
       onMouseMove={handleMouseMove}
       overflow="hidden"
       direction="column"
+      bgGradient={useColorModeValue(
+        'linear(to-b, white, blue.100, transparent)',
+        'linear(to-b, blackAlpha.900, blue.900, transparent)'
+      )}
     >
       <VStack w="full" spacing={0} h="170vh">
         <Particles quantity={200}></Particles>
         <VStack w="full" px={[2, 5, 10]} pt={150}>
-            <HeaderHeadingComponent />
+          <HeaderHeadingComponent />
         </VStack>
         <Suspense>
           <Center w="full" h="200vh" position="absolute">
