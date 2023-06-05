@@ -31,7 +31,6 @@ export const Nav = () => {
       transition={'background-color 300ms linear'}
       px={[1, 2, 3, 5]}
       py={5}
-      // borderBottomWidth={scrollYValue > 20 ? 'thick' : 'none'}
     >
       <HStack w="full" px={5}>
         <Logo></Logo>

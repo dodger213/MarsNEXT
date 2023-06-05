@@ -11,7 +11,7 @@ import { useAccount } from 'wagmi';
 
 export const ConnectWalletButton = ({
   showJazzicon,
-  userAddress
+  userAddress,
 }: {
   showJazzicon?: boolean;
   userAddress?: string;
@@ -27,14 +27,14 @@ export const ConnectWalletButton = ({
   return (
     <Button
       onClick={async () => {
-        await open()
+        await open();
       }}
       leftIcon={
         address ? (
           showJazzicon ? (
             <Jazzicon seed={jsNumberForAddress(`${address}`)}></Jazzicon>
           ) : (
-            <div></div>
+            <></>
           )
         ) : (
           <Image
@@ -46,7 +46,7 @@ export const ConnectWalletButton = ({
       }
       variant="solid"
       borderRadius="xl"
-      size={["sm", "md"]}
+      size={['sm', 'md']}
     >
       {address ? shortenAddress(userAddress ?? address) : conectWalletText}
     </Button>

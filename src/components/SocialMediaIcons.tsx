@@ -13,12 +13,12 @@ const iconsObject = [
   {
     label: 'Twitter',
     icon: FaTwitter,
-    href: '',
+    href: 'https://twitter.com/letstothemars',
   },
   {
     label: 'Telegram',
     icon: FaTelegram,
-    href: '',
+    href: "https://t.me/letstothemars",
   },
 //   {
 //     label: 'Discord',
@@ -28,7 +28,7 @@ const iconsObject = [
   {
     label: 'Github',
     icon: FaGithub,
-    href: '',
+    href: 'https://github.com/martianacademy',
   },
 ];
 
@@ -75,7 +75,7 @@ export const SocialMediaIcons = () => {
             key={key}
             label={iconsObject?.label}
             icon={<Icon as={iconsObject?.icon}></Icon>}
-            href=""
+            href={iconsObject?.href}
           ></SocialMediaIconsButton>
         );
       })}

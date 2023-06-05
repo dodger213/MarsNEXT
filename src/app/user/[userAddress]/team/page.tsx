@@ -47,7 +47,7 @@ function Team({
       <VStack>
         <Heading>Your referral link</Heading>
         <VStack>
-          <Input value={userReferralLink} borderRadius="xl"></Input>
+          <Input defaultValue={userReferralLink} borderRadius="xl"></Input>
           <Button
             w="full"
             borderRadius="xl"
