@@ -5,7 +5,7 @@ import { HStack, Heading, Tag, Text, VStack } from '@chakra-ui/react';
 import React from 'react';
 import { IoIosWallet } from 'react-icons/io';
 import { useBalance, useNetwork } from 'wagmi';
-import { useSupportedNetworkInfo } from '@/constants/SupportedNetworkInfo';
+import { supportedNetworkInfo } from '@/constants/SupportedNetworkInfo';
 import { polygon } from 'viem/chains';
 import { USDTLogoSVG } from '../../../../../public/token-icons';
 
@@ -17,7 +17,7 @@ export default function BalanceCard({
   };
 }) {
   const { chain } = useNetwork();
-  const currentNetwork = useSupportedNetworkInfo[chain?.id!];
+  const currentNetwork = supportedNetworkInfo[chain?.id!];
   const { data: userNativeBalance } = useBalance({
     address: params.userAddress ?? AddressZero,
   });

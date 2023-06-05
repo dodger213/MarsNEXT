@@ -1,9 +1,10 @@
 import { WalletConnectLogoSVG } from '@/assets';
 import { Box, Button, useBreakpointValue } from '@chakra-ui/react';
-import { shortenAddress } from '@usedapp/core';
+import { shortenAddress, useEthers } from '@usedapp/core';
+import { EthereumProvider } from '@walletconnect/ethereum-provider';
 import { useWeb3Modal } from '@web3modal/react';
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { jsNumberForAddress } from 'react-jazzicon';
 import Jazzicon from 'react-jazzicon/dist/Jazzicon';
 import { useAccount } from 'wagmi';
@@ -22,10 +23,11 @@ export const ConnectWalletButton = ({
     'Conect',
     'Connect Wallet',
   ]);
+
   return (
     <Button
       onClick={async () => {
-        await open();
+        await open()
       }}
       leftIcon={
         address ? (

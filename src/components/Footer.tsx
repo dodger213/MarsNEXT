@@ -14,6 +14,8 @@ import SocialMediaIcons from './SocialMediaIcons';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { BsFilePdfFill } from 'react-icons/bs';
 import { LogoFull } from './LogoFull';
+import { polygon } from 'wagmi/chains';
+import { supportedNetworkInfo } from '@/constants/SupportedNetworkInfo';
 
 export default function Footer() {
   return (
@@ -46,15 +48,21 @@ export default function Footer() {
             Contract Address
           </Heading>
           <Flex direction="column" gap={2}>
-            <Button borderRadius="xl" rightIcon={<ExternalLinkIcon />}>
+            <Button
+              as="a"
+              borderRadius="xl"
+              rightIcon={<ExternalLinkIcon />}
+              href={`${polygon.blockExplorers.default.url}/address/${supportedNetworkInfo[137].referralContractAddress}`}
+              target="_blank"
+            >
               Referral Contract
             </Button>
-            <Button borderRadius="xl" rightIcon={<ExternalLinkIcon />}>
+            {/* <Button borderRadius="xl" rightIcon={<ExternalLinkIcon />}>
               Variables Contract
-            </Button>
-            <Button borderRadius="xl" rightIcon={<ExternalLinkIcon />}>
+            </Button> */}
+            {/* <Button borderRadius="xl" rightIcon={<ExternalLinkIcon />}>
               Core Members Contract
-            </Button>
+            </Button> */}
           </Flex>
         </VStack>
         <VStack spacing={5}>

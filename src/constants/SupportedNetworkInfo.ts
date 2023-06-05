@@ -24,7 +24,7 @@ export const supportedCurrencyIcons = [
   '/token-icons/busd.svg',
 ];
 
-interface Token {
+export interface SupportedTokenInterface {
   contractAddress: `0x${string}`;
   contractABI: any; // Replace `any` with the actual ABI type
   name: string;
@@ -33,25 +33,32 @@ interface Token {
   logo: string; // Assuming `USDTLogoSVG` and `BUSDLogoSVG` are strings representing the SVGs
 }
 
-interface NetworkInfo {
+export interface CurrentNetworkInfo {
   variablesContractAddress?: `0x${string}`;
+  variablesContractInterface?: any;
   referralContractAddress?: `0x${string}`;
+  referralContractInterface: any;
   coreMembersContractAddress?: `0x${string}`;
-  USDT: Token;
-  BUSD: Token;
-  native: any; // Replace `any` with the type representing the `polygon` object
+  coreMembersContractInterface?: any;
+
+  USDT: SupportedTokenInterface;
+  BUSD: SupportedTokenInterface;
+  native: Chain; // Replace `any` with the type representing the `polygon` object
   logo: string;
 }
 
-interface SupportedNetworkInfo {
-  [key: number]: NetworkInfo;
+export interface SupportedNetworkInfo {
+  [key: number]: CurrentNetworkInfo;
 }
 
-export const useSupportedNetworkInfo: SupportedNetworkInfo = {
+export const supportedNetworkInfo: SupportedNetworkInfo = {
   [polygon.id]: {
     variablesContractAddress: VariablesV1ContractObject.polygonAddress,
+    variablesContractInterface: VariablesV1ContractObject.abi,
     referralContractAddress: ReferralV1ContractObject.polygonAddress,
+    referralContractInterface: ReferralV1ContractObject.abi,
     coreMembersContractAddress: CoreMembersV1ContractObject.polygonAddress,
+    coreMembersContractInterface: CoreMembersV1ContractObject.abi,
     ['USDT']: {
       contractAddress: USDT.polygonAddress,
       contractABI: USDT.abi,
@@ -69,12 +76,15 @@ export const useSupportedNetworkInfo: SupportedNetworkInfo = {
       logo: BUSDLogoSVG,
     },
     native: polygon,
-    logo: "/chainIcons/polygonChainLogo.svg"
+    logo: '/chainIcons/polygonChainLogo.svg',
   },
   [bsc.id]: {
     variablesContractAddress: VariablesV1ContractObject?.bscAddress,
+    variablesContractInterface: VariablesV1ContractObject?.abi,
     referralContractAddress: ReferralV1ContractObject?.bscAddress,
+    referralContractInterface: ReferralV1ContractObject?.abi,
     coreMembersContractAddress: CoreMembersV1ContractObject?.bscAddress,
+    coreMembersContractInterface: CoreMembersV1ContractObject?.abi,
     ['USDT']: {
       contractAddress: USDT.bscAddress,
       contractABI: USDT.abi,
@@ -92,19 +102,22 @@ export const useSupportedNetworkInfo: SupportedNetworkInfo = {
       logo: BUSDLogoSVG,
     },
     native: bsc,
-    logo: "/chainIcons/bscSmartChainLogo.svg"
+    logo: '/chainIcons/bscSmartChainLogo.svg',
   },
   [MyVeeMainnet.id]: {
     variablesContractAddress: VariablesV1ContractObject?.myveeAddress,
+    variablesContractInterface: VariablesV1ContractObject?.abi,
     referralContractAddress: ReferralV1ContractObject?.myveeAddress,
+    referralContractInterface: ReferralV1ContractObject.abi,
     coreMembersContractAddress: CoreMembersV1ContractObject?.myveeAddress,
+    coreMembersContractInterface: CoreMembersV1ContractObject.abi,
     ['USDT']: {
       contractAddress: USDT.myveeAddress,
       contractABI: USDT.abi,
       name: 'Tether',
       symbol: 'USDT',
       decimals: 18,
-      logo: USDTLogoSVG,
+      logo: "/token-icons/usdt.svg",
     },
     ['BUSD']: {
       contractAddress: BUSD.myveeAddress,
@@ -115,6 +128,6 @@ export const useSupportedNetworkInfo: SupportedNetworkInfo = {
       logo: BUSDLogoSVG,
     },
     native: MyVeeMainnet,
-    logo: "/chainIcons/MyVeemainnet.svg"
+    logo: '/chainIcons/MyVeemainnet.svg',
   },
 };

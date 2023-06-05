@@ -40,7 +40,7 @@ function Dashboard({
         <BalanceCard params={params}></BalanceCard>
         <BusinessCard params={params}></BusinessCard>
         <RewardsCard params={params}></RewardsCard>
-        <TeamCard params={params}/>
+        <TeamCard params={params} />
       </Wrap>
     </VStack>
   );

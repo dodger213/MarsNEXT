@@ -98,7 +98,7 @@ export default function RegistrationUIPage({
           {plansCountArray().map((planId, index) => (
             <RegistrationUI
               planId={planId}
-              referrerAddress={params?.referrerAddress ?? AddressZero}
+              referrerAddress={params?.referrerAddress}
               isLarge={true}
               key={index}
             ></RegistrationUI>

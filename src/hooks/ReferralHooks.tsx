@@ -2,10 +2,8 @@ import {
   AddressZero,
   ReferralV1ContractObject,
 } from '@/constants/ContractAddress';
-import { useSupportedNetworkInfo } from '@/constants/SupportedNetworkInfo';
+import { supportedNetworkInfo } from '@/constants/SupportedNetworkInfo';
 import { formatNumberWithMaxDecimals } from '@/util/UtilHooks';
-import { id } from 'ethers/lib/utils';
-import { formatEther } from 'viem';
 import { useContractRead, useNetwork } from 'wagmi';
 
 export const useContractCall = ({
@@ -16,7 +14,7 @@ export const useContractCall = ({
   args?: any[];
 }) => {
   const { chain } = useNetwork();
-  const currentNetwork = useSupportedNetworkInfo[chain?.id ?? 137];
+  const currentNetwork = supportedNetworkInfo[chain?.id ?? 137];
 
   const { data, isError, isLoading, error } = useContractRead({
     address: currentNetwork?.referralContractAddress,
