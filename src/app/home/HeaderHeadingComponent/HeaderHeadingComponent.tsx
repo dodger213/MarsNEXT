@@ -27,7 +27,7 @@ export const HeaderHeadingComponent = () => {
           h={16}
           borderRadius={20}
           rightIcon={<ChevronRightIcon />}
-          zIndex={111}
+          zIndex={1}
           borderBottomWidth="thick"
         >
           Launch App
