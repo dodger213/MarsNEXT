@@ -12,7 +12,7 @@ import { Web3Modal } from '@web3modal/react';
 import { WagmiConfig, configureChains, createConfig } from 'wagmi';
 import { polygon } from 'wagmi/chains';
 
-const chains = [polygon, MyVeeMainnet];
+const chains = [polygon];
 const projectId = 'e6458f63d191bf405c8476be38ec031e';
 
 const { publicClient } = configureChains(chains, [w3mProvider({ projectId })]);
