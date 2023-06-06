@@ -43,7 +43,7 @@ export default function Footer() {
           </Heading>
           <SocialMediaIcons />
         </VStack>
-        <VStack spacing={5}>
+        {/* <VStack spacing={5}>
           <Heading size="md" color="orange.500" textAlign="center">
             Contract Address
           </Heading>
@@ -57,14 +57,14 @@ export default function Footer() {
             >
               Referral Contract
             </Button>
-            {/* <Button borderRadius="xl" rightIcon={<ExternalLinkIcon />}>
+            <Button borderRadius="xl" rightIcon={<ExternalLinkIcon />}>
               Variables Contract
-            </Button> */}
-            {/* <Button borderRadius="xl" rightIcon={<ExternalLinkIcon />}>
+            </Button>
+            <Button borderRadius="xl" rightIcon={<ExternalLinkIcon />}>
               Core Members Contract
-            </Button> */}
+            </Button>
           </Flex>
-        </VStack>
+        </VStack> */}
         <VStack spacing={5}>
           <Heading size="md" color="orange.500" textAlign="center">
             Project Discription
