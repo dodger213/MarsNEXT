@@ -34,24 +34,25 @@ export const Header = () => {
       direction="column"
       bgGradient={useColorModeValue(
         'linear(to-b, white, blue.100, transparent)',
-        'linear(to-b, transparent, blue.900)'
+        'linear(to-b, transparent, blue.900, transparent)'
       )}
     >
-      <VStack w="full" spacing={0} minH="100vh">
+      <VStack w="full" spacing={70}>
         <Particles quantity={200}></Particles>
         <ParallaxProvider>
           <Parallax speed={-30}>
-            <VStack w="full" px={[2, 5, 10]}>
+            <VStack w="full" px={[2, 5, 10]} minH="40vh">
               <HeaderHeadingComponent />
             </VStack>
           </Parallax>
         </ParallaxProvider>
         <Flex flex={1}></Flex>
         <Image
-          src="/header.svg"
+          src="/header2.svg"
           alt="Header image"
           width="100%"
-          minW={1200}
+          minW={800}
+          maxW={1200}
           zIndex={1}
         ></Image>
       </VStack>
