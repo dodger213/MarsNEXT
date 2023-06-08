@@ -38,9 +38,7 @@ export default function Footer() {
           <Text>© 2023 MarsNext. All rights reserved</Text>
         </VStack>
         <VStack spacing={5}>
-          <Heading size="md" color="orange.500" textAlign="center">
-            Follow us on Social Media
-          </Heading>
+          <Text textAlign="center">Follow us on Social Media</Text>
           <SocialMediaIcons />
         </VStack>
         {/* <VStack spacing={5}>
@@ -66,9 +64,7 @@ export default function Footer() {
           </Flex>
         </VStack> */}
         <VStack spacing={5}>
-          <Heading size="md" color="orange.500" textAlign="center">
-            Project Discription
-          </Heading>
+          <Text textAlign="center">Project Discription</Text>
           <Button
             borderRadius="xl"
             rightIcon={<BsFilePdfFill />}

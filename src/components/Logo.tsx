@@ -1,4 +1,14 @@
-import { Center, Divider, HStack, Hide, Icon, Text } from '@chakra-ui/react';
+import {
+  Center,
+  Divider,
+  HStack,
+  Hide,
+  Icon,
+  Image,
+  Show,
+  Text,
+  useMediaQuery,
+} from '@chakra-ui/react';
 import { GiAstronautHelmet } from 'react-icons/gi';
 import { RiSpaceShipFill } from 'react-icons/ri';
 
@@ -8,27 +18,12 @@ import Link from 'next/link';
 export const Logo = () => {
   return (
     <Link href="/">
-      <HStack spacing={2} cursor="pointer">
-        <Icon as={RiSpaceShipFill} boxSize={7} color="red.500"></Icon>
-        <Hide below="sm">
-          <Center h={5}>
-            <Divider orientation="vertical" bgColor="orange.600"></Divider>
-          </Center>
-          <HStack
-            spacing={1}
-            bgGradient="linear(to-r, red.500, yellow.500, green.500)"
-            bgClip="text"
-            fontSize="30px"
-          >
-            <Text  fontWeight={900}>
-              Mars
-            </Text>
-            <Text fontFamily="mono">
-              Next
-            </Text>
-          </HStack>
-        </Hide>
-      </HStack>
+      <Hide below="sm">
+        <Image src="/MarsNextLogoFull.svg" alt="logo" w={200}></Image>
+      </Hide>
+      <Show below="sm">
+        <Image src="/MarsNextRocketLogo.svg" alt="logo" w={7}></Image>
+      </Show>
     </Link>
   );
 };
