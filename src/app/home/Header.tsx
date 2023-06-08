@@ -41,7 +41,7 @@ export const Header = () => {
         <Particles quantity={200}></Particles>
         <ParallaxProvider>
           <Parallax speed={-30}>
-            <VStack w="full" px={[2, 5, 10]} pt={[50]}>
+            <VStack w="full" px={[2, 5, 10]}>
               <HeaderHeadingComponent />
             </VStack>
           </Parallax>

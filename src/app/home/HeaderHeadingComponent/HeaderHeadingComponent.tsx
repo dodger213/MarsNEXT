@@ -11,7 +11,7 @@ import Link from 'next/link';
 
 export const HeaderHeadingComponent = () => {
   return (
-    <VStack spacing={7} w="min-content">
+    <VStack spacing={5} w="min-content">
       <VStack
         spacing={0}
         fontSize={['5xl', '6xl', '7xl', '8xl']}
@@ -24,13 +24,13 @@ export const HeaderHeadingComponent = () => {
         <Text>Community</Text>
       </VStack>
       <Text
-        fontSize={['xl', '2xl', '3xl']}
+        fontSize={['xl', '2xl']}
         textAlign="center"
         px={5}
         lineHeight={1.2}
         opacity={0.75}
       >
-        A community centric decentralized reward distribution system.
+        MarsNext is a community centric & fully #decentralized reward distribution protocol.
       </Text>
       <Link href="/registration">
         <button></button>
