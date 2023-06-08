@@ -114,6 +114,7 @@ export const PlanDiscriptionComponent = () => {
             h={20}
             borderRadius={20}
             borderBottomWidth="thick"
+            colorScheme='twitter'
           >
             Enter the app
           </Button>

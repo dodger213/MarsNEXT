@@ -1,4 +1,10 @@
-import { Center, CenterProps, Text, VStack, useColorModeValue } from '@chakra-ui/react';
+import {
+  Center,
+  CenterProps,
+  Text,
+  VStack,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import { ReactNode } from 'react';
 
 export const bgGradient = {
@@ -32,7 +38,13 @@ export const HeadingComponent = ({
   );
 };
 
-export const CenterComponent = ({ children, style }: { children: ReactNode, style?: CenterProps }) => {
+export const CenterComponent = ({
+  children,
+  style,
+}: {
+  children: ReactNode;
+  style?: CenterProps;
+}) => {
   return (
     <Center
       p={5}
@@ -40,6 +52,7 @@ export const CenterComponent = ({ children, style }: { children: ReactNode, styl
       borderWidth={1}
       borderBottomWidth="thick"
       backdropFilter="blur(10px)"
+      bgColor={useColorModeValue('white', 'whiteAlpha.200')}
       {...style}
     >
       {children}

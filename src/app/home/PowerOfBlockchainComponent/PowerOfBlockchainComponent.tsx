@@ -57,7 +57,7 @@ export const PowerOfBlockchainComponent = () => {
         heading="Build with the power of"
         gradientHeading="BLOCKCHAIN"
       ></HeadingComponent>
-      <Icon as={GiCubes} boxSize={[270, 300]}></Icon>
+      <Icon as={GiCubes} boxSize={[270, 300]} opacity={useColorModeValue(0.75, 1)}></Icon>
       <Container>
         <Text textAlign="center">
           Every logic & reward distribution written on secure smart contracts.
