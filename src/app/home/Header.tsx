@@ -12,6 +12,7 @@ import React, { Suspense, useState } from 'react';
 import { SpaceModel } from './AstronautModel';
 import { HeaderHeadingComponent } from './HeaderHeadingComponent/HeaderHeadingComponent';
 import { SupportedChainComponent } from './SupportedChainComponent';
+import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
 
 export const Header = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -37,31 +38,22 @@ export const Header = () => {
       )}
     >
       <VStack w="full" spacing={0} minH="100vh">
-        {/* <Particles quantity={200}></Particles> */}
-        <VStack w="full" px={[2, 5, 10]} pt={[150, 175, 200]}>
-          <HeaderHeadingComponent />
-        </VStack>
+        <Particles quantity={200}></Particles>
+        <ParallaxProvider>
+          <Parallax speed={-30}>
+            <VStack w="full" px={[2, 5, 10]} pt={[50]}>
+              <HeaderHeadingComponent />
+            </VStack>
+          </Parallax>
+        </ParallaxProvider>
         <Flex flex={1}></Flex>
         <Image
           src="/header.svg"
           alt="Header image"
           width="100%"
           minW={1200}
+          zIndex={1}
         ></Image>
-
-        {/* <Suspense>
-          <Center w="full" h="200vh" position="absolute">
-            <Canvas>
-              <ambientLight intensity={useColorModeValue(7, 5)} />
-              <motion.pointLight
-                position={[5, 5, 5]}
-                intensity={useColorModeValue(0.1, 1)}
-              />
-              <SpaceModel mousePosition={mousePosition}></SpaceModel>
-             
-            </Canvas>
-          </Center>
-        </Suspense> */}
       </VStack>
     </VStack>
   );
