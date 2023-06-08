@@ -8,7 +8,7 @@ import { SupportedChainComponent } from './SupportedChainComponent';
 
 export const Home = () => {
   return (
-    <VStack bgColor={useColorModeValue("gray.100", "blackAlpha.600")} >
+    <VStack w="full">
       <Header />
       <SupportedChainComponent />
       <PlanDiscriptionComponent />

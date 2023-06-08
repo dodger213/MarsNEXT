@@ -1,18 +1,14 @@
+"use client"
 import Particles from '@/components/Particles';
 import {
-  Center,
   Flex,
   Image,
   VStack,
-  useColorModeValue,
+  useColorModeValue
 } from '@chakra-ui/react';
-import { Canvas } from '@react-three/fiber';
-import { motion } from 'framer-motion-3d';
-import React, { Suspense, useState } from 'react';
-import { SpaceModel } from './AstronautModel';
-import { HeaderHeadingComponent } from './HeaderHeadingComponent/HeaderHeadingComponent';
-import { SupportedChainComponent } from './SupportedChainComponent';
+import React, { useState } from 'react';
 import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
+import { HeaderHeadingComponent } from './HeaderHeadingComponent/HeaderHeadingComponent';
 
 export const Header = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });

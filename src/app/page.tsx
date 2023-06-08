@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+"use client"
 import { Home } from './home/Home';
 
 

@@ -1,11 +1,10 @@
-import { tagLine } from '@/constants/SupportedNetworkInfo';
+"use client"
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import {
   Button,
-  Image,
   Text,
   VStack,
-  useColorModeValue,
+  useColorModeValue
 } from '@chakra-ui/react';
 import Link from 'next/link';
 

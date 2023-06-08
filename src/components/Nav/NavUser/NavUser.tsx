@@ -21,7 +21,7 @@ function NavUser({userAddress, onClick}:{userAddress: string, onClick?: () => vo
       <VStack
         w="full"
         py={10}
-        bgColor={useColorModeValue('white', 'blackAlpha.300')}
+        bgColor={useColorModeValue('white', 'whiteAlpha.200')}
         borderRadius="50px"
         borderWidth="0.5px"
         borderBottomWidth={5}
@@ -33,7 +33,7 @@ function NavUser({userAddress, onClick}:{userAddress: string, onClick?: () => vo
       <VStack
         w="full"
         py={10}
-        bgColor={useColorModeValue('white', 'blackAlpha.300')}
+        bgColor={useColorModeValue('white', 'whiteAlpha.200')}
         borderRadius="50px"
         flex={1}
         borderWidth="0.5px"
@@ -45,7 +45,7 @@ function NavUser({userAddress, onClick}:{userAddress: string, onClick?: () => vo
       <VStack
         w="full"
         py={10}
-        bgColor={useColorModeValue('white', 'blackAlpha.300')}
+        bgColor={useColorModeValue('white', 'whiteAlpha.200')}
         borderRadius="50px"
         p={5}
         borderWidth="0.5px"

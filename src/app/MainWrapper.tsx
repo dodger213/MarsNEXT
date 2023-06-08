@@ -6,14 +6,11 @@ import React, { ReactNode } from 'react';
 
 function MainWrapper({ children }: { children: ReactNode }) {
   return (
-    <div>
+    <VStack w="full" spacing={0} bgColor={useColorModeValue("gray.50", "blackAlpha.600")} >
       <Nav />
-      <div className='w-full min-h-screen align-middle justify-center'
-      >
-        {children}
-      </div>
+      <VStack w="full">{children}</VStack>
       <Footer></Footer>
-    </div>
+    </VStack>
   );
 }
 
