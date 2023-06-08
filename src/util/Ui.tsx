@@ -5,7 +5,10 @@ import {
   VStack,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
 import { ReactNode } from 'react';
+
+const MotionCenter = motion(Center)
 
 export const bgGradient = {
   heading: 'linear(to-r, red.500, yellow.500, green.500)',
@@ -53,6 +56,11 @@ export const CenterComponent = ({
       borderBottomWidth="thick"
       backdropFilter="blur(10px)"
       bgColor={useColorModeValue('white', 'whiteAlpha.200')}
+      _hover={{
+        borderColor: "pink"
+      }}
+      transition="border-color 0.5s"
+     
       {...style}
     >
       {children}

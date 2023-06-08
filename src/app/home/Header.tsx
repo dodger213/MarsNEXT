@@ -34,7 +34,7 @@ export const Header = () => {
       direction="column"
       bgGradient={useColorModeValue(
         'linear(to-b, white, blue.100, transparent)',
-        'linear(to-t, transparent, blue.900 50%, transparent)'
+        'linear(to-t, transparent, blue.900, transparent)'
       )}
     >
       <VStack w="full" spacing={70}>
