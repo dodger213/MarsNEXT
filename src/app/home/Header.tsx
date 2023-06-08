@@ -1,5 +1,11 @@
 import Particles from '@/components/Particles';
-import { Center, Flex, Image, VStack, useColorModeValue } from '@chakra-ui/react';
+import {
+  Center,
+  Flex,
+  Image,
+  VStack,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import { Canvas } from '@react-three/fiber';
 import { motion } from 'framer-motion-3d';
 import React, { Suspense, useState } from 'react';
@@ -32,11 +38,16 @@ export const Header = () => {
     >
       <VStack w="full" spacing={0} minH="100vh">
         {/* <Particles quantity={200}></Particles> */}
-        <VStack w="full" px={[2, 5, 10]} pt={200}>
+        <VStack w="full" px={[2, 5, 10]} pt={[150, 175, 200]}>
           <HeaderHeadingComponent />
         </VStack>
         <Flex flex={1}></Flex>
-        <Image src="/header.svg" alt="Header image" width="100%" minW={1200}></Image>
+        <Image
+          src="/header.svg"
+          alt="Header image"
+          width="100%"
+          minW={1200}
+        ></Image>
 
         {/* <Suspense>
           <Center w="full" h="200vh" position="absolute">
