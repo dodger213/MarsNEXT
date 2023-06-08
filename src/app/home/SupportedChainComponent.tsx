@@ -7,6 +7,8 @@ import {
   VStack,
   useBreakpointValue,
   useColorModeValue,
+  Image as ChakraImage,
+  Spacer,
 } from '@chakra-ui/react';
 import Image from 'next/image';
 
@@ -54,10 +56,12 @@ export const SupportedChainComponent = () => {
         gradientHeading="CURRENCIES"
       ></HeadingComponent>
       <HStack spacing={[2, 5, 10]} p={[2, 5, 10]}>
-        <CenterComponent style={{
-          w:150,
-          h: 120
-        }}>
+        <CenterComponent
+          style={{
+            w: 150,
+            h: 120,
+          }}
+        >
           <Image
             src={USDTLogoSVG}
             alt="bsc logo"
@@ -65,10 +69,12 @@ export const SupportedChainComponent = () => {
             height={useBreakpointValue([50, 70])}
           ></Image>
         </CenterComponent>
-        <CenterComponent style={{
-           w:150,
-           h: 120
-        }}>
+        <CenterComponent
+          style={{
+            w: 150,
+            h: 120,
+          }}
+        >
           <Image
             src={BUSDLogoSVG}
             alt="polygon logo"
@@ -85,6 +91,10 @@ export const SupportedChainComponent = () => {
           ></Image>
         </Tag> */}
       </HStack>
+      {/* <HStack w="full" px={[5, 10]} justify="space-evenly">
+        <ChakraImage src="/astro-with-flag.svg" w="400px"></ChakraImage>
+        <ChakraImage src="/bear.svg" w="200px"></ChakraImage>
+      </HStack> */}
     </VStack>
   );
 };

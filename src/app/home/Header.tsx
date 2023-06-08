@@ -1,5 +1,5 @@
 import Particles from '@/components/Particles';
-import { Center, VStack, useColorModeValue } from '@chakra-ui/react';
+import { Center, Flex, Image, VStack, useColorModeValue } from '@chakra-ui/react';
 import { Canvas } from '@react-three/fiber';
 import { motion } from 'framer-motion-3d';
 import React, { Suspense, useState } from 'react';
@@ -27,15 +27,18 @@ export const Header = () => {
       direction="column"
       bgGradient={useColorModeValue(
         'linear(to-b, white, blue.100, transparent)',
-        'linear(to-b, blackAlpha.900, blue.900, transparent)'
+        'linear(to-b, transparent, blue.900)'
       )}
     >
-      <VStack w="full" spacing={0} h="170vh">
-        <Particles quantity={200}></Particles>
-        <VStack w="full" px={[2, 5, 10]} pt={150}>
+      <VStack w="full" spacing={0} minH="100vh">
+        {/* <Particles quantity={200}></Particles> */}
+        <VStack w="full" px={[2, 5, 10]} pt={200}>
           <HeaderHeadingComponent />
         </VStack>
-        <Suspense>
+        <Flex flex={1}></Flex>
+        <Image src="/header.svg" alt="Header image" width="100%" minW={1200}></Image>
+
+        {/* <Suspense>
           <Center w="full" h="200vh" position="absolute">
             <Canvas>
               <ambientLight intensity={useColorModeValue(7, 5)} />
@@ -44,12 +47,11 @@ export const Header = () => {
                 intensity={useColorModeValue(0.1, 1)}
               />
               <SpaceModel mousePosition={mousePosition}></SpaceModel>
-              {/* <OrbitControls enableZoom={false}></OrbitControls> */}
+             
             </Canvas>
           </Center>
-        </Suspense>
+        </Suspense> */}
       </VStack>
-      <SupportedChainComponent />
     </VStack>
   );
 };

@@ -7,6 +7,7 @@ import {
   Center,
   Heading,
   Icon,
+  Image,
   Tag,
   Text,
   VStack,
@@ -37,17 +38,17 @@ const BoxComponent = ({
         h: 350,
       }}
     >
-      <VStack w="full" spacing={4}>
-        <Icon as={icon} boxSize={14}></Icon>
-        <Tag colorScheme="orange" fontWeight={900}>
+      <VStack w="full" spacing={5}>
+        <Icon as={icon} boxSize={10}></Icon>
+        <Tag colorScheme="green" fontWeight={900}>
           {heading}
         </Tag>
         <Heading color="orange.500" size="3xl" fontWeight={900}>
           {value}%
         </Heading>
-        <Heading textAlign="center" fontWeight={500} size="md">
+        <Text textAlign="center">
           {text}
-        </Heading>
+        </Text>
       </VStack>
     </CenterComponent>
   );
@@ -118,6 +119,7 @@ export const PlanDiscriptionComponent = () => {
           </Button>
         </Link>
       </Box>
+     
     </VStack>
   );
 };

@@ -37,9 +37,9 @@ const TagComponent = ({
     >
       <VStack w="full">
         <Icon as={icon} boxSize={14}></Icon>
-        <Heading color="orange.500" size={['sm', 'md']}>
+        <Text color="orange.500">
           {heading}
-        </Heading>
+        </Text>
       </VStack>
     </CenterComponent>
   );
@@ -59,10 +59,10 @@ export const PowerOfBlockchainComponent = () => {
       ></HeadingComponent>
       <Icon as={GiCubes} boxSize={[270, 300]}></Icon>
       <Container>
-        <Heading textAlign="center" size="md">
+        <Text textAlign="center">
           Every logic & reward distribution written on secure smart contracts.
           All smart contracts are verified on block explorers & open source.
-        </Heading>
+        </Text>
       </Container>
       <Wrap spacing={10} align="center" justify="center">
         <TagComponent icon={GiWineGlass} heading="Transparent"></TagComponent>

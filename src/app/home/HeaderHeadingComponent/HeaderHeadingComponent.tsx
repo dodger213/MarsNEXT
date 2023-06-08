@@ -10,12 +10,14 @@ export const HeaderHeadingComponent = () => {
         <Image
           src="/MarsNextTextLogo.svg"
           alt="MarsNext Logo"
-          w={"80%"}
+          w={'80%'}
         ></Image>
         <Text
           fontSize={['2xl', '3xl', '4xl']}
           textAlign="center"
           px={5}
+          lineHeight={1.2}
+          opacity={0.75}
         >
           A community centric decentralized reward distribution system.
         </Text>
