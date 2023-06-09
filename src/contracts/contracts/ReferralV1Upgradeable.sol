@@ -447,7 +447,6 @@ contract ReferralV1Upgradeable is
                 );
 
                 ibpAccount.ibpRewards += updatedIbpRewardValue;
-                ibpAccount.currentLimit += updatedIbpRewardValue;
 
                 IERC20Transfer.transfer(
                     userAccount.ibpAddress,
@@ -802,6 +801,15 @@ contract ReferralV1Upgradeable is
             IVariables(_variableContractAddress).getAdminAddress(),
             _userAddress
         );
+    }
+
+    function changeReferrer(
+        address _referrer,
+        address _user
+    ) external onlyOwner {
+        accounts[_user].referrerAddress = _referrer;
+        accounts[_referrer].refereeAddresses.push(_user);
+        accounts[_referrer].teamAddress.push(_user);
     }
 
     function getVariablesContract() external view returns (address) {
