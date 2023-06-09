@@ -64,7 +64,7 @@ export default function Footer() {
           </Flex>
         </VStack> */}
         <VStack spacing={5}>
-          <Text textAlign="center">Project Discription</Text>
+          <Text textAlign="center">Project Description</Text>
           <Button
             borderRadius="xl"
             rightIcon={<BsFilePdfFill />}
