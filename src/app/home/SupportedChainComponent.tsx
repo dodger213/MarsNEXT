@@ -15,7 +15,6 @@ import Image from 'next/image';
 export const SupportedChainComponent = () => {
   return (
     <VStack
-      zIndex={111}
       py={[50, 75, 100]}
       spacing={5}
       w="full"

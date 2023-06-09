@@ -43,7 +43,7 @@ const BoxComponent = ({
         <Tag colorScheme="green" fontWeight={900}>
           {heading}
         </Tag>
-        <Heading color="orange.500" size="3xl" fontWeight={900}>
+        <Heading color="orange.500" size="3xl" fontWeight={900} fontFamily="unset">
           {value}%
         </Heading>
         <Text textAlign="center">

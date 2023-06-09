@@ -19,8 +19,8 @@ export const ConnectWalletButton = ({
   const { isOpen, open, close, setDefaultChain } = useWeb3Modal();
   const { address } = useAccount();
   const conectWalletText = useBreakpointValue([
-    'Conect',
-    'Conect',
+    'Connect',
+    'Connect',
     'Connect Wallet',
   ]);
 

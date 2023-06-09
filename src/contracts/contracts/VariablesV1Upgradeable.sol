@@ -455,6 +455,14 @@ contract VariablesV1Upgradeable is
         }
     }
 
+    function getPresaleContract() external view returns (address) {
+        return _presaleContract;
+    }
+
+    function setPresaleContract(address _contractAddress) external onlyOwner {
+        _presaleContract = _contractAddress;
+    }
+
     function pause() public onlyOwner {
         _pause();
     }

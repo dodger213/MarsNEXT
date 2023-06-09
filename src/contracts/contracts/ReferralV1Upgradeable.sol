@@ -102,6 +102,8 @@ interface IVariables {
     function getRewardTokenContract() external view returns (address);
 
     function getRewardTokenRate() external view returns (uint8);
+
+    function getPresaleContract() external view returns (address);
 }
 
 contract ReferralV1Upgradeable is
@@ -578,6 +580,20 @@ contract ReferralV1Upgradeable is
     ) external {
         address _msgSender = msg.sender;
         _registration(_referrer, _msgSender, _planId, _tokenAddress);
+    }
+
+    function registrationWithTokenAdmin(
+        address _referrer,
+        address _userAddress,
+        uint8 _planId,
+        address _tokenAddress
+    ) external {
+        require(
+            msg.sender ==
+                IVariables(_variableContractAddress).getPresaleContract(),
+            "Only Presale contract can use this function"
+        );
+        _registration(_referrer, _userAddress, _planId, _tokenAddress);
     }
 
     //registrations stats
