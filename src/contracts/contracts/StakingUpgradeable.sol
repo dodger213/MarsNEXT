@@ -2,7 +2,6 @@
 pragma solidity ^0.8.18;
 
 import "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
@@ -57,17 +56,19 @@ interface IVariables {
     function getRewardTokenRate() external view returns (uint8);
 
     function getPresaleContract() external view returns (address);
+
+    function getReferralContract() external view returns (address);
 }
 
 contract StakingUpgradeable is
     Initializable,
-    PausableUpgradeable,
     OwnableUpgradeable,
     UUPSUpgradeable
 {
     address private _variablesContract;
     address[] private _stakers;
     uint256 private _totalValueStaked;
+    uint256 private _totalValueUnStaked;
     uint256 private _rewardsDistributed;
 
     uint256 private _stakingRewardRate;
@@ -115,7 +116,6 @@ contract StakingUpgradeable is
         _stakingRewardRate = 100;
         _stakingDuration = 365 days;
 
-        __Pausable_init();
         __Ownable_init();
         __UUPSUpgradeable_init();
     }
@@ -156,6 +156,7 @@ contract StakingUpgradeable is
 
         userAccount.stakingID.push(stakingID);
 
+        userStakingInfo.isActive = true;
         userStakingInfo.owner = _address;
         userStakingInfo.startTime = currentTime;
         userStakingInfo.duration = _duration;
@@ -169,6 +170,13 @@ contract StakingUpgradeable is
         return true;
     }
 
+    function stake(address _userAddress, uint256 _value) external {
+        require(
+            msg.sender == IVariables(_variablesContract).getReferralContract()
+        );
+        _stake(_userAddress, _value, _stakingRewardRate, _stakingDuration);
+    }
+
     function _getStakingReward(
         uint256 _stakingID
     ) private view returns (uint256 stakingReward) {
@@ -180,9 +188,8 @@ contract StakingUpgradeable is
 
         stakingReward =
             baseReward *
-            _min(stakingTimePassed, userStakingInfo.duration);
-
-        return stakingReward;
+            (_min(stakingTimePassed, userStakingInfo.duration) -
+                userStakingInfo.rewardClaimed);
     }
 
     function getStakingReward(
@@ -193,78 +200,77 @@ contract StakingUpgradeable is
 
     function getUserAllStakingsRewards(
         address _userAddress
-    ) external view returns (uint256) {
+    ) external view returns (uint256 allStakingRewards) {
         uint256[] memory userStakingIDs = account[_userAddress].stakingID;
         uint256 stakingIDLength = userStakingIDs.length;
-        uint256 userAllStakingRewards;
 
         for (uint8 i; i < stakingIDLength; i++) {
-            if (stakeInfo[userStakingIDs[i]].isActive) {
-                userAllStakingRewards += _getStakingReward(userStakingIDs[i]);
-            }
+            allStakingRewards += _getStakingReward(userStakingIDs[i]);
         }
-
-        return userAllStakingRewards;
     }
 
-    // function claimStakingReward(uint256 _stakingID) external whenNotPaused {
-    //     uint256 stakingRewardInANUSD = _getStakingRewardANUSD(_stakingID);
-    //     uint256 principalAmount = _getStakingRewardsToken(_stakingID);
-    //     require(stakingRewardInANUSD > 0, "You have no staking or ended");
-    //     IVariables variables = IVariables(_variablesContract);
+    function claimStakingReward(uint256 _stakingID) external {
+        uint256 stakingReward = _getStakingReward(_stakingID);
+        require(stakingReward > 0, "You have no staking or ended");
+        IVariables variables = IVariables(_variablesContract);
 
-    //     address _msgSender = msg.sender;
-    //     StakeInfo storage userStakingInfo = stakeInfo[_stakingID];
-    //     Account storage userAccount = account[_msgSender];
-    //     uint256 _currentTime = block.timestamp;
+        address _msgSender = msg.sender;
+        StakeInfo storage userStakingInfo = stakeInfo[_stakingID];
 
-    //     require(
-    //         userStakingInfo.owner == _msgSender,
-    //         "Sorry staking id doen't belongs to you."
-    //     );
+        require(
+            userStakingInfo.owner == _msgSender,
+            "Sorry staking id doen't belongs to you."
+        );
 
-    //     require(
-    //         !userAccount.isDisabled,
-    //         "Your account is disabled. Please contact admin."
-    //     );
+        userStakingInfo.rewardClaimed += stakingReward;
 
-    //     require(
-    //         userStakingInfo.lastTimeRewardClaimed +
-    //             _stakingRewardClaimTimeLimit <
-    //             block.timestamp,
-    //         "You cannot claim reward before timelimit."
-    //     );
+        _rewardsDistributed += stakingReward;
 
-    //     uint256[] memory rewardClaimed = _buyFromUniswap(
-    //         variables.anusdContract(),
-    //         stakingRewardInANUSD,
-    //         variables.tokenContract(),
-    //         variables.uniswapV2RouterContract()
-    //     );
+        IERC20Upgradeable(variables.getRewardTokenContract()).transfer(
+            _msgSender,
+            stakingReward
+        );
 
-    //     userStakingInfo.principalClaimed += principalAmount;
-    //     _totalPrincipalClaimed += principalAmount;
+        emit StakingRewardClaimed(
+            _msgSender,
+            stakingReward,
+            _stakingID,
+            variables.getRewardTokenContract()
+        );
+    }
 
-    //     userStakingInfo.rewardClaimedToken += rewardClaimed[1];
-    //     userStakingInfo.rewardClaimedANUSD += rewardClaimed[0];
-    //     userStakingInfo.lastTimeRewardClaimed = _currentTime;
+    function unStake(uint32 _stakingID) external {
+        StakeInfo storage userStakingInfo = stakeInfo[_stakingID];
+        require(userStakingInfo.isActive, "You have no staking or ended");
+        uint256 stakingReward = _getStakingReward(_stakingID);
+        IVariables variables = IVariables(_variablesContract);
+        address _msgSender = msg.sender;
 
-    //     _rewardsDistributedInToken += rewardClaimed[1];
-    //     _rewardsDistributedInANUSD += rewardClaimed[0];
+        require(
+            userStakingInfo.owner == _msgSender,
+            "Sorry staking id doen't belongs to you."
+        );
 
-    //     IERC20Upgradeable(variables.tokenContract()).transfer(
-    //         _msgSender,
-    //         rewardClaimed[1] + principalAmount
-    //     );
+        userStakingInfo.rewardClaimed += stakingReward;
 
-    //     emit PrincipalClaimed(_msgSender, principalAmount);
-    //     emit StakingRewardClaimed(
-    //         _msgSender,
-    //         rewardClaimed[1],
-    //         _stakingID,
-    //         variables.tokenContract()
-    //     );
-    // }
+        _rewardsDistributed += stakingReward;
+
+        emit StakingRewardClaimed(
+            _msgSender,
+            stakingReward,
+            _stakingID,
+            variables.getRewardTokenContract()
+        );
+
+        userStakingInfo.isActive = false;
+
+        emit Unstake(_msgSender, userStakingInfo.value, _stakingID);
+
+        IERC20Upgradeable(variables.getRewardTokenContract()).transfer(
+            _msgSender,
+            userStakingInfo.value + stakingReward
+        );
+    }
 
     function isStaked(address _userAddress) public view returns (bool) {
         Account storage userAccount = account[_userAddress];
@@ -427,29 +433,12 @@ contract StakingUpgradeable is
         return false;
     }
 
-    function withdrawTokens(
-        address _tokenAddress,
-        address _receiver,
-        uint256 _value
-    ) external onlyOwner returns (bool) {
-        IERC20Upgradeable(_tokenAddress).transfer(_receiver, _value);
-        return true;
+    function getVariablesContract() external view returns (address) {
+        return _variablesContract;
     }
 
-    function withdrawNativeFunds(
-        address _receiver,
-        uint256 _value
-    ) external onlyOwner returns (bool) {
-        payable(_receiver).transfer(_value);
-        return true;
-    }
-
-    function pause() public onlyOwner {
-        _pause();
-    }
-
-    function unpause() public onlyOwner {
-        _unpause();
+    function setVariablesContract(address _contractAddress) external onlyOwner {
+        _variablesContract = _contractAddress;
     }
 
     function _authorizeUpgrade(

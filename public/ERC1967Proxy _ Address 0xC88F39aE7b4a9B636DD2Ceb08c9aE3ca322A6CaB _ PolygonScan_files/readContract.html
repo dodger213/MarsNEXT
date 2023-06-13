@@ -1,0 +1,903 @@
+
+<!-- saved from url=(0143)https://polygonscan.com/readContract?m=normal&a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&v=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61&t=false -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" href="./bootstrap.css">
+<link rel="stylesheet" href="./all.css">
+<script src="./web3-utils.min(1).js"></script>
+<script src="./web3-eth.min(1).js"></script>
+<script src="./web3-providers-http.min(1).js"></script>
+<script src="./bignumber.min.js"></script>
+<script src="./xss.min.js"></script>
+<style type="text/css">
+        html {
+            font-size: 13px;
+        }
+
+        body {
+            font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+        }
+
+        a {
+            color: #3498db;
+        }
+
+            a:hover {
+                color: #1d6fa5;
+            }
+
+        .text-primary {
+            color: #3498db !important;
+        }
+
+        .btn-link:hover {
+            color: #1d6fa5;
+            text-decoration: none;
+        }
+
+        .card-btn-arrow {
+            display: inline-block;
+            color: #3498db;
+            margin-top: 5px;
+        }
+
+        #overlay {
+            /*background: #ffffff;*/
+            background: rgba(255,255,255,.7);
+            color: #666666;
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            z-index: 5000;
+            top: 0;
+            left: 0;
+            float: left;
+            text-align: center;
+            padding-top: 10%;
+            display: none;
+        }
+
+        .accordion-arrow {
+            display: inline-block;
+            transition: 0.3s ease-in-out;
+        }
+
+        .collapsed .accordion-arrow {
+            transform: rotate(-90deg);
+        }
+
+        body.dark-mode {
+            color: #a2b9c8;
+            background-color: transparent !important;
+        }
+
+        body.dark-mode .bg-light {
+            background-color: #140035 !important
+        }
+
+        body.dark-mode .text-secondary {
+            color: #7295ac !important
+        }
+
+        body.dark-mode .btn-light, body.dark-mode .btn-light:not([href]), body.dark-mode .btn-light:not([href]):not([href]):not(:disabled):not(.disabled) {
+            color: hsla(0,0%,100%,.8);
+            background-color: rgba(52,152,219,.2);
+            border-color: rgba(52,152,219,.2) !important;
+        }
+
+        body.dark-mode .border, body.dark-mode .border-bottom, body.dark-mode .border-top, body.dark-mode .u-ver-divider--left:after, body.dark-mode .u-ver-divider:after {
+            border-color: #1e004f !important
+        }
+
+        body.dark-mode p {
+            color: #a2b9c8
+        }
+
+        body.dark-mode .modal-footer, body.dark-mode .modal-header {
+            border-color: #1e004f
+        }
+
+        body.dark-mode .card {
+            border-color: transparent;
+            background-color: #140035 !important;
+        }
+
+        body.dark-mode .card-header {
+            background-color: #140035 !important;
+            border-color: #1e004f
+        }
+
+        body.dark-mode .card-header-title {
+            color: #a2b9c8
+        }
+
+        body.dark-mode .card-btn {
+            color: #a2b9c8
+        }
+
+        body.dark-mode .form-control::-webkit-input-placeholder {
+            color: #577c93
+        }
+
+        body.dark-mode .form-control::-moz-placeholder {
+            color: #577c93
+        }
+
+        body.dark-mode .form-control::-ms-input-placeholder {
+            color: #577c93
+        }
+
+        body.dark-mode .form-control::placeholder {
+            color: #577c93
+        }
+
+        body.dark-mode .link-hover-secondary,body.dark-mode .text-dark,body.dark-mode .text-link,body.dark-mode .text-muted,body.dark-mode .text-white {
+            color: #a2b9c8!important
+        }
+
+        body.dark-mode .custom-select, body.dark-mode .form-control, body.dark-mode .input-group-text {
+            color: #a2b9c8 !important;
+            border-color: #1e004f !important;
+            background-color: #140035 !important
+        }
+
+        body.dark-mode .alert-secondary {
+            background-color: #140035 !important;
+            border-color: #1e004f !important;
+        }
+
+        .tooltip-inner {
+            padding: 0.25rem 0.5rem;
+            color: #fff;
+            text-align: center;
+            background-color: #12161c !important;
+            border-radius: 0.35rem;
+        }
+        .tooltip.show {
+            opacity: 1 !important;
+        }
+
+        .bs-tooltip-top .arrow::before, .bs-tooltip-auto[x-placement^="top"] .arrow::before {
+            top: 0;
+            border-width: 0.4rem 0.4rem 0;
+            border-top-color: #12161c !important;
+        }
+
+        body .tooltip {
+            position: absolute;
+            z-index: 1070;
+            display: block;
+            margin: 0;
+            font-family: Helvetica,Arial,sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1.5;
+            text-align: left;
+            text-align: start;
+            text-decoration: none;
+            text-shadow: none;
+            text-transform: none;
+            letter-spacing: normal;
+            word-break: normal;
+            word-spacing: normal;
+            white-space: normal;
+            line-break: auto;
+            font-size: 0.875rem;
+            word-wrap: break-word;
+            opacity: 0;
+        }
+
+        .permalink_text {
+            position: absolute;
+            top: 7px;
+            right: 29px;
+        }
+
+        .blink-container {
+            width: 100%;
+        }
+
+        .blinking-bg {
+            border-width: 1px;
+            border-style: solid;
+            border-color: #007bff !important;
+            border-radius: 0.25rem;
+        }
+
+        .border-primary_r {
+            border-color: #007bff;
+        }
+
+    </style>
+</head>
+<body>
+<div id="overlay" class="py-3 text-center">
+<img src="./loadingblock.svg" alt="Loading">
+</div>
+<div class="d-flex justify-content-between mb-3"><p class="ml-1 mr-3 mb-1"><i class="far fa-file-alt text-secondary mr-1"></i> Read Contract Information</p> <span><a href="https://polygonscan.com/readContract?m=normal&amp;a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&amp;v=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61&amp;t=false#" class="mr-1 expandCollapseAllButton" onclick="expandCollapseAll()">[Expand all]</a><a href="https://polygonscan.com/readcontract?m=normal&amp;a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&amp;v=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61">[Reset]</a></span></div>
+<div id="readContractAccordion">
+<div class="card mb-3"><div class="card-header bg-light card-collapse p-0" id="readHeading1" style="position: relative;"><a class="btn btn-link btn-block text-dark d-flex justify-content-between align-items-center py-2 collapsed" data-toggle="collapse" href="https://polygonscan.com/readContract?m=normal&amp;a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&amp;v=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61&amp;t=false#readCollapse1" aria-expanded="false" aria-controls="readCollapse1">1. getAdminList <span class="accordion-arrow"><i class="fas fa-arrow-down small"></i></span></a><a class="btn btn-sm btn-icon mr-1 permalink_text text-dark" href="javascript:;" onclick="read_contract.generate_permalink(this, 1)" data-toggle="tooltip" title="" data-original-title="Copy Permalink"><i class="far fa-link btn-icon__inner"></i></a></div><div id="readCollapse1" class="collapse readContractFunction" aria-labelledby="readHeading1"><div class="card-body p-3"><form><div class="form-group"><button type="button" id="btn_1" class="btn btn-xs btn-light border" onclick="ethcall2(&#39;getAdminList&#39;, &#39;input_1&#39;,&#39;myanswer_1&#39;,&#39;uint8&#39;, &#39;adminsList|address[];adminsCount|uint256;adminShareRate|uint8&#39;, &#39;btn_1&#39;);">Query</button></div><div class="text-secondary mt-3"><img src="./shape-1.svg" class="mt-n1" width="8"> adminsList <i><span class="text-monospace text-secondary">address[]</span></i>, adminsCount <i><span class="text-monospace text-secondary">uint256</span></i>, adminShareRate <i><span class="text-monospace text-secondary">uint8</span></i> <span id="myanswer_1"></span></div></form></div></div></div><div class="card mb-3"><div class="card-header bg-light card-collapse p-0" id="readHeading2" style="position: relative;"><a class="btn btn-link btn-block text-dark d-flex justify-content-between align-items-center py-2 collapsed" data-toggle="collapse" href="https://polygonscan.com/readContract?m=normal&amp;a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&amp;v=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61&amp;t=false#readCollapse2" aria-expanded="false" aria-controls="readCollapse2">2. getCoreMembersList <span class="accordion-arrow"><i class="fas fa-arrow-down small"></i></span></a><a class="btn btn-sm btn-icon mr-1 permalink_text text-dark" href="javascript:;" onclick="read_contract.generate_permalink(this, 2)" data-toggle="tooltip" title="" data-original-title="Copy Permalink"><i class="far fa-link btn-icon__inner"></i></a></div><div id="readCollapse2" class="collapse readContractFunction" aria-labelledby="readHeading2"><div class="card-body p-3"><form><div class="form-group"><button type="button" id="btn_2" class="btn btn-xs btn-light border" onclick="ethcall2(&#39;getCoreMembersList&#39;, &#39;input_2&#39;,&#39;myanswer_2&#39;,&#39;uint256&#39;, &#39;coreMembersList|address[];coreMembersLength|uint256&#39;, &#39;btn_2&#39;);">Query</button></div><div class="text-secondary mt-3"><img src="./shape-1.svg" class="mt-n1" width="8"> coreMembersList <i><span class="text-monospace text-secondary">address[]</span></i>, coreMembersLength <i><span class="text-monospace text-secondary">uint256</span></i> <span id="myanswer_2"></span></div></form></div></div></div><div class="card mb-3"><div class="card-header bg-light card-collapse p-0" id="readHeading3" style="position: relative;"><a class="btn btn-link btn-block text-dark d-flex justify-content-between align-items-center py-2 collapsed" data-toggle="collapse" href="https://polygonscan.com/readContract?m=normal&amp;a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&amp;v=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61&amp;t=false#readCollapse3" aria-expanded="false" aria-controls="readCollapse3">3. isUserInCoreMembersList <span class="accordion-arrow"><i class="fas fa-arrow-down small"></i></span></a><a class="btn btn-sm btn-icon mr-1 permalink_text text-dark" href="javascript:;" onclick="read_contract.generate_permalink(this, 3)" data-toggle="tooltip" title="" data-original-title="Copy Permalink"><i class="far fa-link btn-icon__inner"></i></a></div><div id="readCollapse3" class="collapse readContractFunction" aria-labelledby="readHeading3"><div class="card-body p-3"><form><div class="form-group"><div class="form-group"><label>_userAddress (address)</label><input type="text" class="form-control form-control-xs" name="input_3" id="input_3_1" data-grp="g3" data-type="address" placeholder="   _userAddress (address)"></div> <button type="button" id="btn_3" class="btn btn-xs btn-light border" onclick="ethcall2(&#39;isUserInCoreMembersList&#39;, &#39;input_3&#39;,&#39;myanswer_3&#39;,&#39;bool&#39;, &#39;|bool&#39;, &#39;btn_3&#39;);">Query</button></div><div class="text-secondary mt-3"><img src="./shape-1.svg" class="mt-n1" width="8"> <i><span class="text-monospace text-secondary">bool</span></i> <span id="myanswer_3"></span></div></form></div></div></div><div class="card mb-3"><div class="card-header bg-light card-collapse p-0" id="readHeading4" style="position: relative;"><a class="btn btn-link btn-block text-dark d-flex justify-content-between align-items-center py-2 collapsed" data-toggle="collapse" href="https://polygonscan.com/readContract?m=normal&amp;a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&amp;v=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61&amp;t=false#readCollapse4" aria-expanded="false" aria-controls="readCollapse4">4. owner <span class="accordion-arrow"><i class="fas fa-arrow-down small"></i></span></a><a class="btn btn-sm btn-icon mr-1 permalink_text text-dark" href="javascript:;" onclick="read_contract.generate_permalink(this, 4)" data-toggle="tooltip" title="" data-original-title="Copy Permalink"><i class="far fa-link btn-icon__inner"></i></a></div><div id="readCollapse4" class="collapse readContractFunction" aria-labelledby="readHeading4"><div class="card-body p-3"><form><div class="form-group"><a href="https://polygonscan.com/address/0x64b909a2c51aa62f30e75010b726a8ce863285fa" target="_parent">0x64b909a2c51aa62f30e75010b726a8ce863285fa</a> <i><span class="text-monospace text-secondary">address</span></i></div></form></div></div></div><div class="card mb-3"><div class="card-header bg-light card-collapse p-0" id="readHeading5" style="position: relative;"><a class="btn btn-link btn-block text-dark d-flex justify-content-between align-items-center py-2 collapsed" data-toggle="collapse" href="https://polygonscan.com/readContract?m=normal&amp;a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&amp;v=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61&amp;t=false#readCollapse5" aria-expanded="false" aria-controls="readCollapse5">5. paused <span class="accordion-arrow"><i class="fas fa-arrow-down small"></i></span></a><a class="btn btn-sm btn-icon mr-1 permalink_text text-dark" href="javascript:;" onclick="read_contract.generate_permalink(this, 5)" data-toggle="tooltip" title="" data-original-title="Copy Permalink"><i class="far fa-link btn-icon__inner"></i></a></div><div id="readCollapse5" class="collapse readContractFunction" aria-labelledby="readHeading5"><div class="card-body p-3"><form><div class="form-group">False <i><span class="text-monospace text-secondary">bool</span></i></div></form></div></div></div><div class="card mb-3"><div class="card-header bg-light card-collapse p-0" id="readHeading6" style="position: relative;"><a class="btn btn-link btn-block text-dark d-flex justify-content-between align-items-center py-2 collapsed" data-toggle="collapse" href="https://polygonscan.com/readContract?m=normal&amp;a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&amp;v=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61&amp;t=false#readCollapse6" aria-expanded="false" aria-controls="readCollapse6">6. proxiableUUID <span class="accordion-arrow"><i class="fas fa-arrow-down small"></i></span></a><a class="btn btn-sm btn-icon mr-1 permalink_text text-dark" href="javascript:;" onclick="read_contract.generate_permalink(this, 6)" data-toggle="tooltip" title="" data-original-title="Copy Permalink"><i class="far fa-link btn-icon__inner"></i></a></div><div id="readCollapse6" class="collapse readContractFunction" aria-labelledby="readHeading6"><div class="card-body p-3"><form><div class="form-group"> <i><span class="text-monospace text-secondary">bytes32</span></i></div></form></div></div></div>
+</div>
+
+<script src="./jquery.min.js"></script>
+<script src="./jquery-migrate.min.js"></script>
+<script src="./popper.min.js" "=""></script>
+<script src="./bootstrap.min.js"></script>
+<script>
+    var contractframe = "";
+    var loadingcontractframe = "";
+    var counter = 1;
+
+    //$('#overlay', window.parent.document).hide();
+    jQuery(window).load(function () {
+        var mode = getParameterByName("m");
+
+        if (window.parent.document.URL.indexOf('readCustomContract') != -1) {
+            contractframe = "readcustomcontractiframe";
+            loadingcontractframe = "loadingReadCustomContractframe";
+        } else if (window.parent.document.URL.indexOf('readProxyContract') != -1) {
+            contractframe = "readproxycontractiframe";
+            loadingcontractframe = "loadingReadProxyContractframe";
+        } else {
+            contractframe = "readcontractiframe";
+            loadingcontractframe = "loadingReadContractframe";
+        }
+
+        if (mode === "dark") {
+            var src = $('body');                     
+            src.addClass('dark-mode');
+        }
+
+        $('#overlay').fadeOut("slow");
+        window.parent.document.getElementById(loadingcontractframe).style.display = "none";
+        //
+
+        setTimeout(function () {
+            var obj = window.parent.document.getElementById(contractframe);
+                if (obj)
+                parent.resizeIframe(obj, 0);
+        }, 300);
+        
+        window.parent.document.getElementById('overlayMain').style.display = 'none';
+    });
+
+    String.prototype.escape = function () {
+        var tagsToReplace = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;'
+        };
+        return this.replace(/[&<>]/g, function (tag) {
+            return tagsToReplace[tag] || tag;
+        });
+    };
+   
+    function getcontractabi(contractaddress) {
+        
+            $.post("https://api.polygonscan.com/api",
+        
+                {
+                    module: "contract",
+                    action: "getabit",
+                    address: contractaddress
+                },
+                function (data, status) {
+                    console.log("contractAbi = " + data)
+                });
+    }
+
+    
+    var MATIC = new Web3Eth(new Web3HttpProvider("https://polygon-rpc.com"));
+    
+    var MyContract;
+    var myContractInstance;
+    try {
+        //use variables to retain formatting for abi
+        var abi = [{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"adminAddress","type":"address"}],"name":"AddedAdmin","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"coreMemberAddress","type":"address"}],"name":"AddedCoreMember","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"previousAdmin","type":"address"},{"indexed":false,"internalType":"address","name":"newAdmin","type":"address"}],"name":"AdminChanged","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"adminAddress","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"valuePaidInContract","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"totalMembers","type":"uint256"},{"indexed":false,"internalType":"address","name":"paidIn","type":"address"}],"name":"AdminSharePaid","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"beacon","type":"address"}],"name":"BeaconUpgraded","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"coreMemberAddress","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"valuePaidInContract","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"totalMembers","type":"uint256"},{"indexed":false,"internalType":"address","name":"paidIn","type":"address"}],"name":"CoreMembersRewardPaid","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint8","name":"version","type":"uint8"}],"name":"Initialized","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"account","type":"address"}],"name":"Paused","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"adminAddress","type":"address"}],"name":"RemovedAdmin","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"coreMemberAddress","type":"address"}],"name":"RemovedCoreMember","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"account","type":"address"}],"name":"Unpaused","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"implementation","type":"address"}],"name":"Upgraded","type":"event"},{"inputs":[{"internalType":"address","name":"_address","type":"address"}],"name":"addAdmin","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_userAddress","type":"address"}],"name":"addCoreMember","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"distributeETH","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_tokenContract","type":"address"}],"name":"distributeToken","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"getAdminList","outputs":[{"internalType":"address[]","name":"adminsList","type":"address[]"},{"internalType":"uint256","name":"adminsCount","type":"uint256"},{"internalType":"uint8","name":"adminShareRate","type":"uint8"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getCoreMembersList","outputs":[{"internalType":"address[]","name":"coreMembersList","type":"address[]"},{"internalType":"uint256","name":"coreMembersLength","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"initialize","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_userAddress","type":"address"}],"name":"isUserInCoreMembersList","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"pause","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"paused","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"proxiableUUID","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_address","type":"address"}],"name":"removeAdmin","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_userAddress","type":"address"}],"name":"removeCoreMember","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint8","name":"_value","type":"uint8"}],"name":"setAdminShareRate","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"unpause","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newImplementation","type":"address"}],"name":"upgradeTo","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newImplementation","type":"address"},{"internalType":"bytes","name":"data","type":"bytes"}],"name":"upgradeToAndCall","outputs":[],"stateMutability":"payable","type":"function"}];
+        var address = "0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB";
+        myContractInstance = new MATIC.Contract(abi, address);
+    }
+    catch (err) {
+        console.log(err.message);
+    }    
+    function ethcall2(strMethodName, strInputElementName, strOutputElementName, strOutputtype, strOutputFieldNames, strBtnName) {
+        if (counter <= 50) {
+            counter = counter + 1;
+            var functionNametoCall = 'myContractInstance.methods.' + strMethodName;
+            var result;
+            try {
+                var inputs = [];
+                var elms = document.querySelectorAll("[name=" + strInputElementName + "]");
+                //console.log("elms.length = " + elms.length);            
+                for (var i = 0; i < elms.length; i++) {
+                    var type = elms[i].getAttribute('data-type');
+                    var grp = elms[i].getAttribute('data-grp');
+                    var values = [];
+
+                    if (elms[i].value == '' && grp === null) {
+                        document.getElementById(strInputElementName).focus();
+                        alert('Input value cannot be empty');
+                        return false;
+                    }
+
+                    var value = "";
+                    if (type == "tuple" || type == "tuple[]") {
+                        // don't strip tuple input - retain formatting
+                        value = elms[i].value;
+                    } else {
+                        if (type.indexOf('[') !== -1) {
+                            // don't strip empty array - retain value as "[]"
+                            value = elms[i].value;
+                        }
+                        else {
+                            value = strip(elms[i].value);
+                        }
+                    }
+
+                    if (value) {
+                        if (type.indexOf('[') !== -1 && type.indexOf(']') !== -1) values.push(value.split(','));
+                        else values.push(value);
+                    } else values.push('');
+
+                    inputs.push({ type: type, value: values, grp: grp });
+
+                }
+
+                var params = encodeParams(inputs);
+                showLoading(true, strBtnName);
+
+
+                if (typeof params == 'undefined') {
+                    new Function(functionNametoCall + "().call(function(err, res){ if (err) {result = err; console.log(result); showError('" + strBtnName + "','" + strOutputElementName + "',err); } else { result = res; console.log(result); showMessage('"
+                        + strMethodName + "',result,'" + strOutputElementName + "','" + strOutputFieldNames + "','" + strBtnName + "');  }});")();
+                } else {
+                    //hard coded address 0x0 - some function calls won't work without this
+                    new Function(functionNametoCall + "(" + params + ").call({from: '0x0000000000000000000000000000000000000000'}, function(err, res){ if (err) {result = err; showError('" + strBtnName + "','" + strOutputElementName + "',err);} else { result = res; console.log(result);showMessage('"
+                        + strMethodName + "',result,'" + strOutputElementName + "','" + strOutputFieldNames + "','" + strBtnName + "');  }  });")();
+                }
+            }
+            catch (err) {
+                result = "" + filterXSS(err.toString()) + "";
+                console.log(result);
+                htmlEncoded = htmlEncode(result);
+                document.getElementById(strOutputElementName).innerHTML = "<span class='text-danger'>" + htmlEncoded + "</span>";
+                showLoading(false, strBtnName);
+            }
+        }
+    }
+
+    function encodeParams(values) {
+        var params = '';
+
+        if (values.length === 0)
+            return undefined;
+
+        for (i = 0; i < values.length; i++) {
+            var param = values[i];
+
+            if (param.value !== '') {
+                if (param.grp !== null) {
+                    var _grp = values.filter(function (x) { return x.grp == param.grp });
+                    var _grpParam = '';
+
+                    for (g = 0; g < _grp.length; g++) {
+                        param = _grp[g];
+
+                        if (param.value[0] !== '') {
+                            if (g == 0)
+                                if (param.type == "tuple" || param.type == "tuple[]") {
+                                    _grpParam = param.value[0];
+                                } else {
+                                    _grpParam = toHex(param.type, Escape(param.value[0]));
+                                }
+                            else
+                                if (param.type == "tuple" || param.type == "tuple[]") {
+                                    _grpParam = _grpParam + ',' + param.value[0];
+                                } else {
+                                    _grpParam = _grpParam + ',' + toHex(param.type, Escape(param.value[0]));
+                                }
+                        }
+                    }
+                   // _grpParam += ']';
+
+                    if (i == 0)
+                        params += _grpParam;
+                    else
+                        params += ',' + _grpParam;
+
+                    i += _grp.length - 1;
+                }
+                else {
+                    if (i == 0)
+                        if (param.type == "tuple" || param.type == "tuple[]") {
+                            params = param.value[0];
+                        } else {
+                            params = toHex(param.type, Escape(param.value[0]));
+                        }
+                    else
+                        if (param.type == "tuple" || param.type == "tuple[]") {
+                            if (param.type == "tuple" || param.type == "tuple[]") {
+                                params = param.value[0];
+                            } else {
+                                params = toHex(param.type, Escape(param.value[0]));
+                            }
+                        } else {
+                            params = params + ',' + toHex(param.type, Escape(param.value[0]));
+                        }
+                }
+            }
+        }
+
+        return params;
+    }
+
+    function toHex(type, val) {
+        if (type.indexOf('bool') !== -1)
+            if (type.indexOf('[') !== -1) {
+                return val;
+            } else {
+                return JSON.parse(val);
+            }
+        else if (type.indexOf('address') !== -1)
+            if (type.indexOf('[') !== -1) {
+                // check for address[] - Convenience parsing to wrap with double quotes
+                // multidimensional arrays will rely on the user providing the correct input (brackets, double quotes on the correct places)
+                var tmp = val.toString().replace("[", "").replace("]", "").split(",");
+                var toReturn = "";
+                for (var i = 0; i < tmp.length; i++) {
+                    if (tmp[i].length == 0)
+                        toReturn = toReturn + " ," //let it error
+                    else
+                        toReturn = toReturn + "'" + add0xforAddress(tmp[i].toString().replace("\"", "").replace("'", "").replace("\"", "").replace("'", "")) + "',"
+                }
+                toReturn = toReturn.slice(0, -1);
+                toReturn = "[" + toReturn + "]";
+                return toReturn;
+            } else {
+                // strip any existing double quotes or single quotes
+                val = val.replace("\"", "").replace("'", "");
+                // needed to do it twice
+                val = val.replace("\"", "").replace("'", "");
+                return "'" + add0xforAddress(val) + "'";
+            }
+        else if (type == 'string')
+            // which also means if you double quote your strings, it'll follow suit ;)
+            return "'" + val + "'"
+        else if (type.indexOf('uint') !== -1)
+            if (type.indexOf('[') !== -1) {
+                // check for uint[] - Convenience parsing to wrap with double quotes
+                // multidimensional arrays will rely on the user providing the correct input (brackets, double quotes on the correct places), exit if it is
+                if (type.split(/[[1-9]]/).length == 2) {
+                    var tmp = val.toString().replace("[", "").replace("]", "").split(",");
+                    var toReturn = "";
+
+                    // specifically handle empty array
+                    if (tmp.length == 1) {
+                        if (tmp[0].toString() == "") {
+                            return "[]";
+                        }
+                    }
+
+                    for (var i = 0; i < tmp.length; i++) {
+                        toReturn = toReturn + "'" + tmp[i].toString() + "',"
+                    }
+                    toReturn = toReturn.slice(0, -1);
+                    toReturn = "[" + toReturn + "]";
+                    return toReturn;
+                } else {
+                    // avoid handling complex data types, rely on user to enter them as appropriate
+                    return val;
+                }
+            }
+            else {
+                // strip any existing double quotes or single quotes
+                val = val.replace("\"", "").replace("'", "");
+                // needed to do it twice
+                val = val.replace("\"", "").replace("'", "");
+                return "'" + val + "'";
+            }
+        else if (type.indexOf('byte') !== -1)
+            if (type.indexOf('[') !== -1) {
+                // multidimensional arrays will rely on the user providing the correct input (brackets, double quotes on the correct places), exit if it is
+                if (type.split(/[[1-9]]/).length == 2) {
+                    var tmp = val.toString().replace("[", "").replace("]", "").split(",");
+                    var toReturn = "";
+
+                    // specifically handle empty array
+                    if (tmp.length == 1) {
+                        if (tmp[0].toString() == "") {
+                            return "[]";
+                        }
+                    }
+
+                    for (var i = 0; i < tmp.length; i++) {
+                        toReturn = toReturn + "'" + tmp[i].toString() + "',"
+                    }
+                    toReturn = toReturn.slice(0, -1);
+                    toReturn = "[" + toReturn + "]";
+                    return toReturn;
+                } else {
+                    // avoid handling complex data types, rely on user to enter them as appropriate - including quote wrapping
+                    return val;
+                }
+            }
+            else {
+                // strip any existing double quotes or single quotes
+                val = val.replace("\"", "").replace("'", "");
+                // needed to do it twice
+                val = val.replace("\"", "").replace("'", "");
+                return "'" + val + "'";
+            }
+        else
+            return val
+    };
+
+    //function toHex(type, val) {
+
+    //    if (Array.isArray(val)) {
+    //        var param = "[";
+
+    //        var i;
+    //        for (i = 0; i < val.length; i++) {
+    //            if (i == 0)
+    //                param += toHex(type, val[i]);
+    //            else
+    //                param = param + ',' + toHex(type, val[i]);
+    //        }
+    //        param += "]";
+
+    //        return param;
+
+    //    } else {
+    //        if (type.indexOf('bool') !== -1)
+    //            return JSON.parse(val);
+    //        else if (type.indexOf('address') !== -1)
+    //            return "'" + add0xforAddress(val) + "'"
+    //        else
+    //            return "'" + val + "'"
+    //    }
+
+    //};
+
+     function strip(val) {
+
+
+        val = val.replace(/"/g, '');
+        val = val.replace('[', '');
+        val = val.replace(']', '');
+
+
+        return val;
+    }
+
+
+    function showMessage(strMethodName, result, strOutputElementName, strOutputFieldNames, strBtnName) {
+        
+        document.getElementById(strOutputElementName).innerHTML = "<br><br> [&nbsp;<b>" + strMethodName + "</b> method Response ]<br>" + formatmultipleoutputs(result, strOutputFieldNames) + "<br>";
+        showLoading(false, strBtnName);  
+
+         //var obj = window.parent.document.getElementById('readcontractiframe');
+         //   parent.resizeIframe(obj, 0);
+
+        var height = $('#' + strOutputElementName).closest('.readContractFunction').height();
+        var id = $('#' + strOutputElementName).closest('.card-body').parent().prev().attr('id');
+        var obj = window.parent.document.getElementById(contractframe);
+
+        if (cardHeightDict[id]) {
+            $(obj).height(($(obj).height() - cardHeightDict[id] + height) + "px")
+            cardHeightDict[id] = height;
+        } else {
+            $(obj).height(($(obj).height() + height) + "px")
+            cardHeightDict[id] = height;
+        }
+    }
+
+    function showLoading(isShow, strBtnName) {
+        
+        if (isShow) {
+            $(" <img id='waiting_" + strBtnName + "' class='waitingImg' src='/images/ajax-loader2.gif' style='margin-left:5px;' alt='Loading' />").insertAfter($('#' + strBtnName));
+            $('#' + strBtnName).prop('disabled', true);
+        } else {
+            $('#' + strBtnName).prop('disabled', false);
+            $('#waiting_' + strBtnName).remove(); 
+        }
+    }
+
+    function showError(strBtnName, strOutputElementName, errResult) {
+        result = "" + errResult.toString().escape() + "";
+        htmlEncoded = htmlEncode(result);
+        document.getElementById(strOutputElementName).innerHTML = "<span class='text-danger'>" + htmlEncoded + "</span>";
+        showLoading(false, strBtnName);
+    }
+
+   function Escape(val) {
+
+        if (typeof val === 'string' || val instanceof String)
+            return val.replace(/'/g, "\\u0027");
+        else
+            return val;
+
+    }
+
+    function formatmultipleoutputs(strVal, strOutputFieldNames) {
+        var strAnswer = '';
+        //console.log("strVal = " + strVal);
+        //console.log("strOutputFieldNames = " + strOutputFieldNames);
+        //console.log("strVal.length = " + strVal.length);
+        if (strOutputFieldNames.includes(';') == true) {
+            var res_2 = strOutputFieldNames.split(';');
+            if (Object.keys(strVal).length > 0) {
+                for (var i = 0; i < res_2.length; i++) {
+                    var tmparray = res_2[i].toString().split('|');
+                    strAnswer = strAnswer + "&nbsp;<span class='text-success'><i class='fa  fa-angle-double-right'></i></span> ";
+                    if (res_2[i] != null && res_2[i].toString() != '') {
+                        strAnswer = strAnswer + " <strong>" + filterXSS(tmparray[0]) + "</strong> &nbsp; <span class='text-monospace text-secondary'><i>" + filterXSS(tmparray[1]) + "</i></span> <b>:</b> &nbsp;"
+                    }
+                    if (strVal[i] === null) {
+                        strAnswer = strAnswer + formatresult("", filterXSS(tmparray[1])) + "<br>";
+                    } else {
+                        var strOutputValue = strVal[i];
+                        if (/\r|\n/.exec(strOutputValue)) {
+                            strOutputValue = strOutputValue.replaceAll(/\r|\n/g, "xxxspacexxx");
+                        }
+                        strOutputValue = formatresult(strOutputValue, filterXSS(tmparray[1]));
+                        strOutputValue = strOutputValue.replaceAll("xxxspacexxx", "<br/>");
+                        strAnswer = strAnswer + strOutputValue + "<br>";
+                    }
+                }
+            }
+        } else {
+            strAnswer = strAnswer + "&nbsp;<span class='text-success'><i class='fa  fa-angle-double-right'></i></span> ";
+            if (strOutputFieldNames != '') {
+                var tmparray = strOutputFieldNames.toString().split('|');
+                strAnswer = strAnswer + " <strong>" + filterXSS(tmparray[0]) + "</strong> &nbsp; <span class='text-secondary'><i>" + filterXSS(tmparray[1]) + "</i></span> <b>:</b> &nbsp;";
+                if (/\r|\n/.exec(strVal)) {
+                    strVal = strVal.replaceAll(/\r|\n/g, "xxxspacexxx");
+                }
+                strVal = formatresult(strVal, filterXSS(tmparray[1]))
+                strVal = strVal.replaceAll("xxxspacexxx", "<br/>");
+                strAnswer = strAnswer + strVal.toString() + "<br>";
+            } else {
+                strAnswer = strAnswer + strVal.toString() + "<br>";
+            }
+        }
+        return strAnswer;
+    }
+
+    function htmlEncode(value) {
+        return $('<div/>').text(value).html();
+    }
+    function replaceAll(str, find, replace) {
+        return str.replace(new RegExp(find, 'g'), replace);
+    }
+    function isInt(value) {
+        if (isNaN(value)) {
+            return false;
+        }
+        return parseInt(value);
+    }
+    function getBool(val) {
+        try {
+            //to check the val is INT or not.
+            let intVal = isInt(val);
+            if (intVal) {
+                //!! is to cast the result into boolean
+                return !!JSON.parse(String(intVal).toLowerCase());
+            } else {
+                return !!JSON.parse(String(val).toLowerCase());
+            }
+        } catch (err) {
+            return false;
+        }
+    }
+    function formatresult(strResult, resulttype) {
+        temp = strResult;
+        // cleansing
+        strResult = filterXSS(strResult);
+
+        if (resulttype.startsWith('uint')) {
+            return toFixed(strResult);
+        } else if (resulttype == 'string') {
+            return strResult;
+        } else if (resulttype == 'address') {
+            if (strResult != '0x0000000000000000000000000000000000000000') {
+                return "<a href='/address/" + strResult + "' target='_blank'>" + strResult + "</a>";
+            } else {
+                return strResult;
+            }
+        } else if (resulttype == 'bool') {
+            return getBool(remove0x(strResult)).toString();
+        } else if (resulttype.startsWith('tuple[') || resulttype.startsWith('address[')) {
+            strResult = "xxxspacexxx[";
+            temp.forEach(function (item) {
+                strResult = strResult + '[' + filterXSS(item) + ']xxxspacexxx'
+            });
+            //to avoid extra new line
+            if (strResult.endsWith('xxxspacexxx')) {
+                strResult = strResult.substring(0, strResult.length - 11)
+            }
+            strResult = strResult + ']';
+            return strResult
+        } else {
+            return strResult;
+        }
+    }
+    function hex_to_ascii(str1) {
+        var hex = str1.toString();
+        var str = '';
+        for (var n = 0; n < hex.length; n += 2) {
+            str += String.fromCharCode(parseInt(hex.substr(n, 2), 16));
+        }
+        return str;
+    }
+    function extractaddress(str1) {
+        if (str1.length > 40) {
+            str1.substr(str1.length - 40)
+        }
+        return str1;
+    }
+    function remove0x(str1) {
+        if (str1.startsWith("0x") == true) {
+            str1 = str1.substr(str1.length - str1.length + 2);
+        }
+        return str1;
+    }
+    function add0xforAddress(straddress) {
+        straddress = straddress.trim();
+        if (straddress.startsWith("0x") == false && straddress.length == 40) {
+            straddress = "0x" + straddress;
+        }
+        return straddress;
+    }
+    function toFixed(x) {
+        if (x.indexOf("e+") !== -1) {
+            var value = new BigNumber(x);
+            x = value.toString(10);
+        }
+
+        var reg = new RegExp('^[0-9]+$'); //ensuring that the result is a number before linking it to unitconverter page
+
+        if (reg.test(x) && x.length > 10) {
+            return "<a target='_blank' href='/unitconverter?wei=" + x + "'>" + x + "</a>"
+        }
+
+        return x;
+    }     
+    setTimeout(function () {
+       
+    }, 0);
+
+    function getParameterByName(name) {
+            var url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+    var cardHeightDict = {};
+    var isCollapsed = true;
+    function expandCollapseAll() {
+        if (isCollapsed) {
+            $('.collapse.readContractFunction').collapse('show');
+            isCollapsed = false;
+            $('.expandCollapseAllButton').html('[Collapse All]');
+        } else {
+            $('.collapse.readContractFunction').collapse('hide');
+            isCollapsed = true;
+            $('.expandCollapseAllButton').html('[Expand All]');
+        }
+    }
+
+    $(document).ready(function () {
+
+        $('.readContractFunction').on('shown.bs.collapse', function (x) {
+            var id = $($(x.target)).prev().attr('id');
+            var obj = window.parent.document.getElementById(contractframe);
+
+            var cardBodyHeight = $($(x.target)).height();
+
+            $(obj).height(($(obj).height() + cardBodyHeight) + "px")
+
+            cardHeightDict[id] = cardBodyHeight;
+        });
+
+        $('.readContractFunction').on('hidden.bs.collapse', function (x) {
+
+            var id = $($(x.target)).prev().attr('id');
+            var obj = window.parent.document.getElementById(contractframe);
+            $(obj).height(($(obj).height() - cardHeightDict[id]) + "px");
+        });
+
+        $(window).keydown(function (event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+            }
+        });
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+        var funcId = getParameterByName("F");
+        if (funcId) {
+            setTimeout(function () {
+                $("#readCollapse" + funcId).collapse('show');
+                $("#readCollapse" + funcId).closest(".mb-3").addClass("blinking-bg");
+                setTimeout(function () {
+                    document.getElementById('readCollapse' + funcId).scrollIntoView({
+                        behavior: 'smooth', block: "center", inline: "nearest", callback: function () {
+                            evt.preventDefault();
+                            evt.stopPropagation();
+                        }
+                    });
+                    setTimeout(function () {
+                        $("#readCollapse" + funcId).closest(".mb-3").addClass("blinking-bg");
+                        setTimeout(function () {
+                            $("#readCollapse" + funcId).closest(".mb-3").removeClass("border-primary_r");
+                            $("#readCollapse" + funcId).closest(".mb-3").removeClass("blinking-bg");
+                        }, 3000);
+                    }, 500);
+                }, 500);
+            }, 1000);
+        }
+
+    });
+
+    var read_contract = {
+        generate_permalink: function (el, number) {
+            try {
+                var currentUrl = window.parent.location.href;
+                let prefix = "";
+                if (window.parent.location.href.indexOf("#writeProxyContract") > -1)
+                    prefix = "#writeProxyContract";
+                if (window.parent.location.href.indexOf("#readProxyContract") > -1)
+                    prefix = "#readProxyContract";
+                if (window.parent.location.href.indexOf("#writeContract") > -1)
+                    prefix = "#writeContract";
+                if (window.parent.location.href.indexOf("#readContract") > -1)
+                    prefix = "#readContract";
+
+                var baseUrl = currentUrl.split("#")[0] + prefix;
+                baseUrl = baseUrl + "#F" + number;
+
+                //copy to clipboard code
+                var elem = document.createElement('textarea');
+                elem.value = baseUrl;
+                document.body.appendChild(elem);
+                elem.select();
+                document.execCommand('copy');
+                document.body.removeChild(elem);
+
+                //get i element and original image class
+                read_contract.change_copy_icon(el, "Copied");
+
+            } catch (err) {
+                console.log('Oops, unable to generate permalink');
+            }
+        },
+        change_copy_icon: function (el, tooltipText) {
+            var iElem = $(el).children("i")[0];
+            var oriImageClass = $(iElem).attr("class");
+            var oriTooltip = $(el).attr('data-original-title');
+            var checkImageClass = 'fa fa-check btn-icon__inner'
+
+            $(iElem).removeClass(oriImageClass).addClass(checkImageClass);
+            $(el).attr('data-original-title', tooltipText);
+
+            setTimeout(() => {
+                $(el).tooltip('show');
+            }, 1);
+
+            setTimeout(() => {
+                $(iElem).removeClass(checkImageClass).addClass(oriImageClass);
+                $(el).attr('data-original-title', oriTooltip)
+            }, 1000)
+        }
+    };
+</script>
+
+</body></html>

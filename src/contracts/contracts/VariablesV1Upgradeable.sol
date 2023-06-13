@@ -272,8 +272,8 @@ contract VariablesV1Upgradeable is
     }
 
     function getPlansCount() external view returns (uint8 planCount) {
-        for(uint8 i; i < 20; i++) {
-            if(plans[i].value > 0) {
+        for (uint8 i; i < 20; i++) {
+            if (plans[i].value > 0) {
                 planCount++;
             }
         }
@@ -461,6 +461,22 @@ contract VariablesV1Upgradeable is
 
     function setPresaleContract(address _contractAddress) external onlyOwner {
         _presaleContract = _contractAddress;
+    }
+
+    function getReferralContract() external view returns (address) {
+        return _referralContract;
+    }
+
+    function setReferralContract(address _contractAddress) external onlyOwner {
+        _referralContract = _contractAddress;
+    }
+
+    function getStakingContract() external view returns (address) {
+        return _stakingContract;
+    }
+
+    function setStakingContract(address _contractAddress) external onlyOwner {
+        _stakingContract = _contractAddress;
     }
 
     function pause() public onlyOwner {

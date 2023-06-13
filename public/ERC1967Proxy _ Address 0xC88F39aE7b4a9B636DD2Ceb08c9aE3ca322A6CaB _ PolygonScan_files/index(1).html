@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<!-- saved from url=(0168)https://polygonscan.com/writecontract/index?m=normal&v=21.4.1.1&a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&p=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61&n=poly&t=false -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="fortmatic-site-verification" content="q6QiF6hQJIdeCSLw">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" href="./bootstrap(1).css">
+<link rel="stylesheet" href="./all(1).css">
+<style type="text/css">
+        html {
+            font-size: 13px;
+        }
+
+        body {
+            font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+        }
+
+        a {
+            color: #3498db;
+        }
+
+            a:hover {
+                color: #1d6fa5;
+            }
+
+        .text-primary {
+            color: #3498db !important;
+        }
+
+        .btn-link:hover {
+            color: #1d6fa5;
+            text-decoration: none;
+        }
+
+        .card-btn-arrow {
+            display: inline-block;
+            color: #3498db;
+            margin-top: 5px;
+        }
+
+        #overlay {
+            /*background: #ffffff;*/
+            background: rgba(255,255,255,.7);
+            color: #666666;
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            z-index: 5000;
+            top: 0;
+            left: 0;
+            float: left;
+            text-align: center;
+            padding-top: 10%;
+            display: none;
+        }
+
+        .accordion-arrow {
+            display: inline-block;
+            transition: 0.3s ease-in-out;
+        }
+
+        .collapsed .accordion-arrow {
+            transform: rotate(-90deg);
+        }
+
+        @media (max-width:500px) {
+            .walletconnect-modal__base {
+                top: 290px !important;
+                width: 100% !important;
+            }
+        }
+
+        @media (min-width:501px) {
+            .walletconnect-modal__base {
+                top: 290px !important;
+                width: 70% !important;
+            }
+        }
+
+        body.dark-mode {
+            color: #a2b9c8;
+            background-color: transparent !important;
+        }
+
+            body.dark-mode .bg-light {
+                background-color: #140035 !important
+            }
+
+            body.dark-mode .text-secondary {
+                color: #7295ac !important
+            }
+
+
+            body.dark-mode .border, body.dark-mode .border-bottom, body.dark-mode .border-top, body.dark-mode .u-ver-divider--left:after, body.dark-mode .u-ver-divider:after {
+                border-color: #1e004f !important
+            }
+
+            body.dark-mode p {
+                color: #a2b9c8
+            }
+
+            body.dark-mode .modal-footer, body.dark-mode .modal-header {
+                border-color: #1e004f
+            }
+
+            body.dark-mode .card {
+                border-color: transparent;
+                background-color: #140035 !important;
+            }
+
+            body.dark-mode .card-header {
+                background-color: #140035 !important;
+                border-color: #1e004f
+            }
+
+            body.dark-mode .card-header-title {
+                color: #a2b9c8
+            }
+
+            body.dark-mode .card-btn {
+                color: #a2b9c8
+            }
+
+            body.dark-mode .form-control::-webkit-input-placeholder {
+                color: #577c93
+            }
+
+            body.dark-mode .form-control::-moz-placeholder {
+                color: #577c93
+            }
+
+            body.dark-mode .form-control::-ms-input-placeholder {
+                color: #577c93
+            }
+
+            body.dark-mode .form-control::placeholder {
+                color: #577c93
+            }
+
+            body.dark-mode .link-hover-secondary, body.dark-mode .text-dark, body.dark-mode .text-link, body.dark-mode .text-muted, body.dark-mode .text-white {
+                color: #a2b9c8 !important
+            }
+
+            body.dark-mode .custom-select, body.dark-mode .form-control, body.dark-mode .input-group-text {
+                color: #a2b9c8 !important;
+                border-color: #1e004f !important;
+                background-color: #140035 !important
+            }
+
+            body.dark-mode .btn-primary, body.dark-mode .btn-primary:not([href]), body.dark-mode .btn-primary:not([href]):not([href]):not(:disabled):not(.disabled) {
+                color: rgba(255, 255, 255, 0.8);
+                background-color: rgba(52, 152, 219, 0.2);
+                border-color: rgba(52, 152, 219, 0.2);
+            }
+
+                body.dark-mode .btn-primary:focus, body.dark-mode .btn-primary:hover, body.dark-mode .btn-primary:not([href]):focus, body.dark-mode .btn-primary:not([href]):hover, body.dark-mode .btn-primary:not([href]):not([href]):not(:disabled):not(.disabled):focus, body.dark-mode .btn-primary:not([href]):not([href]):not(:disabled):not(.disabled):hover {
+                    color: white;
+                    background-color: #3498db;
+                }
+
+            body.dark-mode .alert-secondary {
+                background-color: #140035 !important;
+                border-color: #1e004f !important;
+            }
+
+        .badge-red {
+            background: #e74c3c;
+        }
+
+        .badge-green {
+            background: rgb(0,128,0);
+        }
+
+         /* Permalink copy */
+        .permalink_text {
+            position: absolute;
+            top: 7px;
+            right: 29px;
+            color: #fff;
+        }
+
+        .tooltip-inner {
+            padding: 0.25rem 0.5rem;
+            color: #fff;
+            text-align: center;
+            background-color: #12161c !important;
+            border-radius: 0.35rem;
+        }
+
+        .tooltip.show {
+            opacity: 1 !important;
+        }
+
+        .bs-tooltip-top .arrow::before, .bs-tooltip-auto[x-placement^="top"] .arrow::before {
+            top: 0;
+            border-width: 0.4rem 0.4rem 0;
+            border-top-color: #12161c !important;
+        }
+
+        body .tooltip {
+            position: absolute;
+            z-index: 1070;
+            display: block;
+            margin: 0;
+            font-family: Helvetica,Arial,sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1.5;
+            text-align: left;
+            text-align: start;
+            text-decoration: none;
+            text-shadow: none;
+            text-transform: none;
+            letter-spacing: normal;
+            word-break: normal;
+            word-spacing: normal;
+            white-space: normal;
+            line-break: auto;
+            font-size: 0.875rem;
+            word-wrap: break-word;
+            opacity: 0;
+        }
+
+        .blink-container {
+            width: 100%;
+        }
+
+        .blinking-bg {
+            border-width: 1px;
+            border-style: solid;
+            border-color: #007bff !important;
+            border-radius: 0.25rem;
+        }
+
+        /* END Permalink copy */
+
+    </style>
+</head>
+<body>
+<div id="overlay" class="py-3 text-center">
+<img src="./loadingblock.svg" alt="Loading">
+</div>
+<div id="header">
+<div class="d-sm-flex justify-content-between mb-3"><p class="ml-3 mr-3 mb-1"><i id="connector" class="fa fa-circle mr-1 text-success" title="" data-toggle-second="tooltip" data-original-title="Connected"></i><a id="connectStatus" class="forum-title">Connected - Web3 [<a target="_blank" href="https://polygonscan.com/address/0x64b909a2C51AA62F30e75010b726a8CE863285fA">0x64b909a2C51AA62F30e75010b726a8CE863285fA</a>]</a></p><span><a href="https://polygonscan.com/writecontract/index?m=normal&amp;v=21.4.1.1&amp;a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&amp;p=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61&amp;n=poly&amp;t=false#" class="mr - 1 expandCollapseAllButton" onclick="expandCollapseAll()">[Expand all]</a><a class="ml-3 mr-3" href="https://polygonscan.com/writecontract/index?m=normal&amp;v=21.4.1.1&amp;a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&amp;p=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61&amp;n=poly&amp;t=false#" onclick="resetPage(); return false;">[Reset]</a></span></div></div>
+<div class="card shadow-none mb-3"><div class="card-header bg-light card-collapse p-0" role="tab" id="heading1"><a role="button" class="btn btn-link btn-block text-dark d-flex justify-content-between align-items-center py-2 collapsed" data-toggle="collapse" data-parent="#accordion" href="https://polygonscan.com/writecontract/index?m=normal&amp;v=21.4.1.1&amp;a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&amp;p=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61&amp;n=poly&amp;t=false#collapse1" aria-expanded="true" aria-controls="collapse1">1. addAdmin (0x70480275)<span class="accordion-arrow"><i class="fas fa-arrow-down small"></i></span></a><a class="btn btn-sm btn-icon mr-1 permalink_text text-dark" href="javascript:;" onclick="generatePermalink(this, 1)" data-toggle="tooltip" title="" data-original-title="Copy Permalink"><i class="far fa-link btn-icon__inner"></i></a></div><div id="collapse1" class="collapse writeContractFunction" role="tabpanel" aria-labelledby="heading1"><div class="card-body"><form> <div class="form-group"><label>_address (address) </label><input type="text" class="form-control form-control-xs" name="input_1" id="input_1_1" data-type="address" placeholder="  _address (address)"></div><button type="button" class="write-btn btn btn-xs btn-primary border" onclick="write0(&#39;addAdmin&#39;, &#39;input_1&#39;);">Write</button> <div style="display:inline" class="write-msg text-success input_1"></div></form></div></div></div><div class="card shadow-none mb-3"><div class="card-header bg-light card-collapse p-0" role="tab" id="heading2"><a role="button" class="btn btn-link btn-block text-dark d-flex justify-content-between align-items-center py-2 collapsed" data-toggle="collapse" data-parent="#accordion" href="https://polygonscan.com/writecontract/index?m=normal&amp;v=21.4.1.1&amp;a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&amp;p=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61&amp;n=poly&amp;t=false#collapse2" aria-expanded="true" aria-controls="collapse2">2. addCoreMember (0x5cf833da)<span class="accordion-arrow"><i class="fas fa-arrow-down small"></i></span></a><a class="btn btn-sm btn-icon mr-1 permalink_text text-dark" href="javascript:;" onclick="generatePermalink(this, 2)" data-toggle="tooltip" title="" data-original-title="Copy Permalink"><i class="far fa-link btn-icon__inner"></i></a></div><div id="collapse2" class="collapse writeContractFunction" role="tabpanel" aria-labelledby="heading2"><div class="card-body"><form> <div class="form-group"><label>_userAddress (address) </label><input type="text" class="form-control form-control-xs" name="input_2" id="input_2_1" data-type="address" placeholder="  _userAddress (address)"></div><button type="button" class="write-btn btn btn-xs btn-primary border" onclick="write0(&#39;addCoreMember&#39;, &#39;input_2&#39;);">Write</button> <div style="display:inline" class="write-msg text-success input_2"></div></form></div></div></div><div class="card shadow-none mb-3"><div class="card-header bg-light card-collapse p-0" role="tab" id="heading3"><a role="button" class="btn btn-link btn-block text-dark d-flex justify-content-between align-items-center py-2 collapsed" data-toggle="collapse" data-parent="#accordion" href="https://polygonscan.com/writecontract/index?m=normal&amp;v=21.4.1.1&amp;a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&amp;p=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61&amp;n=poly&amp;t=false#collapse3" aria-expanded="true" aria-controls="collapse3">3. distributeETH (0xb8b9b549)<span class="accordion-arrow"><i class="fas fa-arrow-down small"></i></span></a><a class="btn btn-sm btn-icon mr-1 permalink_text text-dark" href="javascript:;" onclick="generatePermalink(this, 3)" data-toggle="tooltip" title="" data-original-title="Copy Permalink"><i class="far fa-link btn-icon__inner"></i></a></div><div id="collapse3" class="collapse writeContractFunction" role="tabpanel" aria-labelledby="heading3"><div class="card-body"><form><button type="button" class="write-btn btn btn-xs btn-primary border" onclick="write0(&#39;distributeETH&#39;, &#39;input_3&#39;);">Write</button> <div style="display:inline" class="write-msg text-success input_3"></div></form></div></div></div><div class="card shadow-none mb-3"><div class="card-header bg-light card-collapse p-0" role="tab" id="heading4"><a role="button" class="btn btn-link btn-block text-dark d-flex justify-content-between align-items-center py-2 collapsed" data-toggle="collapse" data-parent="#accordion" href="https://polygonscan.com/writecontract/index?m=normal&amp;v=21.4.1.1&amp;a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&amp;p=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61&amp;n=poly&amp;t=false#collapse4" aria-expanded="true" aria-controls="collapse4">4. distributeToken (0x86d74037)<span class="accordion-arrow"><i class="fas fa-arrow-down small"></i></span></a><a class="btn btn-sm btn-icon mr-1 permalink_text text-dark" href="javascript:;" onclick="generatePermalink(this, 4)" data-toggle="tooltip" title="" data-original-title="Copy Permalink"><i class="far fa-link btn-icon__inner"></i></a></div><div id="collapse4" class="collapse writeContractFunction" role="tabpanel" aria-labelledby="heading4"><div class="card-body"><form> <div class="form-group"><label>_tokenContract (address) </label><input type="text" class="form-control form-control-xs" name="input_4" id="input_4_1" data-type="address" placeholder="  _tokenContract (address)"></div><button type="button" class="write-btn btn btn-xs btn-primary border" onclick="write0(&#39;distributeToken&#39;, &#39;input_4&#39;);">Write</button> <div style="display:inline" class="write-msg text-success input_4"></div></form></div></div></div><div class="card shadow-none mb-3"><div class="card-header bg-light card-collapse p-0" role="tab" id="heading5"><a role="button" class="btn btn-link btn-block text-dark d-flex justify-content-between align-items-center py-2 collapsed" data-toggle="collapse" data-parent="#accordion" href="https://polygonscan.com/writecontract/index?m=normal&amp;v=21.4.1.1&amp;a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&amp;p=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61&amp;n=poly&amp;t=false#collapse5" aria-expanded="true" aria-controls="collapse5">5. initialize (0x8129fc1c)<span class="accordion-arrow"><i class="fas fa-arrow-down small"></i></span></a><a class="btn btn-sm btn-icon mr-1 permalink_text text-dark" href="javascript:;" onclick="generatePermalink(this, 5)" data-toggle="tooltip" title="" data-original-title="Copy Permalink"><i class="far fa-link btn-icon__inner"></i></a></div><div id="collapse5" class="collapse writeContractFunction" role="tabpanel" aria-labelledby="heading5"><div class="card-body"><form><button type="button" class="write-btn btn btn-xs btn-primary border" onclick="write0(&#39;initialize&#39;, &#39;input_5&#39;);">Write</button> <div style="display:inline" class="write-msg text-success input_5"></div></form></div></div></div><div class="card shadow-none mb-3"><div class="card-header bg-light card-collapse p-0" role="tab" id="heading6"><a role="button" class="btn btn-link btn-block text-dark d-flex justify-content-between align-items-center py-2 collapsed" data-toggle="collapse" data-parent="#accordion" href="https://polygonscan.com/writecontract/index?m=normal&amp;v=21.4.1.1&amp;a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&amp;p=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61&amp;n=poly&amp;t=false#collapse6" aria-expanded="true" aria-controls="collapse6">6. pause (0x8456cb59)<span class="accordion-arrow"><i class="fas fa-arrow-down small"></i></span></a><a class="btn btn-sm btn-icon mr-1 permalink_text text-dark" href="javascript:;" onclick="generatePermalink(this, 6)" data-toggle="tooltip" title="" data-original-title="Copy Permalink"><i class="far fa-link btn-icon__inner"></i></a></div><div id="collapse6" class="collapse writeContractFunction" role="tabpanel" aria-labelledby="heading6"><div class="card-body"><form><button type="button" class="write-btn btn btn-xs btn-primary border" onclick="write0(&#39;pause&#39;, &#39;input_6&#39;);">Write</button> <div style="display:inline" class="write-msg text-success input_6"></div></form></div></div></div><div class="card shadow-none mb-3"><div class="card-header bg-light card-collapse p-0" role="tab" id="heading7"><a role="button" class="btn btn-link btn-block text-dark d-flex justify-content-between align-items-center py-2 collapsed" data-toggle="collapse" data-parent="#accordion" href="https://polygonscan.com/writecontract/index?m=normal&amp;v=21.4.1.1&amp;a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&amp;p=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61&amp;n=poly&amp;t=false#collapse7" aria-expanded="true" aria-controls="collapse7">7. removeAdmin (0x1785f53c)<span class="accordion-arrow"><i class="fas fa-arrow-down small"></i></span></a><a class="btn btn-sm btn-icon mr-1 permalink_text text-dark" href="javascript:;" onclick="generatePermalink(this, 7)" data-toggle="tooltip" title="" data-original-title="Copy Permalink"><i class="far fa-link btn-icon__inner"></i></a></div><div id="collapse7" class="collapse writeContractFunction" role="tabpanel" aria-labelledby="heading7"><div class="card-body"><form> <div class="form-group"><label>_address (address) </label><input type="text" class="form-control form-control-xs" name="input_7" id="input_7_1" data-type="address" placeholder="  _address (address)"></div><button type="button" class="write-btn btn btn-xs btn-primary border" onclick="write0(&#39;removeAdmin&#39;, &#39;input_7&#39;);">Write</button> <div style="display:inline" class="write-msg text-success input_7"></div></form></div></div></div><div class="card shadow-none mb-3"><div class="card-header bg-light card-collapse p-0" role="tab" id="heading8"><a role="button" class="btn btn-link btn-block text-dark d-flex justify-content-between align-items-center py-2 collapsed" data-toggle="collapse" data-parent="#accordion" href="https://polygonscan.com/writecontract/index?m=normal&amp;v=21.4.1.1&amp;a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&amp;p=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61&amp;n=poly&amp;t=false#collapse8" aria-expanded="true" aria-controls="collapse8">8. removeCoreMember (0x2a28576c)<span class="accordion-arrow"><i class="fas fa-arrow-down small"></i></span></a><a class="btn btn-sm btn-icon mr-1 permalink_text text-dark" href="javascript:;" onclick="generatePermalink(this, 8)" data-toggle="tooltip" title="" data-original-title="Copy Permalink"><i class="far fa-link btn-icon__inner"></i></a></div><div id="collapse8" class="collapse writeContractFunction" role="tabpanel" aria-labelledby="heading8"><div class="card-body"><form> <div class="form-group"><label>_userAddress (address) </label><input type="text" class="form-control form-control-xs" name="input_8" id="input_8_1" data-type="address" placeholder="  _userAddress (address)"></div><button type="button" class="write-btn btn btn-xs btn-primary border" onclick="write0(&#39;removeCoreMember&#39;, &#39;input_8&#39;);">Write</button> <div style="display:inline" class="write-msg text-success input_8"></div></form></div></div></div><div class="card shadow-none mb-3"><div class="card-header bg-light card-collapse p-0" role="tab" id="heading9"><a role="button" class="btn btn-link btn-block text-dark d-flex justify-content-between align-items-center py-2 collapsed" data-toggle="collapse" data-parent="#accordion" href="https://polygonscan.com/writecontract/index?m=normal&amp;v=21.4.1.1&amp;a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&amp;p=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61&amp;n=poly&amp;t=false#collapse9" aria-expanded="true" aria-controls="collapse9">9. renounceOwnership (0x715018a6)<span class="accordion-arrow"><i class="fas fa-arrow-down small"></i></span></a><a class="btn btn-sm btn-icon mr-1 permalink_text text-dark" href="javascript:;" onclick="generatePermalink(this, 9)" data-toggle="tooltip" title="" data-original-title="Copy Permalink"><i class="far fa-link btn-icon__inner"></i></a></div><div id="collapse9" class="collapse writeContractFunction" role="tabpanel" aria-labelledby="heading9"><div class="card-body"><form><button type="button" class="write-btn btn btn-xs btn-primary border" onclick="write0(&#39;renounceOwnership&#39;, &#39;input_9&#39;);">Write</button> <div style="display:inline" class="write-msg text-success input_9"></div></form></div></div></div><div class="card shadow-none mb-3"><div class="card-header bg-light card-collapse p-0" role="tab" id="heading10"><a role="button" class="btn btn-link btn-block text-dark d-flex justify-content-between align-items-center py-2" data-toggle="collapse" data-parent="#accordion" href="https://polygonscan.com/writecontract/index?m=normal&amp;v=21.4.1.1&amp;a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&amp;p=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61&amp;n=poly&amp;t=false#collapse10" aria-expanded="true" aria-controls="collapse10">10. setAdminShareRate (0x06232001)<span class="accordion-arrow"><i class="fas fa-arrow-down small"></i></span></a><a class="btn btn-sm btn-icon mr-1 permalink_text text-dark" href="javascript:;" onclick="generatePermalink(this, 10)" data-toggle="tooltip" title="" data-original-title="Copy Permalink"><i class="far fa-link btn-icon__inner"></i></a></div><div id="collapse10" class="writeContractFunction collapse show" role="tabpanel" aria-labelledby="heading10" style=""><div class="card-body"><form> <div class="form-group"><label>_value (uint8) </label><input type="text" class="form-control form-control-xs" name="input_10" id="input_10_1" data-type="uint8" placeholder="  _value (uint8)"></div><button type="button" class="write-btn btn btn-xs btn-primary border" onclick="write0(&#39;setAdminShareRate&#39;, &#39;input_10&#39;);">Write</button> <div style="display:inline" class="write-msg text-success input_10"><a class="btn btn-primary" href="https://polygonscan.com/tx/0xed094684f169127b823b5771114aacebd828aafbe1389e89f58d827ee0ac6e97" target="_blank"> View your transaction</a></div></form></div></div></div><div class="card shadow-none mb-3"><div class="card-header bg-light card-collapse p-0" role="tab" id="heading11"><a role="button" class="btn btn-link btn-block text-dark d-flex justify-content-between align-items-center py-2 collapsed" data-toggle="collapse" data-parent="#accordion" href="https://polygonscan.com/writecontract/index?m=normal&amp;v=21.4.1.1&amp;a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&amp;p=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61&amp;n=poly&amp;t=false#collapse11" aria-expanded="true" aria-controls="collapse11">11. transferOwnership (0xf2fde38b)<span class="accordion-arrow"><i class="fas fa-arrow-down small"></i></span></a><a class="btn btn-sm btn-icon mr-1 permalink_text text-dark" href="javascript:;" onclick="generatePermalink(this, 11)" data-toggle="tooltip" title="" data-original-title="Copy Permalink"><i class="far fa-link btn-icon__inner"></i></a></div><div id="collapse11" class="collapse writeContractFunction" role="tabpanel" aria-labelledby="heading11"><div class="card-body"><form> <div class="form-group"><label>newOwner (address) </label><input type="text" class="form-control form-control-xs" name="input_11" id="input_11_1" data-type="address" placeholder="  newOwner (address)"></div><button type="button" class="write-btn btn btn-xs btn-primary border" onclick="write0(&#39;transferOwnership&#39;, &#39;input_11&#39;);">Write</button> <div style="display:inline" class="write-msg text-success input_11"></div></form></div></div></div><div class="card shadow-none mb-3"><div class="card-header bg-light card-collapse p-0" role="tab" id="heading12"><a role="button" class="btn btn-link btn-block text-dark d-flex justify-content-between align-items-center py-2 collapsed" data-toggle="collapse" data-parent="#accordion" href="https://polygonscan.com/writecontract/index?m=normal&amp;v=21.4.1.1&amp;a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&amp;p=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61&amp;n=poly&amp;t=false#collapse12" aria-expanded="true" aria-controls="collapse12">12. unpause (0x3f4ba83a)<span class="accordion-arrow"><i class="fas fa-arrow-down small"></i></span></a><a class="btn btn-sm btn-icon mr-1 permalink_text text-dark" href="javascript:;" onclick="generatePermalink(this, 12)" data-toggle="tooltip" title="" data-original-title="Copy Permalink"><i class="far fa-link btn-icon__inner"></i></a></div><div id="collapse12" class="collapse writeContractFunction" role="tabpanel" aria-labelledby="heading12"><div class="card-body"><form><button type="button" class="write-btn btn btn-xs btn-primary border" onclick="write0(&#39;unpause&#39;, &#39;input_12&#39;);">Write</button> <div style="display:inline" class="write-msg text-success input_12"></div></form></div></div></div><div class="card shadow-none mb-3"><div class="card-header bg-light card-collapse p-0" role="tab" id="heading13"><a role="button" class="btn btn-link btn-block text-dark d-flex justify-content-between align-items-center py-2 collapsed" data-toggle="collapse" data-parent="#accordion" href="https://polygonscan.com/writecontract/index?m=normal&amp;v=21.4.1.1&amp;a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&amp;p=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61&amp;n=poly&amp;t=false#collapse13" aria-expanded="true" aria-controls="collapse13">13. upgradeTo (0x3659cfe6)<span class="accordion-arrow"><i class="fas fa-arrow-down small"></i></span></a><a class="btn btn-sm btn-icon mr-1 permalink_text text-dark" href="javascript:;" onclick="generatePermalink(this, 13)" data-toggle="tooltip" title="" data-original-title="Copy Permalink"><i class="far fa-link btn-icon__inner"></i></a></div><div id="collapse13" class="collapse writeContractFunction" role="tabpanel" aria-labelledby="heading13"><div class="card-body"><form> <div class="form-group"><label>newImplementation (address) </label><input type="text" class="form-control form-control-xs" name="input_13" id="input_13_1" data-type="address" placeholder="  newImplementation (address)"></div><button type="button" class="write-btn btn btn-xs btn-primary border" onclick="write0(&#39;upgradeTo&#39;, &#39;input_13&#39;);">Write</button> <div style="display:inline" class="write-msg text-success input_13"></div></form></div></div></div><div class="card shadow-none mb-3"><div class="card-header bg-light card-collapse p-0" role="tab" id="heading14"><a role="button" class="btn btn-link btn-block text-dark d-flex justify-content-between align-items-center py-2 collapsed" data-toggle="collapse" data-parent="#accordion" href="https://polygonscan.com/writecontract/index?m=normal&amp;v=21.4.1.1&amp;a=0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB&amp;p=0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61&amp;n=poly&amp;t=false#collapse14" aria-expanded="true" aria-controls="collapse14">14. upgradeToAndCall (0x4f1ef286)<span class="accordion-arrow"><i class="fas fa-arrow-down small"></i></span></a><a class="btn btn-sm btn-icon mr-1 permalink_text text-dark" href="javascript:;" onclick="generatePermalink(this, 14)" data-toggle="tooltip" title="" data-original-title="Copy Permalink"><i class="far fa-link btn-icon__inner"></i></a></div><div id="collapse14" class="collapse writeContractFunction" role="tabpanel" aria-labelledby="heading14"><div class="card-body"><form> <div class="form-group"><label>upgradeToAndCall </label><input type="text" class="form-control form-control-xs" id="input_payable_14_upgradeToAndCall" name="payable_upgradeToAndCall" placeholder="  payableAmount (MATIC)"></div> <div class="form-group"><label>newImplementation (address) </label><input type="text" class="form-control form-control-xs" name="input_14" id="input_14_1" data-type="address" placeholder="  newImplementation (address)"></div> <div class="form-group"><label>data (bytes) </label><input type="text" class="form-control form-control-xs" name="input_14" id="input_14_2" data-type="bytes" placeholder="  data (bytes)"></div><button type="button" class="write-btn btn btn-xs btn-primary border" onclick="write0(&#39;upgradeToAndCall&#39;, &#39;input_14&#39;);">Write</button> <div style="display:inline" class="write-msg text-success input_14"></div></form></div></div></div><div class="panel-group acc-v1" id="accordion" role="tablist" aria-multiselectable="true">
+</div>
+<div id="footer" class="mr-3" style="">
+</div>
+
+<script src="./jquery.min(1).js"></script>
+<script src="./jquery-ui.min(1).js"></script>
+<script src="./jquery-migrate.min(1).js"></script>
+<script src="./popper.min(1).js"></script>
+<script src="./bootstrap.bundle.min.js"></script>
+<script src="./web3.min.js"></script>
+<script src="./web3-providers-http.min.js"></script>
+<script src="./walletconnect_v1.8.0.js"></script>
+<script src="./walletconnect_v2.7.6.js"></script>
+<script src="./xss.min.js"></script>
+
+<script>
+    var mode = getParameterByName("m");
+    var contractAddress = '0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB'; //getUrlParameter('a');
+    var implementation = '0xdd7c5a99d1a48c2c2d30f069f8be8e4a1b844a61'; //getParameterByName("p");
+    var contractframe = "";
+    var loadingcontractframe = "";
+    var cardHeightDict = {};
+    console.log(window.parent.document.URL);
+    if (window.parent.document.URL.indexOf('writeProxyContract') != -1) {
+        contractframe = "writeproxycontractiframe";
+        loadingcontractframe = "loadingWriteProxyContractframe";
+    } else {
+        contractframe = "writecontractiframe";
+        loadingcontractframe = "loadingWriteContractframe";
+    }
+
+    jQuery(window).load(function () {
+        jQuery('#overlayMain').fadeOut();
+
+        window.parent.document.getElementById(loadingcontractframe).style.display = "none";
+        window.parent.document.getElementById('overlayMain').style.display = 'none';
+        if (mode === "dark") {
+            var src = $('body');
+            src.addClass('dark-mode');
+        }
+    });
+
+    String.prototype.escape = function () {
+        var tagsToReplace = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;'
+        };
+        return this.replace(/[&<>]/g, function (tag) {
+            return tagsToReplace[tag] || tag;
+        });
+    };
+
+    var header = $('#header');
+    var body = $('#accordion');
+    var net = getUrlParameter('n');
+    var isTestnet = getUrlParameter('t');
+    var funcId = getParameterByName("F");
+    var address;
+    var ABI = '';
+    var proxyABI = '';
+    var web3Obj;
+    var myContract;
+    var myContractInstance;
+    var myProxyContractInstance;
+    var hasInput = false;
+    var api = '';
+    var isAccount = false;
+
+    // option for external wallets
+    var nonBrowserWallet = false;
+    var typeOfLogin;
+    var walletObj;
+    var walletConnectObj;
+    var walletConnectObj_v2;
+    var WalletConnectProvider_v2 = window["@walletconnect/ethereum-provider"].EthereumProvider;
+
+    // walletConnect related variable - Create these earlier so we can hook "disconnect" event
+    var WalletConnectProvider = window.WalletConnectProvider.default;
+    var walletConnectObj = new WalletConnectProvider({
+        rpc: {
+            137: "https://matic-mainnet.chainstacklabs.com",
+            80001: "https://matic-mumbai.chainstacklabs.com"
+        }
+    });
+
+
+    if ((contractAddress !== undefined) || (net !== undefined)) {
+        if (net === 'poly' && isTestnet !== 'true')
+            api = '//api.polygonscan.com';
+        else
+            api = '//api-testnet.polygonscan.com';
+        appendABI(contractAddress, body, 5);
+    }
+
+    async function resetPage() {
+        if (nonBrowserWallet == true) {
+            switch (typeOfLogin) {
+                case 'fortmatic':
+                    await walletObj.user.logout();
+                    window.location.reload(true);
+                    break;
+                case 'portis': {
+                    await walletObj.logout();
+                    window.location.reload(true);
+                    break;
+                }
+                case 'walletConnect':
+                    await walletConnectObj.close();
+                    await walletConnectObj.disconnect();
+                    window.location.reload(true);
+                    break;
+                case 'walletConnect_v2':
+                    await walletConnectObj_v2.disconnect();
+                    window.location.reload(true);
+                    break;
+            }
+        } else {
+            // refresh to logout
+            window.location.reload(true);
+        }
+    }
+
+    function appendABI(contractAddress, body, maxDepth, isProxy) {
+
+        var status = '1';
+
+        if (status == '0') {
+            header.append("<br><div id='sorrynotfound' class='alert alert-warning mb-0' role='alert'>Sorry, we were unable to locate a matching Contract ABI or SourceCode for this contract.<br><br>If you are the contract owner, please <a href='https://polygonscan.com/verifyContract?a=" + contractAddress + "' target='_parent'>Verify Your Contract Source Code</a> here.</div>");
+        } else {
+            var result = [{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"adminAddress","type":"address"}],"name":"AddedAdmin","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"coreMemberAddress","type":"address"}],"name":"AddedCoreMember","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"previousAdmin","type":"address"},{"indexed":false,"internalType":"address","name":"newAdmin","type":"address"}],"name":"AdminChanged","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"adminAddress","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"valuePaidInContract","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"totalMembers","type":"uint256"},{"indexed":false,"internalType":"address","name":"paidIn","type":"address"}],"name":"AdminSharePaid","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"beacon","type":"address"}],"name":"BeaconUpgraded","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"coreMemberAddress","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"valuePaidInContract","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"totalMembers","type":"uint256"},{"indexed":false,"internalType":"address","name":"paidIn","type":"address"}],"name":"CoreMembersRewardPaid","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint8","name":"version","type":"uint8"}],"name":"Initialized","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"account","type":"address"}],"name":"Paused","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"adminAddress","type":"address"}],"name":"RemovedAdmin","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"coreMemberAddress","type":"address"}],"name":"RemovedCoreMember","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"account","type":"address"}],"name":"Unpaused","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"implementation","type":"address"}],"name":"Upgraded","type":"event"},{"inputs":[{"internalType":"address","name":"_address","type":"address"}],"name":"addAdmin","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_userAddress","type":"address"}],"name":"addCoreMember","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"distributeETH","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_tokenContract","type":"address"}],"name":"distributeToken","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"getAdminList","outputs":[{"internalType":"address[]","name":"adminsList","type":"address[]"},{"internalType":"uint256","name":"adminsCount","type":"uint256"},{"internalType":"uint8","name":"adminShareRate","type":"uint8"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getCoreMembersList","outputs":[{"internalType":"address[]","name":"coreMembersList","type":"address[]"},{"internalType":"uint256","name":"coreMembersLength","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"initialize","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_userAddress","type":"address"}],"name":"isUserInCoreMembersList","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"pause","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"paused","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"proxiableUUID","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_address","type":"address"}],"name":"removeAdmin","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_userAddress","type":"address"}],"name":"removeCoreMember","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint8","name":"_value","type":"uint8"}],"name":"setAdminShareRate","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"unpause","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newImplementation","type":"address"}],"name":"upgradeTo","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newImplementation","type":"address"},{"internalType":"bytes","name":"data","type":"bytes"}],"name":"upgradeToAndCall","outputs":[],"stateMutability":"payable","type":"function"}];
+            var contractFunctionsAbiWithMethodId = [{"methodId":"0x70480275","functionName":"addAdmin","functionNameFull":"addAdmin(address)"},{"methodId":"0x5cf833da","functionName":"addCoreMember","functionNameFull":"addCoreMember(address)"},{"methodId":"0xb8b9b549","functionName":"distributeETH","functionNameFull":"distributeETH()"},{"methodId":"0x86d74037","functionName":"distributeToken","functionNameFull":"distributeToken(address)"},{"methodId":"0xd9f774fc","functionName":"getAdminList","functionNameFull":"getAdminList()"},{"methodId":"0xc4d12ee9","functionName":"getCoreMembersList","functionNameFull":"getCoreMembersList()"},{"methodId":"0x8129fc1c","functionName":"initialize","functionNameFull":"initialize()"},{"methodId":"0x87262bb4","functionName":"isUserInCoreMembersList","functionNameFull":"isUserInCoreMembersList(address)"},{"methodId":"0x8da5cb5b","functionName":"owner","functionNameFull":"owner()"},{"methodId":"0x8456cb59","functionName":"pause","functionNameFull":"pause()"},{"methodId":"0x5c975abb","functionName":"paused","functionNameFull":"paused()"},{"methodId":"0x52d1902d","functionName":"proxiableUUID","functionNameFull":"proxiableUUID()"},{"methodId":"0x1785f53c","functionName":"removeAdmin","functionNameFull":"removeAdmin(address)"},{"methodId":"0x2a28576c","functionName":"removeCoreMember","functionNameFull":"removeCoreMember(address)"},{"methodId":"0x715018a6","functionName":"renounceOwnership","functionNameFull":"renounceOwnership()"},{"methodId":"0x06232001","functionName":"setAdminShareRate","functionNameFull":"setAdminShareRate(uint8)"},{"methodId":"0xf2fde38b","functionName":"transferOwnership","functionNameFull":"transferOwnership(address)"},{"methodId":"0x3f4ba83a","functionName":"unpause","functionNameFull":"unpause()"},{"methodId":"0x3659cfe6","functionName":"upgradeTo","functionNameFull":"upgradeTo(address)"},{"methodId":"0x4f1ef286","functionName":"upgradeToAndCall","functionNameFull":"upgradeToAndCall(address,bytes)"}]
+            var counter = 0;
+            var maxCounter = 0;
+
+            if (isProxy)
+                proxyABI = result;
+            else
+                ABI = result;
+
+            $.each(result, function (index, value) {
+                if (value.type === "function") {
+                    if (value.stateMutability === "view" || value.stateMutability === "pure" || value.constant === true) {
+                        return;
+                    }
+
+                    if (value.name === undefined) {
+                        return;
+                    }
+
+                    var value_name = value.name.toString();
+
+                    if (value_name === "") {
+                        return;
+                    }
+                    counter += 1;
+
+
+                    if (value.stateMutability === "payable") {
+                        //v0.6.0 support
+                        var isPayable = true;
+                    } else {
+                        var isPayable = value.payable;
+                    }
+
+
+                    var counterInput = 0;
+                    var maxItemsInput = value.inputs.length;
+                    var inputExtr_WithName = '';
+
+                    if (isPayable) {
+                        inputExtr_WithName += ' <div class="form-group"><label>' + value_name + ' </label>' +
+                            '<input type="text" class="form-control form-control-xs" id="input_payable_' + counter + '_' + value_name + '" name="payable_' + value_name + '" placeholder="&nbsp; payableAmount (MATIC)"></div>';
+                    }
+
+                    var inputId = "input_" + counter;
+                    if (isProxy)
+                        inputId += "_proxy_" + maxDepth;
+
+                    if (value.inputs.length > 0) {
+                        $.each(value.inputs, function (i, v) {
+                            counterInput += 1;
+                            var inputTag = '';
+                            var inputName = v.name.toString();
+
+                            if (v.type.indexOf('][') !== -1) {
+                                var regex = /\[([0-9,-]+)\]/;
+                                var tmp = v.type.toString().match(regex);
+                                var dynamicArray;
+                                if (tmp === null) {
+                                    dynamicArray = 1; //todo
+                                } else {
+                                    dynamicArray = tmp[1];
+                                }
+                                var d;
+                                inputTag = ' <div class="form-group"><label>' + inputName + ' (' + v.type.toString() + ') </label>';
+                                for (d = 0; d < dynamicArray; d++) {
+                                    var counterInputGroup = "g" + counterInput;
+
+                                    if (isProxy) {
+                                        counterInputGroup += "_proxy_" + maxDepth;
+                                    }
+
+                                    inputTag += '<input type="text" style="margin-bottom:5px" class="form-control form-control-xs" id="input_' + counter + '_' + d + '" name="input_' + counter + '" data-grp="' + counterInputGroup + '" data-type="' + v.type.toString() + '" placeholder="&nbsp; ' + inputName + '[]">';
+
+                                }
+
+                                inputTag += '</div>';
+
+
+                            } else {
+                                inputTag = GenerateInputTag(inputName, inputId, counter, counterInput, v.type.toString());
+                            }
+
+                            inputExtr_WithName += inputTag;
+                        });
+                    }
+
+                    inputExtr_WithName += "<button type='button' class='write-btn btn btn-xs btn-primary border' onclick=\"write0('" + value_name + "', '" + inputId + "');\">Write</button> <div style='display:inline' class='write-msg text-success " + inputId + "'></div>";
+
+                    // inputExtr_WithName += "<button type='button' class='write-btn btn btn-xs btn-primary border' onclick=\"write0('" + value_name + "', 'input_" + counter + "');\">Write</button> <div style='display:inline' class='write-msg text-success input_" + counter + "'></div>";
+                     if (value_name != "") {
+                        let functionNameAbi = `${value_name}()`;
+                        if (value.inputs.length > 0) {
+                            const inputTypes = $.map(value.inputs, function (input, _) { return input.type; }).join();
+                            functionNameAbi = `${value_name}(${inputTypes})`;
+                        }
+
+                        const functionWithMethodId = contractFunctionsAbiWithMethodId.find(x => x.functionNameFull === functionNameAbi);
+                        if (functionWithMethodId && functionWithMethodId.methodId != null && functionWithMethodId.methodId != "") {
+                            value_name += ` (${functionWithMethodId.methodId})`;
+                        }
+                    }
+
+                    GenerateRow(value_name, inputExtr_WithName, counter, body);
+                }
+            });
+
+            $('.writeContractFunction').on('shown.bs.collapse', function (x) {
+                var id = $($(x.target)).prev().attr('id');
+                var obj = window.parent.document.getElementById(contractframe);
+
+                var cardBodyHeight = $($(x.target)).height();
+
+                $(obj).height(($(obj).height() + cardBodyHeight) + "px")
+
+                cardHeightDict[id] = cardBodyHeight;
+            });
+
+            $('.writeContractFunction').on('hidden.bs.collapse', function (x) {
+                var id = $($(x.target)).prev().attr('id');
+                var obj = window.parent.document.getElementById(contractframe);
+                $(obj).height(($(obj).height() - cardHeightDict[id]) + "px");
+            });
+
+            $('#footer').show();
+            if (hasInput == false) {
+                header.append('<div id="sorrynotfound" class="alert alert-warning mb-0" role="alert">Sorry, no public Write functions were found for this contract.</div>');
+            }
+        }
+        $('.write-btn').addClass('disabled');
+
+        var obj = window.parent.document.getElementById(contractframe);
+        if (obj !== null)
+            parent.resizeIframe(obj, 0);
+
+        if (funcId) {
+            setTimeout(function () {
+                $("#collapse" + funcId).collapse('show');
+                $("#collapse" + funcId).closest(".mb-3").addClass("blinking-bg");
+                setTimeout(function () {
+                    document.getElementById('collapse' + funcId).scrollIntoView({
+                        behavior: 'smooth', block: "center", inline: "nearest", callback: function () {
+                            evt.preventDefault();
+                            evt.stopPropagation();
+                        }
+                    });
+                    setTimeout(function () {
+                        $("#collapse" + funcId).closest(".mb-3").addClass("blinking-bg");
+                        setTimeout(function () {
+                            $("#collapse" + funcId).closest(".mb-3").removeClass("border-primary_r");
+                            $("#collapse" + funcId).closest(".mb-3").removeClass("blinking-bg");
+                        }, 3000);
+                    }, 500);
+                }, 500);
+            }, 1000);
+        }
+    }
+
+    function GenerateInputTag(inputName, inputId, counter, counterInput, type) {
+
+        if (inputName !== "") {
+            return ' <div class="form-group"><label>' + inputName + ' (' + type + ') </label>' +
+                '<input type="text" class="form-control form-control-xs" name="' + inputId + '" id="input_' + counter + '_' + counterInput + '" data-type="' + type + '" placeholder="&nbsp; ' + inputName + ' (' + type + ')"></div>';
+
+        } else {
+            return ' <div class="form-group"><label>' + type + '</label>' +
+                '<input type="text" class="form-control form-control-xs" name="' + inputId + '" data-type="' + type + '" id="input_' + counter + '_' + counterInput + '" placeholder=" &nbsp; &lt;input&gt (' + type + ')"></div>';
+        }
+
+    }
+
+    function GenerateRow(fieldName, outputFieldsWithName, counter, body) {
+        if (!hasInput) {
+            hasInput = true;
+            header.append('<div class="d-sm-flex justify-content-between mb-3"><p class="ml-3 mr-3 mb-1"><i id="connector" class="fa fa-circle text-danger mr-1"></i><a href = "#close" id="connectStatus" class="forum-title" id="connectWeb3" onclick="openModal(); return false;">Connect to Web3</a></p><span><a href="#" class="mr - 1 expandCollapseAllButton" onclick="expandCollapseAll()">[Expand all]</a><a class="ml-3 mr-3" href="#" onclick="resetPage(); return false;">[Reset]</a></span></div >');
+        }
+        var output = '<div class="card shadow-none mb-3"><div class="card-header bg-light card-collapse p-0" role="tab" id="heading' + counter + '">' +
+            '<a role="button" class="btn btn-link btn-block text-dark d-flex justify-content-between align-items-center py-2 collapsed"  data-toggle="collapse" data-parent="#accordion" href="#collapse' + counter + '" aria-expanded="true" aria-controls="collapse' + counter + '">' + counter + '. ' + fieldName + '<span class="accordion-arrow"><i class="fas fa-arrow-down small"></i></span></a>' +
+            '<a class="btn btn-sm btn-icon mr-1 permalink_text text-dark" href="javascript:;" onclick="generatePermalink(this, ' + counter + ')"  data-toggle="tooltip" title="Copy Permalink"><i class="far fa-link btn-icon__inner"></i></a></div>' +
+            '<div id="collapse' + counter + '" class="collapse writeContractFunction" role="tabpanel" aria-labelledby="heading' + counter + '"><div class="card-body"><form>' + outputFieldsWithName + '</form></div></div></div>';
+
+        body.before(output);
+        $('[data-toggle="tooltip"]').tooltip();
+    }
+
+    var isCollapsed = true;
+    function expandCollapseAll() {
+        if (isCollapsed) {
+            $('.collapse.writeContractFunction').collapse('show');
+            isCollapsed = false;
+            $('.expandCollapseAllButton').html('[Collapse All]');
+        } else {
+            $('.collapse.writeContractFunction').collapse('hide');
+            isCollapsed = true;
+            $('.expandCollapseAllButton').html('[Expand All]');
+        }
+    }
+
+    function NewProxySection(body, address) {
+        let section = '<p>Showing ABI for possible implementation <a href="/address/' + address + '#writeContract" target="_blank" >' + address + '</a></p><div class="panel-group acc-v1" id="impl' + address + '" role="tablist" aria-multiselectable="true"></div>';
+        $("#footer").before(section);
+        return $('#impl' + address);
+    }
+
+    function openModal() {
+        if (window.parent.document.URL.indexOf('writeProxyContract') != -1) {
+            parent.openProxyModal();
+        } else {
+            parent.openModal();
+        }
+    }
+
+    function closeModal() {
+        if (window.parent.document.URL.indexOf('writeProxyContract') != -1) {
+            parent.closeProxyModal();
+        } else {
+            parent.closeModal();
+        }
+    }
+
+    function write0(method, input, isSameNetwork) {
+        // Re-check chain before write
+        if (isSameNetwork == undefined || isSameNetwork === null || isSameNetwork == false) {
+            if (typeof web3Obj !== 'undefined') {
+
+                (async () => {
+
+                    let network = 0;
+                    network = await web3Obj.eth.net.getId();
+                    let netID = network.toString();
+
+                    if ((isTestnet === 'true' && netID !== '80001') || (isTestnet !== 'true' && netID !== '137')) {
+                        // Show message
+                        $('.' + input).html("<span class='text-danger'>Wrong network detected, please make sure you are switched to the correct network, and try again</span>");
+                    } else {
+                        write0(method, input, true);
+                    }
+                })();
+
+                return;
+            }
+        } else {
+
+            if (isAccount === false) {
+                alert("Please connect to your Web3 provider!");
+
+                return;
+            }
+
+            $(".write-msg").empty();
+
+            var functiontoCall = 'myContractInstance.methods.' + method;
+            var params = [];
+            var ctrl = document.querySelectorAll("[name=" + input + "]");
+            var inputs = [];
+
+            if (input.indexOf("_proxy") !== -1)
+                functiontoCall = 'myProxyContractInstance.methods.' + method;
+
+            for (var i = 0; i < ctrl.length; i++) {
+                var type = ctrl[i].getAttribute('data-type');
+                var grp = ctrl[i].getAttribute('data-grp');
+                var values = [];
+
+                if (ctrl[i].value == '' && grp === null) {
+                    document.getElementById(input).focus();
+                    alert('Input value cannot be empty');
+                    return false;
+                }
+
+                // don't trip formatting at all
+                var value = ctrl[i].value;
+
+                if (value) {
+                    if (type.indexOf('[') !== -1 && type.indexOf(']') !== -1) values.push(value.split(','));
+                    else values.push(value);
+                } else values.push('');
+
+                inputs.push({ type: type, value: values, grp: grp });
+            }
+
+            var params = encodeParams(inputs);
+            //get input number - which is always the second element
+            var splitTmp = input.split("_");
+            var counter = splitTmp[1];
+            var payableAmountInput = document.getElementById("input_payable_" + counter + '_' + method);
+            var payableParam = payableAmountInput && !isNaN(payableAmountInput.value) ? ', value: "' + web3Obj.utils.toWei(payableAmountInput.value, "ether") + '"' : '';
+
+            try {
+                new Function(functiontoCall + "(" + params + ").send({ from:'" + web3Obj.eth.defaultAccount + "'" + payableParam + "})" +
+                    ".on('transactionHash', function(hash) { showTx('', hash, '" + input + "'); })" +
+                    ".on('error', function(error) { showTx(error, '', '" + input + "') });")();
+            } catch (err) {
+                showTx(err.message, '', input);
+            }
+        }
+    }
+
+    function encodeParams(values) {
+        var params = '';
+
+        if (values.length === 0)
+            return "";
+
+        for (i = 0; i < values.length; i++) {
+            var param = values[i];
+
+            if (param.value !== '') {
+                if (param.grp !== null) {
+                    var _grp = values.filter(function (x) { return x.grp == param.grp });
+                    var _grpParam = '';
+
+                    for (g = 0; g < _grp.length; g++) {
+                        param = _grp[g];
+
+                        if (param.value[0] !== '') {
+                            if (g == 0)
+                                if (param.type == "tuple" || param.type == "tuple[]") {
+                                    _grpParam = param.value[0];
+                                } else {
+                                    _grpParam = toHex(param.type, Escape(param.value[0]));
+                                }
+                            else
+                                if (param.type == "tuple" || param.type == "tuple[]") {
+                                    _grpParam = _grpParam + ',' + param.value[0];
+                                } else {
+                                    _grpParam = _grpParam + ',' + toHex(param.type, Escape(param.value[0]));
+                                }
+                        }
+                    }
+
+                    if (i == 0)
+                        params += _grpParam;
+                    else
+                        params += ',' + _grpParam;
+
+                    i += _grp.length - 1;
+                }
+                else {
+                    if (i == 0)
+                        if (param.type == "tuple" || param.type == "tuple[]") {
+                            params = param.value[0];
+                        } else {
+                            params = toHex(param.type, Escape(param.value[0]));
+                        }
+                    else
+                        if (param.type == "tuple" || param.type == "tuple[]") {
+                            params = params + ',' + param.value[0];
+                        } else {
+                            params = params + ',' + toHex(param.type, Escape(param.value[0]));
+                        }
+                }
+            }
+        }
+
+        return params;
+    }
+
+    function Escape(val) {
+
+        if (typeof val === 'string' || val instanceof String)
+            return val.replace(/'/g, "\\u0027");
+        else
+            return val;
+
+    }
+
+    function strip(val) {
+        val = val.replace(/"/g, '');
+        return val;
+    }
+
+
+    function toHex(type, val) {
+        if (type.indexOf('bool') !== -1)
+            return JSON.parse(val);
+        else if (type.indexOf('address') !== -1)
+            if (type.indexOf('[') !== -1) {
+                // check for address[] - Convenience parsing to wrap with double quotes
+                // multidimensional arrays will rely on the user providing the correct input (brackets, double quotes on the correct places)
+                var tmp = val.toString().replace("[", "").replace("]", "").split(",");
+                var toReturn = "";
+                for (var i = 0; i < tmp.length; i++) {
+                    if (tmp[i].length == 0)
+                        toReturn = toReturn + " ," //let it error
+                    else
+                        toReturn = toReturn + "'" + add0xforAddress(tmp[i].toString().replace("\"", "").replace("'", "")) + "',"
+                }
+                toReturn = toReturn.slice(0, -1);
+                toReturn = "[" + toReturn + "]";
+                return toReturn;
+            } else {
+                // strip any existing double quotes or single quotes
+                val = val.replace("\"", "").replace("'", "");
+                return "'" + add0xforAddress(val) + "'";
+            }
+        else if (type == 'string')
+            // which also means if you double quote your strings, it'll follow suit ;)
+            return "'" + val + "'"
+        else if (type.indexOf('uint') !== -1)
+            if (type.indexOf('[') !== -1) {
+                // check for uint[] - Convenience parsing to wrap with double quotes
+                // multidimensional arrays will rely on the user providing the correct input (brackets, double quotes on the correct places), exit if it is
+                if (type.split(/[[1-9]]/).length == 2) {
+                    var tmp = val.toString().replace("[", "").replace("]", "").split(",");
+                    var toReturn = "";
+
+                    // specifically handle empty array
+                    if (tmp.length == 1) {
+                        if (tmp[0].toString() == "") {
+                            return "[]";
+                        }
+                    }
+
+                    for (var i = 0; i < tmp.length; i++) {
+                        toReturn = toReturn + "'" + tmp[i].toString() + "',"
+                    }
+                    toReturn = toReturn.slice(0, -1);
+                    toReturn = "[" + toReturn + "]";
+                    return toReturn;
+                } else {
+                    // avoid handling complex data types, rely on user to enter them as appropriate
+                    return val;
+                }
+            }
+            else {
+                // strip any existing double quotes or single quotes
+                val = val.replace("\"", "").replace("'", "");
+                return "'" + val + "'";
+            }
+        else if (type.indexOf('byte') !== -1)
+            if (type.indexOf('[') !== -1) {
+                // multidimensional arrays will rely on the user providing the correct input (brackets, double quotes on the correct places), exit if it is
+                if (type.split(/[[1-9]]/).length == 2) {
+                    var tmp = val.toString().replace("[", "").replace("]", "").split(",");
+                    var toReturn = "";
+
+                    // specifically handle empty array
+                    if (tmp.length == 1) {
+                        if (tmp[0].toString() == "") {
+                            return "[]";
+                        }
+                    }
+
+                    for (var i = 0; i < tmp.length; i++) {
+                        toReturn = toReturn + "'" + tmp[i].toString() + "',"
+                    }
+                    toReturn = toReturn.slice(0, -1);
+                    toReturn = "[" + toReturn + "]";
+                    return toReturn;
+                } else {
+                    // avoid handling complex data types, rely on user to enter them as appropriate - including quote wrapping
+                    return val;
+                }
+            }
+            else {
+                // strip any existing double quotes or single quotes
+                val = val.replace("\"", "").replace("'", "");
+                return "'" + val + "'";
+            }
+        else
+            return val
+    };
+
+    function htmlEncode(value) {
+        return $('<div/>').text(value).html();
+    }
+
+    function showTx(err, msg, input) {
+
+        if (err) {
+            var _err = err;
+            if (err.message)
+                _err = err.message;
+
+            result = filterXSS(_err)
+            htmlEncoded = htmlEncode(result);
+            $('.' + input).html("<span class='text-danger'>" + htmlEncoded + "</span>");
+
+            var height = $('.' + input).closest(".card-body").height()
+            var id = $('.' + input).closest('.writeContractFunction').prev().attr('id');
+
+            var obj = window.parent.document.getElementById(contractframe);
+            $(obj).height(($(obj).height() - cardHeightDict[id] + height) + "px");
+            cardHeightDict[id] = height;
+
+        } else {
+            var _url = 'polygonscan.com';
+
+            if (isTestnet === 'true')
+                _url = "mumbai.polygonscan.com"
+
+
+            if (msg !== undefined)
+                $('.' + input).html("<a class='btn btn-primary' href='//" + _url + "/tx/" + msg + "' target='_blank'> View your transaction</a>");
+        }
+
+    }
+
+    async function initWalletConnect_v2(networkChainid) {
+        var app_meta = {
+            name: "Polygon",
+            description: "Polygon WalletConnect",
+            url: "https://walletconnect.com/",
+            icons: ["https://avatars.githubusercontent.com/u/37784886"],
+        };
+        walletConnectObj_v2 = await WalletConnectProvider_v2.init({
+            projectId: 'c441e32d31db9533e084675f7290897d', // REQUIRED your projectId
+            chains: [networkChainid],
+            metadata: app_meta,
+            showQrModal: true,
+            rpcMap:
+            {
+                '137': "https://matic-mainnet.chainstacklabs.com",
+                '80001': "https://matic-mumbai.chainstacklabs.com"
+            }
+        });
+    }
+
+    async function connectWeb3(type) {
+        if ((contractAddress !== undefined) || (net !== undefined)) {
+            if (type === 'web3') {
+                if (typeof parent.ethereum !== 'undefined') {
+                    web3Obj = new Web3(parent.ethereum);
+                } else if (typeof ethereum !== 'undefined') {
+                    web3Obj = new Web3(ethereum);
+                } else if (typeof web3 !== 'undefined') {
+                    web3Obj = new Web3(web3.givenProvider);
+                }
+                typeOfLogin = type;
+            } else {
+                switch (type) {
+                    case 'walletConnect':
+                        // for walletConnect we need to preemptively close the modal
+                        closeModal();
+
+                        // is there a way for us to catch the qrmodal rejection and flush the object? TODO
+                        try {
+
+                            // just override....
+                            if (isTestnet == true) {
+                                walletConnectObj.chainId = 80001;
+                                walletConnectObj.networkId = 80001;
+                            } else {
+                                walletConnectObj.chainId = 137;
+                                walletConnectObj.networkId = 137;
+                            }
+                            var walletConnectEnableTask = walletConnectObj.enable();
+
+                            setTimeout(() => {
+                                $(".walletconnect-modal__footer>a").on("click", (el) => {
+                                    if ($(el.currentTarget).html() == "Copy to clipboard") {
+                                        alert("Successfully copied to clipboard");
+                                    }
+                                })
+
+                            });
+
+                            await walletConnectEnableTask;
+                            web3Obj = new Web3(walletConnectObj);
+                            nonBrowserWallet = true;
+                            typeOfLogin = type;
+
+                            break;
+                        } catch (err) {
+                            console.log('Error from WalletConnect: ' + err);
+                            alert('Failed to establish a connection to WalletConnect.');
+                            var isInIFrame = (window.location != window.parent.location);
+                            if (isInIFrame) {
+                                var element = window.parent.document.getElementById("writecontractiframe");
+                                element.style.removeProperty("min-height");
+                            }
+                            resetPage();
+                            return;
+                        }
+                    case 'walletConnect_v2':
+
+                        var wcChainId;
+                        if (isTestnet == 'true') {
+                            wcChainId = 80001;
+                        } else {
+                            wcChainId = 137;
+                        }
+                        await initWalletConnect_v2(wcChainId);
+                        // for walletConnect we need to preemptively close the modal
+                        closeModal();
+
+                        // is there a way for us to catch the qrmodal rejection and flush the object? TODO
+                        try {
+
+                            var walletConnectEnableTask = walletConnectObj_v2.connect();
+                            setTimeout(() => {
+                                $(".walletconnect-modal__footer>a").on("click", () => {
+                                    alert("Successfully copied to clipboard");
+                                })
+                            });
+                            await walletConnectEnableTask;
+                            walletConnectObj_v2.on('disconnect', function (error, payload) {
+                                window.location.reload(true)
+                            });
+                            web3Obj = new Web3(walletConnectObj_v2);
+                            nonBrowserWallet = true;
+                            typeOfLogin = type;
+                            break;
+                        } catch (err) {
+                            console.log('Error from WalletConnect V2: ' + err);
+                            alert('Failed to establish a connection to WalletConnect V2.');
+                            var isInIFrame = (window.location != window.parent.location);
+                            if (isInIFrame) {
+                                var element = window.parent.document.getElementById("writecontractiframe");
+                                element.style.removeProperty("min-height");
+                            }
+                            resetPage();
+                            return;
+                        }
+                }
+                //switch (type) {
+                //    case 'fortmatic':
+                //        if (net == 'mainnet') {
+                //            walletObj = new Fortmatic('pk_live_B9A57A525317B46C');
+
+                //        } else {
+                //            walletObj = new Fortmatic('pk_test_55D11D05C26BB408', net);
+                //        }
+
+                //        eth = new Web3Eth(walletObj.getProvider());
+                //        nonBrowserWallet = true;
+                //        typeOfLogin = type;
+                //        break;
+
+                //    case 'portis':
+                //        walletObj = new Portis('c7951b32-a4dd-4348-beee-318fe070bcbe', net);
+                //        eth = new Web3Eth(walletObj.provider);
+                //        nonBrowserWallet = true;
+                //        typeOfLogin = type;
+                //        break;
+                //}
+            }
+        }
+
+        if (typeof web3Obj !== 'undefined') {
+            var network = 0;
+
+            network = await web3Obj.eth.net.getId();
+            netID = network.toString();
+
+            switch (netID) {
+                case "137":
+                    network = "poly";
+                    break;
+                case "80001":
+                    network = 'testnet-poly';
+                    break;
+                default:
+                    network = 'unknown'
+                    console.log('This is an unknown network.');
+            }
+
+            if (netID !== "137" && isTestnet === "false") {
+
+                window.ethereum.request({
+                    method: 'wallet_switchEthereumChain',
+                    params: [{ chainId: '0x89' }], // chainId must be hexadecimal.
+                }).then(() => {
+                    if (nonBrowserWallet == true) {
+                        getWeb3Accounts();
+                        console.log(address);
+                    } else if (typeof ethereum !== 'undefined') {
+                        ethereum.enable().then(function () {
+                            getWeb3Accounts();
+                        });
+                    } else {
+                        getWeb3Accounts();
+                    }
+                    parent.closeModal();
+                }).catch((ex) => {
+                    if (ex && ex.code === 4902) {  // 4902: mean this chain still not add to MM
+
+                        let params = [{
+                            chainId: '0x89',
+                            chainName: 'Polygon Mainnet',
+                            nativeCurrency: {
+                                name: 'MATIC',
+                                symbol: 'MATIC',
+                                decimals: 18
+                            },
+                            rpcUrls: ['https://polygon-rpc.com/'],
+                            blockExplorerUrls: ['https://polygonscan.com/']
+                        }];
+
+                        window.ethereum.request({ method: 'wallet_addEthereumChain', params })
+                            .then(() => (async () => {
+                                network = await web3Obj.eth.net.getId();
+                                netID = network.toString();
+                                if (netID == "137" && isTestnet === "false") {
+                                    if (typeof ethereum !== 'undefined') {
+                                        ethereum.enable().then(function () {
+                                            getWeb3Accounts();
+                                        });
+                                    } else {
+                                        getWeb3Accounts();
+                                    }
+                                    parent.closeModal();
+                                }
+                            })());
+                    }
+                });
+
+            } else if (netID !== "80001" && isTestnet === "true") {
+
+                window.ethereum.request({
+                    method: 'wallet_switchEthereumChain',
+                    params: [{ chainId: '0x13881' }], // chainId must be hexadecimal.
+                }).then(() => {
+                    if (nonBrowserWallet == true) {
+                        getWeb3Accounts();
+                        console.log(address);
+                    } else if (typeof ethereum !== 'undefined') {
+                        ethereum.enable().then(function () {
+                            getWeb3Accounts();
+                        });
+                    } else {
+                        getWeb3Accounts();
+                    }
+                    parent.closeModal();
+                }).catch((ex) => {
+                    if (ex && ex.code === 4902) {  // 4902: mean this chain still not add to MM
+                        let params = [{
+                            chainId: '0x13881',
+                            chainName: 'Mumbai',
+                            nativeCurrency: {
+                                name: 'MATIC',
+                                symbol: 'MATIC',
+                                decimals: 18
+                            },
+                            rpcUrls: ['https://matic-mumbai.chainstacklabs.com'],
+                            blockExplorerUrls: ['https://mumbai.polygonscan.com/']
+                        }];
+
+                        window.ethereum.request({ method: 'wallet_addEthereumChain', params })
+                            .then(() => (async () => {
+                                network = await web3Obj.eth.net.getId();
+                                netID = network.toString();
+                                if (netID == "80001" && isTestnet === "true") {
+                                    if (typeof ethereum !== 'undefined') {
+                                        ethereum.enable().then(function () {
+                                            getWeb3Accounts();
+                                        });
+                                    } else {
+                                        getWeb3Accounts();
+                                    }
+                                    parent.closeModal();
+                                }
+                            })());
+                    }
+                });
+
+            } else {
+                if (nonBrowserWallet == true) {
+                    getWeb3Accounts();
+                    console.log(address);
+                } else if (typeof ethereum !== 'undefined') {
+                    ethereum.enable().then(function () {
+                        getWeb3Accounts();
+                    });
+                } else {
+                    getWeb3Accounts();
+                }
+            }
+
+            setTimeout(function () {
+                if (contractframe == "writeproxycontractiframe") {
+                    window.parent.writeProxyContractLoaded = true;
+                } else {
+                    window.parent.writeContractLoaded = true;
+                }
+
+                var obj = window.parent.document.getElementById(contractframe);
+
+                if (obj !== null) {
+                    parent.resizeIframe(obj, 0);
+                    window.parent.isFrameLoading = false;
+                    window.parent.document.getElementById('overlayMain').style.display = 'none';
+                }
+
+            }, 50);
+
+            closeModal();
+        } else {
+            alert('Unable to locate a compatible web3 browser!');
+        }
+    }
+
+
+    function getWeb3Accounts() {
+        web3Obj.eth.getAccounts(function (err, accounts) {
+            if (err) alert(err + '. Are you sure you are on a secure (SSL / HTTPS) connection?');
+
+            if (accounts.length > 0) {
+                address = accounts[0];
+                var isAddress = web3Obj.utils.isAddress(address);
+
+                if (isAddress) {
+
+                    var msg = 'Please take note that this is a beta version feature and is provided on an "as is" and "as available" basis. PolygonScan does not give any warranties and will not be liable for any loss, direct or indirect through continued use of this feature.';
+
+                    if (confirm(msg)) {
+                        $('.write-btn').show();
+                        $('#connectWeb3').hide();
+                        web3Obj.eth.defaultAccount = accounts[0];
+
+                        myContractInstance = new web3Obj.eth.Contract(ABI, contractAddress);
+
+                        if (proxyABI)
+                            myProxyContractInstance = new web3Obj.eth.Contract(proxyABI, contractAddress);
+
+                        $('#connector').removeClass("text-danger").addClass("text-success");
+                        $('#connector').attr('title', 'Connected');
+                        $('#connector').attr('data-toggle-second', 'tooltip');
+                        $("[data-toggle-second='tooltip']").tooltip();
+                        $('.write-btn').removeClass("disabled");
+
+                        var connectorID = document.getElementById('connectStatus');
+                        var strAddressHyperlink;
+
+                        if (net == 'poly' && isTestnet === "false") {
+                            strAddressHyperlink = "<a target='_blank' href = 'https://polygonscan.com/address/[address]'>[address]</a>";
+                        } else {
+                            strAddressHyperlink = "<a target='_blank' href = 'https://mumbai.polygonscan.com/address/[address]'>[address]</a>";
+                        }
+
+                        connectorID.innerHTML = "Connected - " + typeOfLogin.charAt(0).toUpperCase() + typeOfLogin.slice(1) + ' [' + strAddressHyperlink.replace(/\[address\]/g, address) + ']';
+                        connectorID.removeAttribute('href');
+                        connectorID.removeAttribute('onclick');
+                    }
+
+                    isAccount = true;
+                }
+            } else {
+                alert('Please connect to your Web3 provider!');
+            }
+        });
+    }
+
+    function add0xforAddress(_address) {
+        _address = _address.trim();
+        if (_address.startsWith("0x") == false && _address.length == 40) {
+            _address = "0x" + _address;
+        }
+        return _address;
+    }
+
+    function getUrlParameter(sParam) {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : sParameterName[1];
+            }
+        }
+    }
+
+
+    setTimeout(function () {
+        if (contractframe == "writeproxycontractiframe") {
+            window.parent.writeProxyContractLoaded = true;
+        } else {
+            window.parent.writeContractLoaded = true;
+        }
+        var obj = window.parent.document.getElementById(contractframe);
+
+        if (obj !== null) {
+            parent.resizeIframe(obj, 0);
+            window.parent.isFrameLoading = false;
+            window.parent.document.getElementById('overlayMain').style.display = 'none';
+        }
+
+    }, 50);
+
+    function getParameterByName(name) {
+        var url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+    $(document).ready(function () {
+        $(window).keydown(function (event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    });
+
+    function generatePermalink(el, number) {
+        try {
+            var currentUrl = window.parent.location.href;
+            let prefix = "";
+            if (window.parent.location.href.indexOf("#writeProxyContract") > -1)
+                prefix = "#writeProxyContract";
+            if (window.parent.location.href.indexOf("#readProxyContract") > -1)
+                prefix = "#readProxyContract";
+            if (window.parent.location.href.indexOf("#writeContract") > -1)
+                prefix = "#writeContract";
+            if (window.parent.location.href.indexOf("#readContract") > -1)
+                prefix = "#readContract";
+
+            var baseUrl = currentUrl.split("#")[0] + prefix;
+            baseUrl = baseUrl + "#F" + number;
+
+            //copy to clipboard code
+            var elem = document.createElement('textarea');
+            elem.value = baseUrl;
+            document.body.appendChild(elem);
+            elem.select();
+            document.execCommand('copy');
+            document.body.removeChild(elem);
+
+            //get i element and original image class
+            changeCopyIcon(el, "Copied");
+
+        } catch (err) {
+            console.log('Oops, unable to generate permalink');
+        }
+    }
+
+    function changeCopyIcon(el, tooltipText) {
+        var iElem = $(el).children("i")[0];
+        var oriImageClass = $(iElem).attr("class");
+        var oriTooltip = $(el).attr('data-original-title');
+        var checkImageClass = 'fa fa-check btn-icon__inner'
+
+        $(iElem).removeClass(oriImageClass).addClass(checkImageClass);
+        $(el).attr('data-original-title', tooltipText);
+
+        setTimeout(() => {
+            $(el).tooltip('show');
+        }, 1);
+
+        setTimeout(() => {
+            $(iElem).removeClass(checkImageClass).addClass(oriImageClass);
+            $(el).attr('data-original-title', oriTooltip)
+        }, 1000)
+    }
+</script>
+
+</body></html>

@@ -1,10 +1,10 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/contracts/ReferralV1Upgradeable.sol": {
-      "lastModificationDate": 1686315671936,
-      "contentHash": "86b1c97a217eee31c520babcf105583b",
-      "sourceName": "contracts/ReferralV1Upgradeable.sol",
+    "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/contracts/CoreMembersV1Upgradeable.sol": {
+      "lastModificationDate": 1686569805254,
+      "contentHash": "0752535750ddcc5bfec21e1fae3359ba",
+      "sourceName": "contracts/CoreMembersV1Upgradeable.sol",
       "solcConfig": {
         "version": "0.8.18",
         "settings": {
@@ -40,48 +40,8 @@
         "^0.8.18"
       ],
       "artifacts": [
-        "IERC20_EXTENDED",
-        "IVariables",
-        "ReferralV1Upgradeable"
-      ]
-    },
-    "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/node_modules/@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol": {
-      "lastModificationDate": 1685354729590,
-      "contentHash": "403ce8273abde646bff81558ddf512ad",
-      "sourceName": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
-      "solcConfig": {
-        "version": "0.8.18",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "storageLayout"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../utils/ContextUpgradeable.sol",
-        "../proxy/utils/Initializable.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "OwnableUpgradeable"
+        "CoreMembersV1Upgradeable",
+        "IERC20_EXTENDED"
       ]
     },
     "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/node_modules/@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol": {
@@ -123,6 +83,45 @@
         "PausableUpgradeable"
       ]
     },
+    "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/node_modules/@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol": {
+      "lastModificationDate": 1685354729590,
+      "contentHash": "403ce8273abde646bff81558ddf512ad",
+      "sourceName": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
+      "solcConfig": {
+        "version": "0.8.18",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../utils/ContextUpgradeable.sol",
+        "../proxy/utils/Initializable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "OwnableUpgradeable"
+      ]
+    },
     "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol": {
       "lastModificationDate": 1685354730409,
       "contentHash": "fc5844e59776a976987884e4d9814c7d",
@@ -159,6 +158,42 @@
       ],
       "artifacts": [
         "Initializable"
+      ]
+    },
+    "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/node_modules/@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol": {
+      "lastModificationDate": 1685354730410,
+      "contentHash": "a9ed3c7bc7d9ebb5e34f20829274f088",
+      "sourceName": "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol",
+      "solcConfig": {
+        "version": "0.8.18",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20Upgradeable"
       ]
     },
     "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol": {
@@ -199,42 +234,6 @@
       ],
       "artifacts": [
         "UUPSUpgradeable"
-      ]
-    },
-    "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/node_modules/@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol": {
-      "lastModificationDate": 1685354730410,
-      "contentHash": "a9ed3c7bc7d9ebb5e34f20829274f088",
-      "sourceName": "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol",
-      "solcConfig": {
-        "version": "0.8.18",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "storageLayout"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IERC20Upgradeable"
       ]
     },
     "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/node_modules/@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol": {
@@ -462,8 +461,8 @@
       ]
     },
     "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/contracts/VariablesV1Upgradeable.sol": {
-      "lastModificationDate": 1686290833009,
-      "contentHash": "a920a9d25579355f474d7b670138ab79",
+      "lastModificationDate": 1686564342004,
+      "contentHash": "eb0d7b6e2f47d5a90d4b0f05cc185460",
       "sourceName": "contracts/VariablesV1Upgradeable.sol",
       "solcConfig": {
         "version": "0.8.18",
@@ -504,10 +503,10 @@
         "VariablesV1Upgradeable"
       ]
     },
-    "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/contracts/RegisterV1Upgradeable.sol": {
-      "lastModificationDate": 1685960209487,
-      "contentHash": "3c4e926813ce36bbd4e1548c6821a45b",
-      "sourceName": "contracts/RegisterV1Upgradeable.sol",
+    "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/contracts/StakingUpgradeable.sol": {
+      "lastModificationDate": 1686572032136,
+      "contentHash": "2cb1888fdfe65dc434de87a58c787ff4",
+      "sourceName": "contracts/StakingUpgradeable.sol",
       "solcConfig": {
         "version": "0.8.18",
         "settings": {
@@ -533,60 +532,18 @@
         }
       },
       "imports": [
-        "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol",
+        "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol",
         "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
         "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
-        "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol",
-        "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol"
+        "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol"
       ],
       "versionPragmas": [
         "^0.8.18"
       ],
       "artifacts": [
-        "RegisterV1Upgradeable"
-      ]
-    },
-    "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/contracts/CoreMembersV1Upgradeable.sol": {
-      "lastModificationDate": 1685432046740,
-      "contentHash": "9bbabba08ae7e59b288dfb4a2e52dacc",
-      "sourceName": "contracts/CoreMembersV1Upgradeable.sol",
-      "solcConfig": {
-        "version": "0.8.18",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "storageLayout"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol",
-        "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
-        "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
-        "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol",
-        "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.18"
-      ],
-      "artifacts": [
-        "CoreMembersV1Upgradeable",
-        "IERC20_EXTENDED"
+        "IERC20_EXTENDED",
+        "IVariables",
+        "StakingUpgradeable"
       ]
     },
     "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/contracts/ShareBalanceV1Upgradeable.sol": {
@@ -632,10 +589,10 @@
         "ShareBalanceUpgradeable"
       ]
     },
-    "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/contracts/StakingUpgradeable.sol": {
-      "lastModificationDate": 1686296130237,
-      "contentHash": "02e43a407b039b64769104b2fd47fd6a",
-      "sourceName": "contracts/StakingUpgradeable.sol",
+    "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/contracts/RegisterV1Upgradeable.sol": {
+      "lastModificationDate": 1686570261813,
+      "contentHash": "8f0359cefb3f95278a54280727425cf0",
+      "sourceName": "contracts/RegisterV1Upgradeable.sol",
       "solcConfig": {
         "version": "0.8.18",
         "settings": {
@@ -661,11 +618,11 @@
         }
       },
       "imports": [
-        "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol",
         "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol",
         "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
         "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
-        "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol"
+        "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol",
+        "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol"
       ],
       "versionPragmas": [
         "^0.8.18"
@@ -673,7 +630,52 @@
       "artifacts": [
         "IERC20_EXTENDED",
         "IVariables",
-        "StakingUpgradeable"
+        "ReferralV1Upgradeable1"
+      ]
+    },
+    "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/contracts/ReferralV1Upgradeable.sol": {
+      "lastModificationDate": 1686590029476,
+      "contentHash": "4df37e63f30a5232b604ce674eddae85",
+      "sourceName": "contracts/ReferralV1Upgradeable.sol",
+      "solcConfig": {
+        "version": "0.8.18",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol",
+        "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
+        "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
+        "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol",
+        "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.18"
+      ],
+      "artifacts": [
+        "IERC20_EXTENDED",
+        "IStaking",
+        "IVariables",
+        "ReferralV1Upgradeable"
       ]
     }
   }

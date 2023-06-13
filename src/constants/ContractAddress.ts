@@ -1,5 +1,6 @@
 import VariablesV1ContractInterface from '../contracts/artifacts/contracts/VariablesV1Upgradeable.sol/VariablesV1Upgradeable.json';
 import ReferralV1ContractInterface from '../contracts/artifacts/contracts/ReferralV1Upgradeable.sol/ReferralV1Upgradeable.json';
+import StakingUpgradeableInterface from '../contracts/artifacts/contracts/StakingUpgradeable.sol/StakingUpgradeable.json';
 import CoreMembersV1ContractInterface from '../contracts/artifacts/contracts/CoreMembersV1Upgradeable.sol/CoreMembersV1Upgradeable.json';
 import { ERC20Interface } from '@usedapp/core';
 import { erc20ABI } from 'wagmi';
@@ -37,9 +38,16 @@ export const ReferralV1ContractObject: ContractObject = {
   myveeAddress: '0x1F3B7E45aC44Ba98D73b59Dc796d269281b053d8',
 };
 
+export const StakingContractObject: ContractObject = {
+  abi: StakingUpgradeableInterface?.abi,
+  polygonAddress: '0x601Cb0299ab53e67e25c9e7C329Db8684a963E7C',
+  bscAddress: AddressZero,
+  myveeAddress: AddressZero,
+};
+
 export const CoreMembersV1ContractObject: ContractObject = {
   abi: CoreMembersV1ContractInterface?.abi,
-  polygonAddress: AddressZero,
+  polygonAddress: '0xC88F39aE7b4a9B636DD2Ceb08c9aE3ca322A6CaB',
   bscAddress: AddressZero,
   myveeAddress: '0xefb61c43C70b60563c1a2a835663C63Ecc93F6bA',
 };
