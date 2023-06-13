@@ -681,7 +681,7 @@ contract ReferralV1Upgradeable is
                 : weeklyRewardValue
         );
 
-        _WeeklyRewardValue -= weeklyRewardValue;
+        _WeeklyRewardValue = 0;
         emit WeeklyRewardsPaid(globalAddress, weeklyRewardValue);
     }
 

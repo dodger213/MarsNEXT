@@ -24,6 +24,7 @@ import {
 import UserTeamTable from './UserTeamTable';
 import { useGetUserTeam } from '@/hooks/ReferralHooks';
 import { CheckIcon, CopyIcon } from '@chakra-ui/icons';
+import { useAccount } from 'wagmi';
 
 function Team({
   params,
@@ -32,8 +33,9 @@ function Team({
     userAddress: `0x${string}` | undefined;
   };
 }) {
+  const { address } = useAccount();
   const userTeamObject = useGetUserTeam(params.userAddress);
-  const userReferralLink = `https://marsnext.io/registration/${params.userAddress}`;
+  const userReferralLink = `https://marsnext.io/registration/${address}`;
   const { hasCopied, onCopy } = useClipboard(userReferralLink);
   return (
     <VStack w="full" direction="column" gap={10}>
