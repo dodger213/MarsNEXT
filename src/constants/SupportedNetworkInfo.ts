@@ -68,7 +68,7 @@ export const supportedNetworkInfo: SupportedNetworkInfo = {
       logo: "/token-icons/usdt.svg",
     },
     ['BUSD']: {
-      contractAddress: USDT.polygonAddress,
+      contractAddress: BUSD.polygonAddress,
       contractABI: BUSD.abi,
       name: 'BUSD',
       symbol: 'BUSD',
