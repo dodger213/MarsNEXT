@@ -52,11 +52,11 @@ function NavUserMenu({
       name: 'Staking',
       link: `/user/${userAddress}/staking`,
     },
-    {
-      icon: FcGoodDecision,
-      name: 'Register',
-      link: `/registration`,
-    },
+    // {
+    //   icon: FcGoodDecision,
+    //   name: 'Register',
+    //   link: `/registration`,
+    // },
   ];
   return (
     <Wrap
