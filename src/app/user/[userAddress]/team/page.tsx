@@ -38,7 +38,7 @@ function Team({
   const userReferralLink = `https://marsnext.io/registration/${address}`;
   const { hasCopied, onCopy } = useClipboard(userReferralLink);
   return (
-    <VStack w="full" direction="column" gap={10}>
+    <VStack w="full" spacing={10}>
       <VStack>
         <HStack>
           <Icon as={FcConferenceCall} boxSize={10}></Icon>

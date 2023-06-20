@@ -48,6 +48,11 @@ function NavUserMenu({
       link: `/user/${userAddress}/team`,
     },
     {
+      icon: FcConferenceCall,
+      name: 'Staking',
+      link: `/user/${userAddress}/staking`,
+    },
+    {
       icon: FcGoodDecision,
       name: 'Register',
       link: `/registration`,

@@ -1,14 +1,10 @@
-"use client"
+'use client';
 import Particles from '@/components/Particles';
-import {
-  Flex,
-  Image,
-  VStack,
-  useColorModeValue
-} from '@chakra-ui/react';
+import { Box, Flex, Image, VStack, useColorModeValue } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
 import { HeaderHeadingComponent } from './HeaderHeadingComponent/HeaderHeadingComponent';
+import HeaderImage from '@/components/HeaderImage';
 
 export const Header = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -43,14 +39,17 @@ export const Header = () => {
           </Parallax>
         </ParallaxProvider>
         <Flex flex={1}></Flex>
-        <Image
+        {/* <Image
           src="/header2.svg"
           alt="Header image"
           width="100%"
           minW={800}
           maxW={1200}
           zIndex={1}
-        ></Image>
+        ></Image> */}
+        <Box width="100%" minW={600} maxW={1200} zIndex={1}>
+          <HeaderImage></HeaderImage>
+        </Box>
       </VStack>
     </VStack>
   );

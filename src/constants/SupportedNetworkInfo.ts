@@ -6,6 +6,7 @@ import {
   ContractObject,
   CoreMembersV1ContractObject,
   ReferralV1ContractObject,
+  StakingContractObject,
   USDT,
   VariablesV1ContractObject,
 } from './ContractAddress';
@@ -38,6 +39,8 @@ export interface CurrentNetworkInfo {
   variablesContractInterface?: any;
   referralContractAddress?: `0x${string}`;
   referralContractInterface: any;
+  stakingContractAddress: `0x${string}`;
+  stakingContractInterface: any;
   coreMembersContractAddress?: `0x${string}`;
   coreMembersContractInterface?: any;
 
@@ -57,6 +60,8 @@ export const supportedNetworkInfo: SupportedNetworkInfo = {
     variablesContractInterface: VariablesV1ContractObject.abi,
     referralContractAddress: ReferralV1ContractObject.polygonAddress,
     referralContractInterface: ReferralV1ContractObject.abi,
+    stakingContractAddress: StakingContractObject.polygonAddress,
+    stakingContractInterface: StakingContractObject?.abi,
     coreMembersContractAddress: CoreMembersV1ContractObject.polygonAddress,
     coreMembersContractInterface: CoreMembersV1ContractObject.abi,
     ['USDT']: {
@@ -65,7 +70,7 @@ export const supportedNetworkInfo: SupportedNetworkInfo = {
       name: 'USDT',
       symbol: 'USDT',
       decimals: 6,
-      logo: "/token-icons/usdt.svg",
+      logo: '/token-icons/usdt.svg',
     },
     ['BUSD']: {
       contractAddress: BUSD.polygonAddress,
@@ -73,42 +78,18 @@ export const supportedNetworkInfo: SupportedNetworkInfo = {
       name: 'BUSD',
       symbol: 'BUSD',
       decimals: 18,
-      logo: "/token-icons/busd.svg",
+      logo: '/token-icons/busd.svg',
     },
     native: polygon,
     logo: '/chainIcons/polygonChainLogo.svg',
-  },
-  [bsc.id]: {
-    variablesContractAddress: VariablesV1ContractObject?.bscAddress,
-    variablesContractInterface: VariablesV1ContractObject?.abi,
-    referralContractAddress: ReferralV1ContractObject?.bscAddress,
-    referralContractInterface: ReferralV1ContractObject?.abi,
-    coreMembersContractAddress: CoreMembersV1ContractObject?.bscAddress,
-    coreMembersContractInterface: CoreMembersV1ContractObject?.abi,
-    ['USDT']: {
-      contractAddress: USDT.bscAddress,
-      contractABI: USDT.abi,
-      name: 'USDT',
-      symbol: 'USDT',
-      decimals: 18,
-      logo: "/token-icons/usdt.svg",
-    },
-    ['BUSD']: {
-      contractAddress: BUSD.bscAddress,
-      contractABI: BUSD.abi,
-      name: 'BUSD',
-      symbol: 'BUSD',
-      decimals: 18,
-      logo: "/token-icons/busd.svg",
-    },
-    native: bsc,
-    logo: '/chainIcons/bscSmartChainLogo.svg',
   },
   [MyVeeMainnet.id]: {
     variablesContractAddress: VariablesV1ContractObject?.myveeAddress,
     variablesContractInterface: VariablesV1ContractObject?.abi,
     referralContractAddress: ReferralV1ContractObject?.myveeAddress,
     referralContractInterface: ReferralV1ContractObject.abi,
+    stakingContractAddress: StakingContractObject.myveeAddress,
+    stakingContractInterface: StakingContractObject?.abi,
     coreMembersContractAddress: CoreMembersV1ContractObject?.myveeAddress,
     coreMembersContractInterface: CoreMembersV1ContractObject.abi,
     ['USDT']: {
@@ -117,7 +98,7 @@ export const supportedNetworkInfo: SupportedNetworkInfo = {
       name: 'Tether',
       symbol: 'USDT',
       decimals: 18,
-      logo: "/token-icons/usdt.svg",
+      logo: '/token-icons/usdt.svg',
     },
     ['BUSD']: {
       contractAddress: BUSD.myveeAddress,
@@ -125,7 +106,7 @@ export const supportedNetworkInfo: SupportedNetworkInfo = {
       name: 'BUSD',
       symbol: 'BUSD',
       decimals: 18,
-      logo: "/token-icons/busd.svg",
+      logo: '/token-icons/busd.svg',
     },
     native: MyVeeMainnet,
     logo: '/chainIcons/MyVeemainnet.svg',
