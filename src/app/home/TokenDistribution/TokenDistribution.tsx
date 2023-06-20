@@ -65,15 +65,15 @@ export const TokenDistribution = () => {
             color="linear(to-r, red.300, red.300)"
             value={10}
           ></TagComponent>
-          <TagComponent
+          {/* <TagComponent
             heading="IB Partners"
             color="linear(to-r, green.300, green.300)"
             value={5}
-          ></TagComponent>
+          ></TagComponent> */}
           <TagComponent
             heading="Core & Dev Teams"
             color="linear(to-r, orange.500, orange.500)"
-            value={5}
+            value={10}
           ></TagComponent>
         </VStack>
       </CenterComponent>

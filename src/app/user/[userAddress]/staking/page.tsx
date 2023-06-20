@@ -11,8 +11,11 @@ function Staking({
     userAddress: `0x${string}` | undefined;
   };
 }) {
-    const userStakingIDs = useGetUserStakingIDs(params.userAddress!);
-    console.log(Number(userStakingIDs.data.length), userStakingIDs.object.isLoading)
+  const userStakingIDs = useGetUserStakingIDs(params.userAddress!);
+  console.log(
+    Number(userStakingIDs.data?.length),
+    userStakingIDs.object.isLoading
+  );
   return (
     <VStack w="full" spacing={10}>
       <VStack>
@@ -21,6 +24,13 @@ function Staking({
           <Heading color="orange.500">Staking</Heading>
         </HStack>
         <Divider></Divider>
+        {Number(userStakingIDs.data?.length) > 0 ? (
+          userStakingIDs.data?.map(() => {
+            return <></>;
+          })
+        ) : (
+          <Heading>You have no stakings.</Heading>
+        )}
       </VStack>
     </VStack>
   );
