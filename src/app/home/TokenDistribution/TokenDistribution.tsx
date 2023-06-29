@@ -1,3 +1,4 @@
+import DistributionChartComponent from '@/components/DistributionChartComponent';
 import TokenDistributionComponent from '@/components/TokenDistributionComponent';
 import { CenterComponent, HeadingComponent } from '@/util/Ui';
 import {
@@ -39,14 +40,15 @@ const TagComponent = ({
 
 export const TokenDistribution = () => {
   return (
-    <VStack w="full" py="10vh" spacing={10}>
+    <VStack w="full" py="10vh" spacing={10} overflow="hidden">
       <HeadingComponent
         heading="Build for community"
         gradientHeading="DISTRIBUTION"
       ></HeadingComponent>
-      <TokenDistributionComponent
+      {/* <TokenDistributionComponent
         boxSize={useBreakpointValue([250, 300, 350, 400, 500])}
-      />
+      /> */}
+      <DistributionChartComponent  boxSize={useBreakpointValue([400, 500, 600])}></DistributionChartComponent>
       <CenterComponent>
         <VStack>
           <TagComponent

@@ -37,6 +37,7 @@
     "react-jazzicon": "^1.0.4",
     "react-scroll-parallax": "^3.4.2",
     "react-slick": "^0.29.0",
+    "rsuite": "^5.35.1",
     "sharp": "^0.32.1",
     "three": "^0.152.2",
     "typescript": "5.0.4",
