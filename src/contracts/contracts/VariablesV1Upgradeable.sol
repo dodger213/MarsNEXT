@@ -75,6 +75,8 @@ contract VariablesV1Upgradeable is
     event IBPPromotedByAdmin(address ibpAddress);
     event IBPRemovedByAdmin(address ibpAddress);
 
+    address private _uniswapRouterV2Address;
+
     function initialize() public initializer {
         _levelRates = [5000, 500, 400, 300, 200, 100, 100, 125, 125, 150];
         _levelDecimals = 10000;
@@ -477,6 +479,14 @@ contract VariablesV1Upgradeable is
 
     function setStakingContract(address _contractAddress) external onlyOwner {
         _stakingContract = _contractAddress;
+    }
+
+    function getUniSwapRouterV2Address() external view returns (address) {
+        return _uniswapRouterV2Address;
+    }
+
+    function setUniSwapRouterV2Address(address _routerV2Address) external onlyOwner {
+        _uniswapRouterV2Address = _routerV2Address;
     }
 
     function pause() public onlyOwner {

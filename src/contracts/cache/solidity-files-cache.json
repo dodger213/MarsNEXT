@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/contracts/CoreMembersV1Upgradeable.sol": {
-      "lastModificationDate": 1686569805254,
-      "contentHash": "0752535750ddcc5bfec21e1fae3359ba",
+      "lastModificationDate": 1687775459520,
+      "contentHash": "2008f12a94dd8305322e6c6d31851275",
       "sourceName": "contracts/CoreMembersV1Upgradeable.sol",
       "solcConfig": {
         "version": "0.8.18",
@@ -461,8 +461,8 @@
       ]
     },
     "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/contracts/VariablesV1Upgradeable.sol": {
-      "lastModificationDate": 1686564342004,
-      "contentHash": "eb0d7b6e2f47d5a90d4b0f05cc185460",
+      "lastModificationDate": 1687865385535,
+      "contentHash": "66cd7e9ed62866743ab6c209c805e775",
       "sourceName": "contracts/VariablesV1Upgradeable.sol",
       "solcConfig": {
         "version": "0.8.18",
@@ -634,8 +634,8 @@
       ]
     },
     "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/contracts/ReferralV1Upgradeable.sol": {
-      "lastModificationDate": 1686590029476,
-      "contentHash": "4df37e63f30a5232b604ce674eddae85",
+      "lastModificationDate": 1687954846622,
+      "contentHash": "70bb1c3b7a595fe33afb952e8d53eb0e",
       "sourceName": "contracts/ReferralV1Upgradeable.sol",
       "solcConfig": {
         "version": "0.8.18",
@@ -674,6 +674,7 @@
       "artifacts": [
         "IERC20_EXTENDED",
         "IStaking",
+        "IUniswapRouter",
         "IVariables",
         "ReferralV1Upgradeable"
       ]

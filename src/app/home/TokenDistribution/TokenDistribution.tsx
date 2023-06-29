@@ -25,10 +25,14 @@ const TagComponent = ({
 }) => {
   return (
     <HStack spacing={[1, 2, 5]} w="full">
-      <Tag size={['sm', 'md', 'lg']} borderRadius="xl">{heading}</Tag>
+      <Tag size={['sm', 'md', 'lg']} borderRadius="xl">
+        {heading}
+      </Tag>
       <Spacer />
-      <Box w={`${value}vw`} h={7} bgGradient={color} borderRadius="full" ></Box>
-      <Tag size={['sm', 'md', 'lg']} borderRadius="xl">{value}%</Tag>
+      <Box w={`${value}vw`} h={7} bgGradient={color} borderRadius="full"></Box>
+      <Tag size={['sm', 'md', 'lg']} borderRadius="xl">
+        {value}%
+      </Tag>
     </HStack>
   );
 };
@@ -71,7 +75,7 @@ export const TokenDistribution = () => {
             value={5}
           ></TagComponent> */}
           <TagComponent
-            heading="Core & Dev Teams"
+            heading="Dev, Core Teams & Development"
             color="linear(to-r, orange.500, orange.500)"
             value={10}
           ></TagComponent>

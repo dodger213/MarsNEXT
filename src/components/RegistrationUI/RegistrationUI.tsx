@@ -155,6 +155,7 @@ function RegistrationUI({
         style={{
           py: 10,
           w: [300],
+         
         }}
       >
         <VStack minW={250} maxW={300} w="full" spacing={5}>

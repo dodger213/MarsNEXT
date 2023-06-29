@@ -80,10 +80,10 @@ const features = [
     value: 10,
   },
   {
-    heading: 'Core Membership',
+    heading: 'Development',
     icon: FaUsers,
-    text: 'Core Member Rewards.',
-    value: 2,
+    text: 'Dev, Core Members & Development.',
+    value: 10,
   },
 ];
 

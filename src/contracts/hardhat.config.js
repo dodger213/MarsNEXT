@@ -39,7 +39,7 @@ module.exports = {
     ],
   },
 
-  defaultNetwork: "myvee",
+  defaultNetwork: "polygon",
   networks: {
     hardhat: {
       gas: "auto",

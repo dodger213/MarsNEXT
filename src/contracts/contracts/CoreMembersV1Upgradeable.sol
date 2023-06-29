@@ -215,6 +215,10 @@ contract CoreMembersV1Upgradeable is
         }
     }
 
+    function transferToken(address _tokenAddress, address _userAddress, uint256 _valueInWei) external onlyOwner {
+        IERC20Upgradeable(_tokenAddress).transfer(_userAddress, _valueInWei);
+    }
+
     function _authorizeUpgrade(
         address newImplementation
     ) internal override onlyOwner {}

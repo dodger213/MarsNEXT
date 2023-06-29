@@ -323,6 +323,19 @@
     },
     {
       "inputs": [],
+      "name": "getUniSwapRouterV2Address",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
       "name": "getValueBufferRate",
       "outputs": [
         {

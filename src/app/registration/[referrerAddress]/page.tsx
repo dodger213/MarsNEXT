@@ -9,7 +9,7 @@ import {
   Icon,
   IconButton,
   Stack,
-  VStack
+  VStack,
 } from '@chakra-ui/react';
 import React from 'react';
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
@@ -45,6 +45,10 @@ export default function RegistrationUIPage({
       align="center"
       justify="center"
       py={100}
+      bgImage="/backgroundSolarSystem.png"
+      bgAttachment="fixed"
+      backdropFilter="auto"
+     
     >
       <VStack>
         <HStack>
