@@ -384,11 +384,8 @@ contract ReferralV1Upgradeable is
         );
         SupportedTokensStruct memory tokenAccount = variablesInterface
             .getSupportedTokenInfo(_tokenAddress);
-        uint8 tokenDecimals = tokenAccount.decimals;
 
         require(tokenAccount.isEnaled, "Token is not supported");
-        // uint8 tokenDecimals = IERC20_EXTENDED(_tokenAddress).decimals();
-        // bool tokenDecimalsLessWei = tokenDecimals < 18 ? true : false;
         IERC20Upgradeable ierc20Interface = IERC20Upgradeable(_tokenAddress);
 
         uint16[] memory _levelRates = variablesInterface.getLevelRates();
@@ -396,8 +393,12 @@ contract ReferralV1Upgradeable is
         ierc20Interface.transferFrom(
             _referee,
             address(this),
-            tokenDecimals < 18
-                ? _convertToDecimals(planAccount.value, 18, tokenDecimals)
+            tokenAccount.decimals < 18
+                ? _convertToDecimals(
+                    planAccount.value,
+                    18,
+                    tokenAccount.decimals
+                )
                 : planAccount.value
         );
 
@@ -407,7 +408,10 @@ contract ReferralV1Upgradeable is
             variablesInterface.getRewardTokenContract()
         ).balanceOf(address(this));
 
-        if (rewardTokenBalanceThis > 0 && userAccount.selfBusiness == 0) {
+        if (
+            rewardTokenBalanceThis > planAccount.value &&
+            userAccount.selfBusiness == 0
+        ) {
             uint256 stakingValue = planAccount.value / 2;
             IStaking(variablesInterface.getStakingContract()).stake(
                 _referee,
@@ -472,11 +476,11 @@ contract ReferralV1Upgradeable is
             if (globalRewardValue > 0) {
                 ierc20Interface.transfer(
                     globalAddress,
-                    tokenDecimals < 18
+                    tokenAccount.decimals < 18
                         ? _convertToDecimals(
                             globalRewardValue,
                             18,
-                            tokenDecimals
+                            tokenAccount.decimals
                         )
                         : globalRewardValue
                 );
@@ -509,11 +513,11 @@ contract ReferralV1Upgradeable is
 
                 ierc20Interface.transfer(
                     userAccount.ibpAddress,
-                    tokenDecimals < 18
+                    tokenAccount.decimals < 18
                         ? _convertToDecimals(
                             updatedIbpRewardValue,
                             18,
-                            tokenDecimals
+                            tokenAccount.decimals
                         )
                         : updatedIbpRewardValue
                 );
@@ -567,11 +571,11 @@ contract ReferralV1Upgradeable is
 
                 ierc20Interface.transfer(
                     userAccount.referrerAddress,
-                    tokenDecimals < 18
+                    tokenAccount.decimals < 18
                         ? _convertToDecimals(
                             updatedReferralRewardValue,
                             18,
-                            tokenDecimals
+                            tokenAccount.decimals
                         )
                         : updatedReferralRewardValue
                 );
@@ -600,8 +604,12 @@ contract ReferralV1Upgradeable is
 
         ierc20Interface.transfer(
             variablesInterface.getCoreMembersContractAddress(),
-            tokenDecimals < 18
-                ? _convertToDecimals(coreMembersReward, 18, tokenDecimals)
+            tokenAccount.decimals < 18
+                ? _convertToDecimals(
+                    coreMembersReward,
+                    18,
+                    tokenAccount.decimals
+                )
                 : coreMembersReward
         );
 
@@ -609,9 +617,13 @@ contract ReferralV1Upgradeable is
 
         emit CoreMembersRewardPaid(
             variablesInterface.getCoreMembersContractAddress(),
-            tokenDecimals < 18
-                ? _convertToDecimals(coreMembersReward, 18, tokenDecimals)
-                : tokenDecimals
+            tokenAccount.decimals < 18
+                ? _convertToDecimals(
+                    coreMembersReward,
+                    18,
+                    tokenAccount.decimals
+                )
+                : tokenAccount.decimals
         );
     }
 
@@ -901,14 +913,17 @@ contract ReferralV1Upgradeable is
                     _referrerAccount.teamAddress.pop();
                 }
 
-                if (i == (_referrerAccount.teamAddress.length - 1)) {
+                if (
+                    _referrerAccount.teamAddress.length == 0 ||
+                    i == (_referrerAccount.teamAddress.length - 1)
+                ) {
                     break;
                 }
             }
         }
     }
 
-    function removeTeamAddress(address _teamAddress) external onlyOwner {
+    function removeTeamAddress(address _userAddress, address _teamAddress) external onlyOwner {
         IVariables variablesInterface = IVariables(_variableContractAddress);
         uint16[] memory _levelRates = variablesInterface.getLevelRates();
         AccountStruct storage refereeAccount = accounts[_teamAddress];

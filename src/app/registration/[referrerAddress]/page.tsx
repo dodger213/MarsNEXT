@@ -1,5 +1,6 @@
 'use client';
 import RegistrationUI from '@/components/RegistrationUI/RegistrationUI';
+import { AddressZero } from '@/constants/ContractAddress';
 import { useGetPlansCount } from '@/hooks/VariablesHooks';
 import {
   Divider,
@@ -48,7 +49,6 @@ export default function RegistrationUIPage({
       bgImage="/backgroundSolarSystem.png"
       bgAttachment="fixed"
       backdropFilter="auto"
-     
     >
       <VStack>
         <HStack>

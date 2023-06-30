@@ -30,7 +30,7 @@ const TagComponent = ({
         {heading}
       </Tag>
       <Spacer />
-      <Box w={`${value}vw`} h={7} bgGradient={color} borderRadius="full"></Box>
+      <Box w={`${value}vw`} h={7} bgColor={color} borderRadius="full"></Box>
       <Tag size={['sm', 'md', 'lg']} borderRadius="xl">
         {value}%
       </Tag>
@@ -53,22 +53,22 @@ export const TokenDistribution = () => {
         <VStack>
           <TagComponent
             heading="Referrer"
-            color="linear(to-r, red.500, yellow.500, green.500)"
+            color="#F687B3"
             value={50}
           ></TagComponent>
           <TagComponent
             heading="Levels"
-            color="linear(to-r, twitter.500, twitter.500)"
+            color="#76E4F7"
             value={20}
           ></TagComponent>
           <TagComponent
             heading="Global Pool"
-            color="linear(to-r, purple.500, purple.500)"
+            color="#F6AD55"
             value={10}
           ></TagComponent>
           <TagComponent
             heading="Weekly Pool"
-            color="linear(to-r, red.300, red.300)"
+            color="#FC8181"
             value={10}
           ></TagComponent>
           {/* <TagComponent
@@ -78,7 +78,7 @@ export const TokenDistribution = () => {
           ></TagComponent> */}
           <TagComponent
             heading="Dev, Core Teams & Development"
-            color="linear(to-r, orange.500, orange.500)"
+            color="#68D391"
             value={10}
           ></TagComponent>
         </VStack>
