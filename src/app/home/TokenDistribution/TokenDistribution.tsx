@@ -48,7 +48,9 @@ export const TokenDistribution = () => {
       {/* <TokenDistributionComponent
         boxSize={useBreakpointValue([250, 300, 350, 400, 500])}
       /> */}
-      <DistributionChartComponent  boxSize={useBreakpointValue([400, 500, 600])}></DistributionChartComponent>
+      <DistributionChartComponent
+        boxSize={useBreakpointValue([400, 500, 600])}
+      ></DistributionChartComponent>
       <CenterComponent>
         <VStack>
           <TagComponent
