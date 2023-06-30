@@ -8,7 +8,7 @@ import { WagmiConfig, configureChains, createConfig } from 'wagmi';
 import { polygon } from 'wagmi/chains';
 
 const chains = [polygon]
-const projectId = '02c79647283f11040f81b28d490e1569'
+const projectId = '21bc3cf01fade70639b3ec6a14e6277c'
 
 const { publicClient } = configureChains(chains, [w3mProvider({ projectId })])
 const wagmiConfig = createConfig({

@@ -20,7 +20,6 @@ export const useContractCall = ({
     abi: VariablesV1ContractObject?.abi,
     functionName: functionName,
     args: args ?? [],
-    cacheOnBlock: true
   });
 
   if (isError) {
