@@ -27,6 +27,7 @@ export default function RegistrationUIPage({
   const [slider, setSlider] = React.useState<Slider | null>(null);
 
   const plansCount = useGetPlansCount();
+  console.log(plansCount)
   const plansCountArray = () => {
     let count = [];
 

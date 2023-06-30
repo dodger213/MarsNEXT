@@ -20,6 +20,7 @@ export const useContractCall = ({
     abi: VariablesV1ContractObject?.abi,
     functionName: functionName,
     args: args ?? [],
+    cacheOnBlock: true
   });
 
   if (isError) {
@@ -59,6 +60,7 @@ export const useGetPlansCount = () => {
   });
 
   const valueObject = value ? (Number(value) as number) : 0;
+  console.log(value)
 
   return valueObject;
 };
