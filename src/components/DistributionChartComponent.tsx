@@ -1,7 +1,6 @@
 import { useColorModeValue } from '@chakra-ui/react';
 import * as React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Tooltip, Whisper } from 'rsuite';
 
 const MotionPath = ({
   id,

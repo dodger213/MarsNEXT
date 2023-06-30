@@ -1,13 +1,8 @@
 import { BalanceContainer } from '@/components/BalanceContainer';
 import { CardContainer } from '@/components/CardContainer';
-import { AddressZero } from '@/constants/SupportedNetworkInfo';
-import { HStack, Heading, Tag, Text, VStack } from '@chakra-ui/react';
-import React from 'react';
+import { AddressZero, supportedNetworkInfo } from '@/constants/SupportedNetworkInfo';
 import { IoIosWallet } from 'react-icons/io';
 import { useBalance, useNetwork } from 'wagmi';
-import { supportedNetworkInfo } from '@/constants/SupportedNetworkInfo';
-import { polygon } from 'viem/chains';
-import { USDTLogoSVG } from '../../../../../public/token-icons';
 
 export default function BalanceCard({
   params,
@@ -21,6 +16,8 @@ export default function BalanceCard({
   const { data: userNativeBalance } = useBalance({
     address: params.userAddress ?? AddressZero,
   });
+
+  console.log(userNativeBalance)
 
   const { data: userUSDTBalance } = useBalance({
     address: params.userAddress ?? AddressZero,
