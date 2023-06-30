@@ -60,7 +60,6 @@ export const useGetPlansCount = () => {
   });
 
   const valueObject = value ? (Number(value) as number) : 0;
-  console.log(value)
 
   return valueObject;
 };
