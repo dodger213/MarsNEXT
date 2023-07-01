@@ -14,7 +14,7 @@ function NoWalletComponent() {
         }} transition={{
           repeat: Infinity,
           duration: 2
-        }}  src="/errors-svgs/walletNotConnectedCat.svg" boxSize={[200, 300]}></MotionImage>
+        }}  src="/errors-svgs/walletNotConnectedCat.svg" w={[200, 300]}></MotionImage>
         <Heading color="red" textAlign="center">You are not connected!</Heading>
         <Heading size="md" textAlign="center">Please connect Wallet to continue.</Heading>
       </VStack>
