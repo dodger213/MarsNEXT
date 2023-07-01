@@ -362,7 +362,7 @@ contract ReferralV1Upgradeable is
     ) private returns (uint256 _valueUpdated) {
         if (userAccount.currentLimit + _value <= userAccount.maxLimit) {
             _valueUpdated = _value;
-            userAccount.currentLimit += _value;
+            userAccount.currentLimit += _valueUpdated;
         } else {
             _valueUpdated = userAccount.maxLimit - userAccount.currentLimit;
             userAccount.currentLimit = _valueUpdated;
@@ -849,92 +849,107 @@ contract ReferralV1Upgradeable is
         emit IBPAdded(_ibpAddress, _userAddress);
     }
 
-    // function removeIbpFromAddressAdmin(
-    //     address _userAddress
-    // ) external onlyOwner {
-    //     accounts[_userAddress].ibpAddress = IVariables(_variableContractAddress)
-    //         .getAdminAddress();
+    function removeIbpFromAddressAdmin(
+        address _userAddress
+    ) external onlyOwner {
+        accounts[_userAddress].ibpAddress = IVariables(_variableContractAddress)
+            .getAdminAddress();
 
-    //     emit IBPAdded(
-    //         IVariables(_variableContractAddress).getAdminAddress(),
-    //         _userAddress
-    //     );
+        emit IBPAdded(
+            IVariables(_variableContractAddress).getAdminAddress(),
+            _userAddress
+        );
+    }
+
+    // function _removeReferee(
+    //     AccountStruct storage _referrerAccount,
+    //     address _refereeAddress
+    // ) private {
+    //     if (_referrerAccount.selfAddress != address(0)) {
+    //         uint256 referrerRefereeCount = _referrerAccount
+    //             .refereeAddresses
+    //             .length;
+
+    //         for (uint256 i; i < referrerRefereeCount; i++) {
+    //             if (_referrerAccount.refereeAddresses[i] == _refereeAddress) {
+    //                 _referrerAccount.refereeAddresses[i] = _referrerAccount
+    //                     .refereeAddresses[
+    //                         _referrerAccount.refereeAddresses.length - 1
+    //                     ];
+    //                 _referrerAccount.refereeAddresses.pop();
+    //             }
+
+    //             if (
+    //                 _referrerAccount.refereeAddresses.length == 0 ||
+    //                 i == _referrerAccount.refereeAddresses.length - 1
+    //             ) {
+    //                 break;
+    //             }
+    //         }
+    //     }
     // }
 
-    function _removeReferee(
-        AccountStruct storage _referrerAccount,
-        address _refereeAddress
-    ) private {
-        if (_referrerAccount.selfAddress != address(0)) {
-            uint256 referrerRefereeCount = _referrerAccount
-                .refereeAddresses
-                .length;
+    // function removeRefereeAdmin(address _refereeAddress) external onlyOwner {
+    //     AccountStruct storage refereeAccount = accounts[_refereeAddress];
 
-            for (uint256 i; i < referrerRefereeCount; i++) {
-                if (_referrerAccount.refereeAddresses[i] == _refereeAddress) {
-                    _referrerAccount.refereeAddresses[i] = _referrerAccount
-                        .refereeAddresses[
-                            _referrerAccount.refereeAddresses.length - 1
-                        ];
-                    _referrerAccount.refereeAddresses.pop();
-                }
+    //     AccountStruct storage prevReferrerAccount = accounts[
+    //         refereeAccount.referrerAddress
+    //     ];
 
-                if (
-                    _referrerAccount.refereeAddresses.length == 0 ||
-                    i == _referrerAccount.refereeAddresses.length - 1
-                ) {
-                    break;
-                }
-            }
-        }
-    }
+    //     _removeReferee(prevReferrerAccount, _refereeAddress);
+    // }
 
-    function removeRefereeAdmin(address _refereeAddress) external onlyOwner {
-        AccountStruct storage refereeAccount = accounts[_refereeAddress];
+    // function _removeTeamAddress(
+    //     AccountStruct storage _referrerAccount,
+    //     address _teamAddress
+    // ) private {
+    //     if (_referrerAccount.selfAddress != address(0)) {
+    //         uint256 referrerTeamCount = _referrerAccount.teamAddress.length;
 
-        AccountStruct storage prevReferrerAccount = accounts[
-            refereeAccount.referrerAddress
-        ];
+    //         for (uint256 i; i < referrerTeamCount; i++) {
+    //             if (_referrerAccount.refereeAddresses[i] == _teamAddress) {
+    //                 _referrerAccount.teamAddress[i] = _referrerAccount
+    //                     .teamAddress[_referrerAccount.teamAddress.length - 1];
+    //                 _referrerAccount.teamAddress.pop();
+    //             }
 
-        _removeReferee(prevReferrerAccount, _refereeAddress);
-    }
+    //             if (
+    //                 _referrerAccount.teamAddress.length == 0 ||
+    //                 i == (_referrerAccount.teamAddress.length - 1)
+    //             ) {
+    //                 break;
+    //             }
+    //         }
+    //     }
+    // }
 
-    function _removeTeamAddress(
-        AccountStruct storage _referrerAccount,
-        address _teamAddress
-    ) private {
-        if (_referrerAccount.selfAddress != address(0)) {
-            uint256 referrerTeamCount = _referrerAccount.teamAddress.length;
+    // function removeTeamAddress(address _userAddress, address _teamAddress) external onlyOwner {
+    //     IVariables variablesInterface = IVariables(_variableContractAddress);
+    //     uint16[] memory _levelRates = variablesInterface.getLevelRates();
+    //     AccountStruct storage refereeAccount = accounts[_teamAddress];
 
-            for (uint256 i; i < referrerTeamCount; i++) {
-                if (_referrerAccount.refereeAddresses[i] == _teamAddress) {
-                    _referrerAccount.teamAddress[i] = _referrerAccount
-                        .teamAddress[_referrerAccount.teamAddress.length - 1];
-                    _referrerAccount.teamAddress.pop();
-                }
+    //     AccountStruct storage prevReferrerAccount = accounts[
+    //         refereeAccount.referrerAddress
+    //     ];
 
-                if (
-                    _referrerAccount.teamAddress.length == 0 ||
-                    i == (_referrerAccount.teamAddress.length - 1)
-                ) {
-                    break;
-                }
-            }
-        }
-    }
+    //     for (uint16 i; i < _levelRates.length; i++) {
+    //         _removeTeamAddress(prevReferrerAccount, _teamAddress);
+    //     }
+    // }
 
-    function removeTeamAddress(address _userAddress, address _teamAddress) external onlyOwner {
-        IVariables variablesInterface = IVariables(_variableContractAddress);
-        uint16[] memory _levelRates = variablesInterface.getLevelRates();
-        AccountStruct storage refereeAccount = accounts[_teamAddress];
+    function updateUserAccount(
+        address _userAddress,
+        uint256 _referralIncome,
+        uint256 _limit,
+        uint256 _directBusiness,
+        uint256 _teamBusiness
+    ) external onlyOwner {
+        AccountStruct storage userAccount = accounts[_userAddress];
 
-        AccountStruct storage prevReferrerAccount = accounts[
-            refereeAccount.referrerAddress
-        ];
-
-        for (uint16 i; i < _levelRates.length; i++) {
-            _removeTeamAddress(prevReferrerAccount, _teamAddress);
-        }
+        userAccount.directBusiness += _directBusiness;
+        userAccount.referralRewards += _referralIncome;
+        userAccount.currentLimit += _limit;
+        userAccount.teamBusiness += _teamBusiness;
     }
 
     function changeReferrer(
@@ -964,13 +979,13 @@ contract ReferralV1Upgradeable is
     //     _variableContractAddress = _contractAddress;
     // }
 
-    // function pushAddressToGlobal(address _userAddress) external onlyOwner {
-    //     accounts[_userAddress].isGlobal = true;
-    //     accounts[_userAddress].globalIndexes.push(
-    //         uint32(_globalAddresses.length - 1)
-    //     );
-    //     _globalAddresses.push(_userAddress);
-    // }
+    function pushAddressToGlobal(address _userAddress) external onlyOwner {
+        accounts[_userAddress].isGlobal = true;
+        accounts[_userAddress].globalIndexes.push(
+            uint32(_globalAddresses.length - 1)
+        );
+        _globalAddresses.push(_userAddress);
+    }
 
     //convertToDecimals
     function _convertToDecimals(
@@ -979,25 +994,6 @@ contract ReferralV1Upgradeable is
         uint256 _to
     ) private pure returns (uint256) {
         return (_value * 10 ** uint256(_to)) / 10 ** uint256(_from);
-    }
-
-    // function _transferToken(
-    //     address _tokenContractAddress,
-    //     address _to,
-    //     uint256 _value
-    // ) private {
-    //     IERC20Upgradeable(_tokenContractAddress).transfer(_to, _value);
-    // }
-
-    //transferETHAdmin
-    //transferTokenAdmin
-
-    function pause() public onlyOwner {
-        _pause();
-    }
-
-    function unpause() public onlyOwner {
-        _unpause();
     }
 
     function _authorizeUpgrade(

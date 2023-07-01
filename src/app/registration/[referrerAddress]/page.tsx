@@ -46,8 +46,8 @@ export default function RegistrationUIPage({
       align="center"
       justify="center"
       py={100}
-      bgImage="/backgroundSolarSystem.png"
-      bgAttachment="fixed"
+      // bgImage="/backgroundSolarSystem.png"
+      // bgAttachment="fixed"
       backdropFilter="auto"
     >
       <VStack>
