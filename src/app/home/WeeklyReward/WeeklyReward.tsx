@@ -35,6 +35,8 @@ function WeeklyReward() {
         {/* <Button size="lg" borderRadius="xl">
           Distribute Reward
         </Button> */}
+      </VStack>
+      <VStack>
         <Heading>Remaining Time</Heading>
         <Counter
           timeinseconds={Number(weeklyRewardsToBeDistributed?.[2])}
