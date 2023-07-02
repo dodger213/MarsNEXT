@@ -28,10 +28,10 @@ export default function RewardsCard({
       name: 'Weekly Rewards',
       value: userRewardsObject?.weeklyReward,
     },
-    {
-      name: 'IBP Rewards',
-      value: userRewardsObject?.ibpReward,
-    },
+    // {
+    //   name: 'IBP Rewards',
+    //   value: userRewardsObject?.ibpReward,
+    // },
   ];
   return (
     <CardContainer heading="Rewards" icon={FcScatterPlot}>

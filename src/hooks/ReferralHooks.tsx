@@ -147,3 +147,12 @@ export const useGetWeeklyRewardToBeDistributed = () => {
 
   return value;
 };
+
+export const useGetRegistrationsStats = () => {
+  const value = useContractCall({
+    functionName: "getRegistrationsStats",
+    args: []
+  })
+
+  return value;
+}
