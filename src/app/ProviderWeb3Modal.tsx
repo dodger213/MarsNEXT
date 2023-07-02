@@ -1,5 +1,4 @@
 'use client';
-import { PolygonMainnetTenderly } from '@/lib/chains';
 import { useColorModeValue } from '@chakra-ui/react';
 import {
   EthereumClient,

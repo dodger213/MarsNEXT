@@ -121,22 +121,29 @@ interface TeamValueObject {
   teamCount: number;
 }
 
-export const useGetUserTeam = (
-  userAddress: `0x${string}` | undefined
-) => {
+export const useGetUserTeam = (userAddress: `0x${string}` | undefined) => {
   const value = useContractCall({
     functionName: 'getUserTeam',
     args: [userAddress],
   });
 
   const valueObject: TeamValueObject = {
-    referrer: value ? value[0] as `0x${string}` : AddressZero,
-    referees: value ? value[1] as `0x${string}`[] : [],
+    referrer: value ? (value[0] as `0x${string}`) : AddressZero,
+    referees: value ? (value[1] as `0x${string}`[]) : [],
     refereeCount: value ? Number(value[2]) : 0,
-    team: value ? value[3] as `0x${string}`[] : [],
-    teamLevels: value ? value[4] as number[] : [],
+    team: value ? (value[3] as `0x${string}`[]) : [],
+    teamLevels: value ? (value[4] as number[]) : [],
     teamCount: value ? Number(value[5]) : 0,
   };
 
   return valueObject;
+};
+
+export const useGetWeeklyRewardToBeDistributed = () => {
+  const value = useContractCall({
+    functionName: "getWeeklyRewardToBeDistributed",
+    args: []
+  })
+
+  return value;
 };

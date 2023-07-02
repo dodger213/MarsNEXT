@@ -5,6 +5,7 @@ import { PlanDiscriptionComponent } from './PlanDiscriptionComponent/PlanDiscrip
 import { PowerOfBlockchainComponent } from './PowerOfBlockchainComponent/PowerOfBlockchainComponent';
 import { TokenDistribution } from './TokenDistribution/TokenDistribution';
 import { SupportedChainComponent } from './SupportedChainComponent';
+import WeeklyReward from './WeeklyReward/WeeklyReward';
 
 export const Home = () => {
   return (
@@ -14,6 +15,7 @@ export const Home = () => {
       <PlanDiscriptionComponent />
       <TokenDistribution />
       <PowerOfBlockchainComponent />
+      <WeeklyReward/>
     </VStack>
   );
 };
