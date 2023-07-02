@@ -114,7 +114,7 @@ contract StakingUpgradeable is
     function initialize() public initializer {
         _variablesContract = 0x77daaFc7411C911b869C71bf70FE36cCE507845d;
         _stakingRewardRate = 100;
-        _stakingDuration = 365 days;
+        _stakingDuration = 550 days;
 
         __Ownable_init();
         __UUPSUpgradeable_init();
@@ -143,7 +143,6 @@ contract StakingUpgradeable is
     function _stake(
         address _address,
         uint256 _value,
-        uint256 _rewardRate,
         uint256 _duration
     ) private returns (bool) {
         _stakers.push(_address);
@@ -159,9 +158,9 @@ contract StakingUpgradeable is
         userStakingInfo.isActive = true;
         userStakingInfo.owner = _address;
         userStakingInfo.startTime = currentTime;
-        userStakingInfo.duration = _duration;
+        // userStakingInfo.duration = _duration;
         userStakingInfo.value = _value;
-        userStakingInfo.rewardRate = _rewardRate;
+        // userStakingInfo.rewardRate = _rewardRate;
 
         _totalValueStaked += _value;
 
@@ -174,21 +173,22 @@ contract StakingUpgradeable is
         require(
             msg.sender == IVariables(_variablesContract).getReferralContract()
         );
-        _stake(_userAddress, _value, _stakingRewardRate, _stakingDuration);
+        _stake(_userAddress, _value, _stakingDuration);
     }
 
     function _getStakingReward(
         uint256 _stakingID
     ) private view returns (uint256 stakingReward) {
         uint256 currentTime = block.timestamp;
+        uint256 _duration = _stakingDuration;
         StakeInfo storage userStakingInfo = stakeInfo[_stakingID];
         uint256 stakingTimePassed = currentTime - userStakingInfo.startTime;
 
-        uint256 baseReward = userStakingInfo.value / userStakingInfo.duration;
+        uint256 baseReward = userStakingInfo.value / _duration;
 
         stakingReward =
             baseReward *
-            (_min(stakingTimePassed, userStakingInfo.duration) -
+            (_min(stakingTimePassed, _duration) -
                 userStakingInfo.rewardClaimed);
     }
 
@@ -249,6 +249,11 @@ contract StakingUpgradeable is
         require(
             userStakingInfo.owner == _msgSender,
             "Sorry staking id doen't belongs to you."
+        );
+
+        require(
+            userStakingInfo.startTime + _stakingDuration > _getCurrentTime(),
+            "You staking is not ended yet."
         );
 
         userStakingInfo.rewardClaimed += stakingReward;
@@ -325,12 +330,10 @@ contract StakingUpgradeable is
     ) external view returns (uint256) {
         uint256 _currentTime = block.timestamp;
         StakeInfo storage userStakingInfo = stakeInfo[_stakingID];
-        uint256 endTime = userStakingInfo.startTime + userStakingInfo.duration;
+        uint256 _duration = _stakingDuration;
+        uint256 endTime = userStakingInfo.startTime + _duration;
         if (_currentTime < endTime) {
-            return
-                userStakingInfo.startTime +
-                userStakingInfo.duration -
-                _currentTime;
+            return userStakingInfo.startTime + _duration - _currentTime;
         }
 
         return 0;

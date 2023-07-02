@@ -17,6 +17,8 @@ import {
   FcConferenceCall,
   FcGoodDecision,
   FcHome,
+  FcInternal,
+  FcPositiveDynamic,
   FcReadingEbook,
 } from 'react-icons/fc';
 import { GoHome } from 'react-icons/go';
@@ -47,11 +49,11 @@ function NavUserMenu({
       name: 'Team',
       link: `/user/${userAddress}/team`,
     },
-    // {
-    //   icon: FcConferenceCall,
-    //   name: 'Staking',
-    //   link: `/user/${userAddress}/staking`,
-    // },
+    {
+      icon: FcPositiveDynamic,
+      name: 'Staking',
+      link: `/user/${userAddress}/staking`,
+    },
     {
       icon: FcGoodDecision,
       name: 'Register',

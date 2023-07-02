@@ -485,7 +485,9 @@ contract VariablesV1Upgradeable is
         return _uniswapRouterV2Address;
     }
 
-    function setUniSwapRouterV2Address(address _routerV2Address) external onlyOwner {
+    function setUniSwapRouterV2Address(
+        address _routerV2Address
+    ) external onlyOwner {
         _uniswapRouterV2Address = _routerV2Address;
     }
 

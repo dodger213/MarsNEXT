@@ -25,11 +25,6 @@ export const useContractCall = ({
   });
 };
 
-export type PlanInfoType = {
-  name: string;
-  value: number;
-  maxLimitMutiplier: number;
-};
 export const useGetUserStakingIDs = (address: `0x${string}`) => {
   const value = useContractCall({
     functionName: 'getUserStakingIDs',
@@ -37,11 +32,49 @@ export const useGetUserStakingIDs = (address: `0x${string}`) => {
   });
 
   const valueObject = {
-    data: value ? value?.data as BigInt[] : [],
-    object: value
-  }
+    data: value ? (value?.data as BigInt[]) : [],
+    object: value,
+  };
 
   return valueObject;
 };
 
-export const useGetStakingRewardByID = (stakingID: number) => {};
+export type StakeInfoMapType = {
+  owner: `0x${string}`;
+  isActive: boolean;
+  duration: BigInt;
+  rewardClaimed: BigInt;
+  rewardRate: BigInt;
+  startTime: BigInt;
+  value: BigInt;
+};
+
+export const useStakeInfoMap = (stakingId: number) => {
+  const value = useContractCall({
+    functionName: 'stakeInfoMap',
+    args: [stakingId],
+  });
+
+  const data = value ? value?.data : {};
+
+  const valueObject = {
+    data: data as StakeInfoMapType,
+    object: value,
+  };
+
+  return valueObject;
+};
+
+export const useGetStakingRewardByID = (stakingId: number) => {
+  const value = useContractCall({
+    functionName: 'getStakingReward',
+    args: [stakingId],
+  });
+
+  const valueObject = {
+    data: value ? value?.data : 0,
+    object: value,
+  };
+
+  return valueObject;
+};

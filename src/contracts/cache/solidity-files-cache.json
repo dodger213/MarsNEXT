@@ -461,8 +461,8 @@
       ]
     },
     "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/contracts/VariablesV1Upgradeable.sol": {
-      "lastModificationDate": 1687865385535,
-      "contentHash": "66cd7e9ed62866743ab6c209c805e775",
+      "lastModificationDate": 1688285001724,
+      "contentHash": "aa040fd307025cd6c7e5b9e4d2e944b6",
       "sourceName": "contracts/VariablesV1Upgradeable.sol",
       "solcConfig": {
         "version": "0.8.18",
@@ -504,8 +504,8 @@
       ]
     },
     "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/contracts/StakingUpgradeable.sol": {
-      "lastModificationDate": 1686572032136,
-      "contentHash": "2cb1888fdfe65dc434de87a58c787ff4",
+      "lastModificationDate": 1688294034638,
+      "contentHash": "5c5fea25316989a00fef5cd0c0aa9ea0",
       "sourceName": "contracts/StakingUpgradeable.sol",
       "solcConfig": {
         "version": "0.8.18",
@@ -634,8 +634,8 @@
       ]
     },
     "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/contracts/ReferralV1Upgradeable.sol": {
-      "lastModificationDate": 1688134614643,
-      "contentHash": "9da8a4cb66939dae3c72a9f6efba3847",
+      "lastModificationDate": 1688285502160,
+      "contentHash": "ccfab93167ada042fbce2a62c9352ed3",
       "sourceName": "contracts/ReferralV1Upgradeable.sol",
       "solcConfig": {
         "version": "0.8.18",

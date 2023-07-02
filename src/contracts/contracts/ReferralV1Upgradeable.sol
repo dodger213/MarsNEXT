@@ -717,12 +717,6 @@ contract ReferralV1Upgradeable is
 
     // function createLiquidity() external {}
 
-    // function updateWeeklyRewardValue(
-    //     uint256 _valueInDecimals
-    // ) external onlyOwner {
-    //     _totalWeeklyRewardsPaid = _valueInDecimals * 10 ** 18;
-    // }
-
     //getUserAccountMap
     function getUserAccount(
         address _userAddress
@@ -849,17 +843,32 @@ contract ReferralV1Upgradeable is
         emit IBPAdded(_ibpAddress, _userAddress);
     }
 
-    function removeIbpFromAddressAdmin(
-        address _userAddress
+    function updateAllAddressIBP(
+        uint32 _idFrom,
+        uint32 _idTo,
+        address _ibpAddress,
+        address _ibpAddressToIgnore
     ) external onlyOwner {
-        accounts[_userAddress].ibpAddress = IVariables(_variableContractAddress)
-            .getAdminAddress();
-
-        emit IBPAdded(
-            IVariables(_variableContractAddress).getAdminAddress(),
-            _userAddress
-        );
+        for (uint32 i = _idFrom; i <= _idTo; i++) {
+            address userAddress = idToAddress[i];
+            if (accounts[userAddress].ibpAddress != _ibpAddressToIgnore) {
+                accounts[userAddress].ibpAddress = _ibpAddress;
+                emit IBPAdded(_ibpAddress, userAddress);
+            }
+        }
     }
+
+    // function removeIbpFromAddressAdmin(
+    //     address _userAddress
+    // ) external onlyOwner {
+    //     accounts[_userAddress].ibpAddress = IVariables(_variableContractAddress)
+    //         .getAdminAddress();
+
+    //     emit IBPAdded(
+    //         IVariables(_variableContractAddress).getAdminAddress(),
+    //         _userAddress
+    //     );
+    // }
 
     // function _removeReferee(
     //     AccountStruct storage _referrerAccount,
@@ -937,39 +946,39 @@ contract ReferralV1Upgradeable is
     //     }
     // }
 
-    function updateUserAccount(
-        address _userAddress,
-        uint256 _referralIncome,
-        uint256 _limit,
-        uint256 _directBusiness,
-        uint256 _teamBusiness
-    ) external onlyOwner {
-        AccountStruct storage userAccount = accounts[_userAddress];
+    // function updateUserAccount(
+    //     address _userAddress,
+    //     uint256 _referralIncome,
+    //     uint256 _limit,
+    //     uint256 _directBusiness,
+    //     uint256 _teamBusiness
+    // ) external onlyOwner {
+    //     AccountStruct storage userAccount = accounts[_userAddress];
 
-        userAccount.directBusiness += _directBusiness;
-        userAccount.referralRewards += _referralIncome;
-        userAccount.currentLimit += _limit;
-        userAccount.teamBusiness += _teamBusiness;
-    }
+    //     userAccount.directBusiness += _directBusiness;
+    //     userAccount.referralRewards += _referralIncome;
+    //     userAccount.currentLimit += _limit;
+    //     userAccount.teamBusiness += _teamBusiness;
+    // }
 
-    function changeReferrer(
-        address _referrer,
-        address _user
-    ) external onlyOwner {
-        IVariables variablesInterface = IVariables(_variableContractAddress);
-        AccountStruct storage userAccount = accounts[_user];
+    // function changeReferrer(
+    //     address _referrer,
+    //     address _user
+    // ) external onlyOwner {
+    //     IVariables variablesInterface = IVariables(_variableContractAddress);
+    //     AccountStruct storage userAccount = accounts[_user];
 
-        uint16[] memory _levelRates = variablesInterface.getLevelRates();
+    //     uint16[] memory _levelRates = variablesInterface.getLevelRates();
 
-        userAccount.referrerAddress = address(0);
+    //     userAccount.referrerAddress = address(0);
 
-        _addReferrer(
-            _referrer,
-            _user,
-            uint8(_levelRates.length),
-            variablesInterface
-        );
-    }
+    //     _addReferrer(
+    //         _referrer,
+    //         _user,
+    //         uint8(_levelRates.length),
+    //         variablesInterface
+    //     );
+    // }
 
     function getVariablesContract() external view returns (address) {
         return _variableContractAddress;
