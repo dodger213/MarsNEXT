@@ -15,6 +15,20 @@ import { CiTimer } from 'react-icons/ci';
 function WeeklyReward() {
   const weeklyRewardsToBeDistributed = useGetWeeklyRewardToBeDistributed();
   const registrationStats = useGetRegistrationsStats();
+
+  const registrationValues = [{
+    name: "Total Registration Value",
+    icon: AiOutlineFire
+  },{
+    name: "Referral Reward Distributed",
+    icon: HiUserGroup
+  },{
+    name: "Global Reward Distributed",
+    icon: SlGlobeAlt
+  },{
+    name: "Weekly Reward Distributed",
+    icon: CiTimer
+  }]
   return (
     <VStack w="full" minH="80vh" py={10} spacing={10}>
       {/* <Heading>Weekly Reward to be distribued</Heading> */}
@@ -43,53 +57,21 @@ function WeeklyReward() {
         ></Counter>
       </VStack>
       <Wrap w="full" p={5} justify="center" align="center" spacing={10}>
-        <CenterComponent>
+        {registrationValues?.map((valuesObject, key) => {
+          return <CenterComponent key={key} style={{
+            minW: 300
+          }}>
           <VStack>
-            <Icon as={AiOutlineFire} boxSize={10}></Icon>
+            <Icon as={valuesObject?.icon} boxSize={10}></Icon>
             <Heading>
-              {Number(Number(registrationStats?.[1]) / 10 ** 18)} USDT
+              {Number(Number(registrationStats?.[key + 1]) / 10 ** 18)?.toFixed(2)} USDT
             </Heading>
             <Heading size="sm" w={150} textAlign="center">
-              Total Registration Value
+              {valuesObject?.name}
             </Heading>
           </VStack>
         </CenterComponent>
-        <CenterComponent>
-          <VStack>
-            <Icon as={HiUserGroup} boxSize={10}></Icon>
-            <Heading>
-              {Number(Number(registrationStats?.[2]) / 10 ** 18)?.toFixed(0)}{' '}
-              USDT
-            </Heading>
-            <Heading size="sm" w={200} textAlign="center">
-              Referral Rewards Distributed
-            </Heading>
-          </VStack>
-        </CenterComponent>
-        <CenterComponent>
-          <VStack>
-            <Icon as={SlGlobeAlt} boxSize={10}></Icon>
-            <Heading>
-              {Number(Number(registrationStats?.[3]) / 10 ** 18)?.toFixed(0)}{' '}
-              USDT
-            </Heading>
-            <Heading size="sm" w={200} textAlign="center">
-              Global Rewards Distributed
-            </Heading>
-          </VStack>
-        </CenterComponent>
-        <CenterComponent>
-          <VStack>
-            <Icon as={CiTimer} boxSize={10}></Icon>
-            <Heading>
-              {Number(Number(registrationStats?.[4]) / 10 ** 18)?.toFixed(0)}{' '}
-              USDT
-            </Heading>
-            <Heading size="sm" w={200} textAlign="center">
-              Weekly Rewards Distributed
-            </Heading>
-          </VStack>
-        </CenterComponent>
+        })}
       </Wrap>
     </VStack>
   );

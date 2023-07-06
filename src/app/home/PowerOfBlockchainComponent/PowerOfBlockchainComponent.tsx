@@ -37,9 +37,9 @@ const TagComponent = ({
     >
       <VStack w="full">
         <Icon as={icon} boxSize={14}></Icon>
-        <Text color="orange.500">
+        <Heading size="sm">
           {heading}
-        </Text>
+        </Heading>
       </VStack>
     </CenterComponent>
   );

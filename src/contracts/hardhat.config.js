@@ -14,7 +14,7 @@ module.exports = {
     settings: {
       optimizer: {
         enabled: true,
-        runs: 200,
+        runs: 1000,
       },
     },
   },
@@ -57,32 +57,22 @@ module.exports = {
       chainId: 56,
       accounts: [PRIVATE_KEY],
     },
-    myvee: {
-      url: "https://rpc.blockchain.myveex.com/",
-      chainId: 50000,
-      accounts: [PRIVATE_KEY],
-    },
-
-    bitgert: {
-      url: "https://testnet-rpc.brisescan.com",
-      chainId: 64668,
-      accounts: [PRIVATE_KEY],
-    },
 
     bscTestnet: {
       url: "https://data-seed-prebsc-1-s3.binance.org:8545/",
       chainId: 97,
       accounts: [PRIVATE_KEY],
     },
+
+    myvee: {
+      url: "https://rpc.blockchain.myveex.com/",
+      chainId: 50000,
+      accounts: [PRIVATE_KEY],
+    },
+
     polygon: {
       url: "https://rpc.ankr.com/polygon",
       chainId: 137,
-      accounts: [PRIVATE_KEY],
-      gasPrice: 200000000000,
-    },
-    mumbai: {
-      url: "https://matic-mumbai.chainstacklabs.com",
-      chainId: 80001,
       accounts: [PRIVATE_KEY],
     },
   },

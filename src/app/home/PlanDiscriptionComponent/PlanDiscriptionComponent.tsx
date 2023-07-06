@@ -46,9 +46,9 @@ const BoxComponent = ({
         <Heading color="orange.500" size="3xl" fontWeight={900} fontFamily="unset">
           {value}%
         </Heading>
-        <Text textAlign="center">
+        <Heading size="sm" textAlign="center">
           {text}
-        </Text>
+        </Heading>
       </VStack>
     </CenterComponent>
   );
