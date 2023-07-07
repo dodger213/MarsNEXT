@@ -1,0 +1,10 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "ReferralGetterFunctions",
+  "sourceName": "contracts/ReferralGetterFunctions.sol",
+  "abi": [],
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220adf5eac2beb3be65226aa522c88e3d05557c2238a6e73a333b0d7b0a923c55cc64736f6c63430008120033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220adf5eac2beb3be65226aa522c88e3d05557c2238a6e73a333b0d7b0a923c55cc64736f6c63430008120033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

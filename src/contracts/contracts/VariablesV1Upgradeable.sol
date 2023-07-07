@@ -77,6 +77,10 @@ contract VariablesV1Upgradeable is
 
     address private _uniswapRouterV2Address;
 
+    mapping(address => bool) private _isAdmin;
+
+    address private _maticUsdPriceOracleContract;
+
     function initialize() public initializer {
         _levelRates = [5000, 500, 400, 300, 200, 100, 100, 125, 125, 150];
         _levelDecimals = 10000;
@@ -99,91 +103,6 @@ contract VariablesV1Upgradeable is
         _coreMembersContract = 0xefb61c43C70b60563c1a2a835663C63Ecc93F6bA;
 
         _adminAddress = msg.sender;
-
-        // supportTokens[
-        //     0x494549e00FE6598E3DC93254c5377c406dDA8579
-        // ] = SupportedTokensStruct({
-        //     contractAddress: 0x494549e00FE6598E3DC93254c5377c406dDA8579,
-        //     name: IERC20_EXTENDED(0x494549e00FE6598E3DC93254c5377c406dDA8579)
-        //         .name(),
-        //     decimals: IERC20_EXTENDED(
-        //         0x494549e00FE6598E3DC93254c5377c406dDA8579
-        //     ).decimals(),
-        //     symbol: IERC20_EXTENDED(0x494549e00FE6598E3DC93254c5377c406dDA8579)
-        //         .symbol(),
-        //     isStable: true,
-        //     aggregatorAddress: 0x494549e00FE6598E3DC93254c5377c406dDA8579,
-        //     isEnaled: true
-        // });
-
-        // supportedTokensList[0] = 0x494549e00FE6598E3DC93254c5377c406dDA8579;
-
-        // supportTokens[
-        //     0x821Fc84646f9a8502F12f805fe23D26d999c2403
-        // ] = SupportedTokensStruct({
-        //     contractAddress: 0x821Fc84646f9a8502F12f805fe23D26d999c2403,
-        //     name: IERC20_EXTENDED(0x821Fc84646f9a8502F12f805fe23D26d999c2403)
-        //         .name(),
-        //     decimals: IERC20_EXTENDED(
-        //         0x821Fc84646f9a8502F12f805fe23D26d999c2403
-        //     ).decimals(),
-        //     symbol: IERC20_EXTENDED(0x821Fc84646f9a8502F12f805fe23D26d999c2403)
-        //         .symbol(),
-        //     isStable: true,
-        //     aggregatorAddress: 0x821Fc84646f9a8502F12f805fe23D26d999c2403,
-        //     isEnaled: true
-        // });
-
-        // supportedTokensList[1] = 0x821Fc84646f9a8502F12f805fe23D26d999c2403;
-
-        // plans[0] = PlanStruct({
-        //     planId: 0,
-        //     name: "Warm Up",
-        //     value: 10000000000000000000,
-        //     maxLimitMultiplier: 3
-        // });
-
-        // plans[1] = PlanStruct({
-        //     planId: 1,
-        //     name: "Start Up",
-        //     value: 25000000000000000000,
-        //     maxLimitMultiplier: 5
-        // });
-
-        // plans[2] = PlanStruct({
-        //     planId: 2,
-        //     name: "Rising",
-        //     value: 50000000000000000000,
-        //     maxLimitMultiplier: 7
-        // });
-
-        // plans[3] = PlanStruct({
-        //     planId: 3,
-        //     name: "Progressive",
-        //     value: 100000000000000000000,
-        //     maxLimitMultiplier: 10
-        // });
-
-        // plans[4] = PlanStruct({
-        //     planId: 4,
-        //     name: "Confident",
-        //     value: 200000000000000000000,
-        //     maxLimitMultiplier: 20
-        // });
-
-        // plans[5] = PlanStruct({
-        //     planId: 5,
-        //     name: "Legend",
-        //     value: 500000000000000000000,
-        //     maxLimitMultiplier: 50
-        // });
-
-        // plans[5] = PlanStruct({
-        //     planId: 6,
-        //     name: "IBP",
-        //     value: 1000000000000000000000,
-        //     maxLimitMultiplier: 100
-        // });
 
         __Pausable_init();
         __Ownable_init();
@@ -414,6 +333,10 @@ contract VariablesV1Upgradeable is
         _rewardTokenRate = _rewardRatePer;
     }
 
+    function isAdmin(address _userAddress) external view returns (bool) {
+        return _isAdmin[_userAddress];
+    }
+
     function getAdminAddress() external view returns (address) {
         return _adminAddress;
     }
@@ -489,6 +412,10 @@ contract VariablesV1Upgradeable is
         address _routerV2Address
     ) external onlyOwner {
         _uniswapRouterV2Address = _routerV2Address;
+    }
+
+    function getMaticUSDPriceOracle() external view returns (address) {
+        return _maticUsdPriceOracleContract;
     }
 
     function pause() public onlyOwner {

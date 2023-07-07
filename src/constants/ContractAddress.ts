@@ -2,7 +2,8 @@ import VariablesV1ContractInterface from '../contracts/artifacts/contracts/Varia
 import ReferralV1ContractInterface from '../contracts/artifacts/contracts/ReferralV1Upgradeable.sol/ReferralV1Upgradeable.json';
 import StakingUpgradeableInterface from '../contracts/artifacts/contracts/StakingUpgradeable.sol/StakingUpgradeable.json';
 import CoreMembersV1ContractInterface from '../contracts/artifacts/contracts/CoreMembersV1Upgradeable.sol/CoreMembersV1Upgradeable.json';
-import { ERC20Interface } from '@usedapp/core';
+import ERC20TokenDeployerCreate2Interface from '../contracts/artifacts/contracts/ERC20TokenDeployerWithCreate2.sol/ERC20TokenDeployerWithCreate2.json';
+import MarsNextTokenInterface from '../contracts/artifacts/contracts/MarsNextProtocol.sol/MarsNextProtocol.json';
 import { erc20ABI } from 'wagmi';
 
 export const AddressZero: `0x${string}` =
@@ -29,6 +30,13 @@ export const VariablesV1ContractObject: ContractObject = {
   polygonAddress: '0x494549e00FE6598E3DC93254c5377c406dDA8579',
   bscAddress: AddressZero,
   myveeAddress: '0x5a7530Ee130E38487561032B9571F4EC41AB69AB',
+};
+
+export const MarsNextTokenObject: ContractObject = {
+  abi: MarsNextTokenInterface?.abi,
+  polygonAddress: '0x1a1750b2833f8A0D26fe59eF244412A5E25c72b9',
+  bscAddress: '0x1a1750b2833f8A0D26fe59eF244412A5E25c72b9',
+  myveeAddress: '0x1a1750b2833f8A0D26fe59eF244412A5E25c72b9',
 };
 
 export const ReferralV1ContractObject: ContractObject = {
@@ -64,4 +72,11 @@ export const BUSD: TokenContractObject = {
   polygonAddress: '0x9C9e5fD8bbc25984B178FdCE6117Defa39d2db39',
   bscAddress: '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
   myveeAddress: '0xc84837B0b1Ea22A831Cf000aFB4E2D88BDE8c1E7',
+};
+
+export const ERC20TokenDeployerCreate2 = {
+  abi: ERC20TokenDeployerCreate2Interface?.abi,
+  polygonAddress: '0xef88dcEEa773D1d40992C48A2051061079af8590',
+  bscAddress: '0xef88dcEEa773D1d40992C48A2051061079af8590',
+  myveeAddress: '0xef88dcEEa773D1d40992C48A2051061079af8590',
 };

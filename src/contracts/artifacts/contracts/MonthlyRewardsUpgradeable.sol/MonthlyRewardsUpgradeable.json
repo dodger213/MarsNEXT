@@ -1,0 +1,10 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "MonthlyRewardsUpgradeable",
+  "sourceName": "contracts/MonthlyRewardsUpgradeable.sol",
+  "abi": [],
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220bfede2e2b0475309618acf84f11425efe4546e79e20e1aa06b981bf06295b82164736f6c63430008120033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220bfede2e2b0475309618acf84f11425efe4546e79e20e1aa06b981bf06295b82164736f6c63430008120033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
