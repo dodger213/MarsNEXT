@@ -151,7 +151,7 @@ export const useGetWeeklyRewardToBeDistributed = () => {
 export const useGetRegistrationsStats = () => {
   const value = useContractCall({
     functionName: "getRegistrationsStats",
-    args: []
+    args: [],
   })
 
   return value;

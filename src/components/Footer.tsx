@@ -3,6 +3,8 @@ import {
   Flex,
   HStack,
   Heading,
+  Image,
+  Link,
   Spacer,
   Text,
   VStack,
@@ -74,6 +76,18 @@ export default function Footer() {
           >
             Download PDF
           </Button>
+        </VStack>
+        <VStack spacing={5}>
+          <Text textAlign="center">Audit Reports</Text>
+          <HStack>
+            <Link href="/auditReports/coinToolAuditReport.pdf" target="_blank">
+              <Image
+                src={'/auditReports/coinToolLogo.png'}
+                boxSize={10}
+                alt="Coin Tool Logo"
+              ></Image>
+            </Link>
+          </HStack>
         </VStack>
       </Wrap>
     </VStack>
