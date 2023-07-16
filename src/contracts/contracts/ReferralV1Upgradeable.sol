@@ -27,6 +27,14 @@ interface IUniswapRouter {
         address to,
         uint256 deadline
     ) external returns (uint256 amountA, uint256 amountB, uint256 liquidity);
+
+    function swapExactTokensForTokens(
+        uint amountIn,
+        uint amountOutMin,
+        address[] calldata path,
+        address to,
+        uint deadline
+    ) external returns (uint[] memory);
 }
 
 struct PlanStruct {
@@ -72,21 +80,17 @@ interface IVariables {
 
     function getLevelRates() external view returns (uint16[] memory);
 
-    function getValueBufferRate() external view returns (uint8);
-
-    function getCoreMemberRewardRate() external view returns (uint8);
-
     function getPlanById(
         uint8 _planId
     ) external view returns (PlanStruct memory);
 
     function getAdminAddress() external view returns (address);
 
+    function isAdmin(address _userAddress) external view returns (bool);
+
     function getSupportedTokenInfo(
         address _tokenContractAddress
     ) external view returns (SupportedTokensStruct memory);
-
-    function isIBP(address _ibpAddress) external view returns (bool);
 
     function getRewardTokenContract() external view returns (address);
 
@@ -95,6 +99,8 @@ interface IVariables {
     function getUniSwapRouterV2Address() external view returns (address);
 
     function getMaticUSDPriceOracle() external view returns (address);
+
+    function getBonanzaContract() external view returns (address);
 }
 
 interface IStaking {
@@ -105,6 +111,17 @@ interface IChainlinkOracle {
     function latestAnswer() external view returns (uint256);
 
     function decimals() external view returns (uint256);
+}
+
+interface IBonanza {
+    function setSelfBusines(address _userAddress, uint256 _valueInUSD) external;
+
+    function setDirectBusines(
+        address _userAddress,
+        uint256 _valueInUSD
+    ) external;
+
+    function setTeamBusines(address _userAddress, uint256 _valueInUSD) external;
 }
 
 contract ReferralV1Upgradeable is
@@ -169,6 +186,9 @@ contract ReferralV1Upgradeable is
 
     event CoreMembersRewardPaid(address coreMembersContract, uint256 value);
 
+    event DirectBusinessUpdated(address referrer, address user, uint256 value);
+    event TeamBusinessUpdated(address referrer, address user, uint256 value);
+
     bool private _registerRandom;
 
     uint256 _WeeklyRewardValueNative;
@@ -182,6 +202,33 @@ contract ReferralV1Upgradeable is
         __Pausable_init();
         __Ownable_init();
         __UUPSUpgradeable_init();
+    }
+
+    function _buyFromUniswap(
+        address _tokenInContract,
+        uint256 _tokenInAmount,
+        address _tokenOutContract,
+        address _uniswapV2Router
+    ) private returns (uint256[] memory) {
+        address[] memory tokensContracts = new address[](2);
+        tokensContracts[0] = _tokenInContract;
+        tokensContracts[1] = _tokenOutContract;
+
+        IERC20Upgradeable(_tokenInContract).approve(
+            _uniswapV2Router,
+            _tokenInAmount
+        );
+
+        uint[] memory amounts = IUniswapRouter(_uniswapV2Router)
+            .swapExactTokensForTokens(
+                _tokenInAmount,
+                1,
+                tokensContracts,
+                address(this),
+                block.timestamp + 100
+            );
+
+        return amounts;
     }
 
     function _hasReferrer(
@@ -245,33 +292,12 @@ contract ReferralV1Upgradeable is
             ];
 
             if (i == 0) {
-                referrerAccount.refereeAddresses.push(_referee);
-                if (userAccount.ibpAddress != address(0)) {
-                    emit IBPNotAdded(
-                        userAccount.ibpAddress,
-                        _referee,
-                        "Referee already have ibp set."
-                    );
-                } else {
-                    if (referrerAccount.ibpAddress == address(0)) {
-                        emit IBPNotAdded(
-                            referrerAccount.ibpAddress,
-                            _referee,
-                            "Zero address cannot be ibp. Setting up default ibp"
-                        );
-
-                        address defaultIBP = variablesContractInterface
-                            .getAdminAddress();
-                        userAccount.ibpAddress = defaultIBP;
-                        referrerAccount.ibpAddress = defaultIBP;
-
-                        emit IBPAdded(defaultIBP, referrerAccount.selfAddress);
-                        emit IBPAdded(defaultIBP, userAccount.selfAddress);
-                    } else {
-                        userAccount.ibpAddress = referrerAccount.ibpAddress;
-                        emit IBPAdded(referrerAccount.ibpAddress, _referee);
-                    }
+                if (referrerAccount.ibpAddress != address(0)) {
+                    userAccount.ibpAddress = referrerAccount.ibpAddress;
+                    emit IBPAdded(referrerAccount.ibpAddress, _referee);
                 }
+
+                referrerAccount.refereeAddresses.push(_referee);
             }
 
             referrerAccount.teamAddress.push(_referee);
@@ -366,44 +392,15 @@ contract ReferralV1Upgradeable is
         }
     }
 
-    function _updateReferralReward(
-        AccountStruct storage _referrerAccount,
-        uint256 _valueInUSD,
-        uint16[] memory _levelRates,
-        uint32 _i
-    ) private returns (uint256 referralRewardValue) {
-        if (_i == 0) {
-            _referrerAccount.directBusiness += _valueInUSD;
+    // function _updateReferralReward(
+    //     IVariables _varInt,
+    //     AccountStruct storage _referrerAccount,
+    //     uint256 _valueInUSD,
+    //     uint16[] memory _levelRates,
+    //     uint32 _i
+    // ) private returns (uint256 referralRewardValue) {
 
-            if (
-                _referrerAccount.isGlobal &&
-                _referrerAccount.selfAddress != address(0)
-            ) {
-                _globalAddresses.push(_referrerAccount.selfAddress);
-                _referrerAccount.globalIndexes.push(
-                    uint32(_globalAddresses.length - 1)
-                );
-
-                _referrerAccount.isGlobal = !_referrerAccount.isGlobal;
-            }
-        }
-
-        _referrerAccount.teamBusiness += _valueInUSD;
-
-        referralRewardValue = _updateCurrentLimit(
-            _referrerAccount,
-            (_valueInUSD * _levelRates[_i]) / 10000
-        );
-
-        if (referralRewardValue > 0) {
-            _referrerAccount.referralRewards += referralRewardValue;
-            emit ReferralRewardsPaid(
-                _referrerAccount.selfAddress,
-                referralRewardValue,
-                _i + 1
-            );
-        }
-    }
+    // }
 
     function _updateCoreMembersReward(
         uint256 _valueInUSD,
@@ -414,6 +411,18 @@ contract ReferralV1Upgradeable is
         emit CoreMembersRewardPaid(_coreMembersContract, coreRewardValue);
     }
 
+    function _getRewardToken(
+        IVariables _varInt
+    ) private view returns (address) {
+        return _varInt.getRewardTokenContract();
+    }
+
+    function _getStakingContract(
+        IVariables _varInt
+    ) private view returns (address) {
+        return _varInt.getStakingContract();
+    }
+
     function _registration(
         address _referrer,
         address _referee,
@@ -422,6 +431,7 @@ contract ReferralV1Upgradeable is
     ) private {
         IVariables varInt = IVariables(_variableContractAddress);
         PlanStruct memory planS = varInt.getPlanById(_planId);
+
         require(planS.value > 0, "Value is zero. Please select correct plan.");
         SupportedTokensStruct memory tokenS = varInt.getSupportedTokenInfo(
             _tokenAddress
@@ -443,7 +453,7 @@ contract ReferralV1Upgradeable is
         AccountStruct storage userAccount = accounts[_referee];
 
         uint256 rewardTokenBalanceThis = IERC20Upgradeable(
-            varInt.getRewardTokenContract()
+            _getRewardToken(varInt)
         ).balanceOf(address(this));
 
         if (
@@ -451,15 +461,17 @@ contract ReferralV1Upgradeable is
             userAccount.selfBusiness == 0
         ) {
             uint256 stakingValue = planS.value / 2;
-            IStaking(varInt.getStakingContract()).stake(_referee, stakingValue);
+            IStaking(_getStakingContract(varInt)).stake(_referee, stakingValue);
 
-            IERC20Upgradeable(varInt.getRewardTokenContract()).transfer(
-                varInt.getStakingContract(),
+            IERC20Upgradeable(_getRewardToken(varInt)).transfer(
+                _getStakingContract(varInt),
                 planS.value
             );
         }
 
-        userAccount.selfAddress = _referee;
+        if (userAccount.selfAddress == address(0)) {
+            userAccount.selfAddress = _referee;
+        }
         userAccount.selfBusiness += planS.value;
         userAccount.maxLimit += planS.value * planS.maxLimitMultiplier;
 
@@ -530,22 +542,50 @@ contract ReferralV1Upgradeable is
                 userAccount.referrerAddress
             ];
 
-            uint256 referralValue = _updateReferralReward(
+            if (i == 0) {
+                referrerAccount.directBusiness += planS.value;
+
+                if (
+                    referrerAccount.isGlobal &&
+                    referrerAccount.selfAddress != address(0) &&
+                    referrerAccount.selfAddress != varInt.getAdminAddress()
+                ) {
+                    _globalAddresses.push(referrerAccount.selfAddress);
+                    referrerAccount.globalIndexes.push(
+                        uint32(_globalAddresses.length - 1)
+                    );
+                }
+
+                referrerAccount.isGlobal = !referrerAccount.isGlobal;
+            }
+
+            referrerAccount.teamBusiness += planS.value;
+
+            uint256 referralRewardValue = _updateCurrentLimit(
                 referrerAccount,
-                planS.value,
-                _levelRates,
-                i
+                (planS.value * _levelRates[i]) / 10000
             );
 
-            if (referralValue > 0) {
+            if (referralRewardValue > 0) {
+                referrerAccount.referralRewards += referralRewardValue;
+                emit ReferralRewardsPaid(
+                    referrerAccount.selfAddress,
+                    referralRewardValue,
+                    i + 1
+                );
+
                 iercInt.transfer(
                     userAccount.referrerAddress,
                     tokenS.decimals < 18
-                        ? _toTokenDecimals(referralValue, 18, tokenS.decimals)
-                        : referralValue
+                        ? _toTokenDecimals(
+                            referralRewardValue,
+                            18,
+                            tokenS.decimals
+                        )
+                        : referralRewardValue
                 );
 
-                totalReferralPaid += referralValue;
+                totalReferralPaid += referralRewardValue;
             }
 
             userAccount = referrerAccount;
@@ -574,132 +614,142 @@ contract ReferralV1Upgradeable is
         );
     }
 
-    function _registrationWithNative(
-        address _referrer,
-        address _referee,
-        uint8 _planId,
-        uint256 _msgValue
-    ) private {
-        IVariables varInt = IVariables(_variableContractAddress);
-        PlanStruct memory planS = varInt.getPlanById(_planId);
-        uint256 priceInUSD = _usdPrice(varInt.getMaticUSDPriceOracle());
-        uint256 msgValueInUSD = _weiToUSD(_msgValue, priceInUSD);
-        require(planS.value > 0, "Value is zero. Please select correct plan.");
-        require(
-            msgValueInUSD > planS.value - (planS.value * 5) / 100,
-            "Native value is less 5% of price.s"
-        );
+    // function _registrationWithNative(
+    //     address _referrer,
+    //     address _msgSender,
+    //     uint8 _planId,
+    //     uint256 _msgValue
+    // ) private {
+    //     IVariables varInt = IVariables(_variableContractAddress);
+    //     PlanStruct memory planS = varInt.getPlanById(_planId);
+    //     uint256 priceInUSD = _usdPrice(varInt.getMaticUSDPriceOracle());
+    //     uint256 msgValueInUSD = _weiToUSD(_msgValue, priceInUSD);
 
-        uint16[] memory _levelRates = varInt.getLevelRates();
+    //     require(planS.value > 0, "Value is zero. Please select correct plan.");
+    //     require(
+    //         msgValueInUSD > planS.value - ((planS.value * 5) / 100),
+    //         "Native value is less 5% of price."
+    //     );
 
-        AccountStruct storage userAccount = accounts[_referee];
+    //     uint16[] memory _levelRates = varInt.getLevelRates();
 
-        uint256 rewardTokenBalanceThis = IERC20Upgradeable(
-            varInt.getRewardTokenContract()
-        ).balanceOf(address(this));
+    //     AccountStruct storage userAccount = accounts[_msgSender];
 
-        if (
-            rewardTokenBalanceThis > msgValueInUSD &&
-            userAccount.selfBusiness == 0
-        ) {
-            uint256 stakingValue = msgValueInUSD / 2;
-            IStaking(varInt.getStakingContract()).stake(_referee, stakingValue);
+    //     uint256 rewardTokenBalanceThis = IERC20Upgradeable(
+    //         _getRewardToken(varInt)
+    //     ).balanceOf(address(this));
 
-            IERC20Upgradeable(varInt.getRewardTokenContract()).transfer(
-                varInt.getStakingContract(),
-                msgValueInUSD
-            );
-        }
+    //     if (
+    //         rewardTokenBalanceThis > msgValueInUSD &&
+    //         userAccount.selfBusiness == 0
+    //     ) {
+    //         uint256 stakingValue = msgValueInUSD / 2;
+    //         IStaking(_getStakingContract(varInt)).stake(
+    //             _msgSender,
+    //             stakingValue
+    //         );
 
-        userAccount.selfAddress = _referee;
-        userAccount.selfBusiness += msgValueInUSD;
-        userAccount.maxLimit += msgValueInUSD * planS.maxLimitMultiplier;
+    //         IERC20Upgradeable(_getRewardToken(varInt)).transfer(
+    //             _getStakingContract(varInt),
+    //             msgValueInUSD
+    //         );
+    //     }
 
-        _updateId(userAccount);
+    //     if (userAccount.selfAddress == address(0)) {
+    //         userAccount.selfAddress = _msgSender;
+    //     }
 
-        if (!_hasReferrer(userAccount)) {
-            _addReferrer(
-                _referrer,
-                _referee,
-                uint8(_levelRates.length),
-                varInt
-            );
-        }
+    //     userAccount.selfBusiness += msgValueInUSD;
+    //     userAccount.maxLimit += msgValueInUSD * planS.maxLimitMultiplier;
 
-        emit Registration(
-            userAccount.selfAddress,
-            userAccount.userId,
-            _planId,
-            userAccount.referrerAddress
-        );
+    //     _updateId(userAccount);
 
-        address globalAddress = _getRandomGlobalAddress();
+    //     if (!_hasReferrer(userAccount)) {
+    //         _addReferrer(
+    //             _referrer,
+    //             _msgSender,
+    //             uint8(_levelRates.length),
+    //             varInt
+    //         );
+    //     }
 
-        if (globalAddress != address(0)) {
-            uint256 globalRewardValueUSD = _updateGlobalReward(
-                globalAddress,
-                msgValueInUSD
-            );
+    //     emit Registration(
+    //         userAccount.selfAddress,
+    //         userAccount.userId,
+    //         _planId,
+    //         userAccount.referrerAddress
+    //     );
 
-            if (globalRewardValueUSD > 0) {
-                payable(globalAddress).transfer(
-                    _usdToWei(globalRewardValueUSD, priceInUSD)
-                );
-            }
-        }
+    //     address globalAddress = _getRandomGlobalAddress();
 
-        if (userAccount.ibpAddress != address(0)) {
-            uint256 ibpRewardValueUSD = _updateIbpReward(
-                userAccount.ibpAddress,
-                _msgValue
-            );
+    //     if (globalAddress != address(0)) {
+    //         uint256 globalRewardValueUSD = _updateGlobalReward(
+    //             globalAddress,
+    //             msgValueInUSD
+    //         );
 
-            if (ibpRewardValueUSD > 0) {
-                payable(userAccount.ibpAddress).transfer(
-                    _usdToWei(ibpRewardValueUSD, priceInUSD)
-                );
-            }
-        }
+    //         if (globalRewardValueUSD > 0) {
+    //             payable(globalAddress).transfer(
+    //                 _usdToWei(globalRewardValueUSD, priceInUSD)
+    //             );
+    //         }
+    //     }
 
-        uint256 totalReferralPaid;
+    //     if (userAccount.ibpAddress != address(0)) {
+    //         uint256 ibpRewardValueUSD = _updateIbpReward(
+    //             userAccount.ibpAddress,
+    //             msgValueInUSD
+    //         );
 
-        for (uint8 i; i < _levelRates.length; i++) {
-            if (!_hasReferrer(userAccount)) {
-                break;
-            }
+    //         if (ibpRewardValueUSD > 0) {
+    //             payable(userAccount.ibpAddress).transfer(
+    //                 _usdToWei(ibpRewardValueUSD, priceInUSD)
+    //             );
+    //         }
+    //     }
 
-            AccountStruct storage referrerAccount = accounts[
-                userAccount.referrerAddress
-            ];
+    //     uint256 totalReferralPaid;
 
-            uint256 referralValueUSD = _updateReferralReward(
-                referrerAccount,
-                _msgValue,
-                _levelRates,
-                i
-            );
+    //     for (uint8 i; i < _levelRates.length; i++) {
+    //         if (!_hasReferrer(userAccount)) {
+    //             break;
+    //         }
 
-            if (referralValueUSD > 0) {
-                payable(userAccount.referrerAddress).transfer(
-                    _usdToWei(referralValueUSD, priceInUSD)
-                );
-                totalReferralPaid += referralValueUSD;
-            }
+    //         AccountStruct storage referrerAccount = accounts[
+    //             userAccount.referrerAddress
+    //         ];
 
-            userAccount = referrerAccount;
-        }
+    //         uint256 referralValueUSD = _updateReferralReward(
+    //             varInt,
+    //             referrerAccount,
+    //             msgValueInUSD,
+    //             _levelRates,
+    //             i
+    //         );
 
-        payable(varInt.getCoreMembersContractAddress()).transfer(
-            _updateCoreMembersReward(
-                _msgValue,
-                varInt.getCoreMembersContractAddress()
-            )
-        );
+    //         if (referralValueUSD > 0) {
+    //             payable(userAccount.referrerAddress).transfer(
+    //                 _usdToWei(referralValueUSD, priceInUSD)
+    //             );
+    //             totalReferralPaid += referralValueUSD;
+    //         }
 
-        _totalReferralPaid += totalReferralPaid;
-        _totalRegistrationValue += msgValueInUSD;
-        _WeeklyRewardValueNative += (_msgValue * 10) / 100;
-    }
+    //         userAccount = referrerAccount;
+    //     }
+
+    //     payable(varInt.getCoreMembersContractAddress()).transfer(
+    //         (_msgValue * 5) / 100
+    //     );
+
+    //     _updateCoreMembersReward(
+    //         msgValueInUSD,
+    //         varInt.getCoreMembersContractAddress()
+    //     );
+
+    //     _totalReferralPaid += totalReferralPaid;
+    //     _totalRegistrationValue += msgValueInUSD;
+    //     _WeeklyRewardValueNative += (_msgValue * 10) / 100;
+    // }
 
     function registrationWithToken(
         address _referrer,
@@ -710,12 +760,12 @@ contract ReferralV1Upgradeable is
         _registration(_referrer, _msgSender, _planId, _tokenAddress);
     }
 
-    function registrationWithNative(
-        address _referrer,
-        uint8 _planId
-    ) external payable {
-        _registrationWithNative(_referrer, msg.sender, _planId, msg.value);
-    }
+    // function registrationWithNative(
+    //     address _referrer,
+    //     uint8 _planId
+    // ) external payable {
+    //     _registrationWithNative(_referrer, msg.sender, _planId, msg.value);
+    // }
 
     function getRegistrationsStats()
         external
@@ -916,6 +966,131 @@ contract ReferralV1Upgradeable is
         emit IBPAdded(_ibpAddress, _userAddress);
     }
 
+    function setWeeklyDetails(
+        uint256 _valueToAddInWei,
+        uint256 _timeInSeconds
+    ) external onlyOwner {
+        _weeklyRewardClaimedTimeStamp = _timeInSeconds;
+        _WeeklyRewardValue += _valueToAddInWei;
+    }
+
+    // function removeAdminAddressFromGlobalList() external {
+    //     address adminAddress = IVariables(_variableContractAddress)
+    //         .getAdminAddress();
+    //     address[] memory globalList = _globalAddresses;
+    //     uint256 globalAddressCount = globalList.length;
+
+    //     for (uint256 i; i < globalAddressCount; i++) {
+    //         if (_globalAddresses[i] == adminAddress) {
+    //             _globalAddresses[i] = _globalAddresses[
+    //                 _globalAddresses.length - 1
+    //             ];
+    //             _globalAddresses.pop();
+    //         }
+
+    //         if (
+    //             _globalAddresses.length == 0 || i == _globalAddresses.length - 1
+    //         ) {
+    //             break;
+    //         }
+    //     }
+    // }
+
+    function resetGlobalArray() external onlyOwner {
+        delete _globalAddresses;
+    }
+
+    function resetUserAccounts(uint16 _from, uint16 _to) external onlyOwner {
+        for (uint16 i = _from; i < _to; ++i) {
+            address userAddress = idToAddress[i];
+            AccountStruct storage userAccount = accounts[userAddress];
+
+            delete userAccount.refereeAddresses;
+            delete userAccount.directBusiness;
+            delete userAccount.teamAddress;
+            delete userAccount.teamBusiness;
+            delete userAccount.teamLevels;
+            delete userAccount.isGlobal;
+            delete userAccount.globalIndexes;
+        }
+    }
+
+    function reRegisterAccounts(uint16 _from, uint16 _to) external onlyOwner {
+        IVariables varI = IVariables(_variableContractAddress);
+        for (uint32 j = _from; j < _to; ++j) {
+            address userAddress = idToAddress[j];
+            AccountStruct storage userAccount = accounts[userAddress];
+            if (userAccount.selfAddress == address(0)) {
+                userAccount.selfAddress = userAddress;
+            }
+            uint256 userSelfBusiness = userAccount.selfBusiness;
+
+            uint16[] memory levelRate = varI.getLevelRates();
+
+            for (uint8 i; i < levelRate.length; ++i) {
+                if (
+                    userAccount.referrerAddress == address(0) ||
+                    userAccount.referrerAddress == varI.getAdminAddress()
+                ) {
+                    break;
+                }
+
+                AccountStruct storage referrerAccount = accounts[
+                    userAccount.referrerAddress
+                ];
+
+                if (referrerAccount.selfAddress == address(0)) {
+                    userAccount.referrerAddress;
+                }
+
+                if (i == 0) {
+                    referrerAccount.refereeAddresses.push(userAddress);
+                    emit ReferrerAdded(
+                        referrerAccount.selfAddress,
+                        userAddress
+                    );
+
+                    referrerAccount.directBusiness += userSelfBusiness;
+                    emit DirectBusinessUpdated(
+                        referrerAccount.selfAddress,
+                        userAddress,
+                        userSelfBusiness
+                    );
+
+                    if (
+                        referrerAccount.isGlobal &&
+                        userAccount.referrerAddress != varI.getAdminAddress() &&
+                        referrerAccount.selfAddress != address(0)
+                    ) {
+                        referrerAccount.globalIndexes.push(
+                            uint32(_globalAddresses.length)
+                        );
+                        _globalAddresses.push(referrerAccount.selfAddress);
+                    }
+
+                    referrerAccount.isGlobal = !referrerAccount.isGlobal;
+                }
+
+                referrerAccount.teamAddress.push(userAddress);
+                referrerAccount.teamLevels.push(i + 1);
+                emit TeamAddressAdded(
+                    referrerAccount.referrerAddress,
+                    referrerAccount.selfAddress,
+                    userAddress,
+                    i + 1
+                );
+                referrerAccount.teamBusiness += userSelfBusiness;
+                emit TeamBusinessUpdated(
+                    referrerAccount.selfAddress,
+                    userAddress,
+                    userSelfBusiness
+                );
+
+                userAccount = referrerAccount;
+            }
+        }
+    }
+
     // function updateAllAddressIBP(
     //     uint32 _idFrom,
     //     uint32 _idTo,
@@ -1053,6 +1228,10 @@ contract ReferralV1Upgradeable is
     //     );
     // }
 
+    function getIDToAddress(uint32 _id) external view returns (address) {
+        return idToAddress[_id];
+    }
+
     function getVariablesContract() external view returns (address) {
         return _variableContractAddress;
     }
@@ -1098,14 +1277,24 @@ contract ReferralV1Upgradeable is
         uint256 _valueInWei,
         uint256 _priceInUSD
     ) private pure returns (uint256) {
-        return _valueInWei * _priceInUSD;
+        return (_valueInWei * _priceInUSD) / 10 ** 18;
     }
 
     function _usdToWei(
         uint256 _valueInUSD,
         uint256 _priceInUSD
     ) private pure returns (uint256) {
-        return _valueInUSD / _priceInUSD;
+        return (_valueInUSD * 10 ** 18) / _priceInUSD;
+    }
+
+    function getUSDToNativeValue(
+        uint256 _valueInUSDWei
+    ) external view returns (uint256) {
+        return
+            (_valueInUSDWei * 10 ** 18) /
+            _usdPrice(
+                IVariables(_variableContractAddress).getMaticUSDPriceOracle()
+            );
     }
 
     function _authorizeUpgrade(

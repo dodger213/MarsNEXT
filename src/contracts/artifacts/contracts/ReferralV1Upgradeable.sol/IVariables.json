@@ -18,12 +18,12 @@
     },
     {
       "inputs": [],
-      "name": "getCoreMemberRewardRate",
+      "name": "getBonanzaContract",
       "outputs": [
         {
-          "internalType": "uint8",
+          "internalType": "address",
           "name": "",
-          "type": "uint8"
+          "type": "address"
         }
       ],
       "stateMutability": "view",
@@ -205,27 +205,14 @@
       "type": "function"
     },
     {
-      "inputs": [],
-      "name": "getValueBufferRate",
-      "outputs": [
-        {
-          "internalType": "uint8",
-          "name": "",
-          "type": "uint8"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
       "inputs": [
         {
           "internalType": "address",
-          "name": "_ibpAddress",
+          "name": "_userAddress",
           "type": "address"
         }
       ],
-      "name": "isIBP",
+      "name": "isAdmin",
       "outputs": [
         {
           "internalType": "bool",

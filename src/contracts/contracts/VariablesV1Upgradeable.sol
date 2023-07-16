@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
-import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
@@ -17,36 +16,17 @@ interface IERC20_EXTENDED {
 
 contract VariablesV1Upgradeable is
     Initializable,
-    PausableUpgradeable,
     OwnableUpgradeable,
     UUPSUpgradeable
 {
     uint16[] private _levelRates;
     uint16 private _levelDecimals;
-    uint8 private _baseCurrencyDecimals;
-
-    uint8 private _valueBufferRate;
-    uint8 private _globalRewardRate;
-    uint8 private _weeklyRewardRate;
-    uint8 private _ibpRewardRate;
-    uint8 private _coreMemberRewardRate;
-    uint8 private _adminFees;
-    uint8 private _rewardTokenRate;
-
-    bool private _isPayRewardToken;
-    bool private _isPayReferralRewards;
-    bool private _isPayGlobalRewards;
-    bool private _isPayWeeklyRewards;
-    bool private _isPayIbpRewards;
-    bool private _isPayCoreMembersRewards;
 
     address[] public supportedTokensList;
-    address[] private _ibpAddresses;
 
     address private _presaleContract;
     address private _referralContract;
     address private _stakingContract;
-    address private _ibpContract;
     address private _rewardTokenContract;
     address private _coreMembersContract;
     address private _adminAddress;
@@ -70,10 +50,6 @@ contract VariablesV1Upgradeable is
 
     mapping(uint8 => PlanStruct) private plans;
     mapping(address => SupportedTokensStruct) private supportTokens;
-    mapping(address => bool) private isIBPAddress;
-
-    event IBPPromotedByAdmin(address ibpAddress);
-    event IBPRemovedByAdmin(address ibpAddress);
 
     address private _uniswapRouterV2Address;
 
@@ -81,30 +57,21 @@ contract VariablesV1Upgradeable is
 
     address private _maticUsdPriceOracleContract;
 
+    address private _bonanzaContract;
+
     function initialize() public initializer {
         _levelRates = [5000, 500, 400, 300, 200, 100, 100, 125, 125, 150];
         _levelDecimals = 10000;
-        _valueBufferRate = 10;
-        _globalRewardRate = 10;
-        _weeklyRewardRate = 10;
-        _ibpRewardRate = 5;
-        _coreMemberRewardRate = 2;
-        _adminFees = 3;
-
-        _isPayRewardToken = true;
-        _isPayReferralRewards = true;
-        _isPayGlobalRewards = true;
-        _isPayWeeklyRewards = true;
-        _isPayIbpRewards = true;
-        _isPayCoreMembersRewards = true;
 
         _rewardTokenContract = 0x7F9fD63932babC508FAD2f324EB534D09cfE86F0;
-        _rewardTokenRate = 3;
-        _coreMembersContract = 0xefb61c43C70b60563c1a2a835663C63Ecc93F6bA;
+        _coreMembersContract = 0x64b909a2C51AA62F30e75010b726a8CE863285fA;
 
         _adminAddress = msg.sender;
 
-        __Pausable_init();
+        _uniswapRouterV2Address;
+        _maticUsdPriceOracleContract;
+        _bonanzaContract;
+
         __Ownable_init();
         __UUPSUpgradeable_init();
     }
@@ -167,7 +134,6 @@ contract VariablesV1Upgradeable is
         _levelRates = rates;
     }
 
-    // Getter and Setter for _levelDecimals
     function getLevelDecimals() external view returns (uint16) {
         return _levelDecimals;
     }
@@ -175,16 +141,6 @@ contract VariablesV1Upgradeable is
     function setLevelDecimals(uint16 decimals) external onlyOwner {
         _levelDecimals = decimals;
     }
-
-    function getBaseCurrencyDecimals() external view returns (uint8) {
-        return _baseCurrencyDecimals;
-    }
-
-    function setBaseCurrencyDecimals(uint8 decimals) external onlyOwner {
-        _baseCurrencyDecimals = decimals;
-    }
-
-    //getter and setter plans
 
     function getPlanById(
         uint8 _planId
@@ -214,108 +170,6 @@ contract VariablesV1Upgradeable is
         }
     }
 
-    // Getter and Setter for _valueBufferRate
-    function getValueBufferRate() external view returns (uint8) {
-        return _valueBufferRate;
-    }
-
-    function setValueBufferRate(uint8 rate) external onlyOwner {
-        _valueBufferRate = rate;
-    }
-
-    // Getter and Setter for _globalRewardRate
-    function getGlobalRewardRate() external view returns (uint8) {
-        return _globalRewardRate;
-    }
-
-    function setGlobalRewardRate(uint8 rate) external onlyOwner {
-        _globalRewardRate = rate;
-    }
-
-    // Getter and Setter for _weeklyRewardRate
-    function getWeeklyRewardRate() external view returns (uint8) {
-        return _weeklyRewardRate;
-    }
-
-    function setWeeklyRewardRate(uint8 rate) external onlyOwner {
-        _weeklyRewardRate = rate;
-    }
-
-    function getIbpRewardRate() external view returns (uint8) {
-        return _ibpRewardRate;
-    }
-
-    function setIbpRewardRate(uint8 rate) external onlyOwner {
-        _ibpRewardRate = rate;
-    }
-
-    // Getter and Setter for _coreMemberRewardRate
-    function getCoreMemberRewardRate() external view returns (uint8) {
-        return _coreMemberRewardRate;
-    }
-
-    function setCoreMemberRewardRate(uint8 rate) external onlyOwner {
-        _coreMemberRewardRate = rate;
-    }
-
-    // Getter and Setter for _adminFees
-    function getAdminFees() external view returns (uint8) {
-        return _adminFees;
-    }
-
-    function setAdminFees(uint8 fees) external onlyOwner {
-        _adminFees = fees;
-    }
-
-    // Getter and Setter for _isPayRewardToken
-    function getIsPayRewardToken() external view returns (bool) {
-        return _isPayRewardToken;
-    }
-
-    function setIsPayRewardToken(bool isPay) external onlyOwner {
-        _isPayRewardToken = isPay;
-    }
-
-    function getIsPayReferralRewards() external view returns (bool) {
-        return _isPayReferralRewards;
-    }
-
-    function getIsPayGlobalRewards() external view returns (bool) {
-        return _isPayGlobalRewards;
-    }
-
-    function getIsPayWeeklyRewards() external view returns (bool) {
-        return _isPayWeeklyRewards;
-    }
-
-    function getIsPayIbpRewards() external view returns (bool) {
-        return _isPayIbpRewards;
-    }
-
-    function setIsPayReferralRewards(bool value) external onlyOwner {
-        _isPayReferralRewards = value;
-    }
-
-    function setIsPayGlobalRewards(bool value) external onlyOwner {
-        _isPayGlobalRewards = value;
-    }
-
-    function setIsPayWeeklyRewards(bool value) external onlyOwner {
-        _isPayWeeklyRewards = value;
-    }
-
-    function setIsPayIbpRewards(bool value) external onlyOwner {
-        _isPayIbpRewards = value;
-    }
-
-    function getIsPayCoreMembersRewards() external view returns (bool) {
-        return _isPayCoreMembersRewards;
-    }
-
-    function setIsPayCoreMembersRewards(bool value) external onlyOwner {
-        _isPayCoreMembersRewards = value;
-    }
-
     // Getter and Setter for _rewardTokenContract
     function getRewardTokenContract() external view returns (address) {
         return _rewardTokenContract;
@@ -323,14 +177,6 @@ contract VariablesV1Upgradeable is
 
     function setRewardTokenContract(address tokenContract) external onlyOwner {
         _rewardTokenContract = tokenContract;
-    }
-
-    function getRewardTokenRate() external view returns (uint8) {
-        return _rewardTokenRate;
-    }
-
-    function setRewardTokenRate(uint8 _rewardRatePer) external onlyOwner {
-        _rewardTokenRate = _rewardRatePer;
     }
 
     function isAdmin(address _userAddress) external view returns (bool) {
@@ -343,41 +189,6 @@ contract VariablesV1Upgradeable is
 
     function setAdminAddress(address adminAddress) external onlyOwner {
         _adminAddress = adminAddress;
-    }
-
-    function isIBP(address _ibpAddress) external view returns (bool) {
-        return isIBPAddress[_ibpAddress];
-    }
-
-    function getIBPList() external view returns (address[] memory) {
-        return _ibpAddresses;
-    }
-
-    function addIBPAddressAdmin(address _ibpAddress) external onlyOwner {
-        bool isAlreadyIBP = isIBPAddress[_ibpAddress];
-        if (!isAlreadyIBP) {
-            isIBPAddress[_ibpAddress] = true;
-            _ibpAddresses.push(_ibpAddress);
-            emit IBPPromotedByAdmin(_ibpAddress);
-        }
-    }
-
-    function removeIBPAddressAdmin(address _ibpAddress) external onlyOwner {
-        bool isAlreadyIBP = isIBPAddress[_ibpAddress];
-        if (isAlreadyIBP) {
-            isIBPAddress[_ibpAddress] = false;
-            address[] memory ibpAddressList = _ibpAddresses;
-            for (uint i; i < ibpAddressList.length; i++) {
-                if (ibpAddressList[i] == _ibpAddress) {
-                    _ibpAddresses[i] = ibpAddressList[
-                        ibpAddressList.length - 1
-                    ];
-                    _ibpAddresses.pop();
-                    emit IBPRemovedByAdmin(_ibpAddress);
-                    break;
-                }
-            }
-        }
     }
 
     function getPresaleContract() external view returns (address) {
@@ -418,12 +229,16 @@ contract VariablesV1Upgradeable is
         return _maticUsdPriceOracleContract;
     }
 
-    function pause() public onlyOwner {
-        _pause();
+    function setMaticUSDPriceOracle(address _oracleAddress) external onlyOwner {
+        _maticUsdPriceOracleContract = _oracleAddress;
     }
 
-    function unpause() public onlyOwner {
-        _unpause();
+    function getBonanzaContract() external view returns (address) {
+        return _bonanzaContract;
+    }
+
+    function setBonanzaContract(address _contractAddress) external onlyOwner {
+        _bonanzaContract = _contractAddress;
     }
 
     function _authorizeUpgrade(

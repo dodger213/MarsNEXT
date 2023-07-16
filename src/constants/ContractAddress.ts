@@ -29,7 +29,7 @@ export const VariablesV1ContractObject: ContractObject = {
   abi: VariablesV1ContractInterface?.abi,
   polygonAddress: '0x494549e00FE6598E3DC93254c5377c406dDA8579',
   bscAddress: AddressZero,
-  myveeAddress: '0x5a7530Ee130E38487561032B9571F4EC41AB69AB',
+  myveeAddress: '0xeF83cf0c403575f2fe71106112972a2463928280',
 };
 
 export const MarsNextTokenObject: ContractObject = {

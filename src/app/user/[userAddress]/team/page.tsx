@@ -22,7 +22,7 @@ import {
   FcVoicePresentation,
 } from 'react-icons/fc';
 import UserTeamTable from './UserTeamTable';
-import { useGetUserTeam } from '@/hooks/ReferralHooks';
+import { useGetUserBusiness, useGetUserTeam } from '@/hooks/ReferralHooks';
 import { CheckIcon, CopyIcon } from '@chakra-ui/icons';
 import { useAccount } from 'wagmi';
 
@@ -34,7 +34,9 @@ function Team({
   };
 }) {
   const { address } = useAccount();
+  const userBusiness = useGetUserBusiness(params.userAddress);
   const userTeamObject = useGetUserTeam(params.userAddress);
+  const isUserActive = Number(userBusiness.selfBusiness) > 0 ? true : false;
   const userReferralLink = `https://marsnext.io/registration/${address}`;
   const { hasCopied, onCopy } = useClipboard(userReferralLink);
   return (
@@ -49,12 +51,20 @@ function Team({
       <VStack>
         <Heading>Your referral link</Heading>
         <VStack>
-          <Input defaultValue={userReferralLink} borderRadius="xl"></Input>
+          <Input
+            defaultValue={
+              isUserActive ? userReferralLink : 'User is not active'
+            }
+            borderRadius="xl"
+            color={!isUserActive ? 'red' : ''}
+            isReadOnly
+          ></Input>
           <Button
             w="full"
             borderRadius="xl"
             onClick={onCopy}
             rightIcon={hasCopied ? <CheckIcon /> : <CopyIcon />}
+            isDisabled={!isUserActive}
           >
             {hasCopied ? 'Referral Link Copied' : 'Copy Referral Link'}
           </Button>

@@ -461,8 +461,8 @@
       ]
     },
     "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/contracts/VariablesV1Upgradeable.sol": {
-      "lastModificationDate": 1688637906395,
-      "contentHash": "6beebd9a4abaacb19bb401432aaefa0d",
+      "lastModificationDate": 1689247439877,
+      "contentHash": "119aa0824b3f8b5ba4b534927b12219c",
       "sourceName": "contracts/VariablesV1Upgradeable.sol",
       "solcConfig": {
         "version": "0.8.18",
@@ -489,7 +489,6 @@
         }
       },
       "imports": [
-        "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol",
         "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
         "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
         "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol",
@@ -634,8 +633,8 @@
       ]
     },
     "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/contracts/ReferralV1Upgradeable.sol": {
-      "lastModificationDate": 1688662963176,
-      "contentHash": "7a18e9aceb4cb259c1408387ebf5eeee",
+      "lastModificationDate": 1689443971136,
+      "contentHash": "87ef2d2b2daa6f177aeea746bd3eae1b",
       "sourceName": "contracts/ReferralV1Upgradeable.sol",
       "solcConfig": {
         "version": "0.8.18",
@@ -672,6 +671,7 @@
         "^0.8.18"
       ],
       "artifacts": [
+        "IBonanza",
         "IChainlinkOracle",
         "IERC20_EXTENDED",
         "IStaking",
@@ -945,8 +945,8 @@
       ]
     },
     "/Users/suru.martian/Documents/GitHub/marsnext/src/contracts/contracts/MonthlyRewardsUpgradeable.sol": {
-      "lastModificationDate": 1688628811273,
-      "contentHash": "b169ffb1bfb2704ad942fe230dbe5359",
+      "lastModificationDate": 1689237913164,
+      "contentHash": "305caf4706b98d170fa72ed3ab064d13",
       "sourceName": "contracts/MonthlyRewardsUpgradeable.sol",
       "solcConfig": {
         "version": "0.8.18",
